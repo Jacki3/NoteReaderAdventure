@@ -6,7 +6,6 @@ public class CoinPickup : Item
 {
     protected override void PickUp()
     {
-        //animate
         base.PickUp();
         SoundController.PlaySound(SoundController.Sound.CoinPickup);
         Destroy (gameObject);

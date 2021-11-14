@@ -8,6 +8,8 @@ public static class HealthController
 
     private static int currentHealth;
 
+    private static bool hasShield = false;
+
     //this should be replaced by a controller which handles 'global/core things' such as health, score, XP etc. OR be a monobehaviour!
     [RuntimeInitializeOnLoadMethod]
     private static void SetHealth()
@@ -18,7 +20,10 @@ public static class HealthController
 
     public static void RemoveHealth(int healthRemoved)
     {
-        currentHealth -= healthRemoved;
+        if (!hasShield)
+            currentHealth -= healthRemoved;
+        else
+            hasShield = false;
 
         if (currentHealth > 0)
         {
@@ -53,6 +58,14 @@ public static class HealthController
         maxHealth += heatlhUpgraded;
         currentHealth = maxHealth;
         //update UI?
+        //animate
+        //sound
+    }
+
+    public static void AddShield()
+    {
+        hasShield = true;
+        //updateUI
         //animate
         //sound
     }

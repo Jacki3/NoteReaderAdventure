@@ -53,12 +53,19 @@ public static class ExperienceController
         UIController
             .UpdateTextUI(UIController.UITextComponents.XPToNextLvlText,
             XPToNextLvl.ToString());
-
         UIController
             .UpdateSliderAmount(UIController.UIImageComponents.XPBar,
             XPToNextLvl,
             currentXP);
 
         //animation controller updated level up
+    }
+
+    public static bool GetLevelRequirement(int levelRequired)
+    {
+        if (level >= levelRequired)
+            return true;
+        else
+            return false;
     }
 }

@@ -1,7 +1,14 @@
 using UnityEngine;
 
-public class Item : MonoBehaviour, IPickup
+//renamed to pickups
+public class Item : MonoBehaviour
 {
+    public delegate void Increment();
+
+    public static event Increment increment;
+
+    public Mission.Object missionObject;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
@@ -12,12 +19,8 @@ public class Item : MonoBehaviour, IPickup
 
     protected virtual void PickUp()
     {
-        //disable collision?
-        print("picked up!");
-        Increment();
-    }
-
-    public void Increment()
-    {
+        // increment(); -- alternative solution could be events driven from parent classes?
+        MissionHolder.i.CheckValidMission (missionObject); //everything which can be a mission just add this?
+        //disable collision etc.
     }
 }

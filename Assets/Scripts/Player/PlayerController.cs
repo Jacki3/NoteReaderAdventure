@@ -83,6 +83,7 @@ public class PlayerController : MonoBehaviour
         else
             moveSpeed = walkSpeed;
 
+        //is this bad practice?
         if (Input.GetKeyUp(KeyCode.Space))
         {
             var newCircle = Instantiate(smashCircle);
