@@ -1,0 +1,322 @@
+fileFormatVersion: 2
+guid: 7da3e566fd5a02046a938fc39e3afeb0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4429570497000558207
+    second: SwitchPulseYellow_0
+  - first:
+      213: 20259865532932277
+    second: SwitchPulseYellow_1
+  - first:
+      213: -5534436118299993716
+    second: SwitchPulseYellow_2
+  - first:
+      213: -9221643470300149545
+    second: SwitchPulseYellow_3
+  - first:
+      213: -5314171117014089489
+    second: SwitchPulseYellow_4
+  - first:
+      213: 7752854259853859386
+    second: SwitchPulseYellow_5
+  - first:
+      213: 3144291966367533220
+    second: SwitchPulseYellow_6
+  - first:
+      213: -6540839215106409013
+    second: SwitchPulseYellow_7
+  - first:
+      213: -1786245116443961406
+    second: SwitchPulseYellow_0
+  - first:
+      213: -6229426459212338163
+    second: SwitchPulseYellow_1
+  - first:
+      213: -6982704264793648651
+    second: SwitchPulseYellow_2
+  - first:
+      213: -1410592175737438903
+    second: SwitchPulseYellow_3
+  - first:
+      213: -8444274005950503728
+    second: SwitchPulseYellow_4
+  - first:
+      213: -6002013950310003434
+    second: SwitchPulseYellow_5
+  - first:
+      213: -8430428405432641814
+    second: SwitchPulseYellow_6
+  - first:
+      213: 6674532977380604937
+    second: SwitchPulseYellow_7
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SwitchPulseYellow_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 516
+        width: 505
+        height: 505
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 34}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c7d490d78bf537e0800000000000000
+      internalID: -1786245116443961406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwitchPulseYellow_1
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 516
+        width: 472
+        height: 505
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 53}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0caa38e3a1ac89a0800000000000000
+      internalID: -6229426459212338163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwitchPulseYellow_2
+      rect:
+        serializedVersion: 2
+        x: 1042
+        y: 516
+        width: 478
+        height: 486
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 32, y: 0, z: 0, w: 12}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f19e559773781f90800000000000000
+      internalID: -6982704264793648651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwitchPulseYellow_3
+      rect:
+        serializedVersion: 2
+        x: 1543
+        y: 516
+        width: 482
+        height: 505
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 9, y: 0, z: 0, w: 13}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94d793ac3e19c6ce0800000000000000
+      internalID: -1410592175737438903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwitchPulseYellow_4
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 11
+        width: 506
+        height: 483
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 11, y: 0, z: 0, w: 26}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe00cb656854046b0800000000000000
+      internalID: -5314171117014089489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwitchPulseYellow_5
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 12
+        width: 481
+        height: 487
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 10, y: 0, z: 0, w: 2}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3a96f97fdba79b60800000000000000
+      internalID: 7752854259853859386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwitchPulseYellow_6
+      rect:
+        serializedVersion: 2
+        x: 1049
+        y: 18
+        width: 472
+        height: 478
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 33, y: 0, z: 0, w: 45}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a8837d52e4c2ab20800000000000000
+      internalID: 3144291966367533220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwitchPulseYellow_7
+      rect:
+        serializedVersion: 2
+        x: 1572
+        y: 12
+        width: 451
+        height: 459
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 44}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcd33a283654a35a0800000000000000
+      internalID: -6540839215106409013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
