@@ -69,4 +69,6 @@ public static class HealthController
         //animate
         //sound
     }
+
+    public static bool NotMaxHealth() => currentHealth < maxHealth;
 }

@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 [System.Serializable]
 public class Mission
 {
@@ -27,6 +23,16 @@ public class Mission
     public int currentAmount;
 
     public bool isActiveMission = true;
+
+    public CoreUIElements.UIText text;
+
+    public CoreUIElements.UIText missionTypeText;
+
+    public CoreUIElements.UIText missionObjectText;
+
+    public CoreUIElements.UIText missionRequiredText;
+
+    public CoreUIElements.UIText missionCurrentText;
 
     public bool missionComplete() => currentAmount >= requiredAmount;
 }

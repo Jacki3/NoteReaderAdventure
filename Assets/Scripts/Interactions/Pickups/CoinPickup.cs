@@ -8,6 +8,7 @@ public class CoinPickup : Item
     {
         base.PickUp();
         SoundController.PlaySound(SoundController.Sound.CoinPickup);
+        CurrencyController.AddRemoveCoins(1, true);
         Destroy (gameObject);
         //destroy on animate - make an animation rather than code it!
         //add to currency (updating UI)

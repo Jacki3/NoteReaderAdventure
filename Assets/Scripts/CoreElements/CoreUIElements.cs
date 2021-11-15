@@ -58,6 +58,17 @@ public class CoreUIElements : MonoBehaviour
         return null;
     }
 
+    public Image
+    GetImageComponent(UIController.UIImageComponents imageComponent)
+    {
+        foreach (UIImage image in imageComponents)
+        {
+            if (image.imageComponent == imageComponent) return image.image;
+        }
+        Debug.LogError("Text Component" + imageComponent + "missing!");
+        return null;
+    }
+
     //this and above should NOT be here!?
     public Slider
     GetSliderComponent(UIController.UIImageComponents sliderComponent)
@@ -68,5 +79,17 @@ public class CoreUIElements : MonoBehaviour
         }
         Debug.LogError("Slider Component" + sliderComponent + "missing!");
         return null;
+    }
+
+    [System.Serializable]
+    public class Text
+    {
+        public TextMeshProUGUI text;
+    }
+
+    [System.Serializable]
+    public class ImageUI
+    {
+        public Image image;
     }
 }

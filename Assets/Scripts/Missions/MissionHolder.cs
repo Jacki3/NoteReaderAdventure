@@ -26,19 +26,46 @@ public class MissionHolder : MonoBehaviour
             _i = this;
 
         // Item.increment += IncrementCurrentAmount; -- alternative solution could be events driven from parent classes?
+    }
 
-        //UI:
+    private void Start()
+    {
         //loops through allMissions and sets text? (if amount = 1 then put an 'a')
+        foreach (Mission mission in currentMissions)
+        {
+            mission.text.textPlaceholder.text =
+                mission.missionType +
+                " " +
+                mission.currentAmount +
+                "/" +
+                mission.requiredAmount +
+                " " +
+                mission.missionObject +
+                "\n";
+        }
     }
 
     public void IncrementCurrentAmount(Mission mission)
     {
         mission.currentAmount++;
+        mission.text.textPlaceholder.text =
+            mission.missionType +
+            " " +
+            mission.currentAmount +
+            "/" +
+            mission.requiredAmount +
+            " " +
+            mission.missionObject +
+            "\n";
         if (mission.missionComplete())
         {
-            print("mission done!");
+            string currentMissionText = mission.text.textPlaceholder.text;
+            mission.text.textPlaceholder.text = "<s>" + currentMissionText;
             mission.isActiveMission = false;
             //remove from list, cross out (update UI) etc.
+        }
+        else
+        {
         }
     }
 

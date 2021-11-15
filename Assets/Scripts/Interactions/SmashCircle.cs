@@ -29,7 +29,7 @@ public class SmashCircle : MonoBehaviour
 
     private void Start()
     {
-        EZCameraShake.CameraShaker.Instance.ShakeOnce(1f, 1f, .5f, 1f);
+        EZCameraShake.CameraShaker.Instance.ShakeOnce(2f, 1f, .5f, 1f);
     }
 
     private void Update()

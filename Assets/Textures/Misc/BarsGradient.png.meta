@@ -1,0 +1,490 @@
+fileFormatVersion: 2
+guid: 4f18260d962b5eb4ead8de1be85ef32d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3975133789279962215
+    second: BarsGradient_0
+  - first:
+      213: -7335108647747454094
+    second: BarsGradient_1
+  - first:
+      213: -4252149335655157622
+    second: BarsGradient_2
+  - first:
+      213: -533787765051400254
+    second: BarsGradient_3
+  - first:
+      213: 4880415752606931542
+    second: BarsGradient_4
+  - first:
+      213: -787567165531355184
+    second: BarsGradient_5
+  - first:
+      213: -6147280020128242584
+    second: BarsGradient_6
+  - first:
+      213: 3696503434218366326
+    second: BarsGradient_7
+  - first:
+      213: -7766351355215117843
+    second: BarsGradient_8
+  - first:
+      213: -624655970500628256
+    second: BarsGradient_9
+  - first:
+      213: 7127343389148240086
+    second: BarsGradient_10
+  - first:
+      213: 239736041792101617
+    second: BarsGradient_11
+  - first:
+      213: -3965089940719600352
+    second: BarsGradient_12
+  - first:
+      213: -6812781897527225359
+    second: BarsGradient_13
+  - first:
+      213: 6105467285872684775
+    second: BarsGradient_14
+  - first:
+      213: 3565996288467103871
+    second: BarsGradient_15
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BarsGradient_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 514
+        width: 294
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7644fa4ce138a2730800000000000000
+      internalID: 3975133789279962215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarsGradient_1
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 514
+        width: 294
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27bfd164c85743a90800000000000000
+      internalID: -7335108647747454094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarsGradient_2
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 444
+        width: 294
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a807c5445b45df4c0800000000000000
+      internalID: -4252149335655157622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarsGradient_3
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 444
+        width: 294
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cf59a61bda9798f0800000000000000
+      internalID: -533787765051400254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarsGradient_4
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 370
+        width: 294
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65a5b5af448bab340800000000000000
+      internalID: 4880415752606931542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarsGradient_5
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 370
+        width: 294
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d70ebde5dff115f0800000000000000
+      internalID: -787567165531355184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarsGradient_6
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 299
+        width: 294
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8646661346970baa0800000000000000
+      internalID: -6147280020128242584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarsGradient_7
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 299
+        width: 294
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 675e89bd94e9c4330800000000000000
+      internalID: 3696503434218366326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarsGradient_8
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 216
+        width: 294
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de1878f1790683490800000000000000
+      internalID: -7766351355215117843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarsGradient_9
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 215
+        width: 294
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e0bb7354b6c457f0800000000000000
+      internalID: -624655970500628256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarsGradient_10
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 146
+        width: 294
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d8d866dc0969e260800000000000000
+      internalID: 7127343389148240086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarsGradient_11
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 145
+        width: 294
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fc50eae8a6b35300800000000000000
+      internalID: 239736041792101617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarsGradient_12
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 72
+        width: 294
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02dfee4f4bb29f8c0800000000000000
+      internalID: -3965089940719600352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarsGradient_13
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 71
+        width: 294
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f39da9b5f22471a0800000000000000
+      internalID: -6812781897527225359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarsGradient_14
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 294
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7eea53af52afab450800000000000000
+      internalID: 6105467285872684775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarsGradient_15
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 0
+        width: 294
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f70717c1bb6fc7130800000000000000
+      internalID: 3565996288467103871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

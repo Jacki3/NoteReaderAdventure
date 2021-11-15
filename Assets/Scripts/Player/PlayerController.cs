@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using MidiJack;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IShopCustomer
 {
     public int
 
@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     public float sprintSpeed = 4.5f;
 
     [Header("Player Components")]
+    public SpriteRenderer glasses;
+
     public SmashCircle smashCircle;
 
     public Transform smashCircleSpawnPoint;
@@ -30,6 +32,27 @@ public class PlayerController : MonoBehaviour
     private Vector2 dir;
 
     private SpriteRenderer mSpriteRenderer;
+
+    public void BoughtItem(CoreItems.ItemType itemType)
+    {
+        print("Bought item " + itemType);
+        switch (itemType)
+        {
+            case CoreItems.ItemType.healthRefill:
+                HealthController.AddHealth(5);
+                break;
+        }
+    }
+
+    public bool TrySpendCoinAmount(int coinAmount)
+    {
+        if (CurrencyController.GetTotalCoins() >= coinAmount)
+        {
+            return true;
+        }
+        else
+            return false;
+    }
 
     private void Awake()
     {
@@ -97,5 +120,10 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("IsMoving", dir.magnitude > 0);
 
         GetComponent<Rigidbody2D>().velocity = moveSpeed * dir;
+
+        //lulw
+        if (dir.y == -1)
+            glasses.sortingOrder = mSpriteRenderer.sortingOrder + 1;
+        if (dir.y == 1 || dir.x == 1 || dir.x == -1) glasses.sortingOrder = 0;
     }
 }

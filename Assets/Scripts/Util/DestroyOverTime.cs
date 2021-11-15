@@ -17,7 +17,7 @@ public class DestroyOverTime : MonoBehaviour
 
         if (progress < 1)
         {
-            print("fading out here");
+            //can fade here
         }
         else
             Destroy(gameObject);
