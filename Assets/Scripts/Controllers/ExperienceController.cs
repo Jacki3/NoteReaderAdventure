@@ -39,6 +39,7 @@ public static class ExperienceController
     {
         level = value;
         currentXP = currentXP - XPToNextLvl;
+        if (level > 1) PlayerSkills.AddSkillPoint();
 
         //look into this math -- seems to be an error that lvl 1 and 2 both require 100 XP?
         XPToNextLvl =

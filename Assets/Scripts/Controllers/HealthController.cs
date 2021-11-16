@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +17,23 @@ public static class HealthController
     {
         maxHealth = CoreGameElements.i.maxHealth;
         currentHealth = maxHealth;
+        PlayerSkills.onSkillUnlocked += UpdateMaxHealth;
+    }
+
+    private static void UpdateMaxHealth(PlayerSkills.SkillType skillType)
+    {
+        switch (skillType)
+        {
+            case PlayerSkills.SkillType.health_1:
+                UpgradeHealthBar(3);
+                break;
+            case PlayerSkills.SkillType.health_2:
+                UpgradeHealthBar(5);
+                break;
+            case PlayerSkills.SkillType.health_3:
+                UpgradeHealthBar(10);
+                break;
+        }
     }
 
     public static void RemoveHealth(int healthRemoved)

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,6 +26,8 @@ public class SmashCircle : MonoBehaviour
         mCircleCollider = gameObject.AddComponent<CircleCollider2D>();
         mCircleCollider.isTrigger = true;
         mCircleCollider.radius = 0;
+
+        PlayerSkills.onSkillUnlocked += UpgradeSmash;
     }
 
     private void Start()
@@ -38,6 +41,17 @@ public class SmashCircle : MonoBehaviour
         mSpriteRenderer.sortingLayerName = sortingLayer;
         mSpriteRenderer.sortingOrder = layerOrder;
         mCircleCollider.radius += mAnimator.speed * 5 * Time.deltaTime; //hard coded number - how can we multiply this properly?
+    }
+
+    private void UpgradeSmash(PlayerSkills.SkillType skillType)
+    {
+        switch (skillType)
+        {
+            case PlayerSkills.SkillType.smashRadius_1:
+                //update speed of and size of animation
+                //update camerashaker roughness etc.
+                break;
+        }
     }
 
     public void SetLayerAndPosition(
