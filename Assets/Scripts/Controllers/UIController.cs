@@ -60,6 +60,14 @@ public static class UIController
         CoreUIElements.i.GetSliderComponent(sliderComponent).value = valueToAdd;
     }
 
+    public static void UpdateImageColour(
+        CoreUIElements.ImageUI image,
+        Color32 color
+    )
+    {
+        image.image.color = color;
+    }
+
     public static string
     getBetween(string strSource, string strStart, string strEnd)
     {

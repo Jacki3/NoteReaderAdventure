@@ -102,7 +102,8 @@ public static class PlayerSkills
         }
     }
 
-    public static bool CanUnlock(SkillType skillType)
+    public static bool
+    CanUnlock(SkillType skillType, CoreUIElements.ImageUI buttonImage)
     {
         int skillPointsRequired = GetSkillType(skillType).skillPointsRequired;
         if (IsSkillUnlocked(skillType))
@@ -121,6 +122,11 @@ public static class PlayerSkills
                         .UpdateTextUI(UIController
                             .UITextComponents
                             .skillPointText,
+                        skillPoints.ToString());
+                    UIController
+                        .UpdateTextUI(UIController
+                            .UITextComponents
+                            .skillMenuSkillPointText,
                         skillPoints.ToString());
                     Debug.Log("skill unlocked: " + skillType);
                     Debug.Log("Skill points remaining: " + skillPoints);
