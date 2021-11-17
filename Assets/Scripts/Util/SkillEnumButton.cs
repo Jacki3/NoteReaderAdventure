@@ -12,7 +12,7 @@ public class SkillEnumButton : MonoBehaviour
 
     public void UnlockSkill(SkillEnumButton enumScript)
     {
-        if (PlayerSkills.CanUnlock(enumScript.skillType, iconImage))
+        if (PlayerSkills.CanUnlock(enumScript.skillType, backGround))
         {
             UIController.UpdateImageColour(iconImage, Color.white);
             UIController.UpdateImageColour(skillLine, Color.white);

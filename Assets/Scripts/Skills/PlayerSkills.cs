@@ -135,6 +135,10 @@ public static class PlayerSkills
                 }
                 else
                 {
+                    Tooltip
+                        .SetToolTip_Static("not enough skill points!",
+                        buttonImage.image.transform.root.position +
+                        buttonImage.image.transform.localPosition);
                     Debug.Log("not enough skills");
                     return false;
                 }

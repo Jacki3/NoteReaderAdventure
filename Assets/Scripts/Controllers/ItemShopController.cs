@@ -14,6 +14,8 @@ public class ItemShopController : MonoBehaviour
 
     private Transform container;
 
+    private List<ShopButton> shopButtons = new List<ShopButton>();
+
     private void Awake()
     {
         // this is kinda yuck ?
@@ -65,10 +67,15 @@ public class ItemShopController : MonoBehaviour
             {
                 TryBuyItem (itemType);
             });
+
+        shopButtons.Add (shopItemTransform);
     }
 
     public void TryBuyItem(CoreItems.ItemType itemType)
     {
+        CoreItems item = GetItem(itemType);
+        ShopButton currentShopButton = GetShopButton(item);
+
         int cost = GetItemCost(itemType).cost;
         if (shopCustomer.TrySpendCoinAmount(cost))
         {
@@ -94,8 +101,10 @@ public class ItemShopController : MonoBehaviour
         }
         else
         {
-            //tooltip warning
             //shake screen or box/sound
+            Tooltip
+                .SetToolTip_Static("no coins!",
+                currentShopButton.transform.localPosition);
             print("not enough coins");
         }
     }
@@ -122,6 +131,28 @@ public class ItemShopController : MonoBehaviour
             }
         }
         print("NO ITEM");
+        return null;
+    }
+
+    private ShopButton GetShopButton(CoreItems itemType)
+    {
+        foreach (ShopButton shopButton in shopButtons)
+        {
+            if (shopButton.itemText.text.text.Contains(itemType.itemName))
+                return shopButton;
+        }
+        return null;
+    }
+
+    private CoreItems GetItem(CoreItems.ItemType itemType)
+    {
+        foreach (CoreItems item in shopItems)
+        {
+            if (item.item == itemType)
+            {
+                return item;
+            }
+        }
         return null;
     }
 }
