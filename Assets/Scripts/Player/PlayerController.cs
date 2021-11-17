@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour, IShopCustomer
 
     public Transform smashCircleSpawnPoint;
 
+    public PauseMenu pauseMenu;
+
     private float moveSpeed = 3;
 
     private float sprintSpeed;
@@ -108,6 +110,8 @@ public class PlayerController : MonoBehaviour, IShopCustomer
         if (dir.y == -1)
             glasses.sortingOrder = mSpriteRenderer.sortingOrder + 1;
         if (dir.y == 1 || dir.x == 1 || dir.x == -1) glasses.sortingOrder = 0;
+
+        if (Input.GetKeyDown(KeyCode.Escape)) pauseMenu.ShowMenu();
     }
 
     private void SkillUnlocked(PlayerSkills.SkillType skillType)

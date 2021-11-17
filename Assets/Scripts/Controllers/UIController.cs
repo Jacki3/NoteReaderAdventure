@@ -10,7 +10,8 @@ public static class UIController
         XPToNextLvlText,
         missionText,
         coinText,
-        skillPointText
+        skillPointText,
+        skillMenuSkillPointText
         //etc.
     }
 

@@ -43,6 +43,9 @@ public static class PlayerSkills
         UIController
             .UpdateTextUI(UIController.UITextComponents.skillPointText,
             skillPoints.ToString());
+        UIController
+            .UpdateTextUI(UIController.UITextComponents.skillMenuSkillPointText,
+            skillPoints.ToString());
     }
 
     public static void UnlockSkill(SkillType skillType)
