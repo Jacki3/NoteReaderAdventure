@@ -7,7 +7,7 @@ public class Item : MonoBehaviour
 
     public static event Increment increment;
 
-    public Mission.Object missionObject;
+    public SoundController.Sound soundType;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -20,7 +20,7 @@ public class Item : MonoBehaviour
     protected virtual void PickUp()
     {
         // increment(); -- alternative solution could be events driven from parent classes?
-        MissionHolder.i.CheckValidMission (missionObject); //everything which can be a mission just add this?
         //disable collision etc.
+        SoundController.PlaySound (soundType);
     }
 }

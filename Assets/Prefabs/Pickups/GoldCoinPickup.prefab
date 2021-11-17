@@ -117,8 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35f0e59cb8298584abc974bd7d828b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missionType: 1
-  missionObject: 0
+  soundType: 5
 --- !u!61 &6075256180922824074
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -7,8 +7,8 @@ public class CoinPickup : Item
     protected override void PickUp()
     {
         base.PickUp();
-        SoundController.PlaySound(SoundController.Sound.CoinPickup);
         CurrencyController.AddRemoveCoins(1, true);
+        MissionHolder.i.CheckValidMission(Mission.Object.Coins);
         Destroy (gameObject);
         //destroy on animate - make an animation rather than code it!
         //add to currency (updating UI)

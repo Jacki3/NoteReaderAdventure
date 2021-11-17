@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class DestructableObject : MonoBehaviour
 {
-    public ItemSpawner.ItemType spawnableItem = ItemSpawner.ItemType.Coin;
+    public ItemSpawner.ItemType spawnableItem;
+
+    public SoundController.Sound soundType;
 
     public int totalItemsSpawnable = 1;
-
-    public int XPToAdd = 10;
 
     private Explodable _explodable;
 
@@ -25,19 +25,22 @@ public class DestructableObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        //something about interfaces...?
         if (other.tag == "SmashCircle")
         {
-            //if health is below certain value (create function for this in health script e.g. bool critialLow() then spawn hearts which can CHOICE: refill some or total health?)
-            ExperienceController.AddXP (XPToAdd);
-            ItemSpawner
-                .SpawnItem(spawnableItem,
-                transform.position,
-                totalItemsSpawnable);
-            SoundController.PlaySound(SoundController.Sound.PotBreak);
-
-            _explodable.explode (_spriteRenderer);
-            ExplosionForce ef = GameObject.FindObjectOfType<ExplosionForce>();
-            ef.doExplosion(transform.position);
+            DestroyObject();
         }
+    }
+
+    protected virtual void DestroyObject()
+    {
+        //if health is below certain value (create function for this in health script e.g. bool critialLow() then spawn hearts which can CHOICE: refill some or total health?)
+        ItemSpawner
+            .SpawnItem(spawnableItem, transform.position, totalItemsSpawnable);
+        SoundController.PlaySound (soundType);
+
+        _explodable.explode (_spriteRenderer);
+        ExplosionForce ef = GameObject.FindObjectOfType<ExplosionForce>();
+        ef.doExplosion(transform.position);
     }
 }
