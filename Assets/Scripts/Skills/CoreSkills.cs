@@ -25,6 +25,10 @@ public class CoreSkills : MonoBehaviour
     [System.Serializable]
     public class Skill
     {
+        public string skillName;
+
+        public string skillDescription;
+
         public PlayerSkills.SkillType skillType;
 
         public int skillPointsRequired;

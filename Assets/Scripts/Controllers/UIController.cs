@@ -30,7 +30,8 @@ public static class UIController
     {
         //reflection - get type of UI element
         //find exisisting element type and change value of text - could still apply
-        CoreUIElements.i.GetTextComponent(component).text = text;
+        if (CoreUIElements.i != null)
+            CoreUIElements.i.GetTextComponent(component).text = text;
     }
 
     public static void AppendTextUI(UITextComponents component, string text)
@@ -56,8 +57,13 @@ public static class UIController
         int valueToAdd
     )
     {
-        CoreUIElements.i.GetSliderComponent(sliderComponent).maxValue = maxFill;
-        CoreUIElements.i.GetSliderComponent(sliderComponent).value = valueToAdd;
+        if (CoreUIElements.i != null)
+        {
+            CoreUIElements.i.GetSliderComponent(sliderComponent).maxValue =
+                maxFill;
+            CoreUIElements.i.GetSliderComponent(sliderComponent).value =
+                valueToAdd;
+        }
     }
 
     public static void UpdateImageColour(

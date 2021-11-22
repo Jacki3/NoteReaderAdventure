@@ -103,12 +103,15 @@ public static class PlayerSkills
     }
 
     public static bool
-    CanUnlock(SkillType skillType, CoreUIElements.ImageUI buttonImage)
+    CanUnlock(SkillType skillType, RectTransform toolTipSpawn)
     {
         int skillPointsRequired = GetSkillType(skillType).skillPointsRequired;
         if (IsSkillUnlocked(skillType))
         {
-            Debug.Log("skill already unlocked!");
+            Tooltip
+                .SetToolTip_Static("Skill Already Unlocked!",
+                toolTipSpawn.localPosition,
+                toolTipSpawn.root);
             return false;
         }
         else
@@ -128,24 +131,34 @@ public static class PlayerSkills
                             .UITextComponents
                             .skillMenuSkillPointText,
                         skillPoints.ToString());
-                    Debug.Log("skill unlocked: " + skillType);
-                    Debug.Log("Skill points remaining: " + skillPoints);
+                    Tooltip
+                        .SetToolTip_Static("Skill Unlocked: " +
+                        GetSkillType(skillType).skillName +
+                        "\n",
+                        toolTipSpawn.localPosition,
+                        toolTipSpawn.root);
                     UnlockSkill (skillType);
                     return true;
                 }
                 else
                 {
+                    //using a set tooltip spawn for now but really you want to get pos of each button!
                     Tooltip
-                        .SetToolTip_Static("not enough skill points!",
-                        buttonImage.image.transform.root.position +
-                        buttonImage.image.transform.localPosition);
+                        .SetToolTip_Static("Not Enough Skill Points!",
+                        toolTipSpawn.localPosition,
+                        toolTipSpawn.root);
                     Debug.Log("not enough skills");
                     return false;
                 }
             }
             else
             {
-                Debug.Log("requires skill: " + GetSkillRequirement(skillType));
+                var skillRequired = GetSkillType(skillType).requiredSkill;
+                Tooltip
+                    .SetToolTip_Static("Requires Skill: " +
+                    GetSkillType(skillRequired).skillName,
+                    toolTipSpawn.localPosition,
+                    toolTipSpawn.root);
                 return false;
             }
         }

@@ -15,7 +15,8 @@ public static class HealthController
     [RuntimeInitializeOnLoadMethod]
     private static void SetHealth()
     {
-        maxHealth = CoreGameElements.i.maxHealth;
+        if (CoreGameElements.i != null)
+            maxHealth = CoreGameElements.i.maxHealth;
         currentHealth = maxHealth;
         PlayerSkills.onSkillUnlocked += UpdateMaxHealth;
     }

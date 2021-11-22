@@ -79,6 +79,7 @@ public class ItemShopController : MonoBehaviour
         int cost = GetItemCost(itemType).cost;
         if (shopCustomer.TrySpendCoinAmount(cost))
         {
+            //add one for shield check -- too many if though maybe use case?
             if (itemType != CoreItems.ItemType.healthRefill)
             {
                 shopCustomer.BoughtItem (itemType);
@@ -93,19 +94,22 @@ public class ItemShopController : MonoBehaviour
                 }
                 else
                 {
-                    //tooltip warning
                     //shake screen or box/sound
-                    print("health already full!");
+                    Tooltip
+                        .SetToolTip_Static("health already full!",
+                        currentShopButton.transform.localPosition,
+                        currentShopButton.transform.root);
                 }
             }
         }
         else
         {
             //shake screen or box/sound
-            Tooltip
-                .SetToolTip_Static("no coins!",
-                currentShopButton.transform.localPosition);
-            print("not enough coins");
+            if (currentShopButton != null)
+                Tooltip
+                    .SetToolTip_Static("not enough coins!",
+                    currentShopButton.transform.localPosition,
+                    currentShopButton.transform.root);
         }
     }
 
@@ -141,6 +145,7 @@ public class ItemShopController : MonoBehaviour
             if (shopButton.itemText.text.text.Contains(itemType.itemName))
                 return shopButton;
         }
+        print("no shop button!");
         return null;
     }
 
@@ -153,6 +158,7 @@ public class ItemShopController : MonoBehaviour
                 return item;
             }
         }
+        print("no item!");
         return null;
     }
 }

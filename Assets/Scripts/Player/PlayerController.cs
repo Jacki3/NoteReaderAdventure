@@ -3,17 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using MidiJack;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour, IShopCustomer
 {
-    public int
-
-            fowardNote,
-            backwardNote,
-            leftNote,
-            rightNote,
-            readModeNote;
-
     [Header("Player Settings")]
     public float walkSpeed = 3;
 
@@ -25,6 +18,8 @@ public class PlayerController : MonoBehaviour, IShopCustomer
 
     [Header("Player Components")]
     public SpriteRenderer glasses;
+
+    public Transform shieldSpawn;
 
     public SmashCircle smashCircle;
 
@@ -42,64 +37,65 @@ public class PlayerController : MonoBehaviour, IShopCustomer
 
     private SpriteRenderer mSpriteRenderer;
 
+    private NoteReadingRPGAdventure inputActions;
+
     private void Awake()
     {
+        inputActions = new NoteReadingRPGAdventure();
+
+        inputActions.Player.Smash.performed += ctx => SpawnCircle();
+        inputActions.Player.Escape.performed += ctx => ShowMenu();
+
         mSpriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         PlayerSkills.onSkillUnlocked += SkillUnlocked;
     }
 
+    public void OnEnable()
+    {
+        inputActions.Enable();
+    }
+
+    public void OnDisable()
+    {
+        inputActions.Disable();
+    }
+
     private void Update()
     {
-        dir = Vector2.zero;
-        if (
-            Input.GetKey(KeyCode.A) ||
-            MidiMaster.GetKey(leftNote + MidiMaster.startMIDINumber) > 0
-        )
+        var move = inputActions.Player.Move.ReadValue<Vector2>();
+        var sprint = inputActions.Player.Sprint.ReadValue<float>();
+
+        dir = move;
+
+        //this can be done better also leads to stuck movement if cursor clicks off screen etc.
+        switch (dir)
         {
-            dir.x = -1;
-            animator.SetInteger("Direction", 3);
-        }
-        else if (
-            Input.GetKey(KeyCode.D) ||
-            MidiMaster.GetKey(rightNote + MidiMaster.startMIDINumber) > 0
-        )
-        {
-            dir.x = 1;
-            animator.SetInteger("Direction", 2);
+            case Vector2 v:
+                if (v == Vector2.left)
+                {
+                    animator.SetInteger("Direction", 3);
+                    break;
+                }
+                else if (v == Vector2.right)
+                {
+                    animator.SetInteger("Direction", 2);
+                    break;
+                }
+                if (v == Vector2.up)
+                {
+                    animator.SetInteger("Direction", 1);
+                    break;
+                }
+                else if (v == Vector2.down) animator.SetInteger("Direction", 0);
+
+                break;
         }
 
-        if (
-            Input.GetKey(KeyCode.W) ||
-            MidiMaster.GetKey(fowardNote + MidiMaster.startMIDINumber) > 0
-        )
-        {
-            dir.y = 1;
-            animator.SetInteger("Direction", 1);
-        }
-        else if (
-            Input.GetKey(KeyCode.S) ||
-            MidiMaster.GetKey(backwardNote + MidiMaster.startMIDINumber) > 0
-        )
-        {
-            dir.y = -1;
-            animator.SetInteger("Direction", 0);
-        }
-
-        if (Input.GetKey(KeyCode.LeftShift) && CanSprint())
+        if (sprint >= .1f && CanSprint())
             moveSpeed = sprintSpeed;
         else
             moveSpeed = walkSpeed;
-
-        //is this bad practice?
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            var newCircle = Instantiate(smashCircle);
-            newCircle.SetLayerAndPosition (
-                smashCircleSpawnPoint,
-                mSpriteRenderer
-            );
-        }
 
         dir.Normalize();
         animator.SetBool("IsMoving", dir.magnitude > 0);
@@ -110,8 +106,19 @@ public class PlayerController : MonoBehaviour, IShopCustomer
         if (dir.y == -1)
             glasses.sortingOrder = mSpriteRenderer.sortingOrder + 1;
         if (dir.y == 1 || dir.x == 1 || dir.x == -1) glasses.sortingOrder = 0;
+    }
 
-        if (Input.GetKeyDown(KeyCode.Escape)) pauseMenu.ShowMenu();
+    //again bad practice? doing something it should not really do -- should be listening for events not calling methods
+    private void ShowMenu()
+    {
+        pauseMenu.ShowMenu();
+    }
+
+    //this is bad practice right? -- try to copy from tooltip stuff
+    private void SpawnCircle()
+    {
+        var newCircle = Instantiate(smashCircle);
+        newCircle.SetLayerAndPosition (smashCircleSpawnPoint, mSpriteRenderer);
     }
 
     private void SkillUnlocked(PlayerSkills.SkillType skillType)
