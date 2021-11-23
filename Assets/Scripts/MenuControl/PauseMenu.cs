@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
+    public GameObject resumeButton;
+
     public void ShowMenu()
     {
+        EventSystem.current.SetSelectedGameObject (resumeButton);
         GameStateController.PauseGame();
         if (GameStateController.gamePaused)
         {

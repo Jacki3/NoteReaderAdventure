@@ -14,7 +14,7 @@ public class ItemShopController : MonoBehaviour
 
     private Transform container;
 
-    private List<ShopButton> shopButtons = new List<ShopButton>();
+    public List<ShopButton> shopButtons = new List<ShopButton>();
 
     private void Awake()
     {
@@ -105,11 +105,10 @@ public class ItemShopController : MonoBehaviour
         else
         {
             //shake screen or box/sound
-            if (currentShopButton != null)
-                Tooltip
-                    .SetToolTip_Static("not enough coins!",
-                    currentShopButton.transform.localPosition,
-                    currentShopButton.transform.root);
+            Tooltip
+                .SetToolTip_Static("not enough coins!",
+                currentShopButton.transform.localPosition,
+                currentShopButton.transform.root);
         }
     }
 
@@ -134,7 +133,7 @@ public class ItemShopController : MonoBehaviour
                 return item;
             }
         }
-        print("NO ITEM");
+        Debug.LogError("NO ITEM");
         return null;
     }
 
@@ -145,7 +144,7 @@ public class ItemShopController : MonoBehaviour
             if (shopButton.itemText.text.text.Contains(itemType.itemName))
                 return shopButton;
         }
-        print("no shop button!");
+        Debug.LogError("no shop button!");
         return null;
     }
 
@@ -158,7 +157,7 @@ public class ItemShopController : MonoBehaviour
                 return item;
             }
         }
-        print("no item!");
+        Debug.LogError("no item!");
         return null;
     }
 }
