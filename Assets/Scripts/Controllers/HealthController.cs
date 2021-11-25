@@ -64,7 +64,7 @@ public static class HealthController
         }
         else
         {
-            //game over! (controlled by state controller)
+            LivesController.RemoveLife();
         }
     }
 
@@ -96,6 +96,15 @@ public static class HealthController
         //updateUI
         //animate
         //sound
+    }
+
+    public static void ResetHealth()
+    {
+        currentHealth = maxHealth;
+        UIController
+            .UpdateSliderAmount(UIController.UIImageComponents.healthBar,
+            maxHealth,
+            currentHealth);
     }
 
     public static bool NotMaxHealth() => currentHealth < maxHealth;

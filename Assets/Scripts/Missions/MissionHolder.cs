@@ -110,7 +110,9 @@ public class MissionHolder : MonoBehaviour
                 IncrementCurrentAmount (mission);
             }
             else
-                print("wrong item?");
+            {
+                //??
+            }
         }
     }
 

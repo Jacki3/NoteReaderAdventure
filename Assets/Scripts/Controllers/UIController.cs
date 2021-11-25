@@ -12,7 +12,8 @@ public static class UIController
         coinText,
         skillPointText,
         skillMenuSkillPointText,
-        collectibleText
+        collectibleText,
+        livesText
         //etc.
     }
 

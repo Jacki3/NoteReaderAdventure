@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class HealthPickup : Item
+﻿public class HealthPickup : Item
 {
     public int healthToAdd = 1;
 

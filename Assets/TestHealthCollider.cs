@@ -8,7 +8,7 @@ public class TestHealthCollider : MonoBehaviour
     {
         if (other.tag == "Player")
             if (this.tag == "Enemy")
-                HealthController.RemoveHealth(1);
+                HealthController.RemoveHealth(6);
             else
                 HealthController.AddHealth(1);
     }

@@ -145,11 +145,20 @@ public class PlayerController : MonoBehaviour, IShopCustomer
         print("Bought item " + itemType);
         switch (itemType)
         {
+            case CoreItems.ItemType.smallHealthRefill:
+                HealthController.AddHealth(1);
+                break;
             case CoreItems.ItemType.healthRefill:
-                HealthController.AddHealth(5);
+                HealthController.AddHealth(6);
+                break;
+            case CoreItems.ItemType.largeHealthRefill:
+                HealthController.AddHealth(12);
                 break;
             case CoreItems.ItemType.shield:
                 HealthController.AddShield();
+                break;
+            case CoreItems.ItemType.life:
+                LivesController.AddLife();
                 break;
         }
     }

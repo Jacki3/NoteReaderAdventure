@@ -11,7 +11,8 @@ public class CoreItems
         healthRefill,
         largeHealthRefill,
         coolSunGlasses,
-        nerdGlasses
+        nerdGlasses,
+        life
     }
 
     public ItemType item;

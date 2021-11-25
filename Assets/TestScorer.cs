@@ -17,7 +17,5 @@ public class TestScorer : MonoBehaviour
             ScoreController.AddScore_Static(10);
             ExperienceController.AddXP(10);
         }
-
-        print(HealthController.Health());
     }
 }

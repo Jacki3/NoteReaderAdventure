@@ -22,6 +22,7 @@ public class CoreGameElements : MonoBehaviour
 
     void Start()
     {
+        //this should be in your scene manager/game manager/state manager
         UIController
             .UpdateTextUI(UIController.UITextComponents.collectibleText,
             "0/" + totalCollectiblesThisLevel);
@@ -32,6 +33,8 @@ public class CoreGameElements : MonoBehaviour
     public int criticalHealth = 3;
 
     public int lowHealth = 7;
+
+    public int totalLives = 5;
 
     public int totalCollectiblesThisLevel;
 
