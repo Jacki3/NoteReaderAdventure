@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public static class ExperienceController
 {
@@ -17,9 +18,6 @@ public static class ExperienceController
     public static bool AddXP(int XPToAdd)
     {
         currentXP += XPToAdd;
-        UIController
-            .UpdateTextUI(UIController.UITextComponents.currentXPText,
-            currentXP.ToString());
 
         UIController
             .UpdateSliderAmount(UIController.UIImageComponents.XPBar,
@@ -31,6 +29,10 @@ public static class ExperienceController
             SetLevel(level + 1);
             return true;
         }
+
+        ScoreDisplayUpdater
+            .StartRoutine(currentXP,
+            UIController.UITextComponents.currentXPText);
 
         return false;
     }

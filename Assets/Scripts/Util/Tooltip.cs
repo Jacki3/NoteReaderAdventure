@@ -7,6 +7,8 @@ public class Tooltip : MonoBehaviour
 
     public RectTransform backgroundImageRect;
 
+    public float toolTipLifeTime = 3;
+
     private float paddingSize;
 
     private static Tooltip instance;
@@ -17,6 +19,7 @@ public class Tooltip : MonoBehaviour
 
     private Vector3 ascenionRate = Vector3.up;
 
+    //NO - use UI Core Elements
     private Image backgroundImage;
 
     private void Awake()
@@ -44,12 +47,13 @@ public class Tooltip : MonoBehaviour
         }
     }
 
+    //add a 'warning' version of this
     public void SetToolTip(string text, Vector3 position, Transform parent)
     {
         transform.SetParent (parent);
 
         spawnTime = Time.time;
-        lifeTime = 3;
+        lifeTime = toolTipLifeTime;
 
         gameObject.SetActive(true);
         transform.localPosition = position;

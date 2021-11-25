@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinPickup : Item
+public class HealthPickup : Item
 {
+    public int healthToAdd = 1;
+
     protected override void PickUp()
     {
         base.PickUp();
-        CurrencyController.AddRemoveCoins(1, true);
+        HealthController.AddHealth (healthToAdd);
         Destroy (gameObject);
-        //destroy on animate - make an animation rather than code it!
     }
 }

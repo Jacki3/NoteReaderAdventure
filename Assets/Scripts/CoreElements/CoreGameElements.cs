@@ -20,7 +20,20 @@ public class CoreGameElements : MonoBehaviour
             _i = this;
     }
 
+    void Start()
+    {
+        UIController
+            .UpdateTextUI(UIController.UITextComponents.collectibleText,
+            "0/" + totalCollectiblesThisLevel);
+    }
+
     public int maxHealth = 12;
+
+    public int criticalHealth = 3;
+
+    public int lowHealth = 7;
+
+    public int totalCollectiblesThisLevel;
 
     public int totalCoinsCollected;
 }

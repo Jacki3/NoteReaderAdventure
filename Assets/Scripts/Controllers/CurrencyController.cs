@@ -6,6 +6,8 @@ public static class CurrencyController
 {
     private static int totalCoinsCollected = 0;
 
+    private static int totalCollectiblesCollected = 0;
+
     public static void AddRemoveCoins(int coins, bool addOrRemove)
     {
         totalCoinsCollected =
@@ -13,13 +15,23 @@ public static class CurrencyController
                 ? totalCoinsCollected += coins
                 : totalCoinsCollected -= coins;
 
-        UIController
-            .UpdateTextUI(UIController.UITextComponents.coinText,
-            totalCoinsCollected.ToString());
+        ScoreDisplayUpdater
+            .StartRoutine(totalCoinsCollected,
+            UIController.UITextComponents.coinText);
     }
 
     public static int GetTotalCoins()
     {
         return totalCoinsCollected;
+    }
+
+    public static void AddCollectible()
+    {
+        totalCollectiblesCollected++;
+        UIController
+            .UpdateTextUI(UIController.UITextComponents.collectibleText,
+            totalCollectiblesCollected +
+            "/" +
+            CoreGameElements.i.totalCollectiblesThisLevel);
     }
 }

@@ -9,7 +9,9 @@ public static class SoundController
         BoxBreak,
         PlayerFire,
         Treasure,
-        CoinPickup
+        CoinPickup,
+        HealthPickup,
+        PlayerHurt
         //etc.
     }
 

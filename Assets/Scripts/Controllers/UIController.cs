@@ -11,7 +11,8 @@ public static class UIController
         missionText,
         coinText,
         skillPointText,
-        skillMenuSkillPointText
+        skillMenuSkillPointText,
+        collectibleText
         //etc.
     }
 
@@ -53,17 +54,12 @@ public static class UIController
 
     public static void UpdateSliderAmount(
         UIImageComponents sliderComponent,
-        int maxFill,
-        int valueToAdd
+        float maxFill,
+        float valueToAdd
     )
     {
-        if (CoreUIElements.i != null)
-        {
-            CoreUIElements.i.GetSliderComponent(sliderComponent).maxValue =
-                maxFill;
-            CoreUIElements.i.GetSliderComponent(sliderComponent).value =
-                valueToAdd;
-        }
+        CoreUIElements.i.GetSliderComponent(sliderComponent).maxValue = maxFill;
+        CoreUIElements.i.GetSliderComponent(sliderComponent).value = valueToAdd;
     }
 
     public static void UpdateImageColour(

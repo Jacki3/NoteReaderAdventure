@@ -6,7 +6,10 @@ public class CoreItems
     public enum ItemType
     {
         shield,
+        protectiveShield,
+        smallHealthRefill,
         healthRefill,
+        largeHealthRefill,
         coolSunGlasses,
         nerdGlasses
     }

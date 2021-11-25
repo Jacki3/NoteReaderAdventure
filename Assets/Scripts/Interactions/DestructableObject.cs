@@ -10,6 +10,8 @@ public class DestructableObject : MonoBehaviour
 
     public int totalItemsSpawnable = 1;
 
+    public bool canSpawnHealth;
+
     private Explodable _explodable;
 
     private SpriteRenderer _spriteRenderer;
@@ -34,9 +36,40 @@ public class DestructableObject : MonoBehaviour
 
     protected virtual void DestroyObject()
     {
-        //if health is below certain value (create function for this in health script e.g. bool critialLow() then spawn hearts which can CHOICE: refill some or total health?)
-        ItemSpawner
-            .SpawnItem(spawnableItem, transform.position, totalItemsSpawnable);
+        //if health is below certain value then spawn lots of health OR if it is slightly low then spawn some (random)
+        if (canSpawnHealth && HealthController.CriticalHealth())
+        {
+            //spawn different health sizes depending on how low it is?
+            ItemSpawner
+                .SpawnItem(ItemSpawner.ItemType.LargeHealthPotion,
+                transform.position,
+                1,
+                _spriteRenderer);
+        }
+        else if (canSpawnHealth && HealthController.LowHealth())
+        {
+            ItemSpawner
+                .SpawnItem(ItemSpawner.ItemType.HealthPotion,
+                transform.position,
+                1,
+                _spriteRenderer);
+        }
+        else if (canSpawnHealth && HealthController.NotMaxHealth())
+        {
+            ItemSpawner
+                .SpawnItem(ItemSpawner.ItemType.SmallHealthPotion,
+                transform.position,
+                1,
+                _spriteRenderer);
+        }
+        else
+        {
+            ItemSpawner
+                .SpawnItem(spawnableItem,
+                transform.position,
+                totalItemsSpawnable,
+                _spriteRenderer);
+        }
         SoundController.PlaySound (soundType);
 
         _explodable.explode (_spriteRenderer);

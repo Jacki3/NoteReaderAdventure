@@ -184,3 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4fbb82c25c0f94faa20bf668aa1f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnableItem: 0
+  soundType: 1
+  totalItemsSpawnable: 1
+  canSpawnHealth: 0

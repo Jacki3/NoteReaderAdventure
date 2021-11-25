@@ -7,7 +7,8 @@ public class Mission
         Statue,
         Rats,
         Pots,
-        Laterns
+        Laterns,
+        Pearls
         //these should not be so specific but an enum of 'types' e.g. enemies, activations -- should be like multiple dropdown or based on the type of object?
         //what it would actually be is a list of 'items', 'smashables' etc. which are bases of mission objects?
     }

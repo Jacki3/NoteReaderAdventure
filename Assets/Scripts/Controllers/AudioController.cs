@@ -12,28 +12,13 @@ public class AudioController : MonoBehaviour
 
     void Start()
     {
-        InputSystem.onDeviceChange += (device, change) =>
-        {
-            if (change != InputDeviceChange.Added) return;
-
-            var midiDevice = device as Minis.MidiDevice;
-            if (midiDevice == null) return;
-
-            midiDevice.onWillNoteOn += (note, velocity) =>
-            {
-                PlaySound(note.noteNumber, velocity);
-            };
-
-            midiDevice.onWillNoteOff += (note) =>
-            {
-                NoteOff(note.noteNumber);
-            };
-        };
     }
 
     private void Awake()
     {
         helmController = GetComponent<HelmController>();
+        MIDIController.NoteOn += PlaySound;
+        MIDIController.NoteOff += NoteOff;
     }
 
     private void PlaySound(int note, float velocity)
