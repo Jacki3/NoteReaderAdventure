@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour, IShopCustomer
 
         GetComponent<Rigidbody2D>().velocity = moveSpeed * dir;
 
-        //lulw
+        //lulw -- set for other items in one method
         if (dir.y == -1)
             glasses.sortingOrder = mSpriteRenderer.sortingOrder + 1;
         if (dir.y == 1 || dir.x == 1 || dir.x == -1) glasses.sortingOrder = 0;
@@ -155,7 +155,21 @@ public class PlayerController : MonoBehaviour, IShopCustomer
                 HealthController.AddHealth(12);
                 break;
             case CoreItems.ItemType.shield:
-                HealthController.AddShield();
+                HealthController.AddShield(false);
+                SpriteController.SetSprite(SpriteController.Sprites.shield);
+                break;
+            case CoreItems.ItemType.protectiveShield:
+                HealthController.AddShield(true);
+                SpriteController
+                    .SetSprite(SpriteController.Sprites.protectiveShield);
+                break;
+            case CoreItems.ItemType.coolSunGlasses:
+                SpriteController
+                    .SetSprite(SpriteController.Sprites.coolSunGlasses);
+                break;
+            case CoreItems.ItemType.nerdGlasses:
+                SpriteController
+                    .SetSprite(SpriteController.Sprites.nerdGlasses);
                 break;
             case CoreItems.ItemType.life:
                 LivesController.AddLife();

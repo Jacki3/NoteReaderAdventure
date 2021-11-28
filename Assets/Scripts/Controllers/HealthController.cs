@@ -15,6 +15,8 @@ public static class HealthController
 
     private static bool hasShield = false;
 
+    private static bool strongShield = false;
+
     //this should be replaced by a controller which handles 'global/core things' such as health, score, XP etc. OR be a monobehaviour!
     [RuntimeInitializeOnLoadMethod]
     private static void SetHealth()
@@ -47,16 +49,23 @@ public static class HealthController
 
     public static void RemoveHealth(int healthRemoved)
     {
-        if (!hasShield)
-            currentHealth -= healthRemoved;
-        else
+        if (strongShield)
+        {
+            strongShield = false;
+        }
+        else if (hasShield)
+        {
             hasShield = false;
+        }
+        else
+        {
+            currentHealth -= healthRemoved;
+        }
 
         if (currentHealth > 0)
         {
             //play sound
             //animate
-            //UI remove heart -- when you have the time
             UIController
                 .UpdateSliderAmount(UIController.UIImageComponents.healthBar,
                 maxHealth,
@@ -76,7 +85,6 @@ public static class HealthController
             .UpdateSliderAmount(UIController.UIImageComponents.healthBar,
             maxHealth,
             currentHealth);
-        // UI add heart -- when you have time
         //sound
         //animate
     }
@@ -90,9 +98,17 @@ public static class HealthController
         //sound
     }
 
-    public static void AddShield()
+    public static void AddShield(bool _strongShield)
     {
-        hasShield = true;
+        if (_strongShield)
+        {
+            strongShield = true;
+            hasShield = true;
+        }
+        else
+        {
+            hasShield = true;
+        }
         //updateUI
         //animate
         //sound
@@ -114,5 +130,7 @@ public static class HealthController
 
     public static bool LowHealth() => currentHealth <= lowHealthAmount;
 
-    public static float Health() => currentHealth;
+    public static bool HasShield() => hasShield;
+
+    public static bool HasProtectiveShield() => strongShield;
 }

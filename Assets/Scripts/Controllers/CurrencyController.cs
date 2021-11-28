@@ -8,16 +8,26 @@ public static class CurrencyController
 
     private static int totalCollectiblesCollected = 0;
 
-    public static void AddRemoveCoins(int coins, bool addOrRemove)
+    public static void AddRemoveCoins(int coins, bool add)
     {
-        totalCoinsCollected =
-            addOrRemove
-                ? totalCoinsCollected += coins
-                : totalCoinsCollected -= coins;
-
-        ScoreDisplayUpdater
-            .StartRoutine(totalCoinsCollected,
-            UIController.UITextComponents.coinText);
+        // totalCoinsCollected =
+        //     addOrRemove
+        //         ? totalCoinsCollected += coins
+        //         : totalCoinsCollected -= coins;
+        if (add)
+        {
+            totalCoinsCollected += coins;
+            ScoreDisplayUpdater
+                .StartRoutine(totalCoinsCollected,
+                UIController.UITextComponents.coinText);
+        }
+        else
+        {
+            totalCoinsCollected -= coins;
+            ScoreDisplayUpdater
+                .StartRoutineDown(totalCoinsCollected,
+                UIController.UITextComponents.coinText);
+        }
     }
 
     public static int GetTotalCoins()

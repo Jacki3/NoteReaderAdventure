@@ -71,21 +71,18 @@ public class ItemShopController : MonoBehaviour
         shopButtons.Add (shopItemTransform);
     }
 
+    //too many ifs and also add box shaker!
     public void TryBuyItem(CoreItems.ItemType itemType)
     {
         CoreItems item = GetItem(itemType);
         ShopButton currentShopButton = GetShopButton(item);
 
         int cost = GetItemCost(itemType).cost;
+
+        //if itemType is already got (for cosmetics and sounds)
         if (shopCustomer.TrySpendCoinAmount(cost))
         {
-            //add one for shield check -- too many if though maybe use case?
-            if (itemType != CoreItems.ItemType.healthRefill)
-            {
-                shopCustomer.BoughtItem (itemType);
-                CurrencyController.AddRemoveCoins(cost, false);
-            }
-            else
+            if (item.itemName.Contains("Health"))
             {
                 if (HealthController.NotMaxHealth())
                 {
@@ -100,6 +97,46 @@ public class ItemShopController : MonoBehaviour
                         currentShopButton.transform.localPosition,
                         currentShopButton.transform.root);
                 }
+            }
+            else if (itemType == CoreItems.ItemType.shield)
+            {
+                if (
+                    HealthController.HasShield() ||
+                    HealthController.HasProtectiveShield()
+                )
+                {
+                    //shake screen or box/sound
+                    Tooltip
+                        .SetToolTip_Static("Already got a shield!",
+                        currentShopButton.transform.localPosition,
+                        currentShopButton.transform.root);
+                }
+                else
+                {
+                    shopCustomer.BoughtItem (itemType);
+                    CurrencyController.AddRemoveCoins(cost, false);
+                }
+            }
+            else if (itemType == CoreItems.ItemType.protectiveShield)
+            {
+                if (HealthController.HasProtectiveShield())
+                {
+                    //shake screen or box/sound
+                    Tooltip
+                        .SetToolTip_Static("Already got a shield!",
+                        currentShopButton.transform.localPosition,
+                        currentShopButton.transform.root);
+                }
+                else
+                {
+                    shopCustomer.BoughtItem (itemType);
+                    CurrencyController.AddRemoveCoins(cost, false);
+                }
+            }
+            else
+            {
+                shopCustomer.BoughtItem (itemType);
+                CurrencyController.AddRemoveCoins(cost, false);
             }
         }
         else

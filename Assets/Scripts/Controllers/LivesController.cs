@@ -8,6 +8,9 @@ public static class LivesController
     private static void SetLives()
     {
         currentLives = CoreGameElements.i.totalLives;
+        UIController
+            .UpdateTextUI(UIController.UITextComponents.livesText,
+            currentLives.ToString());
     }
 
     public static void AddLife()
