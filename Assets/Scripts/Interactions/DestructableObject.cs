@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestructableObject : MonoBehaviour
+public class DestructableObject : MonoBehaviour, INotation
 {
     public ItemSpawner.ItemType spawnableItem;
 
     public SoundController.Sound soundType;
 
     public int totalItemsSpawnable = 1;
+
+    public int XPToGive;
 
     public bool canSpawnHealth;
 
@@ -32,6 +34,11 @@ public class DestructableObject : MonoBehaviour
         {
             DestroyObject();
         }
+    }
+
+    public void NotationComplete()
+    {
+        DestroyObject();
     }
 
     protected virtual void DestroyObject()
@@ -70,8 +77,8 @@ public class DestructableObject : MonoBehaviour
                 totalItemsSpawnable,
                 _spriteRenderer);
         }
+        ExperienceController.AddXP (XPToGive);
         SoundController.PlaySound (soundType);
-
         _explodable.explode (_spriteRenderer);
         ExplosionForce ef = GameObject.FindObjectOfType<ExplosionForce>();
         ef.doExplosion(transform.position);

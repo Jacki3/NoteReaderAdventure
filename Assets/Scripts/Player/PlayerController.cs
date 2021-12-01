@@ -39,12 +39,21 @@ public class PlayerController : MonoBehaviour, IShopCustomer
 
     private NoteReadingRPGAdventure inputActions;
 
+    public static bool readingMode;
+
+    public delegate void NotationCircleSwitch();
+
+    public static event NotationCircleSwitch notationCircleActivated;
+
+    public static event NotationCircleSwitch notationCircleDeactivated;
+
     private void Awake()
     {
         inputActions = new NoteReadingRPGAdventure();
 
         inputActions.Player.Smash.performed += ctx => SpawnCircle();
         inputActions.Player.Escape.performed += ctx => ShowMenu();
+        inputActions.Player.ReadModeSwitch.performed += ctx => SetReadingMode();
 
         mSpriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
@@ -66,7 +75,14 @@ public class PlayerController : MonoBehaviour, IShopCustomer
         var move = inputActions.Player.Move.ReadValue<Vector2>();
         var sprint = inputActions.Player.Sprint.ReadValue<float>();
 
-        dir = move;
+        if (!readingMode)
+        {
+            dir = move;
+        }
+        else
+        {
+            dir = Vector2.zero;
+        }
 
         //this can be done better also leads to stuck movement if cursor clicks off screen etc.
         switch (dir)
@@ -88,7 +104,6 @@ public class PlayerController : MonoBehaviour, IShopCustomer
                     break;
                 }
                 else if (v == Vector2.down) animator.SetInteger("Direction", 0);
-
                 break;
         }
 
@@ -117,8 +132,28 @@ public class PlayerController : MonoBehaviour, IShopCustomer
     //this is bad practice right? -- try to copy from tooltip stuff
     private void SpawnCircle()
     {
-        var newCircle = Instantiate(smashCircle);
-        newCircle.SetLayerAndPosition (smashCircleSpawnPoint, mSpriteRenderer);
+        if (!readingMode)
+        {
+            var newCircle = Instantiate(smashCircle);
+            newCircle.SetLayerAndPosition (
+                smashCircleSpawnPoint,
+                mSpriteRenderer
+            );
+        }
+    }
+
+    private void SetReadingMode()
+    {
+        if (readingMode)
+        {
+            readingMode = false;
+            notationCircleDeactivated();
+        }
+        else
+        {
+            readingMode = true;
+            notationCircleActivated();
+        }
     }
 
     private void SkillUnlocked(PlayerSkills.SkillType skillType)

@@ -7,7 +7,8 @@ public static class LivesController
     [RuntimeInitializeOnLoadMethod]
     private static void SetLives()
     {
-        currentLives = CoreGameElements.i.totalLives;
+        if (CoreGameElements.i != null)
+            currentLives = CoreGameElements.i.totalLives;
         UIController
             .UpdateTextUI(UIController.UITextComponents.livesText,
             currentLives.ToString());

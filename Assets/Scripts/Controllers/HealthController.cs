@@ -64,12 +64,18 @@ public static class HealthController
 
         if (currentHealth > 0)
         {
-            //play sound
-            //animate
-            UIController
-                .UpdateSliderAmount(UIController.UIImageComponents.healthBar,
+            FXController
+                .LerpSlider_Static(currentHealth,
+                currentHealth + healthRemoved,
+                .5f,
                 maxHealth,
-                currentHealth);
+                UIController.UIImageComponents.healthBar);
+            FXController
+                .SetAnimatorTrigger_Static(FXController
+                    .Animations
+                    .PlayerAnimator,
+                "TakenDamage");
+            //play sound
         }
         else
         {
@@ -81,10 +87,17 @@ public static class HealthController
     {
         if (currentHealth < maxHealth) currentHealth += healthAdded;
         if (currentHealth > maxHealth) currentHealth = maxHealth;
-        UIController
-            .UpdateSliderAmount(UIController.UIImageComponents.healthBar,
+
+        FXController
+            .LerpSlider_Static(currentHealth,
+            currentHealth - healthAdded,
+            .5f,
             maxHealth,
-            currentHealth);
+            UIController.UIImageComponents.healthBar);
+
+        FXController
+            .SetAnimatorTrigger_Static(FXController.Animations.PlayerAnimator,
+            "HealthGained");
         //sound
         //animate
     }
@@ -93,8 +106,19 @@ public static class HealthController
     {
         maxHealth += heatlhUpgraded;
         currentHealth = maxHealth;
-        //update UI?
-        //animate
+        float currentXPBarX =
+            CoreUIElements
+                .i
+                .GetSliderComponent(UIController.UIImageComponents.healthBar)
+                .transform
+                .localScale
+                .x;
+        float newBarX = currentXPBarX += .3f;
+        FXController
+            .ExpandSlider(newBarX,
+            .5f,
+            UIController.UIImageComponents.healthBar);
+        //animate like level up
         //sound
     }
 
@@ -109,18 +133,19 @@ public static class HealthController
         {
             hasShield = true;
         }
-        //updateUI
-        //animate
         //sound
     }
 
     public static void ResetHealth()
     {
         currentHealth = maxHealth;
-        UIController
-            .UpdateSliderAmount(UIController.UIImageComponents.healthBar,
+
+        FXController
+            .LerpSlider_Static(maxHealth,
+            currentHealth,
+            1,
             maxHealth,
-            currentHealth);
+            UIController.UIImageComponents.healthBar);
     }
 
     public static bool NotMaxHealth() => currentHealth < maxHealth;

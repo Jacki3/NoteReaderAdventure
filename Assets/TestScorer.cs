@@ -17,6 +17,7 @@ public class TestScorer : MonoBehaviour
             ScoreController.AddScore_Static(10);
             ExperienceController.AddXP(10);
             CurrencyController.AddRemoveCoins(100, true);
+            HealthController.RemoveHealth(1);
         }
     }
 }

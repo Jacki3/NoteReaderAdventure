@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class MIDIController : MonoBehaviour
 {
+    public static int startingMIDINumber = 60;
+
     public delegate void NoteOnEventHandler(int note, float velocity);
 
     public static event NoteOnEventHandler NoteOn;

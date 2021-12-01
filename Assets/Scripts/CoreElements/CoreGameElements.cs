@@ -28,6 +28,12 @@ public class CoreGameElements : MonoBehaviour
             "0/" + totalCollectiblesThisLevel);
     }
 
+    [System.Serializable]
+    public class Pattern
+    {
+        public int[] pattern;
+    }
+
     public int maxHealth = 12;
 
     public int criticalHealth = 3;
@@ -39,4 +45,28 @@ public class CoreGameElements : MonoBehaviour
     public int totalCollectiblesThisLevel;
 
     public int totalCoinsCollected;
+
+    public bool useColours;
+
+    public int[] notes;
+
+    public Pattern[] patterns;
+
+    [System.NonSerialized]
+    public Color32[]
+        noteColours =
+        {
+            new Color32(194, 0, 40, 255),
+            new Color32(208, 64, 88, 255),
+            new Color32(222, 128, 75, 255),
+            new Color32(236, 191, 163, 255),
+            new Color32(250, 255, 50, 255),
+            new Color32(134, 192, 59, 255),
+            new Color32(18, 128, 68, 255),
+            new Color32(43, 134, 162, 255),
+            new Color32(68, 140, 255, 255),
+            new Color32(100, 105, 216, 255),
+            new Color32(131, 70, 178, 255),
+            new Color32(163, 35, 139, 255)
+        };
 }

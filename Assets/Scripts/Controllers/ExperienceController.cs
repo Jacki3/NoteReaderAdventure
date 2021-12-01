@@ -19,14 +19,26 @@ public static class ExperienceController
     {
         currentXP += XPToAdd;
 
-        UIController
-            .UpdateSliderAmount(UIController.UIImageComponents.XPBar,
+        // UIController
+        //     .UpdateSliderAmount(UIController.UIImageComponents.XPBar,
+        //     XPToNextLvl,
+        //     currentXP);
+        FXController
+            .LerpSlider_Static(currentXP,
+            currentXP - XPToAdd,
+            1,
             XPToNextLvl,
-            currentXP);
+            UIController.UIImageComponents.XPBar);
 
         if (currentXP >= XPToNextLvl)
         {
             SetLevel(level + 1);
+            FXController
+                .LerpSlider_Static(currentXP,
+                currentXP - XPToAdd,
+                1,
+                XPToNextLvl,
+                UIController.UIImageComponents.XPBar);
             return true;
         }
 
@@ -41,7 +53,18 @@ public static class ExperienceController
     {
         level = value;
         currentXP = currentXP - XPToNextLvl;
-        if (level > 1) PlayerSkills.AddSkillPoint();
+
+        if (level > 1)
+        {
+            PlayerSkills.AddSkillPoint();
+            FXController.SpawnEffect_Static(FXController.Effects.PlayerLevelUp);
+            FXController
+                .SetAnimatorTrigger_Static(FXController
+                    .Animations
+                    .PlayerAnimator,
+                "HealthGained");
+            SoundController.PlaySound(SoundController.Sound.PlayerLvlUp);
+        }
 
         //look into this math -- seems to be an error that lvl 1 and 2 both require 100 XP?
         XPToNextLvl =
@@ -56,10 +79,10 @@ public static class ExperienceController
         UIController
             .UpdateTextUI(UIController.UITextComponents.XPToNextLvlText,
             XPToNextLvl.ToString());
-        UIController
-            .UpdateSliderAmount(UIController.UIImageComponents.XPBar,
-            XPToNextLvl,
-            currentXP);
+        // UIController
+        //     .UpdateSliderAmount(UIController.UIImageComponents.XPBar,
+        //     XPToNextLvl,
+        //     currentXP);
 
         //animation controller updated level up
     }

@@ -96,7 +96,11 @@ public class MissionHolder : MonoBehaviour
                 placeHolder.missionText.text.text = placeHolderText;
                 ExperienceController.AddXP(mission.XPReward);
                 CurrencyController.AddRemoveCoins(mission.coinReward, true);
-                //remove from list, cross out (update UI) etc.
+                placeHolder
+                    .GetComponent<Animator>()
+                    .SetTrigger("MissionComplete");
+                SoundController
+                    .PlaySound(SoundController.Sound.MissionComplete);
             }
         }
     }

@@ -144,6 +144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8915132263248411971}
   - component: {fileID: 2930855432729611333}
+  - component: {fileID: 4077019513556410567}
   m_Layer: 5
   m_Name: MissionPlaceholder
   m_TagString: Untagged
@@ -185,6 +186,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missionText:
     text: {fileID: 8915132263025728845}
+--- !u!95 &4077019513556410567
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8915132263248411970}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f7b68c42293a3b345a5f0a32ca174c5e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8915132263654377383
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.9742207, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.3915094, b: 0.3915094, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -321,7 +341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.764151, g: 0.764151, b: 0.764151, a: 0.39215687}
+  m_Color: {r: 0.764151, g: 0.764151, b: 0.764151, a: 0.6}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

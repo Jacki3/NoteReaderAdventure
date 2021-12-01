@@ -11,7 +11,10 @@ public static class SoundController
         Treasure,
         CoinPickup,
         HealthPickup,
-        PlayerHurt
+        PlayerHurt,
+        PlayerLvlUp,
+        MissionComplete,
+        CameraZoom
         //etc.
     }
 

@@ -10,10 +10,6 @@ public class AudioController : MonoBehaviour
 {
     private HelmController helmController;
 
-    void Start()
-    {
-    }
-
     private void Awake()
     {
         helmController = GetComponent<HelmController>();
@@ -23,7 +19,6 @@ public class AudioController : MonoBehaviour
 
     private void PlaySound(int note, float velocity)
     {
-        print (note);
         helmController.NoteOn (note, velocity);
     }
 
