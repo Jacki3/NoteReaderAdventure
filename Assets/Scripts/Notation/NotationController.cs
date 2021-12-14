@@ -18,6 +18,7 @@ public class NotationController : MonoBehaviour
     {
         instance = this;
         MIDIController.NoteOn += CheckNote;
+        PlayerController.notationCircleDeactivated += RemoveActiveNotation;
     }
 
     private void AddNotationToList(Notation notation)
@@ -76,19 +77,31 @@ public class NotationController : MonoBehaviour
                 var closetNotation =
                     GetClosetObject.GetClosetObj(duplicateNotations, playerPos);
 
-                activeNotation = closetNotation;
-                hasActiveNotation = true;
-                activeNotation.HighlightNotation();
-                activeNotation.PlayNote();
+                var parent = closetNotation.transform.root;
+
+                var child = parent.GetChild(0).name;
+
+                if (child == closetNotation.name)
+                {
+                    activeNotation = closetNotation;
+                    hasActiveNotation = true;
+                    activeNotation.HighlightNotation();
+                    activeNotation.PlayNote();
+                }
             }
         }
 
         if (hasActiveNotation && activeNotation.NotationFinished())
         {
-            Destroy(activeNotation.gameObject);
             visibleNotation.Remove (activeNotation);
             hasActiveNotation = false;
             activeNotation = null;
         }
+    }
+
+    private void RemoveActiveNotation()
+    {
+        hasActiveNotation = false;
+        activeNotation = null;
     }
 }

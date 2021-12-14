@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8193007395461955119}
   - component: {fileID: 8193007395461955104}
   - component: {fileID: 8193007395461955105}
-  - component: {fileID: 817994389666293197}
+  - component: {fileID: -8849002349564743423}
   m_Layer: 0
   m_Name: PotA
   m_TagString: Untagged
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7af6dd9712bb07c43a7a851e83d317f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &817994389666293197
+--- !u!114 &-8849002349564743423
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,10 +180,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8193007395461955106}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7abaf10a085c1c742ab2f1b2b0d819ff, type: 3}
+  m_Script: {fileID: 11500000, guid: bd4fbb82c25c0f94faa20bf668aa1f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectType: 3
   spawnableItem: 0
   soundType: 1
-  totalItemsSpawnable: 1
-  XPToAdd: 10
+  totalItemsSpawnable: 3
+  XPToGive: 0
+  scoreToAdd: 0
+  canSpawnHealth: 1
+  canBeSmashed: 1

@@ -10,6 +10,7 @@ public class DestroyOnAnimationExit : StateMachineBehaviour
         int layerIndex
     )
     {
+        //fade out before destroy
         Destroy(animator.gameObject, animatorStateInfo.length);
     }
 }

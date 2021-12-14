@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DestructableObject : MonoBehaviour, INotation
 {
+    public Mission.Object objectType;
+
     public ItemSpawner.ItemType spawnableItem;
 
     public SoundController.Sound soundType;
@@ -12,7 +14,11 @@ public class DestructableObject : MonoBehaviour, INotation
 
     public int XPToGive;
 
+    public int scoreToAdd;
+
     public bool canSpawnHealth;
+
+    public bool canBeSmashed;
 
     private Explodable _explodable;
 
@@ -30,7 +36,7 @@ public class DestructableObject : MonoBehaviour, INotation
     private void OnTriggerEnter2D(Collider2D other)
     {
         //something about interfaces...?
-        if (other.tag == "SmashCircle")
+        if (other.tag == "SmashCircle" && canBeSmashed)
         {
             DestroyObject();
         }
@@ -77,10 +83,14 @@ public class DestructableObject : MonoBehaviour, INotation
                 totalItemsSpawnable,
                 _spriteRenderer);
         }
+        MissionHolder.i.CheckValidMission (objectType);
+        if (scoreToAdd > 0) ScoreController.AddScore_Static(scoreToAdd);
         ExperienceController.AddXP (XPToGive);
         SoundController.PlaySound (soundType);
-        _explodable.explode (_spriteRenderer);
         ExplosionForce ef = GameObject.FindObjectOfType<ExplosionForce>();
+        ef.force = 20;
+        ef.radius = 5;
+        _explodable.explode (_spriteRenderer);
         ef.doExplosion(transform.position);
     }
 }

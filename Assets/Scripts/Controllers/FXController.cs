@@ -12,7 +12,8 @@ public class FXController : MonoBehaviour
     public enum Animations
     {
         PlayerAnimator,
-        MissionAnimator
+        MissionAnimator,
+        BeatAnimator
     }
 
     public FX[] CoreEffects;

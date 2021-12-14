@@ -5,7 +5,7 @@ using MidiJack;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour, IShopCustomer
+public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
 {
     [Header("Player Settings")]
     public float walkSpeed = 3;
@@ -220,5 +220,10 @@ public class PlayerController : MonoBehaviour, IShopCustomer
         }
         else
             return false;
+    }
+
+    public void Damage(int damageToInflict)
+    {
+        HealthController.RemoveHealth (damageToInflict);
     }
 }

@@ -46,6 +46,8 @@ public class CoreGameElements : MonoBehaviour
 
     public int totalCoinsCollected;
 
+    public int scoreForRhythm;
+
     public bool useColours;
 
     public int[] notes;

@@ -14,8 +14,11 @@ public static class SoundController
         PlayerHurt,
         PlayerLvlUp,
         MissionComplete,
-        CameraZoom
-        //etc.
+        CameraZoom,
+        LaternOn,
+        ChestOpen,
+        PearlCollected,
+        GateOpen
     }
 
     public static void PlaySound(Sound sound)

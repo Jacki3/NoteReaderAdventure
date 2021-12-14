@@ -181,6 +181,7 @@ public static class SpriteExploder
 
         //Create and Add Polygon Collider
         PolygonCollider2D collider = piece.AddComponent<PolygonCollider2D>();
+        collider.isTrigger = true;
         collider
             .SetPath(0,
             new Vector2[] {

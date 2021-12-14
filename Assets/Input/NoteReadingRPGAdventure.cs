@@ -919,7 +919,7 @@ public partial class @NoteReadingRPGAdventure : IInputActionCollection2, IDispos
                 {
                     ""name"": ""right"",
                     ""id"": ""cc3cc892-1076-454f-8cac-0b6dc27420c3"",
-                    ""path"": ""<Keyboard>/f4"",
+                    ""path"": ""<MidiDevice>/note065"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",

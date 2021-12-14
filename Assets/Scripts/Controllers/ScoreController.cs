@@ -77,10 +77,24 @@ public class ScoreController : MonoBehaviour
         }
     }
 
-    public void ResetStreak() => streak = 0;
-
     public static void AddScore_Static(int scoreToAdd)
     {
         instance.AddScore (scoreToAdd);
     }
+
+    public void AddRhythmScore(int scoreToAdd)
+    {
+        score += scoreToAdd;
+        ScoreDisplayUpdater
+            .StartRoutine(score, UIController.UITextComponents.scoreText);
+
+        ScoreGainRhythm.SetScoreGain_Static("+rhythm bonus!");
+    }
+
+    public static void AddRhythmScore_Static(int scoreToAdd)
+    {
+        instance.AddRhythmScore (scoreToAdd);
+    }
+
+    public void ResetStreak() => streak = 0;
 }
