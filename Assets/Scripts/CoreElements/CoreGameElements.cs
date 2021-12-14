@@ -50,9 +50,17 @@ public class CoreGameElements : MonoBehaviour
 
     public bool useColours;
 
+    public bool useBassNotes;
+
+    public float chanceOfBassNotes = .65f;
+
     public int[] notes;
 
+    public int[] notesBass;
+
     public Pattern[] patterns;
+
+    public Pattern[] patternsBass;
 
     [System.NonSerialized]
     public Color32[]

@@ -8,23 +8,51 @@ public static class NotesController
 
     private static List<int[]> possiblePatterns = new List<int[]>();
 
-    public static int GetRandomNote()
+    public static int GetRandomNote(bool bass)
     {
-        int randIndex = Random.Range(0, CoreGameElements.i.notes.Length);
-        int randNote = CoreGameElements.i.notes[randIndex];
-        return randNote;
+        if (!bass)
+        {
+            int randIndex = Random.Range(0, CoreGameElements.i.notes.Length);
+            int randNote = CoreGameElements.i.notes[randIndex];
+            return randNote;
+        }
+        else
+        {
+            int randIndex =
+                Random.Range(0, CoreGameElements.i.notesBass.Length);
+            int randNote = CoreGameElements.i.notesBass[randIndex];
+            return randNote;
+        }
     }
 
-    public static bool CanUsePattern(int totalNotesToSpawn)
+    public static bool CanUsePattern(int totalNotesToSpawn, bool bass)
     {
-        for (int i = 0; i < CoreGameElements.i.patterns.Length; i++)
+        if (!bass)
         {
-            if (
-                CoreGameElements.i.patterns[i].pattern.Length ==
-                totalNotesToSpawn
-            )
+            for (int i = 0; i < CoreGameElements.i.patterns.Length; i++)
             {
-                possiblePatterns.Add(CoreGameElements.i.patterns[i].pattern);
+                if (
+                    CoreGameElements.i.patterns[i].pattern.Length ==
+                    totalNotesToSpawn
+                )
+                {
+                    possiblePatterns
+                        .Add(CoreGameElements.i.patterns[i].pattern);
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < CoreGameElements.i.patternsBass.Length; i++)
+            {
+                if (
+                    CoreGameElements.i.patternsBass[i].pattern.Length ==
+                    totalNotesToSpawn
+                )
+                {
+                    possiblePatterns
+                        .Add(CoreGameElements.i.patternsBass[i].pattern);
+                }
             }
         }
         if (possiblePatterns.Count > 0)

@@ -16,6 +16,12 @@ public class Notation : MonoBehaviour
 
     public SpriteRenderer noteImage;
 
+    public SpriteRenderer clefRenderer;
+
+    public Sprite bassSprite;
+
+    public Sprite trebleSprite;
+
     public Transform[] noteSpawnsY;
 
     public int totalNotesToSpawn = 4;
@@ -44,7 +50,19 @@ public class Notation : MonoBehaviour
     {
         holder.SetActive(false);
 
-        if (usePattern && NotesController.CanUsePattern(totalNotesToSpawn))
+        bool usingBass;
+        if (
+            CoreGameElements.i.useBassNotes &&
+            Random.value > CoreGameElements.i.chanceOfBassNotes
+        )
+            usingBass = true;
+        else
+            usingBass = false;
+
+        if (
+            usePattern &&
+            NotesController.CanUsePattern(totalNotesToSpawn, usingBass)
+        )
         {
             int patternIndex = 0;
             for (int i = 0; i < totalNotesToSpawn; i++)
@@ -57,14 +75,14 @@ public class Notation : MonoBehaviour
         {
             for (int i = 0; i < totalNotesToSpawn; i++)
             {
-                int randNote = NotesController.GetRandomNote();
+                int randNote = NotesController.GetRandomNote(usingBass);
                 notes.Add (randNote);
             }
         }
 
         for (int i = 0; i < totalNotesToSpawn; i++)
         {
-            SpawnNotes(startingSpawnPosX, notes[i]);
+            SpawnNotes(startingSpawnPosX, notes[i], usingBass);
             if (totalNotesToSpawn == 2)
                 startingSpawnPosX += distanceBetweenNotesX + -startingSpawnPosX;
             else
@@ -80,8 +98,13 @@ public class Notation : MonoBehaviour
             isVisible = false;
     }
 
-    private void SpawnNotes(float spawnX, int index)
+    private void SpawnNotes(float spawnX, int index, bool bass)
     {
+        if (bass)
+            clefRenderer.sprite = bassSprite;
+        else
+            clefRenderer.sprite = trebleSprite;
+
         SpriteRenderer newNote = Instantiate(noteImage, holder.transform);
         SpriteRenderer holderChild =
             holder.transform.GetChild(1).GetComponent<SpriteRenderer>();
@@ -124,6 +147,7 @@ public class Notation : MonoBehaviour
 
     private void ShowNotation()
     {
+        //if colour here
         if (isVisible)
         {
             holder.SetActive(true);

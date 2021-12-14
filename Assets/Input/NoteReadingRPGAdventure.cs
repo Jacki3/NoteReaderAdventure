@@ -293,7 +293,7 @@ public partial class @NoteReadingRPGAdventure : IInputActionCollection2, IDispos
                 {
                     ""name"": ""up"",
                     ""id"": ""f64e7680-c695-4732-b1f2-dff14240406f"",
-                    ""path"": ""<MidiDevice>/note063"",
+                    ""path"": ""<MidiDevice>/note051"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -304,7 +304,7 @@ public partial class @NoteReadingRPGAdventure : IInputActionCollection2, IDispos
                 {
                     ""name"": ""down"",
                     ""id"": ""4d025959-b831-4b7b-9507-f1138fd8c474"",
-                    ""path"": ""<MidiDevice>/note064"",
+                    ""path"": ""<MidiDevice>/note052"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -315,7 +315,7 @@ public partial class @NoteReadingRPGAdventure : IInputActionCollection2, IDispos
                 {
                     ""name"": ""left"",
                     ""id"": ""442b518a-c13e-4636-ae0d-ba4bd2bc624e"",
-                    ""path"": ""<MidiDevice>/note062"",
+                    ""path"": ""<MidiDevice>/note050"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -326,7 +326,7 @@ public partial class @NoteReadingRPGAdventure : IInputActionCollection2, IDispos
                 {
                     ""name"": ""right"",
                     ""id"": ""fc5bceb2-561d-4d8a-bbcc-0b435bbb14aa"",
-                    ""path"": ""<MidiDevice>/note065"",
+                    ""path"": ""<MidiDevice>/note053"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -447,7 +447,7 @@ public partial class @NoteReadingRPGAdventure : IInputActionCollection2, IDispos
                 {
                     ""name"": """",
                     ""id"": ""234441d6-bec4-429e-8c2f-bdb352dd9d5c"",
-                    ""path"": ""<MidiDevice>/note076"",
+                    ""path"": ""<MidiDevice>/note064"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -469,7 +469,7 @@ public partial class @NoteReadingRPGAdventure : IInputActionCollection2, IDispos
                 {
                     ""name"": """",
                     ""id"": ""4630466b-2f63-4cef-9d4d-844bb589a4a0"",
-                    ""path"": ""<MidiDevice>/note072"",
+                    ""path"": ""<MidiDevice>/note048"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -491,7 +491,7 @@ public partial class @NoteReadingRPGAdventure : IInputActionCollection2, IDispos
                 {
                     ""name"": """",
                     ""id"": ""c7d05391-5905-4439-968d-57f13a9f1f9e"",
-                    ""path"": ""<MidiDevice>/note082"",
+                    ""path"": ""<MidiDevice>/note037"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -809,7 +809,7 @@ public partial class @NoteReadingRPGAdventure : IInputActionCollection2, IDispos
                 {
                     ""name"": ""up"",
                     ""id"": ""a80380a2-3ae4-4dde-8d7b-8c3b34eb9315"",
-                    ""path"": ""<MidiDevice>/note063"",
+                    ""path"": ""<MidiDevice>/note051"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -853,7 +853,7 @@ public partial class @NoteReadingRPGAdventure : IInputActionCollection2, IDispos
                 {
                     ""name"": ""down"",
                     ""id"": ""0e3671d5-ec6e-48c1-84e0-f5f93b4042d0"",
-                    ""path"": ""<MidiDevice>/note064"",
+                    ""path"": ""<MidiDevice>/note052"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -886,7 +886,7 @@ public partial class @NoteReadingRPGAdventure : IInputActionCollection2, IDispos
                 {
                     ""name"": ""left"",
                     ""id"": ""fba7aae2-97dd-46ab-9ac4-b5f4949d8d72"",
-                    ""path"": ""<MidiDevice>/note062"",
+                    ""path"": ""<MidiDevice>/note050"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -919,7 +919,7 @@ public partial class @NoteReadingRPGAdventure : IInputActionCollection2, IDispos
                 {
                     ""name"": ""right"",
                     ""id"": ""cc3cc892-1076-454f-8cac-0b6dc27420c3"",
-                    ""path"": ""<MidiDevice>/note065"",
+                    ""path"": ""<MidiDevice>/note053"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -952,7 +952,7 @@ public partial class @NoteReadingRPGAdventure : IInputActionCollection2, IDispos
                 {
                     ""name"": """",
                     ""id"": ""99f737fc-0a51-4b77-ace0-4fecea1b0520"",
-                    ""path"": ""<MidiDevice>/note060"",
+                    ""path"": ""<MidiDevice>/note048"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

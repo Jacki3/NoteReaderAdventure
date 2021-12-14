@@ -42,16 +42,14 @@ public class OnScreenKeyboardController : MonoBehaviour
     private void SetKeyColourOn(int value, float t)
     {
         value = value - MIDIController.startingMIDINumber;
-        if (keys[value] != null)
+        if (value >= 0 && value < keys.Length)
             keys[value].keyImage.image.color = keys[value].onColour;
-        else
-            return;
     }
 
     private void SetKeyColourOff(int value)
     {
         value = value - MIDIController.startingMIDINumber;
-        if (keys[value] != null)
+        if (value >= 0 && value < keys.Length)
             keys[value].keyImage.image.color = keys[value].offColour;
         else
             return;
