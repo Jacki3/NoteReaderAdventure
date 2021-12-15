@@ -52,10 +52,14 @@ public class NotationController : MonoBehaviour
             if (activeNotation.notes[0] == note)
             {
                 activeNotation.PlayNote();
+                ScoreController.AddStreak_Static();
             }
-            else
+            else if (note != 25)
             {
-                //incorrect next note on active notation
+                //should be reading circle button NOT 25
+                ScoreController.ResetStreak_Static();
+                activeNotation.IncorrecNote();
+                //keep counting incorrect notes and deactivate on certain amount
             }
         }
         else
@@ -65,10 +69,6 @@ public class NotationController : MonoBehaviour
                 if (notation.notes[0] == note)
                 {
                     duplicateNotations.Add (notation);
-                }
-                else
-                {
-                    //incorrect note accross all notes
                 }
             }
 
@@ -83,11 +83,24 @@ public class NotationController : MonoBehaviour
 
                 if (child == closetNotation.name)
                 {
+                    ScoreController.AddStreak_Static();
                     activeNotation = closetNotation;
                     hasActiveNotation = true;
                     activeNotation.HighlightNotation();
                     activeNotation.PlayNote();
                 }
+            }
+            else if (note != 25 && PlayerController.readingMode)
+            {
+                //incorrect note accross all notes
+                //should be reading circle button NOT 25
+                //repeating what the notation script does?
+                ScoreController.ResetStreak_Static();
+                EZCameraShake
+                    .CameraShaker
+                    .Instance
+                    .ShakeOnce(.35f, 1f, .5f, 1f);
+                SoundController.PlaySound(SoundController.Sound.IncorectNote);
             }
         }
 

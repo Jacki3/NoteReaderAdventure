@@ -21,4 +21,10 @@ public static class GameStateController
             //hide menu
         }
     }
+
+    public static void Quit()
+    {
+        //save prefs here
+        Application.Quit();
+    }
 }

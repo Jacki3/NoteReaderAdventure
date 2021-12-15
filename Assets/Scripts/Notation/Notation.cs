@@ -37,8 +37,6 @@ public class Notation : MonoBehaviour
 
     private List<SpriteRenderer> noteImages = new List<SpriteRenderer>();
 
-    private List<int[]> possiblePatterns = new List<int[]>();
-
     private void Awake()
     {
         parentRenderer = transform.parent.GetComponent<SpriteRenderer>();
@@ -109,37 +107,59 @@ public class Notation : MonoBehaviour
         SpriteRenderer holderChild =
             holder.transform.GetChild(1).GetComponent<SpriteRenderer>();
         newNote.sortingLayerName = holderChild.sortingLayerName;
-        newNote.sortingOrder = holderChild.sortingOrder + 1;
+        newNote.sortingOrder = holderChild.sortingOrder + 2;
+
+        newNote.enabled = true;
+
+        foreach (Transform transform in newNote.transform)
+        {
+            transform.GetComponent<SpriteRenderer>().sortingLayerName =
+                newNote.sortingLayerName;
+            transform.GetComponent<SpriteRenderer>().sortingOrder =
+                newNote.sortingOrder;
+
+            transform.gameObject.SetActive(false);
+        }
 
         newNote.transform.localPosition =
             new Vector2(spawnX, noteSpawnsY[index].localPosition.y);
-        if (CoreGameElements.i.useColours)
-            newNote.color = CoreGameElements.i.noteColours[index % 12];
 
         switch (index)
         {
             case 0:
-            case 21:
                 newNote.transform.GetChild(0).gameObject.SetActive(true);
-                var ledgerSpriteRenderer =
-                    newNote
-                        .transform
-                        .GetChild(0)
-                        .GetComponent<SpriteRenderer>();
-                ledgerSpriteRenderer.sortingLayerName =
-                    holderChild.sortingLayerName;
-                ledgerSpriteRenderer.sortingOrder = holderChild.sortingOrder;
+                newNote.transform.GetChild(3).gameObject.SetActive(true);
                 break;
+            case 2:
+                newNote.transform.GetChild(2).gameObject.SetActive(true);
+                break;
+            case 4:
+            case 24:
+                newNote.transform.GetChild(0).gameObject.SetActive(true);
+                break;
+            case 45:
+                newNote.flipX = true;
+                newNote.flipY = true;
+                newNote.transform.GetChild(4).gameObject.SetActive(true);
+                break;
+            case 47:
+                newNote.flipX = true;
+                newNote.flipY = true;
+                newNote.transform.GetChild(5).gameObject.SetActive(true);
+                break;
+            case 14:
+            case 16:
+            case 17:
+            case 19:
+            case 21:
             case 23:
-                newNote.transform.GetChild(1).gameObject.SetActive(true);
-                var ledgerSpriteRendererLow =
-                    newNote
-                        .transform
-                        .GetChild(0)
-                        .GetComponent<SpriteRenderer>();
-                ledgerSpriteRendererLow.sortingLayerName =
-                    holderChild.sortingLayerName;
-                ledgerSpriteRendererLow.sortingOrder = holderChild.sortingOrder;
+            case 36:
+            case 38:
+            case 40:
+            case 41:
+            case 43:
+                newNote.transform.GetChild(6).gameObject.SetActive(true);
+                newNote.enabled = false;
                 break;
         }
         noteImages.Add (newNote);
@@ -150,6 +170,31 @@ public class Notation : MonoBehaviour
         //if colour here
         if (isVisible)
         {
+            int index = 0;
+            foreach (SpriteRenderer note in noteImages)
+            {
+                if (CoreGameElements.i.useColours)
+                {
+                    note.color =
+                        CoreGameElements.i.noteColours[notes[index] % 12];
+                    note
+                        .transform
+                        .GetChild(6)
+                        .GetComponent<SpriteRenderer>()
+                        .color =
+                        CoreGameElements.i.noteColours[notes[index] % 12];
+                    index++;
+                }
+                else
+                {
+                    note.color = Color.black;
+                    note
+                        .transform
+                        .GetChild(6)
+                        .GetComponent<SpriteRenderer>()
+                        .color = Color.black;
+                }
+            }
             holder.SetActive(true);
             NotationController.AddNotationToList_Static(this);
         }
@@ -159,7 +204,7 @@ public class Notation : MonoBehaviour
     {
         if (holder.activeSelf)
         {
-            holder.SetActive(false);
+            UnhighlightNotation();
             NotationController.RemoveNotationFromList_Static(this);
         }
     }
@@ -192,9 +237,22 @@ public class Notation : MonoBehaviour
         }
     }
 
+    public void IncorrecNote()
+    {
+        notationAnimator.SetTrigger("Incorrect");
+        EZCameraShake.CameraShaker.Instance.ShakeOnce(.35f, 1f, .5f, 1f);
+        SoundController.PlaySound(SoundController.Sound.IncorectNote);
+    }
+
     public void HighlightNotation()
     {
         notationAnimator.SetTrigger("Highlight");
+    }
+
+    public void UnhighlightNotation()
+    {
+        notationAnimator.SetTrigger("Unhighlight");
+        holder.SetActive(false);
     }
 
     public bool NotationFinished() => notes.Count <= 0;

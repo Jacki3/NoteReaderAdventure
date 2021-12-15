@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class CoreGameElements : MonoBehaviour
 {
@@ -33,6 +34,8 @@ public class CoreGameElements : MonoBehaviour
     {
         public int[] pattern;
     }
+
+    public AudioMixer SFXMixer;
 
     public int maxHealth = 12;
 

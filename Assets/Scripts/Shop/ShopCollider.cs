@@ -7,17 +7,47 @@ public class ShopCollider : MonoBehaviour
     [SerializeField]
     private ItemShopController itemShop;
 
+    private bool hasCustomer;
+
+    public static bool isShopping;
+
+    private IShopCustomer customer;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        IShopCustomer customer = other.GetComponent<IShopCustomer>();
+        customer = other.GetComponent<IShopCustomer>();
         if (customer != null)
         {
-            itemShop.ShowShop (customer);
+            hasCustomer = true;
         }
+    }
+
+    void Update()
+    {
+        if (
+            PlayerController.inputActions.UI.Submit.WasPressedThisFrame() &&
+            hasCustomer
+        )
+        {
+            itemShop.ShowShop (customer);
+            isShopping = true;
+        }
+
+        if (
+            isShopping &&
+            PlayerController.inputActions.Player.Escape.WasPressedThisFrame()
+        )
+        {
+            itemShop.HideShop();
+            isShopping = false;
+        }
+
+        //if you are shopping then player cannot move until they press the same button again
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         itemShop.HideShop();
+        hasCustomer = false;
     }
 }

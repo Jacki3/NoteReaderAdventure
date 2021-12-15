@@ -5,6 +5,7 @@ public static class UIController
     public enum UITextComponents
     {
         scoreText,
+        streakText,
         currentLvlText,
         currentXPText,
         XPToNextLvlText,

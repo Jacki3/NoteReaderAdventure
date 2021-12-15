@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chest : NotationItem, INotation
+public class Chest : NotationItem
 {
     public Sprite openChest;
 
@@ -19,8 +19,13 @@ public class Chest : NotationItem, INotation
 
     public override void NotationComplete()
     {
-        base.NotationComplete();
-        OpenChest();
+        notationsCompleted++;
+
+        if (notationsCompleted >= notationsToComplete)
+        {
+            base.NotationComplete();
+            OpenChest();
+        }
     }
 
     private void OpenChest()

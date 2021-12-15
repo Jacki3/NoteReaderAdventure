@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
 
     private SpriteRenderer mSpriteRenderer;
 
-    private NoteReadingRPGAdventure inputActions;
+    public static NoteReadingRPGAdventure inputActions;
 
     public static bool readingMode;
 
@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
         var move = inputActions.Player.Move.ReadValue<Vector2>();
         var sprint = inputActions.Player.Sprint.ReadValue<float>();
 
-        if (!readingMode)
+        if (!readingMode && !ShopCollider.isShopping)
         {
             dir = move;
         }
@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
     //again bad practice? doing something it should not really do -- should be listening for events not calling methods
     private void ShowMenu()
     {
-        pauseMenu.ShowMenu();
+        if (!ShopCollider.isShopping) pauseMenu.ShowMenu();
     }
 
     //this is bad practice right? -- try to copy from tooltip stuff
@@ -210,6 +210,8 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
                 LivesController.AddLife();
                 break;
         }
+
+        SoundController.PlaySound(SoundController.Sound.Purchase);
     }
 
     public bool TrySpendCoinAmount(int coinAmount)

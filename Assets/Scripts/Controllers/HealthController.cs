@@ -60,6 +60,8 @@ public static class HealthController
         else
         {
             currentHealth -= healthRemoved;
+            EZCameraShake.CameraShaker.Instance.ShakeOnce(.35f, 1f, .5f, 1f);
+            SoundController.PlaySound(SoundController.Sound.PlayerHurt);
         }
 
         if (currentHealth > 0)

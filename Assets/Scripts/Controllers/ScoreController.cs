@@ -51,10 +51,8 @@ public class ScoreController : MonoBehaviour
             timer);
     }
 
-    public void AddScore(int scoreToAdd)
+    private void AddScore(int scoreToAdd)
     {
-        streak++;
-
         int totalScoreToAdd = previousScoreToAdd + scoreToAdd + previousScore;
         previousScoreToAdd = totalScoreToAdd;
 
@@ -96,5 +94,29 @@ public class ScoreController : MonoBehaviour
         instance.AddRhythmScore (scoreToAdd);
     }
 
-    public void ResetStreak() => streak = 0;
+    private void AddStreak()
+    {
+        streak++;
+        UIController
+            .UpdateTextUI(UIController.UITextComponents.streakText,
+            streak.ToString());
+    }
+
+    public static void AddStreak_Static()
+    {
+        instance.AddStreak();
+    }
+
+    private void ResetStreak()
+    {
+        streak = 0;
+        UIController
+            .UpdateTextUI(UIController.UITextComponents.streakText,
+            streak.ToString());
+    }
+
+    public static void ResetStreak_Static()
+    {
+        instance.ResetStreak();
+    }
 }

@@ -18,7 +18,9 @@ public static class SoundController
         LaternOn,
         ChestOpen,
         PearlCollected,
-        GateOpen
+        GateOpen,
+        Purchase,
+        IncorectNote
     }
 
     public static void PlaySound(Sound sound)
@@ -26,6 +28,8 @@ public static class SoundController
         //cache previous soundcontroller object - is it playing, if not then use it OR make another (pool them)
         GameObject soundGameObject = new GameObject("SoundController");
         AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+        audioSource.outputAudioMixerGroup =
+            CoreGameElements.i.SFXMixer.FindMatchingGroups("SFX")[0];
         audioSource.PlayOneShot(GetAudioClip(sound));
     }
 

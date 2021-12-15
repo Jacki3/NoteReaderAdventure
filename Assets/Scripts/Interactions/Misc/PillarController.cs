@@ -35,6 +35,7 @@ public class PillarController : NotationItem
         if (AllActivated())
         {
             gate.OpenGate();
+            SoundController.PlaySound(SoundController.Sound.GateOpen);
         }
     }
 

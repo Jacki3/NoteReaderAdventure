@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ItemShopController : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class ItemShopController : MonoBehaviour
 
     private Transform container;
 
-    public List<ShopButton> shopButtons = new List<ShopButton>();
+    private List<ShopButton> shopButtons = new List<ShopButton>();
 
     private void Awake()
     {
@@ -153,6 +154,8 @@ public class ItemShopController : MonoBehaviour
     {
         shopCustomer = customer;
         gameObject.SetActive(true);
+        GameObject firstButton = shopButtons[0].gameObject;
+        EventSystem.current.SetSelectedGameObject (firstButton);
     }
 
     public void HideShop()
