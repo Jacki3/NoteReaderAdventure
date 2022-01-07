@@ -2,24 +2,61 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gate : NotationItem, INotation
+public class Gate : MonoBehaviour
 {
     public Sprite openGate;
 
-    private SpriteRenderer gateRenderer;
+    public SoundController.Sound sound;
 
-    private BoxCollider2D gateCollider;
+    public int XPToAdd;
+
+    public int scoreToAdd;
+
+    public Mission.Object missionObject;
+
+    [SerializeField]
+    private Key.KeyType keyType;
+
+    public BoxCollider2D gateCollider;
+
+    public Transform mainCanvas;
+
+    private SpriteRenderer gateRenderer;
 
     private void Awake()
     {
         gateRenderer = GetComponent<SpriteRenderer>();
-        gateCollider = GetComponent<BoxCollider2D>();
     }
 
-    public override void NotationComplete()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        base.NotationComplete();
-        Invoke("OpenGate", 1);
+        if (other.tag == "Player")
+        {
+            if (KeyHolder.ContainsKey(keyType))
+            {
+                KeyHolder.RemoveKey (keyType);
+                SoundController.PlaySound (sound);
+                if (XPToAdd > 0) ExperienceController.AddXP(XPToAdd);
+                if (scoreToAdd > 0) ScoreController.AddScore_Static(scoreToAdd);
+                MissionHolder.i.CheckValidMission (missionObject);
+                UIController
+                    .UpdateImageSprite(UIController.UIImageComponents.goldKey,
+                    null,
+                    false);
+                Tooltip
+                    .SetToolTip_Static("Used Golden Key!",
+                    Vector3.zero,
+                    mainCanvas);
+                Invoke("OpenGate", 1);
+            }
+            else
+            {
+                Tooltip
+                    .SetToolTip_Static("Requires Golden Key!",
+                    Vector3.zero,
+                    mainCanvas);
+            }
+        }
     }
 
     public void OpenGate()

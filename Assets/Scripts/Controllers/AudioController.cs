@@ -44,10 +44,10 @@ public class AudioController : MonoBehaviour
 
         time = Mathf.Lerp(time, 0, secPerBeat * Time.deltaTime);
 
-        if (time < .6f)
-            canPlay = false;
-        else
+        if (time < .5f)
             canPlay = true;
+        else
+            canPlay = false;
     }
 
     private IEnumerator SpawnIndicator()

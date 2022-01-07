@@ -64,7 +64,7 @@ public class MissionHolder : MonoBehaviour
             "/" +
             mission.requiredAmount +
             " " +
-            mission.missionObject;
+            mission.missionObjectString;
 
         missionPlaceholders.Add (_missionPlaceholder);
     }
@@ -102,6 +102,12 @@ public class MissionHolder : MonoBehaviour
                 SoundController
                     .PlaySound(SoundController.Sound.MissionComplete);
             }
+            else
+            {
+                placeHolder
+                    .GetComponent<Animator>()
+                    .SetTrigger("MissionIncrement");
+            }
         }
     }
 
@@ -130,7 +136,7 @@ public class MissionHolder : MonoBehaviour
                     .missionText
                     .text
                     .text
-                    .Contains(mission.missionObject.ToString())
+                    .Contains(mission.missionObjectString.ToString())
             ) return placeHolder;
         }
         return null;

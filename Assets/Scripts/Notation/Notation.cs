@@ -37,6 +37,8 @@ public class Notation : MonoBehaviour
 
     private List<SpriteRenderer> noteImages = new List<SpriteRenderer>();
 
+    public bool arenaMode = false;
+
     private void Awake()
     {
         parentRenderer = transform.parent.GetComponent<SpriteRenderer>();
@@ -86,6 +88,8 @@ public class Notation : MonoBehaviour
             else
                 startingSpawnPosX += distanceBetweenNotesX;
         }
+
+        if (arenaMode) ShowNotation();
     }
 
     void Update()
@@ -167,8 +171,7 @@ public class Notation : MonoBehaviour
 
     private void ShowNotation()
     {
-        //if colour here
-        if (isVisible)
+        if (isVisible || arenaMode)
         {
             int index = 0;
             foreach (SpriteRenderer note in noteImages)
@@ -197,6 +200,7 @@ public class Notation : MonoBehaviour
             }
             holder.SetActive(true);
             NotationController.AddNotationToList_Static(this);
+            notationAnimator.SetTrigger("Unhighlight");
         }
     }
 
@@ -211,6 +215,8 @@ public class Notation : MonoBehaviour
 
     public void PlayNote()
     {
+        EZCameraShake.CameraShaker.Instance.ShakeOnce(.45f, 1f, .5f, 1f);
+
         if (AudioController.canPlay)
             ScoreController
                 .AddRhythmScore_Static(CoreGameElements.i.scoreForRhythm);
@@ -226,13 +232,6 @@ public class Notation : MonoBehaviour
             PlayerController.notationCircleDeactivated -= HideNotation;
             INotation notation = transform.root.GetComponent<INotation>();
             if (notation != null) notation.NotationComplete();
-
-            // ExplosionForce ef = GameObject.FindObjectOfType<ExplosionForce>();
-            // ef.force = 350;
-            // ef.radius = 10;
-            // explodableNotation
-            //     .explode(explodableNotation.GetComponent<SpriteRenderer>());
-            // ef.doExplosion(transform.position);
             Destroy (gameObject);
         }
     }
@@ -240,7 +239,7 @@ public class Notation : MonoBehaviour
     public void IncorrecNote()
     {
         notationAnimator.SetTrigger("Incorrect");
-        EZCameraShake.CameraShaker.Instance.ShakeOnce(.35f, 1f, .5f, 1f);
+        EZCameraShake.CameraShaker.Instance.ShakeOnce(.5f, 1f, .5f, 1f);
         SoundController.PlaySound(SoundController.Sound.IncorectNote);
     }
 
@@ -251,7 +250,6 @@ public class Notation : MonoBehaviour
 
     public void UnhighlightNotation()
     {
-        notationAnimator.SetTrigger("Unhighlight");
         holder.SetActive(false);
     }
 

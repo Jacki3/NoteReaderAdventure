@@ -27,6 +27,7 @@ public static class NotesController
 
     public static bool CanUsePattern(int totalNotesToSpawn, bool bass)
     {
+        possiblePatterns.Clear();
         if (!bass)
         {
             for (int i = 0; i < CoreGameElements.i.patterns.Length; i++)

@@ -148,7 +148,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1869315837
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 03a5ea80a86db8141b7bb5f9b148bce6, type: 3}
   m_Color: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
@@ -236,10 +236,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0e5b00824d1651a4b8358bf7dce301ca, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
-  m_Pitch: 1
+  m_Volume: 0.471
+  m_Pitch: 1.5
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -323,7 +323,7 @@ PrefabInstance:
     - target: {fileID: 754718087487569048, guid: c4d92f58a88dafb469021a2d424f655c,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 754718087487569048, guid: c4d92f58a88dafb469021a2d424f655c,
         type: 3}
@@ -333,7 +333,7 @@ PrefabInstance:
     - target: {fileID: 754718087921130657, guid: c4d92f58a88dafb469021a2d424f655c,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 754718087921130657, guid: c4d92f58a88dafb469021a2d424f655c,
         type: 3}
@@ -418,7 +418,7 @@ PrefabInstance:
     - target: {fileID: 754718088009971510, guid: c4d92f58a88dafb469021a2d424f655c,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 754718088009971510, guid: c4d92f58a88dafb469021a2d424f655c,
         type: 3}
@@ -428,7 +428,7 @@ PrefabInstance:
     - target: {fileID: 754718088747052005, guid: c4d92f58a88dafb469021a2d424f655c,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 754718088747052005, guid: c4d92f58a88dafb469021a2d424f655c,
         type: 3}
@@ -438,7 +438,7 @@ PrefabInstance:
     - target: {fileID: 754718088846170953, guid: c4d92f58a88dafb469021a2d424f655c,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 754718088846170953, guid: c4d92f58a88dafb469021a2d424f655c,
         type: 3}
@@ -468,7 +468,7 @@ PrefabInstance:
     - target: {fileID: 754718087487569048, guid: c4d92f58a88dafb469021a2d424f655c,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 754718087487569048, guid: c4d92f58a88dafb469021a2d424f655c,
         type: 3}
@@ -478,7 +478,7 @@ PrefabInstance:
     - target: {fileID: 754718087921130657, guid: c4d92f58a88dafb469021a2d424f655c,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 754718087921130657, guid: c4d92f58a88dafb469021a2d424f655c,
         type: 3}
@@ -568,7 +568,7 @@ PrefabInstance:
     - target: {fileID: 754718088009971510, guid: c4d92f58a88dafb469021a2d424f655c,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 754718088009971510, guid: c4d92f58a88dafb469021a2d424f655c,
         type: 3}
@@ -578,7 +578,7 @@ PrefabInstance:
     - target: {fileID: 754718088747052005, guid: c4d92f58a88dafb469021a2d424f655c,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 754718088747052005, guid: c4d92f58a88dafb469021a2d424f655c,
         type: 3}
@@ -588,7 +588,7 @@ PrefabInstance:
     - target: {fileID: 754718088846170953, guid: c4d92f58a88dafb469021a2d424f655c,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 754718088846170953, guid: c4d92f58a88dafb469021a2d424f655c,
         type: 3}

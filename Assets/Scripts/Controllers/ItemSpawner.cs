@@ -10,8 +10,10 @@ public class ItemSpawner : MonoBehaviour
         SmallHealthPotion,
         HealthPotion,
         LargeHealthPotion,
-        Spirit
-        //etc.
+        Spirit,
+        GoldenKey,
+        SilverKey,
+        IronKey
     }
 
     public static List<Item> allItems = new List<Item>();

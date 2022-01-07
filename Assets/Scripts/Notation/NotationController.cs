@@ -18,7 +18,6 @@ public class NotationController : MonoBehaviour
     {
         instance = this;
         MIDIController.NoteOn += CheckNote;
-        PlayerController.notationCircleDeactivated += RemoveActiveNotation;
     }
 
     private void AddNotationToList(Notation notation)
@@ -34,6 +33,8 @@ public class NotationController : MonoBehaviour
     private void RemoveNotationFromList(Notation notation)
     {
         visibleNotation.Remove (notation);
+        hasActiveNotation = false;
+        activeNotation = null;
     }
 
     public static void RemoveNotationFromList_Static(Notation notation)
@@ -59,7 +60,7 @@ public class NotationController : MonoBehaviour
                 //should be reading circle button NOT 25
                 ScoreController.ResetStreak_Static();
                 activeNotation.IncorrecNote();
-                //keep counting incorrect notes and deactivate on certain amount
+                //keep counting incorrect notes and deactivate on certain amount?
             }
         }
         else
@@ -79,12 +80,12 @@ public class NotationController : MonoBehaviour
 
                 var parent = closetNotation.transform.root;
 
-                var child = parent.GetChild(0).name;
+                var child = parent.GetChild(0).GetComponent<Notation>();
 
-                if (child == closetNotation.name)
+                if (child.notes[0] == note)
                 {
                     ScoreController.AddStreak_Static();
-                    activeNotation = closetNotation;
+                    activeNotation = child;
                     hasActiveNotation = true;
                     activeNotation.HighlightNotation();
                     activeNotation.PlayNote();
@@ -96,11 +97,11 @@ public class NotationController : MonoBehaviour
                 //should be reading circle button NOT 25
                 //repeating what the notation script does?
                 ScoreController.ResetStreak_Static();
-                EZCameraShake
-                    .CameraShaker
-                    .Instance
-                    .ShakeOnce(.35f, 1f, .5f, 1f);
-                SoundController.PlaySound(SoundController.Sound.IncorectNote);
+
+                foreach (Notation notation in visibleNotation)
+                {
+                    notation.IncorrecNote();
+                }
             }
         }
 
@@ -110,11 +111,5 @@ public class NotationController : MonoBehaviour
             hasActiveNotation = false;
             activeNotation = null;
         }
-    }
-
-    private void RemoveActiveNotation()
-    {
-        hasActiveNotation = false;
-        activeNotation = null;
     }
 }

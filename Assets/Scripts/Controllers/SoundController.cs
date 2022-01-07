@@ -20,7 +20,9 @@ public static class SoundController
         PearlCollected,
         GateOpen,
         Purchase,
-        IncorectNote
+        IncorectNote,
+        PillarActive,
+        KeyPickup
     }
 
     public static void PlaySound(Sound sound)

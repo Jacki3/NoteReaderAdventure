@@ -14,8 +14,8 @@ public static class UIController
         skillPointText,
         skillMenuSkillPointText,
         collectibleText,
-        livesText
-        //etc.
+        livesText,
+        arenaWinText
     }
 
     public enum UIImageComponents
@@ -24,8 +24,10 @@ public static class UIController
         XPBar,
         multiplierBar,
         hearts,
-        coin
-        //etc.
+        coin,
+        goldKey,
+        silverKey,
+        ironKey
     }
 
     //this should be called set text?
@@ -46,12 +48,17 @@ public static class UIController
 
     public static void UpdateImageSprite(
         UIImageComponents imageComponent,
-        Sprite sprite
+        Sprite sprite,
+        bool enable
     )
     {
         //reflection - get type of UI element
         //find exisisting element type and change value of text - could still apply
         CoreUIElements.i.GetImageComponent(imageComponent).sprite = sprite;
+        if (enable)
+            CoreUIElements.i.GetImageComponent(imageComponent).enabled = true;
+        else
+            CoreUIElements.i.GetImageComponent(imageComponent).enabled = false;
     }
 
     public static void UpdateSliderAmount(

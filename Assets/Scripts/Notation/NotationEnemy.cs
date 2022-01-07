@@ -31,7 +31,12 @@ public class NotationEnemy : MonoBehaviour, INotation
     private void OnTriggerEnter2D(Collider2D other)
     {
         IDamagable damagable = other.GetComponent<IDamagable>();
-        if (damagable != null) damagable.Damage(healthToRemoveFromPlayer);
+        if (damagable != null) Damage(damagable);
+    }
+
+    public virtual void Damage(IDamagable damagable)
+    {
+        damagable.Damage (healthToRemoveFromPlayer);
     }
 
     public void NotationComplete()
@@ -48,7 +53,7 @@ public class NotationEnemy : MonoBehaviour, INotation
         animator.SetTrigger("Die");
     }
 
-    private void Die()
+    public void Die()
     {
         Destroy (gameObject);
     }

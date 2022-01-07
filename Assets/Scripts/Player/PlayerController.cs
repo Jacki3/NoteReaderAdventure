@@ -75,7 +75,11 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
         var move = inputActions.Player.Move.ReadValue<Vector2>();
         var sprint = inputActions.Player.Sprint.ReadValue<float>();
 
-        if (!readingMode && !ShopCollider.isShopping)
+        if (
+            !readingMode &&
+            !ShopCollider.isShopping &&
+            !Cainos.PixelArtTopDown_Basic.PropsAltar.arenaMode
+        )
         {
             dir = move;
         }
@@ -142,7 +146,7 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
         }
     }
 
-    private void SetReadingMode()
+    public void SetReadingMode()
     {
         if (readingMode)
         {
