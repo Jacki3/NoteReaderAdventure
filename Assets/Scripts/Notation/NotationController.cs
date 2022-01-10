@@ -6,13 +6,17 @@ public class NotationController : MonoBehaviour
 {
     public Transform playerPos;
 
+    public int resetAmount;
+
     public List<Notation> visibleNotation = new List<Notation>();
 
     private static NotationController instance;
 
     private bool hasActiveNotation;
 
-    public Notation activeNotation;
+    private Notation activeNotation;
+
+    private int incorrectNotes;
 
     private void Awake()
     {
@@ -22,7 +26,7 @@ public class NotationController : MonoBehaviour
 
     private void AddNotationToList(Notation notation)
     {
-        visibleNotation.Add (notation);
+        if (!visibleNotation.Contains(notation)) visibleNotation.Add(notation);
     }
 
     public static void AddNotationToList_Static(Notation notation)
@@ -52,6 +56,7 @@ public class NotationController : MonoBehaviour
         {
             if (activeNotation.notes[0] == note)
             {
+                incorrectNotes = 0;
                 activeNotation.PlayNote();
                 ScoreController.AddStreak_Static();
             }
@@ -60,7 +65,13 @@ public class NotationController : MonoBehaviour
                 //should be reading circle button NOT 25
                 ScoreController.ResetStreak_Static();
                 activeNotation.IncorrecNote();
-                //keep counting incorrect notes and deactivate on certain amount?
+                incorrectNotes++;
+                if (incorrectNotes >= resetAmount)
+                {
+                    activeNotation.UnhighlightNotation();
+                    hasActiveNotation = false;
+                    activeNotation = null;
+                }
             }
         }
         else
@@ -100,7 +111,7 @@ public class NotationController : MonoBehaviour
 
                 foreach (Notation notation in visibleNotation)
                 {
-                    notation.IncorrecNote();
+                    notation.AllIncorrect();
                 }
             }
         }
@@ -110,6 +121,21 @@ public class NotationController : MonoBehaviour
             visibleNotation.Remove (activeNotation);
             hasActiveNotation = false;
             activeNotation = null;
+        }
+    }
+
+    private void DestroyPlayedNote(int note)
+    {
+        if (hasActiveNotation)
+        {
+            activeNotation.DestroyPlayedNote (note);
+        }
+        else
+        {
+            foreach (Notation notation in visibleNotation)
+            {
+                notation.DestroyPlayedNote (note);
+            }
         }
     }
 }

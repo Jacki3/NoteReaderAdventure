@@ -22,7 +22,9 @@ public static class SoundController
         Purchase,
         IncorectNote,
         PillarActive,
-        KeyPickup
+        KeyPickup,
+        DoorLocked,
+        SmashCircle
     }
 
     public static void PlaySound(Sound sound)

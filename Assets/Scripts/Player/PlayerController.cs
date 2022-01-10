@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
 
     public PauseMenu pauseMenu;
 
+    public AudioClip moveSound;
+
     private float moveSpeed = 3;
 
     private float sprintSpeed;
@@ -47,6 +49,8 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
 
     public static event NotationCircleSwitch notationCircleDeactivated;
 
+    private AudioSource audioSource;
+
     private void Awake()
     {
         inputActions = new NoteReadingRPGAdventure();
@@ -57,6 +61,7 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
 
         mSpriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         PlayerSkills.onSkillUnlocked += SkillUnlocked;
     }
 
@@ -119,6 +124,13 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
         dir.Normalize();
         animator.SetBool("IsMoving", dir.magnitude > 0);
 
+        if (dir.magnitude > 0)
+            audioSource.clip = moveSound;
+        else
+            audioSource.clip = null;
+
+        if (!audioSource.isPlaying) audioSource.Play();
+
         GetComponent<Rigidbody2D>().velocity = moveSpeed * dir;
 
         //lulw -- set for other items in one method
@@ -138,6 +150,7 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
     {
         if (!readingMode)
         {
+            SoundController.PlaySound(SoundController.Sound.SmashCircle);
             var newCircle = Instantiate(smashCircle);
             newCircle.SetLayerAndPosition (
                 smashCircleSpawnPoint,
@@ -181,7 +194,7 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
 
     public void BoughtItem(CoreItems.ItemType itemType)
     {
-        print("Bought item " + itemType);
+        SoundController.PlaySound(SoundController.Sound.Purchase);
         switch (itemType)
         {
             case CoreItems.ItemType.smallHealthRefill:
@@ -214,8 +227,6 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
                 LivesController.AddLife();
                 break;
         }
-
-        SoundController.PlaySound(SoundController.Sound.Purchase);
     }
 
     public bool TrySpendCoinAmount(int coinAmount)

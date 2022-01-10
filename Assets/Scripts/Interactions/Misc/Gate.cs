@@ -51,6 +51,7 @@ public class Gate : MonoBehaviour
             }
             else
             {
+                SoundController.PlaySound(SoundController.Sound.DoorLocked);
                 Tooltip
                     .SetToolTip_Static("Requires Golden Key!",
                     Vector3.zero,

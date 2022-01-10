@@ -29,4 +29,33 @@ public class NotationItem : MonoBehaviour, INotation
         if (notationFloating != null)
             notationFloating.gameObject.SetActive(false);
     }
+
+    void OnBecameInvisible()
+    {
+        foreach (Transform child in transform)
+        {
+            Notation notation = child.GetComponent<Notation>();
+            if (notation != null)
+            {
+                notation.objectShow = false;
+                notation.HideNotation();
+            }
+        }
+    }
+
+    void OnBecameVisible()
+    {
+        if (PlayerController.readingMode)
+        {
+            foreach (Transform child in transform)
+            {
+                Notation notation = child.GetComponent<Notation>();
+                if (notation != null)
+                {
+                    notation.objectShow = true;
+                    notation.ShowNotation();
+                }
+            }
+        }
+    }
 }

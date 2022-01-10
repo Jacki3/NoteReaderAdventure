@@ -52,10 +52,14 @@ public static class HealthController
         if (strongShield)
         {
             strongShield = false;
+            SpriteController.SetSprite(SpriteController.Sprites.shield);
+            //bubble pop sound
         }
         else if (hasShield)
         {
             hasShield = false;
+            SpriteController.SetSprite(SpriteController.Sprites.noShield);
+            //bubble pop sound
         }
         else
         {
@@ -77,11 +81,11 @@ public static class HealthController
                     .Animations
                     .PlayerAnimator,
                 "TakenDamage");
-            //play sound
         }
         else
         {
             LivesController.RemoveLife();
+            //play remove life sound
         }
     }
 

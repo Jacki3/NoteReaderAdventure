@@ -8,6 +8,7 @@ public static class SpriteController
         nerdGlasses,
         shield,
         protectiveShield,
+        noShield,
         hair1,
         hair2
         //etc.

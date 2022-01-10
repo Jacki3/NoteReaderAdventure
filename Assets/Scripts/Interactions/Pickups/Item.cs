@@ -13,7 +13,8 @@ public class Item : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        var player = other.GetComponent<PlayerController>();
+        if (player != null)
         {
             PickUp();
         }

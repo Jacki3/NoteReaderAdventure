@@ -92,7 +92,8 @@ public class ItemShopController : MonoBehaviour
                 }
                 else
                 {
-                    //shake screen or box/sound
+                    SoundController
+                        .PlaySound(SoundController.Sound.IncorectNote);
                     Tooltip
                         .SetToolTip_Static("health already full!",
                         currentShopButton.transform.localPosition,
@@ -106,7 +107,8 @@ public class ItemShopController : MonoBehaviour
                     HealthController.HasProtectiveShield()
                 )
                 {
-                    //shake screen or box/sound
+                    SoundController
+                        .PlaySound(SoundController.Sound.IncorectNote);
                     Tooltip
                         .SetToolTip_Static("Already got a shield!",
                         currentShopButton.transform.localPosition,
@@ -122,7 +124,8 @@ public class ItemShopController : MonoBehaviour
             {
                 if (HealthController.HasProtectiveShield())
                 {
-                    //shake screen or box/sound
+                    SoundController
+                        .PlaySound(SoundController.Sound.IncorectNote);
                     Tooltip
                         .SetToolTip_Static("Already got a shield!",
                         currentShopButton.transform.localPosition,
@@ -142,7 +145,7 @@ public class ItemShopController : MonoBehaviour
         }
         else
         {
-            //shake screen or box/sound
+            SoundController.PlaySound(SoundController.Sound.IncorectNote);
             Tooltip
                 .SetToolTip_Static("not enough coins!",
                 currentShopButton.transform.localPosition,
