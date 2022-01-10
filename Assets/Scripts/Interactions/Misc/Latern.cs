@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
-public class Latern : NotationItem, INotation
+public class Latern : NotationItem
 {
     public Light2D laternLight;
 

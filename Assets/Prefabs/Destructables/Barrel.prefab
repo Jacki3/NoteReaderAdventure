@@ -76,7 +76,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1869315837
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300066, guid: 29c9cded5e558164aaf8c9bf08aa1510, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -336,6 +336,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NotationSingle
       objectReference: {fileID: 0}
+    - target: {fileID: 754718087950397077, guid: 6d6fe3f800b79684b90cc1a887702e95,
+        type: 3}
+      propertyPath: notation
+      value: 
+      objectReference: {fileID: 8907355298729512935}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d6fe3f800b79684b90cc1a887702e95, type: 3}
 --- !u!4 &7443566018878565164 stripped

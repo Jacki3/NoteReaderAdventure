@@ -47,6 +47,8 @@ public class Notation : MonoBehaviour
 
     private List<SpriteRenderer> playedNotes = new List<SpriteRenderer>();
 
+    public GameObject notation;
+
     private void Awake()
     {
         parentRenderer = transform.parent.GetComponent<SpriteRenderer>();
@@ -255,8 +257,10 @@ public class Notation : MonoBehaviour
             explodedNotation.transform.position = transform.position;
             PlayerController.notationCircleActivated -= ShowNotation;
             PlayerController.notationCircleDeactivated -= HideNotation;
-            INotation notation = transform.root.GetComponent<INotation>();
-            if (notation != null) notation.NotationComplete();
+
+            INotation notationInterface = notation.GetComponent<INotation>();
+            if (notationInterface != null) notationInterface.NotationComplete();
+
             Destroy (gameObject);
         }
     }
