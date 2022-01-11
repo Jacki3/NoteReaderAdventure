@@ -436,9 +436,12 @@ MonoBehaviour:
   playedNoteColour:
     serializedVersion: 2
     rgba: 2148733715
+  explodableNotation: {fileID: 9165166724435178323, guid: 5a06ad10ed8431243a7135647523f703,
+    type: 3}
   notes: 
   arenaMode: 0
   objectShow: 0
+  notation: {fileID: 0}
 --- !u!1 &754718088009971508
 GameObject:
   m_ObjectHideFlags: 0

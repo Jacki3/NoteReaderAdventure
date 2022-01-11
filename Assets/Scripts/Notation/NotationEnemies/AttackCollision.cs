@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class AttackCollision : MonoBehaviour
 {
-    private Zombie zombie;
-
-    private void Awake()
-    {
-        zombie = transform.root.gameObject.GetComponent<Zombie>();
-    }
+    public Zombie zombie;
 
     private void OnTriggerEnter2D(Collider2D other)
     {

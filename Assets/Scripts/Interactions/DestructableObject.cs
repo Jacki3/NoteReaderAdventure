@@ -20,6 +20,8 @@ public class DestructableObject : MonoBehaviour, INotation
 
     public bool canBeSmashed;
 
+    public bool tutorialObject;
+
     private Explodable _explodable;
 
     private SpriteRenderer _spriteRenderer;
@@ -83,6 +85,16 @@ public class DestructableObject : MonoBehaviour, INotation
                 totalItemsSpawnable,
                 _spriteRenderer);
         }
+        if (tutorialObject)
+        {
+            if (GameStateController.state == GameStateController.States.Tutorial
+            )
+            {
+                TutorialManager
+                    .CheckTutorialStatic(Tutorial.TutorialValidation.Smash);
+            }
+        }
+
         MissionHolder.i.CheckValidMission (objectType);
         if (scoreToAdd > 0) ScoreController.AddScore_Static(scoreToAdd);
         ExperienceController.AddXP (XPToGive);

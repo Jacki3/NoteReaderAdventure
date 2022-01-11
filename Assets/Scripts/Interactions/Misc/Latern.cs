@@ -15,6 +15,12 @@ public class Latern : NotationItem
 
         if (notationsCompleted >= notationsToComplete)
         {
+            if (GameStateController.state == GameStateController.States.Tutorial
+            )
+            {
+                TutorialManager
+                    .CheckTutorialStatic(Tutorial.TutorialValidation.ReadMode);
+            }
             base.NotationComplete();
             LightUp();
         }

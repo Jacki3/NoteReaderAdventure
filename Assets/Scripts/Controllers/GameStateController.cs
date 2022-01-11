@@ -6,6 +6,19 @@ public static class GameStateController
 {
     public static bool gamePaused;
 
+    public static States state;
+
+    public enum States
+    {
+        Intro,
+        Tutorial,
+        Play,
+        Arena,
+        Shopping,
+        Paused,
+        MainMenu
+    }
+
     public static void PauseGame()
     {
         if (!gamePaused)
@@ -18,6 +31,10 @@ public static class GameStateController
         {
             Time.timeScale = 1;
             gamePaused = false;
+            if (GameStateController.state == GameStateController.States.Tutorial
+            )
+                TutorialManager
+                    .CheckTutorialStatic(Tutorial.TutorialValidation.Menu);
             //hide menu
         }
     }

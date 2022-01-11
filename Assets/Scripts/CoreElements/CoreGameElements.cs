@@ -19,6 +19,8 @@ public class CoreGameElements : MonoBehaviour
             Destroy(this.gameObject);
         else
             _i = this;
+
+        GameStateController.state = GameStateController.States.Intro;
     }
 
     void Start()
@@ -56,6 +58,8 @@ public class CoreGameElements : MonoBehaviour
     public bool useBassNotes;
 
     public float chanceOfBassNotes = .65f;
+
+    public bool useTutorial = true;
 
     public int[] notes;
 

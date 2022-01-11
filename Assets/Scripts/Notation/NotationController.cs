@@ -89,9 +89,10 @@ public class NotationController : MonoBehaviour
                 var closetNotation =
                     GetClosetObject.GetClosetObj(duplicateNotations, playerPos);
 
-                var parent = closetNotation.transform.root;
+                var parent = closetNotation.notation;
 
-                var child = parent.GetChild(0).GetComponent<Notation>();
+                var child =
+                    parent.transform.GetChild(0).GetComponent<Notation>();
 
                 if (child.notes[0] == note)
                 {

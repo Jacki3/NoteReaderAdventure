@@ -30,6 +30,7 @@ public class ShopCollider : MonoBehaviour
         )
         {
             itemShop.ShowShop (customer);
+            GameStateController.state = GameStateController.States.Shopping;
             isShopping = true;
         }
 
@@ -39,6 +40,7 @@ public class ShopCollider : MonoBehaviour
         )
         {
             itemShop.HideShop();
+            GameStateController.state = GameStateController.States.Play;
             isShopping = false;
         }
 

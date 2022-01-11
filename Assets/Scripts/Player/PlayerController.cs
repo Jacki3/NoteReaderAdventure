@@ -82,8 +82,10 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
 
         if (
             !readingMode &&
-            !ShopCollider.isShopping &&
-            !Cainos.PixelArtTopDown_Basic.PropsAltar.arenaMode
+            !Cainos.PixelArtTopDown_Basic.PropsAltar.arenaMode &&
+            GameStateController.state == GameStateController.States.Play ||
+            GameStateController.state == GameStateController.States.Tutorial &&
+            !readingMode
         )
         {
             dir = move;
@@ -125,7 +127,15 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
         animator.SetBool("IsMoving", dir.magnitude > 0);
 
         if (dir.magnitude > 0)
+        {
+            if (GameStateController.state == GameStateController.States.Tutorial
+            )
+            {
+                TutorialManager
+                    .CheckTutorialStatic(Tutorial.TutorialValidation.Move);
+            }
             audioSource.clip = moveSound;
+        }
         else
             audioSource.clip = null;
 
@@ -142,13 +152,21 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
     //again bad practice? doing something it should not really do -- should be listening for events not calling methods
     private void ShowMenu()
     {
-        if (!ShopCollider.isShopping) pauseMenu.ShowMenu();
+        if (GameStateController.state != GameStateController.States.Shopping)
+        {
+            pauseMenu.ShowMenu();
+        }
     }
 
     //this is bad practice right? -- try to copy from tooltip stuff
     private void SpawnCircle()
     {
-        if (!readingMode)
+        if (
+            !readingMode &&
+            GameStateController.state == GameStateController.States.Play ||
+            GameStateController.state == GameStateController.States.Tutorial &&
+            !readingMode
+        )
         {
             SoundController.PlaySound(SoundController.Sound.SmashCircle);
             var newCircle = Instantiate(smashCircle);
@@ -161,15 +179,21 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
 
     public void SetReadingMode()
     {
-        if (readingMode)
+        if (
+            GameStateController.state == GameStateController.States.Play ||
+            GameStateController.state == GameStateController.States.Tutorial
+        )
         {
-            readingMode = false;
-            notationCircleDeactivated();
-        }
-        else
-        {
-            readingMode = true;
-            notationCircleActivated();
+            if (readingMode)
+            {
+                readingMode = false;
+                notationCircleDeactivated();
+            }
+            else
+            {
+                readingMode = true;
+                notationCircleActivated();
+            }
         }
     }
 

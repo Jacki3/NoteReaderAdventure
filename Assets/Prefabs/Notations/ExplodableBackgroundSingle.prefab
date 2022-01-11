@@ -141,11 +141,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allowRuntimeFragmentation: 1
   extraPoints: 75
-  subshatterSteps: 15
+  subshatterSteps: 0
   fragmentLayer: Default
   sortingLayerName: Default
-  orderInLayer: 0
-  shatterType: 0
+  orderInLayer: 5
+  shatterType: 1
   fragments: []
 --- !u!60 &3386265575092406646
 PolygonCollider2D:
