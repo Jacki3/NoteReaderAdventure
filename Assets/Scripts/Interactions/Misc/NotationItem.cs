@@ -10,13 +10,35 @@ public class NotationItem : MonoBehaviour, INotation
 
     public int scoreToAdd;
 
+    public Animator animator;
+
     public Mission.Object missionObject;
 
     public SoundController.Sound sound;
 
     protected int notationsCompleted;
 
-    public virtual void NotationComplete()
+    public void PlayedCorrectNote()
+    {
+        //do something when correct note is played
+    }
+
+    public void NotationComplete()
+    {
+        notationsCompleted++;
+        if (notationsCompleted >= notationsToComplete)
+            AllNotationsComplete();
+        else
+            DamageItem();
+    }
+
+    protected virtual void DamageItem()
+    {
+        SoundController.PlaySound(SoundController.Sound.NotationComplete);
+        if (animator != null) animator.SetTrigger("Hurt");
+    }
+
+    protected virtual void AllNotationsComplete()
     {
         ExperienceController.AddXP (XPToAdd);
         if (scoreToAdd > 0) ScoreController.AddScore_Static(scoreToAdd);

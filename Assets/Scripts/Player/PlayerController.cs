@@ -82,7 +82,6 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
 
         if (
             !readingMode &&
-            !Cainos.PixelArtTopDown_Basic.PropsAltar.arenaMode &&
             GameStateController.state == GameStateController.States.Play ||
             GameStateController.state == GameStateController.States.Tutorial &&
             !readingMode
@@ -119,9 +118,20 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
         }
 
         if (sprint >= .1f && CanSprint())
-            moveSpeed = sprintSpeed;
+        {
+            if (dir.magnitude > 0) SprintBar.StartSprinting();
+            if (SprintBar.canSprint)
+                moveSpeed = sprintSpeed;
+            else
+                moveSpeed = walkSpeed;
+        }
         else
+        {
+            SprintBar.StopSprinting();
             moveSpeed = walkSpeed;
+        }
+
+        if (dir.magnitude < 0) SprintBar.StopSprinting();
 
         dir.Normalize();
         animator.SetBool("IsMoving", dir.magnitude > 0);
@@ -137,12 +147,13 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
             audioSource.clip = moveSound;
         }
         else
+        {
             audioSource.clip = null;
-
+            SprintBar.StopSprinting();
+        }
         if (!audioSource.isPlaying) audioSource.Play();
 
-        GetComponent<Rigidbody2D>().velocity = moveSpeed * dir;
-
+        // GetComponent<Rigidbody2D>().velocity = moveSpeed * dir; //using get component?
         //lulw -- set for other items in one method
         if (dir.y == -1)
             glasses.sortingOrder = mSpriteRenderer.sortingOrder + 1;
@@ -184,15 +195,18 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
             GameStateController.state == GameStateController.States.Tutorial
         )
         {
-            if (readingMode)
+            if (!GameStateController.gamePaused)
             {
-                readingMode = false;
-                notationCircleDeactivated();
-            }
-            else
-            {
-                readingMode = true;
-                notationCircleActivated();
+                if (readingMode)
+                {
+                    readingMode = false;
+                    notationCircleDeactivated();
+                }
+                else
+                {
+                    readingMode = true;
+                    notationCircleActivated();
+                }
             }
         }
     }
@@ -203,6 +217,7 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
         {
             case PlayerSkills.SkillType.sprint_1:
                 sprintSpeed = sprintSpeed_1;
+                SprintBar.ShowStaminaBar();
                 break;
             case PlayerSkills.SkillType.sprint_2:
                 sprintSpeed = sprintSpeed_2;

@@ -37,6 +37,23 @@ public class CoreGameElements : MonoBehaviour
         public int[] pattern;
     }
 
+    [System.Serializable]
+    public class CameraShakeComps
+    {
+        public float
+
+                magnitude,
+                roughness,
+                fadeInTime,
+                fadeOutTime;
+    }
+
+    [System.Serializable]
+    public class CameraShakes
+    {
+        public CameraShakeComps healthShake;
+    }
+
     public AudioMixer SFXMixer;
 
     public int maxHealth = 12;
@@ -59,6 +76,8 @@ public class CoreGameElements : MonoBehaviour
 
     public float chanceOfBassNotes = .65f;
 
+    public bool useIntro = true;
+
     public bool useTutorial = true;
 
     public int[] notes;
@@ -68,6 +87,8 @@ public class CoreGameElements : MonoBehaviour
     public Pattern[] patterns;
 
     public Pattern[] patternsBass;
+
+    public CameraShakes cameraShakes;
 
     [System.NonSerialized]
     public Color32[]

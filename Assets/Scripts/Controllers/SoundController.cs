@@ -4,6 +4,7 @@ public static class SoundController
 {
     public enum Sound
     {
+        None,
         PlayerMove,
         PotBreak,
         BoxBreak,
@@ -24,7 +25,11 @@ public static class SoundController
         PillarActive,
         KeyPickup,
         DoorLocked,
-        SmashCircle
+        SmashCircle,
+        NotationComplete,
+        PlayerDeath,
+        ZombieHurt,
+        ZombieDeath
     }
 
     public static void PlaySound(Sound sound)

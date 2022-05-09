@@ -8,6 +8,14 @@ public class ScoreController : MonoBehaviour
 
     public int score;
 
+    public int streakToMultiply = 5;
+
+    public float expoStreakToMultiply;
+
+    public int maxMultiplier = 8;
+
+    public float glowAmount;
+
     private int streak;
 
     private int multiplier;
@@ -22,11 +30,34 @@ public class ScoreController : MonoBehaviour
 
     private static ScoreController instance;
 
-    int previousScoreToAdd;
+    private int scoreMultiplier = 1;
+
+    private int defaultStreakToMultiply;
+
+    private int previousScoreToAdd;
+
+    private ShaderExpose beatGlowShader;
+
+    private float defaultGlowAmount;
 
     private void Awake()
     {
         instance = this;
+    }
+
+    void Start()
+    {
+        scoreMultiplier = 1;
+        defaultStreakToMultiply = streakToMultiply;
+        defaultGlowAmount = glowAmount;
+        var beatGlowImg =
+            CoreUIElements
+                .i
+                .GetImageComponent(UIController.UIImageComponents.outerBeat);
+        if (beatGlowImg != null)
+        {
+            beatGlowShader = beatGlowImg.GetComponent<ShaderExpose>();
+        }
     }
 
     private void Update()
@@ -53,7 +84,8 @@ public class ScoreController : MonoBehaviour
 
     private void AddScore(int scoreToAdd)
     {
-        int totalScoreToAdd = previousScoreToAdd + scoreToAdd + previousScore;
+        int totalScoreToAdd =
+            previousScoreToAdd + (scoreToAdd * scoreMultiplier) + previousScore; //this seems crazy
         previousScoreToAdd = totalScoreToAdd;
 
         score += totalScoreToAdd;
@@ -97,9 +129,33 @@ public class ScoreController : MonoBehaviour
     private void AddStreak()
     {
         streak++;
+        if (scoreMultiplier < maxMultiplier)
+        {
+            float incrementGlow = glowAmount / streakToMultiply;
+            if (beatGlowShader != null)
+                beatGlowShader._myCustomFloat += incrementGlow;
+            AddMultiplier();
+        }
         UIController
             .UpdateTextUI(UIController.UITextComponents.streakText,
             streak.ToString());
+        FXController
+            .SetAnimatorTrigger_Static(FXController.Animations.BeatFlash,
+            "Flash");
+    }
+
+    private void AddMultiplier()
+    {
+        if (streak >= streakToMultiply)
+        {
+            glowAmount += glowAmount;
+            streakToMultiply =
+                (int) Mathf.Pow(streakToMultiply, expoStreakToMultiply);
+            scoreMultiplier += scoreMultiplier;
+            UIController
+                .UpdateTextUI(UIController.UITextComponents.multiplyText,
+                "x " + scoreMultiplier);
+        }
     }
 
     public static void AddStreak_Static()
@@ -107,16 +163,32 @@ public class ScoreController : MonoBehaviour
         instance.AddStreak();
     }
 
-    private void ResetStreak()
+    private void ResetStreak(bool rhythmMissed)
     {
         streak = 0;
+        scoreMultiplier = 1;
+        streakToMultiply = defaultStreakToMultiply;
+        glowAmount = defaultGlowAmount;
+        if (beatGlowShader != null) beatGlowShader._myCustomFloat = 0;
+
+        UIController
+            .UpdateTextUI(UIController.UITextComponents.multiplyText,
+            "x " + scoreMultiplier);
         UIController
             .UpdateTextUI(UIController.UITextComponents.streakText,
             streak.ToString());
+        FXController
+            .SetAnimatorTrigger_Static(FXController.Animations.BeatFlash,
+            "Reset");
+
+        if (rhythmMissed)
+        {
+            ScoreGainRhythm.SetScoreGain_Static("missed beat!");
+        }
     }
 
-    public static void ResetStreak_Static()
+    public static void ResetStreak_Static(bool rhythmMissed)
     {
-        instance.ResetStreak();
+        instance.ResetStreak (rhythmMissed);
     }
 }

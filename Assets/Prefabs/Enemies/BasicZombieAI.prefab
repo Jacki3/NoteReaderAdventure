@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 6079208821138858042}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.2598271, y: 0.6722216, z: -0.7647028}
-  m_LocalScale: {x: 3.508772, y: 3.508772, z: 1}
+  m_LocalScale: {x: 3.508772, y: 4.824561, z: 1}
   m_Children: []
   m_Father: {fileID: 6881203390410729800}
   m_RootOrder: 4
@@ -70,6 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2379764bea958f4fb3026029ad12fc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zombie: {fileID: -427076116253774502}
 --- !u!1 &6881203390410729807
 GameObject:
   m_ObjectHideFlags: 0
@@ -84,7 +85,6 @@ GameObject:
   - component: {fileID: 4902336372410863830}
   - component: {fileID: 3465626383625829803}
   - component: {fileID: -427076116253774502}
-  - component: {fileID: 7872656233867516942}
   m_Layer: 0
   m_Name: BasicZombieAI
   m_TagString: Untagged
@@ -153,7 +153,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 03a5ea80a86db8141b7bb5f9b148bce6, type: 3}
   m_Color: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 4.3, y: 5.19}
@@ -218,7 +218,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0e5b00824d1651a4b8358bf7dce301ca, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.4
   m_Pitch: 1.1
   Loop: 1
@@ -254,7 +254,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -308,39 +308,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   notationsToComplete: 3
   missionObject: 2
-  deathSound: {fileID: 8300000, guid: 0342e79eb59f31f419dfd943467fa40b, type: 3}
   attackSound: {fileID: 8300000, guid: 8d5deededbc1d47479120cdd18f4eff4, type: 3}
   walkSound: {fileID: 8300000, guid: 0e5b00824d1651a4b8358bf7dce301ca, type: 3}
+  hurtSound: 24
+  deathSound: 25
   healthToRemoveFromPlayer: 3
+  audioSource: {fileID: 3465626383625829803}
+  animator: {fileID: 6881203390410729806}
   speed: 0.15
+  hitTime: 0.65
   playerPos: {fileID: 0}
   enemySpawner: {fileID: 0}
---- !u!61 &7872656233867516942
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6881203390410729807}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.3, y: 5.19}
-    newSize: {x: 4.3, y: 5.19}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 4.3, y: 5.19}
-  m_EdgeRadius: 0
 --- !u!1001 &925675411507074427
 PrefabInstance:
   m_ObjectHideFlags: 0

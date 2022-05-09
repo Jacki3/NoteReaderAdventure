@@ -8,7 +8,7 @@ using UnityEngine.InputSystem.Layouts;
 
 public class AudioController : MonoBehaviour
 {
-    public Canvas mainCanvas;
+    public Transform mainCanvas;
 
     public RhythmBar[] rhythmBars;
 
@@ -24,6 +24,8 @@ public class AudioController : MonoBehaviour
 
     private float time;
 
+    private double nextTime;
+
     private void Awake()
     {
         helmController = GetComponent<HelmController>();
@@ -35,14 +37,24 @@ public class AudioController : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(SpawnIndicator());
+        nextTime = AudioSettings.dspTime + secPerBeat;
+    }
+
+    void FixedUpdate()
+    {
+        if (AudioSettings.dspTime >= nextTime)
+        {
+            SpawnMetronomeBar();
+            nextTime += secPerBeat;
+            time = 1;
+        }
     }
 
     void Update()
     {
         secPerBeat = 60 / helmClock.bpm;
 
-        time = Mathf.Lerp(time, 0, secPerBeat * Time.deltaTime);
+        time = Mathf.Lerp(time, 0, secPerBeat * Time.fixedDeltaTime);
 
         if (time < .5f)
             canPlay = true;
@@ -50,16 +62,11 @@ public class AudioController : MonoBehaviour
             canPlay = false;
     }
 
-    private IEnumerator SpawnIndicator()
+    private void SpawnMetronomeBar()
     {
-        while (true)
+        foreach (RhythmBar bar in rhythmBars)
         {
-            foreach (RhythmBar bar in rhythmBars)
-            {
-                var _bar = Instantiate(bar, mainCanvas.transform);
-            }
-            yield return new WaitForSeconds(secPerBeat);
-            time = 1;
+            var _bar = Instantiate(bar, mainCanvas);
         }
     }
 

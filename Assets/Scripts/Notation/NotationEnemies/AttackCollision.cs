@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AttackCollision : MonoBehaviour
 {
-    public Zombie zombie;
+    public NotationEnemy zombie;
 
     private void OnTriggerEnter2D(Collider2D other)
     {

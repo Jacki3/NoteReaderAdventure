@@ -14,9 +14,9 @@ public class PillarController : NotationItem
 
     private int currentlyActivated;
 
-    public override void NotationComplete()
+    protected override void AllNotationsComplete()
     {
-        base.NotationComplete();
+        base.AllNotationsComplete();
         HighlightGlow();
         Activate();
     }

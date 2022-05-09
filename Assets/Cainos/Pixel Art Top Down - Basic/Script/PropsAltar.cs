@@ -23,6 +23,12 @@ namespace Cainos.PixelArtTopDown_Basic
 
         public float lerpSpeed;
 
+        public ReadingCircle readingCircle;
+
+        public GameObject missionPlaceholder;
+
+        public AudioHelm.AudioHelmClock helmClock;
+
         public static bool arenaMode;
 
         private Color curColor;
@@ -34,14 +40,24 @@ namespace Cainos.PixelArtTopDown_Basic
             targetColor = new Color(1, 1, 1, 1);
             if (other.tag == "Stone")
             {
-                enemySpawner.enabled = true;
-                musicSource.clip = arenaMusic;
-                musicSource.Play();
-                screenFlash.SetTrigger("StartGame");
-                player.transform.position = arenaSpawn.position;
-                player.SetReadingMode();
-                arenaMode = true;
+                Invoke("StartArenaMode", 1.5f);
             }
+        }
+
+        private void StartArenaMode()
+        {
+            enemySpawner.enabled = true;
+            missionPlaceholder.SetActive(false);
+            helmClock.bpm = 131;
+            musicSource.clip = arenaMusic;
+            musicSource.pitch = 1;
+            musicSource.Play();
+            player.transform.position = arenaSpawn.position;
+            readingCircle.cameraZoomSize = 4.5f;
+            player.SetReadingMode();
+            screenFlash.SetTrigger("StartGame");
+
+            arenaMode = true;
         }
 
         private void OnTriggerExit2D(Collider2D other)

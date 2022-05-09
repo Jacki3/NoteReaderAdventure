@@ -27,9 +27,6 @@ public class RhythmBar : MonoBehaviour
 
         if (transform.localPosition.x == 0)
         {
-            FXController
-                .SetAnimatorTrigger_Static(FXController.Animations.BeatAnimator,
-                "Beat");
             Destroy(this.gameObject);
         }
     }

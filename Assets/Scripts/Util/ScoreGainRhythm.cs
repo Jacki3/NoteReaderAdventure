@@ -30,7 +30,7 @@ public class ScoreGainRhythm : MonoBehaviour
 
         if (progress < 1)
         {
-            transform.position += ascenionRate * Time.deltaTime * 50;
+            transform.localPosition += ascenionRate * Time.deltaTime * 50;
 
             var textColour = scoreText.text.color;
             textColour.a = 1 - progress;

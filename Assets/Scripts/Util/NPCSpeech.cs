@@ -27,6 +27,15 @@ public class NPCSpeech : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    void Start()
+    {
+        if (!CoreGameElements.i.useIntro)
+        {
+            Destroy(this.gameObject);
+            TutorialManager.StartGameStatic();
+        }
+    }
+
     void Update()
     {
         if (
@@ -34,7 +43,7 @@ public class NPCSpeech : MonoBehaviour
             Input.GetMouseButtonUp(0)
         )
         {
-            StartSpeech();
+            if (!GameStateController.gamePaused) StartSpeech();
 
             if (
                 firstPress &&
@@ -81,7 +90,7 @@ public class NPCSpeech : MonoBehaviour
                 TutorialManager.StartGameStatic();
             }
 
-            animator.SetTrigger("FInished");
+            animator.SetTrigger("FInished"); //spelling mistake
             this.enabled = false;
         }
     }

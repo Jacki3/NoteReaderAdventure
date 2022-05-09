@@ -5,4 +5,6 @@ using UnityEngine;
 public interface INotation
 {
     void NotationComplete();
+
+    void PlayedCorrectNote();
 }

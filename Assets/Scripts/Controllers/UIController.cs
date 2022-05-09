@@ -15,7 +15,8 @@ public static class UIController
         skillMenuSkillPointText,
         collectibleText,
         livesText,
-        arenaWinText
+        arenaWinText,
+        multiplyText
     }
 
     public enum UIImageComponents
@@ -27,8 +28,12 @@ public static class UIController
         coin,
         goldKey,
         silverKey,
-        ironKey
+        ironKey,
+        staminaBar,
+        outerBeat
     }
+
+    private static int heartIndex = 0;
 
     //this should be called set text?
     public static void UpdateTextUI(UITextComponents component, string text)
@@ -77,5 +82,35 @@ public static class UIController
     )
     {
         image.image.color = color;
+    }
+
+    public static void UpdateHearts(float value, bool remove)
+    {
+        float heartValue = 1f / 4; // not 4 but acutal value
+        var hearts = CoreUIElements.i.hearts;
+
+        for (int i = 0; i < value; i++)
+        {
+            if (remove)
+            {
+                if (hearts[heartIndex].fillAmount > 0)
+                    hearts[heartIndex].fillAmount -= heartValue;
+                else if (heartIndex < hearts.Length - 1)
+                {
+                    heartIndex++;
+                    hearts[heartIndex].fillAmount -= heartValue;
+                }
+            }
+            else
+            {
+                if (hearts[heartIndex].fillAmount < 1)
+                    hearts[heartIndex].fillAmount += heartValue;
+                else if (heartIndex > 0)
+                {
+                    heartIndex--;
+                    hearts[heartIndex].fillAmount += heartValue;
+                }
+            }
+        }
     }
 }

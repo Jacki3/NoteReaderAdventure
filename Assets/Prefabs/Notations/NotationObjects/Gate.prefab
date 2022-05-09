@@ -123,3 +123,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openGate: {fileID: 21300160, guid: 29c9cded5e558164aaf8c9bf08aa1510, type: 3}
+  sound: 15
+  XPToAdd: 0
+  scoreToAdd: 0
+  missionObject: 2
+  keyType: 0
+  gateCollider: {fileID: 0}
+  mainCanvas: {fileID: 0}

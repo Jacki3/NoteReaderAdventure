@@ -20,10 +20,11 @@ public static class PlayerSkills
         readerRadius_1,
         readerRadius_2,
         smashRadius_1,
-        smashRadius_2
+        smashRadius_2,
+        sprintDuration_1,
+        sprintDuration_2
 
         //magic? should this be separate via statue?
-        //health? ""
     }
 
     private static List<SkillType> unlockedSkills = new List<SkillType>();
@@ -112,6 +113,7 @@ public static class PlayerSkills
                 .SetToolTip_Static("Skill Already Unlocked!",
                 toolTipSpawn.localPosition,
                 toolTipSpawn.root);
+            SoundController.PlaySound(SoundController.Sound.IncorectNote);
             return false;
         }
         else
@@ -142,12 +144,12 @@ public static class PlayerSkills
                 }
                 else
                 {
-                    //using a set tooltip spawn for now but really you want to get pos of each button!
                     Tooltip
                         .SetToolTip_Static("Not Enough Skill Points!",
                         toolTipSpawn.localPosition,
                         toolTipSpawn.root);
-                    Debug.Log("not enough skills");
+                    SoundController
+                        .PlaySound(SoundController.Sound.IncorectNote);
                     return false;
                 }
             }
@@ -159,6 +161,7 @@ public static class PlayerSkills
                     GetSkillType(skillRequired).skillName,
                     toolTipSpawn.localPosition,
                     toolTipSpawn.root);
+                SoundController.PlaySound(SoundController.Sound.IncorectNote);
                 return false;
             }
         }

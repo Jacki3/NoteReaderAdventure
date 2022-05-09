@@ -12,13 +12,15 @@ public class TutorialManager : MonoBehaviour
 
     public AudioSource musicAudio;
 
+    public AudioSource metroSource;
+
     public List<Tutorial> tutorials = new List<Tutorial>();
 
     private int tutorialIndex = 0;
 
     private static TutorialManager instance;
 
-    private NPCSpeech spawnedNPC;
+    private NPCSpeech spawnedNPC; //instance of tutorial npc prefab
 
     private void Awake()
     {
@@ -102,5 +104,6 @@ public class TutorialManager : MonoBehaviour
         GameStateController.state = GameStateController.States.Play;
         foreach (BoxCollider2D blocker in blockers) blocker.enabled = false;
         musicAudio.Play();
+        metroSource.enabled = true;
     }
 }

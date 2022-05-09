@@ -89,6 +89,42 @@ public partial class @NoteReadingRPGAdventure : IInputActionCollection2, IDispos
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""389e1a39-649b-42f4-8d4d-64b91835733f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""f4fff6d0-802d-45ef-ae77-9a2a85dc6845"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""4d0ec320-38de-4e8a-a591-683424ba0ab9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Left"",
+                    ""type"": ""Button"",
+                    ""id"": ""8ddb45b1-173a-48d2-ac26-74c0b95e4241"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -457,6 +493,17 @@ public partial class @NoteReadingRPGAdventure : IInputActionCollection2, IDispos
                 },
                 {
                     ""name"": """",
+                    ""id"": ""aed89e0f-a86a-4ac4-b74e-57b17655c6e0"",
+                    ""path"": ""<MidiDevice>/note076"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Smash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""5e83266e-f284-445f-bac5-d6e47cc72719"",
                     ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
@@ -518,6 +565,105 @@ public partial class @NoteReadingRPGAdventure : IInputActionCollection2, IDispos
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ReadModeSwitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""102a2c1c-746a-463e-9e02-d260ed846725"",
+                    ""path"": ""<MidiDevice>/note073"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReadModeSwitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""44a86821-30e4-43a1-a7e3-aa35dd006893"",
+                    ""path"": ""<MidiDevice>/note051"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""016cef81-6c15-4a12-b2f8-3285f1cc3fe4"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""65ee8f77-bf2f-4dff-8539-581b98723cd5"",
+                    ""path"": ""<MidiDevice>/note052"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b559fd42-aa18-4d21-b225-fc8d47f9a0f7"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a2066620-33d5-45d9-9141-61292a4b3813"",
+                    ""path"": ""<MidiDevice>/note053"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c446b8b5-b01d-40b4-8db8-b009fb078c3f"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""54f55801-aa4f-40a5-af64-08a6c066cb3e"",
+                    ""path"": ""<MidiDevice>/note050"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8aab7897-0239-4405-b9ef-c80434fc7663"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -952,7 +1098,7 @@ public partial class @NoteReadingRPGAdventure : IInputActionCollection2, IDispos
                 {
                     ""name"": """",
                     ""id"": ""99f737fc-0a51-4b77-ace0-4fecea1b0520"",
-                    ""path"": ""<MidiDevice>/note048"",
+                    ""path"": ""<MidiDevice>/note054"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1178,6 +1324,10 @@ public partial class @NoteReadingRPGAdventure : IInputActionCollection2, IDispos
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Escape = m_Player.FindAction("Escape", throwIfNotFound: true);
         m_Player_ReadModeSwitch = m_Player.FindAction("ReadModeSwitch", throwIfNotFound: true);
+        m_Player_Up = m_Player.FindAction("Up", throwIfNotFound: true);
+        m_Player_Down = m_Player.FindAction("Down", throwIfNotFound: true);
+        m_Player_Right = m_Player.FindAction("Right", throwIfNotFound: true);
+        m_Player_Left = m_Player.FindAction("Left", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1256,6 +1406,10 @@ public partial class @NoteReadingRPGAdventure : IInputActionCollection2, IDispos
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_Escape;
     private readonly InputAction m_Player_ReadModeSwitch;
+    private readonly InputAction m_Player_Up;
+    private readonly InputAction m_Player_Down;
+    private readonly InputAction m_Player_Right;
+    private readonly InputAction m_Player_Left;
     public struct PlayerActions
     {
         private @NoteReadingRPGAdventure m_Wrapper;
@@ -1267,6 +1421,10 @@ public partial class @NoteReadingRPGAdventure : IInputActionCollection2, IDispos
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputAction @Escape => m_Wrapper.m_Player_Escape;
         public InputAction @ReadModeSwitch => m_Wrapper.m_Player_ReadModeSwitch;
+        public InputAction @Up => m_Wrapper.m_Player_Up;
+        public InputAction @Down => m_Wrapper.m_Player_Down;
+        public InputAction @Right => m_Wrapper.m_Player_Right;
+        public InputAction @Left => m_Wrapper.m_Player_Left;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1297,6 +1455,18 @@ public partial class @NoteReadingRPGAdventure : IInputActionCollection2, IDispos
                 @ReadModeSwitch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReadModeSwitch;
                 @ReadModeSwitch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReadModeSwitch;
                 @ReadModeSwitch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReadModeSwitch;
+                @Up.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUp;
+                @Up.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUp;
+                @Up.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUp;
+                @Down.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDown;
+                @Down.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDown;
+                @Down.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDown;
+                @Right.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRight;
+                @Right.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRight;
+                @Right.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRight;
+                @Left.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeft;
+                @Left.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeft;
+                @Left.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeft;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1322,6 +1492,18 @@ public partial class @NoteReadingRPGAdventure : IInputActionCollection2, IDispos
                 @ReadModeSwitch.started += instance.OnReadModeSwitch;
                 @ReadModeSwitch.performed += instance.OnReadModeSwitch;
                 @ReadModeSwitch.canceled += instance.OnReadModeSwitch;
+                @Up.started += instance.OnUp;
+                @Up.performed += instance.OnUp;
+                @Up.canceled += instance.OnUp;
+                @Down.started += instance.OnDown;
+                @Down.performed += instance.OnDown;
+                @Down.canceled += instance.OnDown;
+                @Right.started += instance.OnRight;
+                @Right.performed += instance.OnRight;
+                @Right.canceled += instance.OnRight;
+                @Left.started += instance.OnLeft;
+                @Left.performed += instance.OnLeft;
+                @Left.canceled += instance.OnLeft;
             }
         }
     }
@@ -1485,6 +1667,10 @@ public partial class @NoteReadingRPGAdventure : IInputActionCollection2, IDispos
         void OnSprint(InputAction.CallbackContext context);
         void OnEscape(InputAction.CallbackContext context);
         void OnReadModeSwitch(InputAction.CallbackContext context);
+        void OnUp(InputAction.CallbackContext context);
+        void OnDown(InputAction.CallbackContext context);
+        void OnRight(InputAction.CallbackContext context);
+        void OnLeft(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

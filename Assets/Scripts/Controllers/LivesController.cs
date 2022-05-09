@@ -27,17 +27,17 @@ public static class LivesController
         GameOver();
     }
 
-    private static bool GameOver()
+    public static bool GameOver()
     {
         if (currentLives <= 0)
         {
-            Debug.Log("GAME OVER!"); //called in state controller
+            EndScreens.ShowGameOverStatic();
             return true;
         }
         else
         {
-            Debug.Log("LIFE LOST! START AT CHECKPOINT!"); //call load level state controller
             HealthController.ResetHealth();
+            EndScreens.ShowLifeOverStatic();
             return false;
         }
     }

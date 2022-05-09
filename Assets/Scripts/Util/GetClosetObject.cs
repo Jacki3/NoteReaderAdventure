@@ -12,7 +12,7 @@ public static class GetClosetObject
         foreach (Notation potentialTarget in objects)
         {
             Vector3 directionToTarget =
-                potentialTarget.transform.root.position - currentPosition;
+                potentialTarget.notation.transform.position - currentPosition;
             float dSqrToTarget = directionToTarget.sqrMagnitude;
             if (dSqrToTarget < closestDistanceSqr)
             {

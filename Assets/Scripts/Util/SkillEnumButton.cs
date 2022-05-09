@@ -15,6 +15,11 @@ public class SkillEnumButton : MonoBehaviour, ISelectHandler
 
     public void OnSelect(BaseEventData eventData)
     {
+        ShowSkillInfo();
+    }
+
+    public void ShowSkillInfo()
+    {
         var currentSkill = PlayerSkills.GetSkillType(skillType);
         Tooltip
             .SetToolTip_Static(currentSkill.skillName +
@@ -25,8 +30,6 @@ public class SkillEnumButton : MonoBehaviour, ISelectHandler
             currentSkill.skillPointsRequired,
             toolTipSpawn.localPosition,
             transform.root);
-
-        //launch tooltip and show info after being selected for x seconds
     }
 
     public void UnlockSkill(SkillEnumButton enumScript)

@@ -46,6 +46,8 @@ public class CoreUIElements : MonoBehaviour
         public Slider slider;
     }
 
+    public Image[] hearts;
+
     public TextMeshProUGUI
     GetTextComponent(UIController.UITextComponents textComponent)
     {

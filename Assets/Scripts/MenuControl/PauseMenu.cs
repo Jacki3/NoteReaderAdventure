@@ -10,6 +10,10 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject resumeButton;
 
+    public GameObject optionsResume;
+
+    public GameObject rhythmBar;
+
     public TMPro.TMP_ColorGradient colorGradient;
 
     public TMPro.TMP_ColorGradient colorGradientWhite;
@@ -21,17 +25,19 @@ public class PauseMenu : MonoBehaviour
 
     public void ShowMenu()
     {
-        EventSystem.current.SetSelectedGameObject (resumeButton);
         GameStateController.PauseGame();
         if (GameStateController.gamePaused)
         {
+            EventSystem.current.SetSelectedGameObject (resumeButton);
             this.gameObject.SetActive(true);
             optionButtons.SetActive(false);
             mainButtons.SetActive(true);
+            rhythmBar.SetActive(false);
         }
         else
         {
             this.gameObject.SetActive(false);
+            rhythmBar.SetActive(true);
         }
     }
 
@@ -39,6 +45,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (optionsVisible)
         {
+            EventSystem.current.SetSelectedGameObject (resumeButton); //repeats above - concat showmenu but avoid pausing game everytime
             optionButtons.SetActive(false);
             mainButtons.SetActive(true);
             optionsVisible = false;
@@ -46,6 +53,7 @@ public class PauseMenu : MonoBehaviour
         else
         {
             optionButtons.SetActive(true);
+            EventSystem.current.SetSelectedGameObject (optionsResume);
             mainButtons.SetActive(false);
             optionsVisible = true;
         }
@@ -79,6 +87,11 @@ public class PauseMenu : MonoBehaviour
     {
         mixer.SetFloat("KeysVol", Mathf.Log10(value) * 20);
         mixer.SetFloat("KeysMoveVol", Mathf.Log10(value) * 20);
+    }
+
+    public void SetMetroLevel(float value)
+    {
+        mixer.SetFloat("MetroVol", Mathf.Log10(value) * 20);
     }
 
     public void Quit()

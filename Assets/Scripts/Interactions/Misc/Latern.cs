@@ -9,21 +9,15 @@ public class Latern : NotationItem
 
     public float brightness;
 
-    public override void NotationComplete()
+    protected override void AllNotationsComplete()
     {
-        notationsCompleted++;
-
-        if (notationsCompleted >= notationsToComplete)
+        if (GameStateController.state == GameStateController.States.Tutorial)
         {
-            if (GameStateController.state == GameStateController.States.Tutorial
-            )
-            {
-                TutorialManager
-                    .CheckTutorialStatic(Tutorial.TutorialValidation.ReadMode);
-            }
-            base.NotationComplete();
-            LightUp();
+            TutorialManager
+                .CheckTutorialStatic(Tutorial.TutorialValidation.ReadMode);
         }
+        base.AllNotationsComplete();
+        LightUp();
     }
 
     private void LightUp()

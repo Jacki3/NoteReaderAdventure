@@ -64,12 +64,14 @@ public static class HealthController
         else
         {
             currentHealth -= healthRemoved;
-            EZCameraShake.CameraShaker.Instance.ShakeOnce(.35f, 1f, .5f, 1f);
+            EZCameraShake.CameraShaker.Instance.ShakeOnce(.35f, 1f, .5f, 1f); //make the shaking vars like an object then create new objects (not individual floats but a whole object)
             SoundController.PlaySound(SoundController.Sound.PlayerHurt);
+            UIController.UpdateHearts(healthRemoved, true);
         }
 
         if (currentHealth > 0)
         {
+            //flash screen?
             FXController
                 .LerpSlider_Static(currentHealth,
                 currentHealth + healthRemoved,
@@ -85,21 +87,25 @@ public static class HealthController
         else
         {
             LivesController.RemoveLife();
-            //play remove life sound
+            SoundController.PlaySound(SoundController.Sound.PlayerDeath);
         }
     }
 
     public static void AddHealth(int healthAdded)
     {
-        if (currentHealth < maxHealth) currentHealth += healthAdded;
-        if (currentHealth > maxHealth) currentHealth = maxHealth;
+        if (currentHealth < maxHealth)
+        {
+            currentHealth += healthAdded;
+            UIController.UpdateHearts(healthAdded, false);
 
-        FXController
-            .LerpSlider_Static(currentHealth,
-            currentHealth - healthAdded,
-            .5f,
-            maxHealth,
-            UIController.UIImageComponents.healthBar);
+            FXController
+                .LerpSlider_Static(currentHealth,
+                currentHealth - healthAdded,
+                .5f,
+                maxHealth,
+                UIController.UIImageComponents.healthBar);
+        }
+        if (currentHealth > maxHealth) currentHealth = maxHealth;
 
         FXController
             .SetAnimatorTrigger_Static(FXController.Animations.PlayerAnimator,

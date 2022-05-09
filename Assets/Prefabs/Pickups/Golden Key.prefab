@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6deff04fc4d9c6c44a767540fefecf43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundType: 18
+  soundType: 19
   missionObject: 2
   keyType: 0
   keySprite: {fileID: 21300000, guid: a6c10312421cb5e438d8b9edaad2db28, type: 3}

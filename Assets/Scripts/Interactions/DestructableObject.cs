@@ -44,6 +44,11 @@ public class DestructableObject : MonoBehaviour, INotation
         }
     }
 
+    public void PlayedCorrectNote()
+    {
+        //do something when correct note played
+    }
+
     public void NotationComplete()
     {
         DestroyObject();

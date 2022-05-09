@@ -6,15 +6,23 @@ public class EnemyAI : NotationEnemy
 {
     public float speed;
 
+    public float hitTime;
+
     public Transform playerPos;
 
     public EnemySpawner enemySpawner;
 
     private SpriteRenderer spriteRenderer;
 
-    private void Awake()
+    private float timeHurt = 0;
+
+    private float originalSpeed;
+
+    protected virtual void Awake()
     {
+        originalSpeed = speed;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource.Play();
     }
 
     public virtual void Update()
@@ -31,6 +39,18 @@ public class EnemyAI : NotationEnemy
             spriteRenderer.flipX = false;
         else
             spriteRenderer.flipX = true;
+
+        if (timeHurt <= 0)
+            speed = originalSpeed;
+        else
+            timeHurt -= Time.deltaTime;
+    }
+
+    public override void TakeDamage()
+    {
+        base.TakeDamage();
+        speed = 0;
+        timeHurt = hitTime;
     }
 
     public override void Damage(IDamagable damagable)
@@ -42,6 +62,8 @@ public class EnemyAI : NotationEnemy
 
     public override void TriggerDeath()
     {
+        if (deathSound != SoundController.Sound.None)
+            SoundController.PlaySound(deathSound);
         enemySpawner.RemoveEnemy(this);
         Die();
     }

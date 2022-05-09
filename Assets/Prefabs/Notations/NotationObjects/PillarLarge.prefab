@@ -210,8 +210,9 @@ MonoBehaviour:
   notationsToComplete: 1
   XPToAdd: 15
   scoreToAdd: 10
-  missionObject: 0
-  sound: 0
+  animator: {fileID: 0}
+  missionObject: 2
+  sound: 18
   gate: {fileID: 0}
   glow: {fileID: 5017361924634802006}
   gateGlow: {fileID: 0}

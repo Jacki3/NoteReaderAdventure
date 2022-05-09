@@ -17,15 +17,10 @@ public class Chest : NotationItem
         chestRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public override void NotationComplete()
+    protected override void AllNotationsComplete()
     {
-        notationsCompleted++;
-
-        if (notationsCompleted >= notationsToComplete)
-        {
-            base.NotationComplete();
-            OpenChest();
-        }
+        base.AllNotationsComplete();
+        OpenChest();
     }
 
     private void OpenChest()

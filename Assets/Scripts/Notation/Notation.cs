@@ -96,6 +96,8 @@ public class Notation : MonoBehaviour
             SpawnNotes(startingSpawnPosX, notes[i], usingBass, false);
             if (totalNotesToSpawn == 2)
                 startingSpawnPosX += distanceBetweenNotesX + -startingSpawnPosX;
+            else if (totalNotesToSpawn == 8 && i == 3)
+                startingSpawnPosX += distanceBetweenNotesX * 2; //multiply to allow space between each bar
             else
                 startingSpawnPosX += distanceBetweenNotesX;
         }
@@ -224,14 +226,19 @@ public class Notation : MonoBehaviour
                 }
             }
             holder.SetActive(true);
-            NotationController.AddNotationToList_Static(this);
+
+            //do not add this - add the first child of the parent instead
+            Notation firstNotation =
+                notation.transform.GetChild(0).GetComponent<Notation>();
+            if (firstNotation != null)
+                NotationController.AddNotationToList_Static(firstNotation);
             notationAnimator.SetTrigger("Unhighlight");
         }
     }
 
     public void HideNotation()
     {
-        if (holder.activeSelf)
+        if (holder.activeSelf && this != null)
         {
             holder.SetActive(false);
             NotationController.RemoveNotationFromList_Static(this);
@@ -240,6 +247,11 @@ public class Notation : MonoBehaviour
 
     public void PlayNote()
     {
+        Color32 noteColour = CoreGameElements.i.noteColours[notes[0] % 12];
+        PlayerWeapon
+            .ShootProjectileStatic(this.notation.transform.position,
+            noteColour);
+
         EZCameraShake.CameraShaker.Instance.ShakeOnce(.45f, 1f, .5f, 1f);
 
         if (AudioController.canPlay)
@@ -251,18 +263,32 @@ public class Notation : MonoBehaviour
         notes.RemoveAt(0);
         noteImages.RemoveAt(0);
 
+        INotation notationInterface = notation.GetComponent<INotation>();
+
         if (NotationFinished())
         {
+            if (notation != null)
+            {
+                Notation nextNotation =
+                    notation.transform.GetChild(1).GetComponent<Notation>();
+                if (nextNotation != null)
+                    NotationController.AddNotationToList_Static(nextNotation);
+            }
+
             var explodedNotation = Instantiate(explodableNotation);
             explodedNotation.transform.position = transform.position;
             PlayerController.notationCircleActivated -= ShowNotation;
             PlayerController.notationCircleDeactivated -= HideNotation;
 
-            INotation notationInterface = notation.GetComponent<INotation>();
-            if (notationInterface != null) notationInterface.NotationComplete();
+            if (notationInterface != null)
+            {
+                notationInterface.NotationComplete();
+            }
 
             Destroy (gameObject);
         }
+        else if (notationInterface != null)
+            notationInterface.PlayedCorrectNote();
     }
 
     public void IncorrecNote()
@@ -275,7 +301,7 @@ public class Notation : MonoBehaviour
     public void ShowPlayedNote(int note, float t)
     {
         note -= MIDIController.startingMIDINumber;
-        if (noteImages.Count > 0)
+        if (noteImages.Count > 0 && this != null)
             playedNotes
                 .Add(SpawnNotes(noteImages[0].transform.localPosition.x,
                 note,

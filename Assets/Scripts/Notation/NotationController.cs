@@ -8,6 +8,8 @@ public class NotationController : MonoBehaviour
 
     public int resetAmount;
 
+    public int incorrectNotesToDamage;
+
     public List<Notation> visibleNotation = new List<Notation>();
 
     private static NotationController instance;
@@ -63,7 +65,7 @@ public class NotationController : MonoBehaviour
             else if (note != 25)
             {
                 //should be reading circle button NOT 25
-                ScoreController.ResetStreak_Static();
+                ScoreController.ResetStreak_Static(false);
                 activeNotation.IncorrecNote();
                 incorrectNotes++;
                 if (incorrectNotes >= resetAmount)
@@ -89,29 +91,30 @@ public class NotationController : MonoBehaviour
                 var closetNotation =
                     GetClosetObject.GetClosetObj(duplicateNotations, playerPos);
 
-                var parent = closetNotation.notation;
+                ScoreController.AddStreak_Static();
+                activeNotation = closetNotation;
+                hasActiveNotation = true;
+                activeNotation.HighlightNotation();
+                activeNotation.PlayNote();
 
-                var child =
-                    parent.transform.GetChild(0).GetComponent<Notation>();
-
-                if (child.notes[0] == note)
-                {
-                    ScoreController.AddStreak_Static();
-                    activeNotation = child;
-                    hasActiveNotation = true;
-                    activeNotation.HighlightNotation();
-                    activeNotation.PlayNote();
-                }
+                incorrectNotes = 0;
             }
             else if (note != 25 && PlayerController.readingMode)
             {
                 //incorrect note accross all notes
                 //should be reading circle button NOT 25
                 //repeating what the notation script does?
-                ScoreController.ResetStreak_Static();
+                ScoreController.ResetStreak_Static(false);
 
                 foreach (Notation notation in visibleNotation)
                 {
+                    //why is this not just incorrectNote? Why a whole nother animation?
+                    incorrectNotes++;
+                    if (incorrectNotes > incorrectNotesToDamage)
+                    {
+                        HealthController.RemoveHealth(1);
+                        incorrectNotes = 0;
+                    }
                     notation.AllIncorrect();
                 }
             }
@@ -119,6 +122,7 @@ public class NotationController : MonoBehaviour
 
         if (hasActiveNotation && activeNotation.NotationFinished())
         {
+            incorrectNotes = 0;
             visibleNotation.Remove (activeNotation);
             hasActiveNotation = false;
             activeNotation = null;

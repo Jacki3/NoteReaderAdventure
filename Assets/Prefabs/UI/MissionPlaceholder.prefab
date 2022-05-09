@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Collect 10 Coins please n
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f352fd3298518ee429248a0e49d10185, type: 2}
-  m_sharedMaterial: {fileID: -4418251926608725453, guid: f352fd3298518ee429248a0e49d10185,
+  m_fontAsset: {fileID: 11400000, guid: 15df6570f4ed85d4a9b7a1821f734710, type: 2}
+  m_sharedMaterial: {fileID: 2730060097735456727, guid: 15df6570f4ed85d4a9b7a1821f734710,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -168,11 +168,11 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 190, y: 100}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 190, y: 50}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0, y: 0.5}
+  m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &2930855432729611333
 MonoBehaviour:
   m_ObjectHideFlags: 0

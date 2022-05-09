@@ -22,7 +22,7 @@ public class EnemySpawner : MonoBehaviour
 
         public float rate;
 
-        public Transform[] spawnPoints;
+        public List<Transform> spawnPoints = new List<Transform>();
     }
 
     public Transform playerPos;
@@ -95,11 +95,22 @@ public class EnemySpawner : MonoBehaviour
     {
         totalEnemies = _wave.count;
         spawnState = SpawnState.spawning;
+
+        List<Transform> newSpawns = new List<Transform>();
+        newSpawns.AddRange(_wave.spawnPoints);
+
         for (int i = 0; i < _wave.count; i++)
         {
             int randIndex = Random.Range(0, _wave.enemies.Length);
             var randEnemy = _wave.enemies[randIndex];
-            SpawnEnemy(randEnemy, _wave.spawnPoints);
+
+            int randIndexSpawn = Random.Range(0, newSpawns.Count);
+            Transform randSpawn = newSpawns[randIndexSpawn];
+            newSpawns.Remove (randSpawn);
+
+            if (newSpawns.Count <= 0) newSpawns.AddRange(_wave.spawnPoints);
+
+            SpawnEnemy (randEnemy, randSpawn);
             yield return new WaitForSeconds(1 / _wave.rate);
         }
         spawnState = SpawnState.waiting;
@@ -107,13 +118,12 @@ public class EnemySpawner : MonoBehaviour
         yield break;
     }
 
-    void SpawnEnemy(EnemyAI enemy, Transform[] spawns)
+    void SpawnEnemy(EnemyAI enemy, Transform spawn)
     {
-        if (spawns.Length <= 0) Debug.LogError("No Spawns!");
-        int randIndex = Random.Range(0, spawns.Length);
-        Transform randSpawn = spawns[randIndex];
+        if (spawn == null) Debug.LogError("No Spawn!");
+
         var newEnemy = Instantiate(enemy);
-        newEnemy.transform.position = randSpawn.position;
+        newEnemy.transform.position = spawn.position;
         newEnemy.playerPos = playerPos;
         newEnemy.enemySpawner = this;
         foreach (Notation

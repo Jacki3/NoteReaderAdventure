@@ -88,6 +88,9 @@ public class ItemShopController : MonoBehaviour
                 if (HealthController.NotMaxHealth())
                 {
                     shopCustomer.BoughtItem (itemType);
+                    MissionHolder
+                        .i
+                        .CheckValidMission(Mission.Object.ShopPurchase);
                     CurrencyController.AddRemoveCoins(cost, false);
                 }
                 else
@@ -117,6 +120,9 @@ public class ItemShopController : MonoBehaviour
                 else
                 {
                     shopCustomer.BoughtItem (itemType);
+                    MissionHolder
+                        .i
+                        .CheckValidMission(Mission.Object.ShopPurchase);
                     CurrencyController.AddRemoveCoins(cost, false);
                 }
             }
@@ -134,12 +140,16 @@ public class ItemShopController : MonoBehaviour
                 else
                 {
                     shopCustomer.BoughtItem (itemType);
+                    MissionHolder
+                        .i
+                        .CheckValidMission(Mission.Object.ShopPurchase);
                     CurrencyController.AddRemoveCoins(cost, false);
                 }
             }
             else
             {
                 shopCustomer.BoughtItem (itemType);
+                MissionHolder.i.CheckValidMission(Mission.Object.ShopPurchase);
                 CurrencyController.AddRemoveCoins(cost, false);
             }
         }

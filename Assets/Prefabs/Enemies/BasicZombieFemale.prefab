@@ -195,12 +195,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   notationsToComplete: 3
   missionObject: 2
-  deathSound: {fileID: 8300000, guid: 0342e79eb59f31f419dfd943467fa40b, type: 3}
   attackSound: {fileID: 8300000, guid: 8d5deededbc1d47479120cdd18f4eff4, type: 3}
   walkSound: {fileID: 8300000, guid: 0e5b00824d1651a4b8358bf7dce301ca, type: 3}
+  hurtSound: 24
+  deathSound: 25
   healthToRemoveFromPlayer: 2
+  audioSource: {fileID: 3465626383625829803}
+  animator: {fileID: 6881203390410729806}
   target: {fileID: 0}
-  speed: 6
+  speed: 1
+  hitTime: 0.65
+  dirRight: 1
 --- !u!61 &4902336372410863830
 BoxCollider2D:
   m_ObjectHideFlags: 0

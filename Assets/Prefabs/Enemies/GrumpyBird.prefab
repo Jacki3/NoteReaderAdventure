@@ -74,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1869315837
-  m_SortingLayer: 2
+  m_SortingLayerID: -105541197
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 3b3a16173cb1b86439d2b21ac357bcc0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -121,11 +121,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   notationsToComplete: 1
   missionObject: 2
-  deathSound: {fileID: 0}
   attackSound: {fileID: 0}
   walkSound: {fileID: 0}
+  hurtSound: 0
+  deathSound: 0
   healthToRemoveFromPlayer: 1
+  audioSource: {fileID: 5978497314762012983}
+  animator: {fileID: 1441885428734665393}
   speed: 0.3
+  hitTime: 0.5
   playerPos: {fileID: 0}
   enemySpawner: {fileID: 0}
 --- !u!82 &5978497314762012983

@@ -13,7 +13,8 @@ public class FXController : MonoBehaviour
     {
         PlayerAnimator,
         MissionAnimator,
-        BeatAnimator
+        BeatAnimator,
+        BeatFlash
     }
 
     public FX[] CoreEffects;

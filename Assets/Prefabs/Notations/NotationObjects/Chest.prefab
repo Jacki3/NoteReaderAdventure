@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4718320955904614339}
   - component: {fileID: -7615489563572473785}
   - component: {fileID: -7020039285224332081}
+  - component: {fileID: 7840354527607024311}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Untagged
@@ -102,8 +103,9 @@ MonoBehaviour:
   notationsToComplete: 2
   XPToAdd: 15
   scoreToAdd: 10
+  animator: {fileID: 7840354527607024311}
   missionObject: 7
-  sound: 12
+  sound: 13
   openChest: {fileID: 21300040, guid: 29c9cded5e558164aaf8c9bf08aa1510, type: 3}
   itemToSpawn: 0
   totalItemsToSpawn: 10
@@ -133,6 +135,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.96875}
   m_EdgeRadius: 0
+--- !u!95 &7840354527607024311
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4718320955904614340}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3b5a8cce7f0fa894ca30c0475f82dae6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &2527818392032130874
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -23,6 +23,8 @@ public class Gate : MonoBehaviour
 
     private SpriteRenderer gateRenderer;
 
+    private bool gateOpen = false;
+
     private void Awake()
     {
         gateRenderer = GetComponent<SpriteRenderer>();
@@ -30,32 +32,39 @@ public class Gate : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (!gateOpen)
         {
-            if (KeyHolder.ContainsKey(keyType))
+            if (other.tag == "Player")
             {
-                KeyHolder.RemoveKey (keyType);
-                SoundController.PlaySound (sound);
-                if (XPToAdd > 0) ExperienceController.AddXP(XPToAdd);
-                if (scoreToAdd > 0) ScoreController.AddScore_Static(scoreToAdd);
-                MissionHolder.i.CheckValidMission (missionObject);
-                UIController
-                    .UpdateImageSprite(UIController.UIImageComponents.goldKey,
-                    null,
-                    false);
-                Tooltip
-                    .SetToolTip_Static("Used Golden Key!",
-                    Vector3.zero,
-                    mainCanvas);
-                Invoke("OpenGate", 1);
-            }
-            else
-            {
-                SoundController.PlaySound(SoundController.Sound.DoorLocked);
-                Tooltip
-                    .SetToolTip_Static("Requires Golden Key!",
-                    Vector3.zero,
-                    mainCanvas);
+                if (KeyHolder.ContainsKey(keyType))
+                {
+                    KeyHolder.RemoveKey (keyType);
+                    SoundController.PlaySound (sound);
+                    if (XPToAdd > 0) ExperienceController.AddXP(XPToAdd);
+                    if (scoreToAdd > 0)
+                        ScoreController.AddScore_Static(scoreToAdd);
+                    MissionHolder.i.CheckValidMission (missionObject);
+                    UIController
+                        .UpdateImageSprite(UIController
+                            .UIImageComponents
+                            .goldKey,
+                        null,
+                        false);
+                    Tooltip
+                        .SetToolTip_Static("Used Golden Key!",
+                        Vector3.zero,
+                        mainCanvas);
+                    Invoke("OpenGate", 1);
+                    gateOpen = true;
+                }
+                else
+                {
+                    SoundController.PlaySound(SoundController.Sound.DoorLocked);
+                    Tooltip
+                        .SetToolTip_Static("Requires Golden Key!",
+                        Vector3.zero,
+                        mainCanvas);
+                }
             }
         }
     }
