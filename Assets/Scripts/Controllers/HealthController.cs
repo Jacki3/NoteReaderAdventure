@@ -36,13 +36,13 @@ public static class HealthController
         switch (skillType)
         {
             case PlayerSkills.SkillType.health_1:
-                UpgradeHealthBar(3);
+                UpgradeMaxHealth(4);
                 break;
             case PlayerSkills.SkillType.health_2:
-                UpgradeHealthBar(5);
+                UpgradeMaxHealth(4);
                 break;
             case PlayerSkills.SkillType.health_3:
-                UpgradeHealthBar(10);
+                UpgradeMaxHealth(4);
                 break;
         }
     }
@@ -114,10 +114,19 @@ public static class HealthController
         //animate
     }
 
-    public static void UpgradeHealthBar(int heatlhUpgraded)
+    public static void UpgradeMaxHealth(int heatlhUpgraded)
     {
         maxHealth += heatlhUpgraded;
         currentHealth = maxHealth;
+
+        UIController.UpdateHearts(maxHealth, false);
+        UIController.AddHeart();
+
+        UpgradeHealthBar();
+    }
+
+    public static void UpgradeHealthBar()
+    {
         float currentXPBarX =
             CoreUIElements
                 .i

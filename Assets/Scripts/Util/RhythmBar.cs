@@ -14,7 +14,7 @@ public class RhythmBar : MonoBehaviour
         if (distanceToNoteTarget < 0) distanceToNoteTarget *= -1;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         speed = distanceToNoteTarget / AudioController.secPerBeat;
         speed /= 3f;

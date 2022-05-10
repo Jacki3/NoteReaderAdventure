@@ -26,6 +26,8 @@ public class AudioController : MonoBehaviour
 
     private double nextTime;
 
+    private bool dontspawn = false;
+
     private void Awake()
     {
         helmController = GetComponent<HelmController>();
@@ -64,6 +66,7 @@ public class AudioController : MonoBehaviour
 
     private void SpawnMetronomeBar()
     {
+        print("spawning");
         foreach (RhythmBar bar in rhythmBars)
         {
             var _bar = Instantiate(bar, mainCanvas);

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -46,7 +47,9 @@ public class CoreUIElements : MonoBehaviour
         public Slider slider;
     }
 
-    public Image[] hearts;
+    public List<Image> hearts = new List<Image>();
+
+    public GameObject heart;
 
     public TextMeshProUGUI
     GetTextComponent(UIController.UITextComponents textComponent)
@@ -81,6 +84,12 @@ public class CoreUIElements : MonoBehaviour
         }
         Debug.LogError("Slider Component" + sliderComponent + "missing!");
         return null;
+    }
+
+    public void AddHeartToList(Transform heart)
+    {
+        Image heartImg = heart.GetComponent<Image>();
+        hearts.Insert(0, heartImg);
     }
 
     [System.Serializable]

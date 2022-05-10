@@ -23,19 +23,19 @@ public static class GameStateController
     {
         if (!gamePaused)
         {
-            Time.timeScale = 0;
+            AudioListener.pause = true;
+            Time.timeScale = 0; //is this correct or should we also be pausing specific things? check docs if time provides
             gamePaused = true;
-            //show menu
         }
         else
         {
+            AudioListener.pause = false;
             Time.timeScale = 1;
             gamePaused = false;
             if (GameStateController.state == GameStateController.States.Tutorial
             )
                 TutorialManager
                     .CheckTutorialStatic(Tutorial.TutorialValidation.Menu);
-            //hide menu
         }
     }
 

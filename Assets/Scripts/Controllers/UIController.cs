@@ -93,9 +93,9 @@ public static class UIController
         {
             if (remove)
             {
-                if (hearts[heartIndex].fillAmount > 0)
+                if (hearts[heartIndex].fillAmount > 0 && hearts[heartIndex])
                     hearts[heartIndex].fillAmount -= heartValue;
-                else if (heartIndex < hearts.Length - 1)
+                else if (heartIndex < hearts.Count - 1)
                 {
                     heartIndex++;
                     hearts[heartIndex].fillAmount -= heartValue;
@@ -112,5 +112,28 @@ public static class UIController
                 }
             }
         }
+    }
+
+    public static void AddHeart()
+    {
+        var hearts = CoreUIElements.i.hearts;
+        var heart = CoreUIElements.i.heart;
+        float firstHeartPosX = hearts[0].transform.parent.localPosition.x;
+        float secondHeartPosX = hearts[1].transform.parent.localPosition.x;
+
+        float distance = firstHeartPosX - secondHeartPosX;
+
+        var heartContainer = hearts[hearts.Count - 1].transform.parent;
+
+        var newHeart = Object.Instantiate(heart);
+
+        newHeart.transform.SetParent (heartContainer);
+        newHeart.transform.localScale = hearts[0].transform.localScale;
+        newHeart.transform.localPosition =
+            new Vector2(firstHeartPosX + distance, 0);
+
+        var heartChild = newHeart.transform.GetChild(0);
+
+        CoreUIElements.i.AddHeartToList (heartChild);
     }
 }

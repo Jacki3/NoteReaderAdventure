@@ -30,9 +30,6 @@ public class RigidPlayerController : MovingObject
         else if (
             PlayerController.inputActions.Player.Right.WasPressedThisFrame()
         ) AttemptMove(1, 0);
-
-        if (Input.GetKeyUp(KeyCode.L)) HealthController.RemoveHealth(3);
-        if (Input.GetKeyUp(KeyCode.P)) HealthController.AddHealth(1);
     }
 
     protected override void AttemptMove(int xDir, int yDir)
