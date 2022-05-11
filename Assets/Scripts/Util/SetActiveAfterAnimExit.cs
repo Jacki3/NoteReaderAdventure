@@ -12,6 +12,15 @@ public class SetActiveAfterAnimExit : StateMachineBehaviour
         int layerIndex
     )
     {
-        holder.SetActive(false);
+        if (holder) holder.SetActive(false);
+    }
+
+    public override void OnStateExit(
+        Animator animator,
+        AnimatorStateInfo stateInfo,
+        int layerIndex
+    )
+    {
+        animator.gameObject.SetActive(false);
     }
 }

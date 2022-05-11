@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 
@@ -23,6 +23,13 @@ public class PauseMenu : MonoBehaviour
 
     private bool optionsVisible;
 
+    private Animator animator;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     public void ShowMenu()
     {
         GameStateController.PauseGame();
@@ -36,7 +43,7 @@ public class PauseMenu : MonoBehaviour
         }
         else
         {
-            this.gameObject.SetActive(false);
+            animator.SetTrigger("FadeOut");
             rhythmBar.SetActive(true);
         }
     }

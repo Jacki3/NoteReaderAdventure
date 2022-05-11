@@ -69,8 +69,4 @@ public abstract class MovingObject : MonoBehaviour
 
     protected abstract void OnCantMove<T>(T Component)
         where T : Component;
-
-    void Update()
-    {
-    }
 }

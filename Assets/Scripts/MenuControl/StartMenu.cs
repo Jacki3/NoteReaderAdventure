@@ -22,9 +22,8 @@ public class StartMenu : MonoBehaviour
 
     public void StartGame()
     {
-        menuAnimator.SetTrigger("StartGame");
-        gameObject.SetActive(false);
         GameStateController.PauseGame();
+        menuAnimator.SetTrigger("Start");
         gameCanvas.enabled = true;
     }
 
