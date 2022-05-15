@@ -19,12 +19,15 @@ public static class GameStateController
         MainMenu
     }
 
-    public static void PauseGame()
+    public static void PauseGame(bool pauseTime)
     {
         if (!gamePaused)
         {
-            AudioListener.pause = true;
-            Time.timeScale = 0; //is this correct or should we also be pausing specific things? check docs if time provides
+            if (pauseTime)
+            {
+                Time.timeScale = 0;
+                AudioListener.pause = true;
+            }
             gamePaused = true;
         }
         else

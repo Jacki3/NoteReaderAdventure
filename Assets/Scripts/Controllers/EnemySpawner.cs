@@ -78,7 +78,7 @@ public class EnemySpawner : MonoBehaviour
 
         if (nextWave + 1 > waves.Length - 1)
         {
-            GameStateController.PauseGame();
+            GameStateController.PauseGame(true);
             UIController
                 .UpdateTextUI(UIController.UITextComponents.arenaWinText,
                 "Level Complete!");

@@ -29,7 +29,8 @@ public static class SoundController
         NotationComplete,
         PlayerDeath,
         ZombieHurt,
-        ZombieDeath
+        ZombieDeath,
+        ButtonClick
     }
 
     public static void PlaySound(Sound sound)

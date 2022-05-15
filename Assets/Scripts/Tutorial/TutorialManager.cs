@@ -10,10 +10,6 @@ public class TutorialManager : MonoBehaviour
 
     public NPCSpeech tutorialNPC;
 
-    public AudioSource musicAudio;
-
-    public AudioSource metroSource;
-
     public List<Tutorial> tutorials = new List<Tutorial>();
 
     private int tutorialIndex = 0;
@@ -103,7 +99,5 @@ public class TutorialManager : MonoBehaviour
     {
         GameStateController.state = GameStateController.States.Play;
         foreach (BoxCollider2D blocker in blockers) blocker.enabled = false;
-        musicAudio.Play();
-        metroSource.enabled = true;
     }
 }

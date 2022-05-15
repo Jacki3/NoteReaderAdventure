@@ -35,13 +35,16 @@ public class RigidPlayerController : MovingObject
             {
                 if (AudioController.canPlay)
                 {
+                    SoundController
+                        .PlaySound(SoundController.Sound.ButtonClick);
                     ScoreController.AddStreak_Static();
                 }
                 else
                 {
+                    SoundController
+                        .PlaySound(SoundController.Sound.IncorectNote);
                     ScoreController.ResetStreak_Static(true);
                 }
-                //play sound etc.
             }
         }
     }

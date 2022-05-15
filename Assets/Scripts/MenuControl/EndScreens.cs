@@ -43,7 +43,7 @@ public class EndScreens : MonoBehaviour
     public void ShowGameOver()
     {
         mainCanvas.enabled = false;
-        GameStateController.PauseGame();
+        GameStateController.PauseGame(true);
         canvas.enabled = true;
         gameOverScreen.SetActive(true);
     }
@@ -51,7 +51,7 @@ public class EndScreens : MonoBehaviour
     public void ShowLifeOver()
     {
         mainCanvas.enabled = false;
-        GameStateController.PauseGame();
+        GameStateController.PauseGame(true);
         canvas.enabled = true;
         lifeLostScreen.SetActive(true);
     }
@@ -60,7 +60,7 @@ public class EndScreens : MonoBehaviour
     {
         backgroundAnimator.SetTrigger("Resume");
         mainCanvas.enabled = true;
-        GameStateController.PauseGame();
+        GameStateController.PauseGame(true);
         lifeLostScreen.SetActive(false);
     }
 }
