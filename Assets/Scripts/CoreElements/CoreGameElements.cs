@@ -56,6 +56,10 @@ public class CoreGameElements : MonoBehaviour
 
     public AudioMixer SFXMixer;
 
+    public int totalLevels;
+
+    public int latetstLevel;
+
     public int maxHealth = 12;
 
     public int criticalHealth = 3;
@@ -73,6 +77,8 @@ public class CoreGameElements : MonoBehaviour
     public bool useColours;
 
     public bool useBassNotes;
+
+    public bool unlockAllLevels = false;
 
     public float chanceOfBassNotes = .65f;
 

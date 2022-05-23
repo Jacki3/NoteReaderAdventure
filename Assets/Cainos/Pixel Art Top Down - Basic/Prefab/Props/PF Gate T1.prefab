@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6644944588161500794}
   - component: {fileID: 6644944588161500793}
-  m_Layer: 21
+  m_Layer: 23
   m_Name: Collider T
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6644944588469475089}
   - component: {fileID: 6644944588469475088}
-  m_Layer: 20
+  m_Layer: 23
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,6 +102,8 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -113,6 +115,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -123,7 +126,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1869315837
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300074, guid: ed7554aeefd5da44a9fe1ee9b93afe77, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -146,7 +149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6644944589615368674}
   - component: {fileID: 8184703295731925835}
-  m_Layer: 20
+  m_Layer: 23
   m_Name: Collider L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6644944589679723018}
   - component: {fileID: 7345354838772413609}
-  m_Layer: 20
+  m_Layer: 23
   m_Name: Collider R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6644944589867386884}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: PF Gate T1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -296,7 +299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6644944589878580092}
   - component: {fileID: 6644944589878580093}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: TX Struct Bridge Gate T
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,6 +334,8 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -342,6 +347,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -352,7 +358,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -44025399
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300028, guid: dda6bbdb704d84847b38f9eced72bf59, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -375,7 +381,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6644944589913744275}
   - component: {fileID: 6644944589913744276}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: TX Struct Bridge Gate B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,6 +416,8 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -421,6 +429,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -431,7 +440,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1869315837
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300026, guid: dda6bbdb704d84847b38f9eced72bf59, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

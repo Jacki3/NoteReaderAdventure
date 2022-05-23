@@ -165,7 +165,7 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
     {
         if (GameStateController.state != GameStateController.States.Shopping)
         {
-            pauseMenu.ShowMenu();
+            // pauseMenu.ShowMenu();
         }
     }
 

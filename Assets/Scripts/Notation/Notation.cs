@@ -198,51 +198,55 @@ public class Notation : MonoBehaviour
 
     public void ShowNotation()
     {
-        if (isVisible || arenaMode || objectShow)
+        if (this != null)
         {
-            int index = 0;
-            foreach (SpriteRenderer note in noteImages)
+            if (isVisible || arenaMode || objectShow)
             {
-                if (CoreGameElements.i.useColours)
+                int index = 0;
+                foreach (SpriteRenderer note in noteImages)
                 {
-                    note.color =
-                        CoreGameElements.i.noteColours[notes[index] % 12];
-                    note
-                        .transform
-                        .GetChild(6)
-                        .GetComponent<SpriteRenderer>()
-                        .color =
-                        CoreGameElements.i.noteColours[notes[index] % 12];
-                    index++;
+                    if (CoreGameElements.i.useColours)
+                    {
+                        note.color =
+                            CoreGameElements.i.noteColours[notes[index] % 12];
+                        note
+                            .transform
+                            .GetChild(6)
+                            .GetComponent<SpriteRenderer>()
+                            .color =
+                            CoreGameElements.i.noteColours[notes[index] % 12];
+                        index++;
+                    }
+                    else
+                    {
+                        note.color = Color.black;
+                        note
+                            .transform
+                            .GetChild(6)
+                            .GetComponent<SpriteRenderer>()
+                            .color = Color.black;
+                    }
                 }
-                else
-                {
-                    note.color = Color.black;
-                    note
-                        .transform
-                        .GetChild(6)
-                        .GetComponent<SpriteRenderer>()
-                        .color = Color.black;
-                }
-            }
-            holder.SetActive(true);
+                holder.SetActive(true);
 
-            //do not add this - add the first child of the parent instead
-            Notation firstNotation =
-                notation.transform.GetChild(0).GetComponent<Notation>();
-            if (firstNotation != null)
-                NotationController.AddNotationToList_Static(firstNotation);
-            notationAnimator.SetTrigger("Unhighlight");
+                //do not add this - add the first child of the parent instead
+                Notation firstNotation =
+                    notation.transform.GetChild(0).GetComponent<Notation>();
+                if (firstNotation != null)
+                    NotationController.AddNotationToList_Static(firstNotation);
+                notationAnimator.SetTrigger("Unhighlight");
+            }
         }
     }
 
     public void HideNotation()
     {
-        if (holder.activeSelf && this != null)
-        {
-            holder.SetActive(false);
-            NotationController.RemoveNotationFromList_Static(this);
-        }
+        if (this != null)
+            if (holder.activeSelf)
+            {
+                holder.SetActive(false);
+                NotationController.RemoveNotationFromList_Static(this);
+            }
     }
 
     public void PlayNote()
@@ -267,7 +271,7 @@ public class Notation : MonoBehaviour
 
         if (NotationFinished())
         {
-            if (notation != null)
+            if (notation != null && notation.transform.childCount > 1)
             {
                 Notation nextNotation =
                     notation.transform.GetChild(1).GetComponent<Notation>();
@@ -275,8 +279,8 @@ public class Notation : MonoBehaviour
                     NotationController.AddNotationToList_Static(nextNotation);
             }
 
-            var explodedNotation = Instantiate(explodableNotation);
-            explodedNotation.transform.position = transform.position;
+            // var explodedNotation = Instantiate(explodableNotation);
+            // explodedNotation.transform.position = transform.position;
             PlayerController.notationCircleActivated -= ShowNotation;
             PlayerController.notationCircleDeactivated -= HideNotation;
 

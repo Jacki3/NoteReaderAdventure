@@ -15,6 +15,10 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject rhythmBar;
 
+    public Canvas gameCanvas;
+
+    public StartMenu mainMenu;
+
     public TMPro.TMP_ColorGradient colorGradient;
 
     public TMPro.TMP_ColorGradient colorGradientWhite;
@@ -43,6 +47,20 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        PlayerController.inputActions.Player.Escape.performed += ctx =>
+            ShowMenu();
+    }
+
+    public void ReturnToMain()
+    {
+        GetComponent<Canvas>().enabled = false;
+        gameCanvas.enabled = false;
+        mainMenu.gameObject.SetActive(true);
+        mainMenu.ShowLevelSelect();
+        rhythmBar.SetActive(true);
+
+        //fade music back to main menu
+        //clear the game scene - set state
     }
 
     public void ShowMenu()
@@ -62,10 +80,9 @@ public class PauseMenu : MonoBehaviour
         }
         else
         {
-            print (currentMusicVol);
-            animator.SetTrigger("FadeOut");
-            StartCoroutine(MusicFade(.25f, currentMusicVol));
+            // StartCoroutine(MusicFade(.25f, currentMusicVol));
             rhythmBar.SetActive(true);
+            gameObject.SetActive(false);
         }
     }
 
@@ -133,7 +150,7 @@ public class PauseMenu : MonoBehaviour
         GameStateController.Quit();
     }
 
-    public void Fade()
+    public void MusicFade()
     {
         musicAudio.Play();
         metroSource.enabled = true;

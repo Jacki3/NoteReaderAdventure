@@ -14,7 +14,8 @@ public class FXController : MonoBehaviour
         PlayerAnimator,
         MissionAnimator,
         BeatAnimator,
-        BeatFlash
+        BeatFlash,
+        LevelFader
     }
 
     public FX[] CoreEffects;

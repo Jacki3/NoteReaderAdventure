@@ -8,13 +8,25 @@ public class StartMenu : MonoBehaviour
 
     public GameObject optionButtons;
 
+    public GameObject levelSelect;
+
     public Canvas gameCanvas;
 
     public Canvas pauseMenu;
 
     public Animator menuAnimator;
 
+    public Seed levelGen;
+
+    public LevelButton button;
+
+    public Transform lvlSelectContent;
+
     private bool optionsVisible;
+
+    private bool levelsVisible;
+
+    public List<LevelButton> levelButtons = new List<LevelButton>();
 
     private void Awake()
     {
@@ -22,12 +34,72 @@ public class StartMenu : MonoBehaviour
         gameCanvas.enabled = false;
     }
 
+    void Start()
+    {
+        //should avoid creating buttons everytime?
+        int totalLevels = CoreGameElements.i.totalLevels;
+
+        for (int i = 0; i < totalLevels; i++)
+        {
+            //Create a new button
+            LevelButton newButton =
+                Instantiate(button, Vector3.zero, Quaternion.identity);
+
+            levelButtons.Add (newButton);
+
+            //Set load level to index
+            int level = i + 1;
+            var interactabeButton =
+                newButton.GetComponent<UnityEngine.UI.Button>();
+            interactabeButton
+                .onClick
+                .AddListener(delegate ()
+                {
+                    levelGen.LoadLevel (level);
+                    StartGame();
+                });
+
+            //Set size, level/score text and parent
+            Vector3 size = newButton.transform.localScale;
+            newButton.transform.SetParent (lvlSelectContent);
+            newButton.transform.localScale = size;
+            string lvlName = (i + 1).ToString();
+            newButton.SetLevelText (lvlName);
+        }
+    }
+
     public void StartGame()
     {
         // GameStateController.PauseGame(); //perhaps change this for state behaviour so game is always running but rather than pausing it switches to state of play within main menu + add a state for main menu and pause
+        gameObject.SetActive(false);
+        FXController
+            .SetAnimatorTrigger_Static(FXController.Animations.LevelFader,
+            "Fade");
+        pauseMenu.GetComponent<PauseMenu>().MusicFade();
 
-        menuAnimator.SetTrigger("Start");
         gameCanvas.enabled = true;
+        if (GameStateController.gamePaused) GameStateController.PauseGame(true);
+    }
+
+    public void UpdateLevelButtons()
+    {
+        print("updating buttons");
+        int levelAt = CoreGameElements.i.latetstLevel;
+        print (levelAt);
+
+        //PlayerPrefs.GetInt("LevelAt", 1);
+        if (!CoreGameElements.i.unlockAllLevels)
+        {
+            for (int i = 0; i < levelButtons.Count; i++)
+            {
+                if (i + 1 > levelAt)
+                {
+                    var interactabeButton =
+                        levelButtons[i].GetComponent<UnityEngine.UI.Button>();
+                    interactabeButton.interactable = false;
+                }
+            }
+        }
     }
 
     public void ShowOptions()
@@ -44,6 +116,25 @@ public class StartMenu : MonoBehaviour
             optionButtons.SetActive(true);
             mainButtons.SetActive(false);
             optionsVisible = true;
+        }
+    }
+
+    public void ShowLevelSelect()
+    {
+        SoundController.PlaySound(SoundController.Sound.ButtonClick);
+        UpdateLevelButtons();
+
+        if (levelsVisible)
+        {
+            levelSelect.SetActive(false);
+            mainButtons.SetActive(true);
+            levelsVisible = false;
+        }
+        else
+        {
+            levelSelect.SetActive(true);
+            mainButtons.SetActive(false);
+            levelsVisible = true;
         }
     }
 

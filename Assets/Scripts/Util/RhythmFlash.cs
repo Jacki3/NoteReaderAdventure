@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class RhythmFlash : MonoBehaviour
 {
+    public List<Renderer> danceFloorLeft = new List<Renderer>();
+
+    public List<Renderer> danceFloorRight = new List<Renderer>();
+
     public Renderer[] tileMapsL;
 
     public Renderer[] tileMapsR;
@@ -24,26 +28,32 @@ public class RhythmFlash : MonoBehaviour
     {
         while (true)
         {
-            for (int i = 0; i < tileMapsL.Length; i++)
+            FXController
+                .SetAnimatorTrigger_Static(FXController.Animations.BeatAnimator,
+                "Beat");
+
+            for (int i = 0; i < danceFloorRight.Count; i++)
             {
-                tileMapsL[i].enabled = false;
-                tileMapsR[i].enabled = true;
-                FXController
-                    .SetAnimatorTrigger_Static(FXController
-                        .Animations
-                        .BeatAnimator,
-                    "Beat");
+                danceFloorRight[i].enabled = false;
             }
-            yield return new WaitForSeconds(secPerBeat);
-            for (int i = 0; i < tileMapsL.Length; i++)
+            for (int i = 0; i < danceFloorLeft.Count; i++)
             {
-                tileMapsL[i].enabled = true;
-                tileMapsR[i].enabled = false;
-                FXController
-                    .SetAnimatorTrigger_Static(FXController
-                        .Animations
-                        .BeatAnimator,
-                    "Beat");
+                danceFloorLeft[i].enabled = true;
+            }
+
+            yield return new WaitForSeconds(secPerBeat);
+
+            FXController
+                .SetAnimatorTrigger_Static(FXController.Animations.BeatAnimator,
+                "Beat");
+
+            for (int i = 0; i < danceFloorLeft.Count; i++)
+            {
+                danceFloorLeft[i].enabled = false;
+            }
+            for (int i = 0; i < danceFloorRight.Count; i++)
+            {
+                danceFloorRight[i].enabled = true;
             }
             yield return new WaitForSeconds(secPerBeat);
         }

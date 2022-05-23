@@ -16,7 +16,8 @@ public static class GameStateController
         Arena,
         Shopping,
         Paused,
-        MainMenu
+        MainMenu,
+        PauseMenu
     }
 
     public static void PauseGame(bool pauseTime)

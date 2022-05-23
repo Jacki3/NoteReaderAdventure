@@ -20,7 +20,7 @@ public class Pillar : NotationItem
     {
         //lerp this
         glow.enabled = true;
-        gateGlow.color = Color.white;
-        pillarController.Activate();
+        if (gateGlow != null) gateGlow.color = Color.white;
+        if (pillarController != null) pillarController.Activate();
     }
 }
