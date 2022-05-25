@@ -42,13 +42,12 @@ public class LevelController : MonoBehaviour
         int nextLevel = PlayerPrefs.GetInt("LevelAt", 1);
         int currentLevel = levelLoader.currentLevel;
 
-        CoreGameElements.i.latetstLevel++;
-
         if (currentLevel < CoreGameElements.i.totalLevels)
         {
             if (currentLevel + 1 > nextLevel)
             {
                 nextLevel++;
+                CoreGameElements.i.latetstLevel = nextLevel;
                 PlayerPrefs.SetInt("LevelAt", nextLevel);
             }
 

@@ -68,6 +68,11 @@ public class StartMenu : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.P)) UpdateLevelButtons();
+    }
+
     public void StartGame()
     {
         // GameStateController.PauseGame(); //perhaps change this for state behaviour so game is always running but rather than pausing it switches to state of play within main menu + add a state for main menu and pause
@@ -83,20 +88,21 @@ public class StartMenu : MonoBehaviour
 
     public void UpdateLevelButtons()
     {
-        print("updating buttons");
-        int levelAt = CoreGameElements.i.latetstLevel;
-        print (levelAt);
+        int levelAt = PlayerPrefs.GetInt("LevelAt", 1);
 
-        //PlayerPrefs.GetInt("LevelAt", 1);
+        if (levelAt < CoreGameElements.i.latetstLevel)
+            levelAt = CoreGameElements.i.latetstLevel;
+
         if (!CoreGameElements.i.unlockAllLevels)
         {
             for (int i = 0; i < levelButtons.Count; i++)
             {
-                if (i + 1 > levelAt)
+                var interactabeButton =
+                    levelButtons[i].GetComponent<UnityEngine.UI.Button>();
+
+                if (i < levelAt)
                 {
-                    var interactabeButton =
-                        levelButtons[i].GetComponent<UnityEngine.UI.Button>();
-                    interactabeButton.interactable = false;
+                    interactabeButton.interactable = true;
                 }
             }
         }
