@@ -52,6 +52,8 @@ public class CoreGameElements : MonoBehaviour
     public class CameraShakes
     {
         public CameraShakeComps healthShake;
+
+        public CameraShakeComps movementShake;
     }
 
     public AudioMixer SFXMixer;

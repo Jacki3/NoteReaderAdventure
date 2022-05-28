@@ -56,7 +56,6 @@ public class PauseMenu : MonoBehaviour
         GetComponent<Canvas>().enabled = false;
         gameCanvas.enabled = false;
         mainMenu.gameObject.SetActive(true);
-        mainMenu.ShowLevelSelect();
         rhythmBar.SetActive(true);
 
         //fade music back to main menu

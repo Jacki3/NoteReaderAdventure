@@ -15,6 +15,7 @@ TagManager:
   - SmashCircle
   - FxTemporaire
   - Stone
+  - Destructable
   layers:
   - Default
   - TransparentFX

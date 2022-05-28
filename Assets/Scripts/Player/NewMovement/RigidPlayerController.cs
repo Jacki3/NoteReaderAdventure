@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using EZCameraShake;
 using UnityEngine;
 
 public class RigidPlayerController : MovingObject
@@ -52,18 +53,18 @@ public class RigidPlayerController : MovingObject
         if (!readingMode)
         {
             if (PlayerController.inputActions.Player.Up.WasPressedThisFrame())
-                AttemptMove<RhythmEnemy>(0, 1);
+                AttemptMove<MonoBehaviour>(0, 1);
             else if (
                 PlayerController.inputActions.Player.Down.WasPressedThisFrame()
             )
-                AttemptMove<RhythmEnemy>(0, -1);
+                AttemptMove<MonoBehaviour>(0, -1);
             else if (
                 PlayerController.inputActions.Player.Left.WasPressedThisFrame()
             )
-                AttemptMove<RhythmEnemy>(-1, 0);
+                AttemptMove<MonoBehaviour>(-1, 0);
             else if (
                 PlayerController.inputActions.Player.Right.WasPressedThisFrame()
-            ) AttemptMove<RhythmEnemy>(1, 0);
+            ) AttemptMove<MonoBehaviour>(1, 0);
         }
 
         //applying cosmetic items - can be a lot better!
@@ -74,14 +75,20 @@ public class RigidPlayerController : MovingObject
 
     protected override void AttemptMove<T>(int xDir, int yDir)
     {
-        base.AttemptMove<T>(xDir, yDir);
         RaycastHit2D hit;
         if (!GameStateController.gamePaused)
         {
             if (Move(xDir, yDir, out hit))
             {
+                var camShake = CoreGameElements.i.cameraShakes.movementShake;
+                CameraShaker
+                    .Instance
+                    .ShakeOnce(camShake.magnitude,
+                    camShake.roughness,
+                    camShake.fadeInTime,
+                    camShake.fadeOutTime);
+
                 //animate movement here
-                //check tutorial for movement?
                 if (AudioController.canPlay)
                 {
                     SoundController
@@ -96,10 +103,22 @@ public class RigidPlayerController : MovingObject
                 }
             }
         }
+        base.AttemptMove<T>(xDir, yDir);
     }
 
     protected override void OnCantMove<T>(T Component)
     {
+        DestructableObject destructableObject = Component as DestructableObject;
+        RhythmEnemy rhythmEnemy = Component as RhythmEnemy;
+
+        if (Component == rhythmEnemy)
+        {
+            LoseHealth(rhythmEnemy.playerDmg);
+        }
+        else if (Component == destructableObject)
+        {
+            destructableObject.DestroyObject();
+        }
     }
 
     public void LoseHealth(int healthLost)

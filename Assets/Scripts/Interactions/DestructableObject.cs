@@ -54,12 +54,11 @@ public class DestructableObject : MonoBehaviour, INotation
         DestroyObject();
     }
 
-    protected virtual void DestroyObject()
+    public virtual void DestroyObject()
     {
         //if health is below certain value then spawn lots of health OR if it is slightly low then spawn some (random)
         if (canSpawnHealth && HealthController.CriticalHealth())
         {
-            //spawn different health sizes depending on how low it is?
             ItemSpawner
                 .SpawnItem(ItemSpawner.ItemType.LargeHealthPotion,
                 transform.position,

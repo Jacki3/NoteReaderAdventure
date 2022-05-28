@@ -68,14 +68,12 @@ public class StartMenu : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.P)) UpdateLevelButtons();
-    }
-
     public void StartGame()
     {
         // GameStateController.PauseGame(); //perhaps change this for state behaviour so game is always running but rather than pausing it switches to state of play within main menu + add a state for main menu and pause
+        levelSelect.SetActive(false);
+        mainButtons.SetActive(true);
+        levelsVisible = false;
         gameObject.SetActive(false);
         FXController
             .SetAnimatorTrigger_Static(FXController.Animations.LevelFader,
@@ -84,6 +82,13 @@ public class StartMenu : MonoBehaviour
 
         gameCanvas.enabled = true;
         if (GameStateController.gamePaused) GameStateController.PauseGame(true);
+    }
+
+    public void ContinueGame()
+    {
+        int levelAt = PlayerPrefs.GetInt("LevelAt", 1);
+        levelGen.LoadLevel (levelAt);
+        StartGame();
     }
 
     public void UpdateLevelButtons()
@@ -97,11 +102,10 @@ public class StartMenu : MonoBehaviour
         {
             for (int i = 0; i < levelButtons.Count; i++)
             {
-                var interactabeButton =
-                    levelButtons[i].GetComponent<UnityEngine.UI.Button>();
-
                 if (i < levelAt)
                 {
+                    var interactabeButton =
+                        levelButtons[i].GetComponent<UnityEngine.UI.Button>();
                     interactabeButton.interactable = true;
                 }
             }

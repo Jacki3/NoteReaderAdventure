@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Health Refill
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f352fd3298518ee429248a0e49d10185, type: 2}
-  m_sharedMaterial: {fileID: -4418251926608725453, guid: f352fd3298518ee429248a0e49d10185,
+  m_fontAsset: {fileID: 11400000, guid: bc9b35644fbb905468391d76a7040fd5, type: 2}
+  m_sharedMaterial: {fileID: 3024607450294678299, guid: bc9b35644fbb905468391d76a7040fd5,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -530,8 +530,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 5
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f352fd3298518ee429248a0e49d10185, type: 2}
-  m_sharedMaterial: {fileID: -4418251926608725453, guid: f352fd3298518ee429248a0e49d10185,
+  m_fontAsset: {fileID: 11400000, guid: bc9b35644fbb905468391d76a7040fd5, type: 2}
+  m_sharedMaterial: {fileID: 3024607450294678299, guid: bc9b35644fbb905468391d76a7040fd5,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
