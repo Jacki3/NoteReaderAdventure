@@ -98,7 +98,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: layers.Array.data[19]
-    value: 
+    value: Layer 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: layers.Array.data[20]
@@ -200,3 +200,4 @@ Preset:
     propertyPath: m_SortingLayers.Array.data[3].locked
     value: 0
     objectReference: {fileID: 0}
+  m_ExcludedProperties: []

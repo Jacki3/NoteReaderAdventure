@@ -6,20 +6,42 @@ public static class CurrencyController
 {
     private static int totalCoinsCollected = 0;
 
-    public static void AddRemoveCoins(int coins, bool addOrRemove)
-    {
-        totalCoinsCollected =
-            addOrRemove
-                ? totalCoinsCollected += coins
-                : totalCoinsCollected -= coins;
+    private static int totalCollectiblesCollected = 0;
 
-        UIController
-            .UpdateTextUI(UIController.UITextComponents.coinText,
-            totalCoinsCollected.ToString());
+    public static void AddRemoveCoins(int coins, bool add)
+    {
+        // totalCoinsCollected =
+        //     addOrRemove
+        //         ? totalCoinsCollected += coins
+        //         : totalCoinsCollected -= coins;
+        if (add)
+        {
+            totalCoinsCollected += coins;
+            ScoreDisplayUpdater
+                .StartRoutine(totalCoinsCollected,
+                UIController.UITextComponents.coinText);
+        }
+        else
+        {
+            totalCoinsCollected -= coins;
+            ScoreDisplayUpdater
+                .StartRoutineDown(totalCoinsCollected,
+                UIController.UITextComponents.coinText);
+        }
     }
 
     public static int GetTotalCoins()
     {
         return totalCoinsCollected;
+    }
+
+    public static void AddCollectible()
+    {
+        totalCollectiblesCollected++;
+        UIController
+            .UpdateTextUI(UIController.UITextComponents.collectibleText,
+            totalCollectiblesCollected +
+            "/" +
+            CoreGameElements.i.totalCollectiblesThisLevel);
     }
 }

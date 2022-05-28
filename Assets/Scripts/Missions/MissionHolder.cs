@@ -64,7 +64,7 @@ public class MissionHolder : MonoBehaviour
             "/" +
             mission.requiredAmount +
             " " +
-            mission.missionObject;
+            mission.missionObjectString;
 
         missionPlaceholders.Add (_missionPlaceholder);
     }
@@ -96,7 +96,17 @@ public class MissionHolder : MonoBehaviour
                 placeHolder.missionText.text.text = placeHolderText;
                 ExperienceController.AddXP(mission.XPReward);
                 CurrencyController.AddRemoveCoins(mission.coinReward, true);
-                //remove from list, cross out (update UI) etc.
+                placeHolder
+                    .GetComponent<Animator>()
+                    .SetTrigger("MissionComplete");
+                SoundController
+                    .PlaySound(SoundController.Sound.MissionComplete);
+            }
+            else
+            {
+                placeHolder
+                    .GetComponent<Animator>()
+                    .SetTrigger("MissionIncrement");
             }
         }
     }
@@ -110,7 +120,9 @@ public class MissionHolder : MonoBehaviour
                 IncrementCurrentAmount (mission);
             }
             else
-                print("wrong item?");
+            {
+                //??
+            }
         }
     }
 
@@ -124,7 +136,7 @@ public class MissionHolder : MonoBehaviour
                     .missionText
                     .text
                     .text
-                    .Contains(mission.missionObject.ToString())
+                    .Contains(mission.missionObjectString.ToString())
             ) return placeHolder;
         }
         return null;

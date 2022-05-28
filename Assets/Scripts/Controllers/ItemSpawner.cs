@@ -1,26 +1,51 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+using Random = UnityEngine.Random;
 
 public class ItemSpawner : MonoBehaviour
 {
     public enum ItemType
     {
         Coin,
-        Heart,
-        Spirit
-        //etc.
+        SmallHealthPotion,
+        HealthPotion,
+        LargeHealthPotion,
+        Spirit,
+        GoldenKey,
+        SilverKey,
+        IronKey
     }
 
     public static List<Item> allItems = new List<Item>();
 
-    public static void SpawnItem(ItemType item, Vector2 spawnPos, int maxItems)
+    public static void SpawnItem(
+        ItemType item,
+        Vector2 spawnPos,
+        int maxItems,
+        SpriteRenderer spriteRenderer
+    )
     {
         int randMax = Random.Range(1, maxItems);
         for (int i = 0; i < randMax; i++)
         {
             Item newItem = Instantiate(GetItem(item));
-            newItem.transform.position = spawnPos + Random.insideUnitCircle * 1;
+
+            // var roundedX =
+            //     Math.Round(newPos.x, 0, MidpointRounding.AwayFromZero);
+            // var roundedY =
+            //     Math.Round(newPos.y, 0, MidpointRounding.AwayFromZero);
+            // newPos = new Vector2((float) roundedX, (float) roundedY);
+            newItem.transform.position = spawnPos;
+
+            //apply same logic to player movement casting to ensure object is not in same tile as prop etc.
+            SpriteRenderer _spriteRenderer =
+                newItem.GetComponent<SpriteRenderer>();
+            _spriteRenderer.sortingLayerName = spriteRenderer.sortingLayerName;
+            _spriteRenderer.sortingLayerID = spriteRenderer.sortingLayerID;
+
             allItems.Add (newItem);
         }
     }

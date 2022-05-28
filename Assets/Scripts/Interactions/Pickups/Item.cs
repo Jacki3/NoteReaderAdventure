@@ -9,9 +9,12 @@ public class Item : MonoBehaviour
 
     public SoundController.Sound soundType;
 
+    public Mission.Object missionObject;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        var player = other.GetComponent<PlayerController>();
+        if (player != null)
         {
             PickUp();
         }
@@ -22,5 +25,6 @@ public class Item : MonoBehaviour
         // increment(); -- alternative solution could be events driven from parent classes?
         //disable collision etc.
         SoundController.PlaySound (soundType);
+        MissionHolder.i.CheckValidMission (missionObject);
     }
 }

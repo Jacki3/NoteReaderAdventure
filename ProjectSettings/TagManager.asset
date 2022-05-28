@@ -13,6 +13,9 @@ TagManager:
   - Bullet
   - HealthBar
   - SmashCircle
+  - FxTemporaire
+  - Stone
+  - Destructable
   layers:
   - Default
   - TransparentFX
@@ -37,7 +40,7 @@ TagManager:
   - Layer 1
   - Layer 2
   - Layer 3
-  - 
+  - Blocking
   - 
   - 
   - 
@@ -50,6 +53,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Layer 0
+    uniqueID: 2061323039
+    locked: 0
   - name: Layer 1
     uniqueID: 2425651459
     locked: 0
@@ -58,4 +64,37 @@ TagManager:
     locked: 0
   - name: Layer 3
     uniqueID: 4189426099
+    locked: 0
+  - name: Layer 4
+    uniqueID: 1408196437
+    locked: 0
+  - name: Layer 5
+    uniqueID: 666926179
+    locked: 0
+  - name: New Layer
+    uniqueID: 3859889859
+    locked: 0
+  - name: New Layer
+    uniqueID: 2259771281
+    locked: 0
+  - name: New Layer
+    uniqueID: 3369996633
+    locked: 0
+  - name: New Layer
+    uniqueID: 1023857421
+    locked: 0
+  - name: New Layer
+    uniqueID: 1880952017
+    locked: 0
+  - name: New Layer
+    uniqueID: 2434157417
+    locked: 0
+  - name: New Layer
+    uniqueID: 3703072179
+    locked: 0
+  - name: New Layer
+    uniqueID: 2709515173
+    locked: 0
+  - name: New Layer
+    uniqueID: 3997818947
     locked: 0

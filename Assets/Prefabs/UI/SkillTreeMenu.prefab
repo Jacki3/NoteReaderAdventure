@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 43.808434, y: -3.6995544}
+  m_AnchoredPosition: {x: 43.808434, y: -5.9}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2017581270382820683
@@ -192,8 +192,9 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f352fd3298518ee429248a0e49d10185, type: 2}
+  m_sharedMaterial: {fileID: -4418251926608725453, guid: f352fd3298518ee429248a0e49d10185,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -326,8 +327,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: skill tree
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f352fd3298518ee429248a0e49d10185, type: 2}
+  m_sharedMaterial: {fileID: -4418251926608725453, guid: f352fd3298518ee429248a0e49d10185,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -351,7 +353,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.15
+  m_fontSize: 37.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -593,6 +595,26 @@ PrefabInstance:
       propertyPath: skillType
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.a
+      value: 0.9019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.7264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.7264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.7264151
+      objectReference: {fileID: 0}
     - target: {fileID: 1350634891149206904, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
       propertyPath: m_Pivot.x
@@ -726,7 +748,7 @@ PrefabInstance:
     - target: {fileID: 1350634892081917001, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
       propertyPath: m_fontSize
-      value: 44.75
+      value: 40.45
       objectReference: {fileID: 0}
     - target: {fileID: 1350634892081917001, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
@@ -752,6 +774,26 @@ PrefabInstance:
         type: 3}
       propertyPath: skillType
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.a
+      value: 0.9019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.7264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.7264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.7264151
       objectReference: {fileID: 0}
     - target: {fileID: 1350634891149206904, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
@@ -886,7 +928,7 @@ PrefabInstance:
     - target: {fileID: 1350634892081917001, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
       propertyPath: m_fontSize
-      value: 44.75
+      value: 40.45
       objectReference: {fileID: 0}
     - target: {fileID: 1350634892081917001, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
@@ -923,6 +965,26 @@ PrefabInstance:
         type: 3}
       propertyPath: skillType
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.a
+      value: 0.9019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.7264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.7264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.7264151
       objectReference: {fileID: 0}
     - target: {fileID: 1350634891149206904, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
@@ -1057,7 +1119,7 @@ PrefabInstance:
     - target: {fileID: 1350634892081917001, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
       propertyPath: m_fontSize
-      value: 44.75
+      value: 40.45
       objectReference: {fileID: 0}
     - target: {fileID: 1350634892081917001, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
@@ -1094,6 +1156,26 @@ PrefabInstance:
         type: 3}
       propertyPath: skillType
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.a
+      value: 0.9019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.7264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.7264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.7264151
       objectReference: {fileID: 0}
     - target: {fileID: 1350634891149206904, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
@@ -1228,7 +1310,7 @@ PrefabInstance:
     - target: {fileID: 1350634892081917001, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
       propertyPath: m_fontSize
-      value: 44.75
+      value: 40.45
       objectReference: {fileID: 0}
     - target: {fileID: 1350634892081917001, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
@@ -1300,6 +1382,26 @@ PrefabInstance:
         type: 3}
       propertyPath: skillType
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.a
+      value: 0.9019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.7264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.7264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.7264151
       objectReference: {fileID: 0}
     - target: {fileID: 1350634891149206904, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
@@ -1434,7 +1536,7 @@ PrefabInstance:
     - target: {fileID: 1350634892081917001, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
       propertyPath: m_fontSize
-      value: 44.75
+      value: 40.45
       objectReference: {fileID: 0}
     - target: {fileID: 1350634892081917001, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
@@ -1486,6 +1588,26 @@ PrefabInstance:
         type: 3}
       propertyPath: skillType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.a
+      value: 0.9019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.7264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.7264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.7264151
       objectReference: {fileID: 0}
     - target: {fileID: 1350634891149206904, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
@@ -1620,7 +1742,7 @@ PrefabInstance:
     - target: {fileID: 1350634892081917001, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
       propertyPath: m_fontSize
-      value: 44.75
+      value: 40.45
       objectReference: {fileID: 0}
     - target: {fileID: 1350634892081917001, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
@@ -1667,6 +1789,26 @@ PrefabInstance:
         type: 3}
       propertyPath: skillType
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.a
+      value: 0.9019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.7264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.7264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.7264151
       objectReference: {fileID: 0}
     - target: {fileID: 1350634891149206904, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
@@ -1801,7 +1943,7 @@ PrefabInstance:
     - target: {fileID: 1350634892081917001, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
       propertyPath: m_fontSize
-      value: 44.75
+      value: 40.45
       objectReference: {fileID: 0}
     - target: {fileID: 1350634892081917001, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
@@ -1878,6 +2020,26 @@ PrefabInstance:
         type: 3}
       propertyPath: skillType
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.a
+      value: 0.9019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.7264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.7264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.7264151
       objectReference: {fileID: 0}
     - target: {fileID: 1350634891149206904, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
@@ -2012,7 +2174,7 @@ PrefabInstance:
     - target: {fileID: 1350634892081917001, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
       propertyPath: m_fontSize
-      value: 44.75
+      value: 40.45
       objectReference: {fileID: 0}
     - target: {fileID: 1350634892081917001, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
@@ -2038,6 +2200,26 @@ PrefabInstance:
         type: 3}
       propertyPath: skillType
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.a
+      value: 0.9019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.7264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.7264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.7264151
       objectReference: {fileID: 0}
     - target: {fileID: 1350634891149206904, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
@@ -2172,7 +2354,7 @@ PrefabInstance:
     - target: {fileID: 1350634892081917001, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
       propertyPath: m_fontSize
-      value: 44.75
+      value: 40.45
       objectReference: {fileID: 0}
     - target: {fileID: 1350634892081917001, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
@@ -2204,6 +2386,26 @@ PrefabInstance:
         type: 3}
       propertyPath: skillType
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.a
+      value: 0.9019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.7264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.7264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350634891149206903, guid: c66826452ac191744a2c38ad8f059f55,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.7264151
       objectReference: {fileID: 0}
     - target: {fileID: 1350634891149206904, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
@@ -2344,7 +2546,7 @@ PrefabInstance:
     - target: {fileID: 1350634892081917001, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}
       propertyPath: m_fontSize
-      value: 44.75
+      value: 40.45
       objectReference: {fileID: 0}
     - target: {fileID: 1350634892081917001, guid: c66826452ac191744a2c38ad8f059f55,
         type: 3}

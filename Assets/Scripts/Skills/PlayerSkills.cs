@@ -20,10 +20,11 @@ public static class PlayerSkills
         readerRadius_1,
         readerRadius_2,
         smashRadius_1,
-        smashRadius_2
+        smashRadius_2,
+        sprintDuration_1,
+        sprintDuration_2
 
         //magic? should this be separate via statue?
-        //health? ""
     }
 
     private static List<SkillType> unlockedSkills = new List<SkillType>();
@@ -103,12 +104,16 @@ public static class PlayerSkills
     }
 
     public static bool
-    CanUnlock(SkillType skillType, CoreUIElements.ImageUI buttonImage)
+    CanUnlock(SkillType skillType, RectTransform toolTipSpawn)
     {
         int skillPointsRequired = GetSkillType(skillType).skillPointsRequired;
         if (IsSkillUnlocked(skillType))
         {
-            Debug.Log("skill already unlocked!");
+            Tooltip
+                .SetToolTip_Static("Skill Already Unlocked!",
+                toolTipSpawn.localPosition,
+                toolTipSpawn.root);
+            SoundController.PlaySound(SoundController.Sound.IncorectNote);
             return false;
         }
         else
@@ -128,24 +133,35 @@ public static class PlayerSkills
                             .UITextComponents
                             .skillMenuSkillPointText,
                         skillPoints.ToString());
-                    Debug.Log("skill unlocked: " + skillType);
-                    Debug.Log("Skill points remaining: " + skillPoints);
+                    Tooltip
+                        .SetToolTip_Static("Skill Unlocked: " +
+                        GetSkillType(skillType).skillName +
+                        "\n",
+                        toolTipSpawn.localPosition,
+                        toolTipSpawn.root);
                     UnlockSkill (skillType);
                     return true;
                 }
                 else
                 {
                     Tooltip
-                        .SetToolTip_Static("not enough skill points!",
-                        buttonImage.image.transform.root.position +
-                        buttonImage.image.transform.localPosition);
-                    Debug.Log("not enough skills");
+                        .SetToolTip_Static("Not Enough Skill Points!",
+                        toolTipSpawn.localPosition,
+                        toolTipSpawn.root);
+                    SoundController
+                        .PlaySound(SoundController.Sound.IncorectNote);
                     return false;
                 }
             }
             else
             {
-                Debug.Log("requires skill: " + GetSkillRequirement(skillType));
+                var skillRequired = GetSkillType(skillType).requiredSkill;
+                Tooltip
+                    .SetToolTip_Static("Requires Skill: " +
+                    GetSkillType(skillRequired).skillName,
+                    toolTipSpawn.localPosition,
+                    toolTipSpawn.root);
+                SoundController.PlaySound(SoundController.Sound.IncorectNote);
                 return false;
             }
         }

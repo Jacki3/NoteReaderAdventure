@@ -4,13 +4,33 @@ public static class SoundController
 {
     public enum Sound
     {
+        None,
         PlayerMove,
         PotBreak,
         BoxBreak,
         PlayerFire,
         Treasure,
-        CoinPickup
-        //etc.
+        CoinPickup,
+        HealthPickup,
+        PlayerHurt,
+        PlayerLvlUp,
+        MissionComplete,
+        CameraZoom,
+        LaternOn,
+        ChestOpen,
+        PearlCollected,
+        GateOpen,
+        Purchase,
+        IncorectNote,
+        PillarActive,
+        KeyPickup,
+        DoorLocked,
+        SmashCircle,
+        NotationComplete,
+        PlayerDeath,
+        ZombieHurt,
+        ZombieDeath,
+        ButtonClick
     }
 
     public static void PlaySound(Sound sound)
@@ -18,6 +38,8 @@ public static class SoundController
         //cache previous soundcontroller object - is it playing, if not then use it OR make another (pool them)
         GameObject soundGameObject = new GameObject("SoundController");
         AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+        audioSource.outputAudioMixerGroup =
+            CoreGameElements.i.SFXMixer.FindMatchingGroups("SFX")[0];
         audioSource.PlayOneShot(GetAudioClip(sound));
     }
 

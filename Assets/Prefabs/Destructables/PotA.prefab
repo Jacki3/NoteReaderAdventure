@@ -9,15 +9,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8193007395461955116}
+  - component: {fileID: -8849002349564743423}
   - component: {fileID: 8193007395461955117}
-  - component: {fileID: 8193007395461955118}
   - component: {fileID: 8193007395461955119}
   - component: {fileID: 8193007395461955104}
   - component: {fileID: 8193007395461955105}
-  - component: {fileID: 817994389666293197}
-  m_Layer: 0
+  - component: {fileID: 6096668198644040854}
+  m_Layer: 23
   m_Name: PotA
-  m_TagString: Untagged
+  m_TagString: Destructable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,6 +36,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-8849002349564743423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193007395461955106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd4fbb82c25c0f94faa20bf668aa1f59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectType: 3
+  spawnableItem: 0
+  soundType: 2
+  totalItemsSpawnable: 1
+  XPToGive: 0
+  scoreToAdd: 0
+  canSpawnHealth: 1
+  canBeSmashed: 1
+  tutorialObject: 0
 --- !u!212 &8193007395461955117
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -74,7 +95,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1869315837
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300090, guid: 29c9cded5e558164aaf8c9bf08aa1510, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -87,37 +108,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &8193007395461955118
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8193007395461955106}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 0.65625, y: 1.0625}
-    newSize: {x: 0.65625, y: 1.0625}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.234375, y: 1.0625}
-      - {x: -0.28760815, y: 0.5868764}
-      - {x: -0.328125, y: 0}
-      - {x: 0.328125, y: 0}
-      - {x: 0.26509857, y: 0.72643614}
-      - {x: 0.234375, y: 1.0625}
 --- !u!50 &8193007395461955119
 Rigidbody2D:
   serializedVersion: 4
@@ -171,19 +161,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7af6dd9712bb07c43a7a851e83d317f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &817994389666293197
-MonoBehaviour:
+--- !u!61 &6096668198644040854
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8193007395461955106}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7abaf10a085c1c742ab2f1b2b0d819ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnableItem: 0
-  soundType: 1
-  totalItemsSpawnable: 1
-  XPToAdd: 10
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 0.65625, y: 1.0625}
+    newSize: {x: 0.65625, y: 1.0625}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
