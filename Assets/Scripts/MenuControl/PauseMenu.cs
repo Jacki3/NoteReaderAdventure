@@ -75,17 +75,18 @@ public class PauseMenu : MonoBehaviour
         if (GameStateController.gamePaused)
         {
             gameObject.SetActive(true);
-            mixer.GetFloat("MusicVol", out currentMusicVol);
-            currentMusicVol = Mathf.Pow(10, currentMusicVol / 20);
             EventSystem.current.SetSelectedGameObject (resumeButton);
-            StartCoroutine(MusicFade(.25f, .15f));
+            mixer.GetFloat("MusicVol", out currentMusicVol);
+            print (currentMusicVol);
+            mixer.SetFloat("MusicVol", currentMusicVol - 5);
             optionButtons.SetActive(false);
             mainButtons.SetActive(true);
             rhythmBar.SetActive(false);
         }
         else
         {
-            // StartCoroutine(MusicFade(.25f, currentMusicVol));
+            mixer.GetFloat("MusicVol", out currentMusicVol);
+            mixer.SetFloat("MusicVol", currentMusicVol + 5);
             rhythmBar.SetActive(true);
             gameObject.SetActive(false);
         }
@@ -135,8 +136,8 @@ public class PauseMenu : MonoBehaviour
 
     public void SetMusicLevel(float value)
     {
-        mixer.SetFloat("MusicVol", Mathf.Log10(value) * 20);
-        mixer.SetFloat("MainMenuVol", Mathf.Log10(value) * 20);
+        mixer.SetFloat("MusicVol", (Mathf.Log10(value) * 20) - 10);
+        if (isMainMenu) mixer.SetFloat("MainMenuVol", Mathf.Log10(value) * 20);
     }
 
     public void SetSFXLevel(float value)
@@ -196,8 +197,8 @@ public class PauseMenu : MonoBehaviour
                     targetValueGame,
                     currentTime / duration);
             mixer.SetFloat("MainMenuVol", Mathf.Log10(newVolMenu) * 20);
-            mixer.SetFloat("MusicVol", Mathf.Log10(newVolGame) * 20);
 
+            // mixer.SetFloat("MusicVol", Mathf.Log10(newVolGame) * 20);
             yield return null;
         }
         background.SetActive(true);
