@@ -7,6 +7,8 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject mainButtons;
 
+    public GameObject pauseButtons;
+
     public GameObject optionButtons;
 
     public GameObject resumeButton;
@@ -36,13 +38,15 @@ public class PauseMenu : MonoBehaviour
 
     public AudioSource metroSource;
 
-    public Animation anim;
+    public GameObject background;
 
     private bool optionsVisible;
 
     private Animator animator;
 
     private float currentMusicVol;
+
+    private bool isMainMenu = true;
 
     void Start()
     {
@@ -53,10 +57,12 @@ public class PauseMenu : MonoBehaviour
 
     public void ReturnToMain()
     {
-        GetComponent<Canvas>().enabled = false;
+        pauseButtons.SetActive(false);
+        background.SetActive(false);
         gameCanvas.enabled = false;
         mainMenu.gameObject.SetActive(true);
         rhythmBar.SetActive(true);
+        isMainMenu = true;
 
         //fade music back to main menu
         //clear the game scene - set state
@@ -93,14 +99,20 @@ public class PauseMenu : MonoBehaviour
         {
             EventSystem.current.SetSelectedGameObject (resumeButton); //repeats above - concat showmenu but avoid pausing game everytime
             optionButtons.SetActive(false);
-            mainButtons.SetActive(true);
+            if (isMainMenu)
+                mainButtons.SetActive(true);
+            else
+                pauseButtons.SetActive(true);
             optionsVisible = false;
         }
         else
         {
             optionButtons.SetActive(true);
             EventSystem.current.SetSelectedGameObject (optionsResume);
-            mainButtons.SetActive(false);
+            if (isMainMenu)
+                mainButtons.SetActive(false);
+            else
+                pauseButtons.SetActive(false);
             optionsVisible = true;
         }
     }
@@ -188,8 +200,10 @@ public class PauseMenu : MonoBehaviour
 
             yield return null;
         }
-        GetComponent<Canvas>().enabled = true;
+        background.SetActive(true);
+        pauseButtons.SetActive(true);
         gameObject.SetActive(false);
+        isMainMenu = false;
         yield break;
     }
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 using Random = UnityEngine.Random;
@@ -19,8 +20,6 @@ public class BoardController : MonoBehaviour
             maximum = max;
         }
     }
-
-    public RhythmFlash flashAnim;
 
     public bool firstTimeSetup = true;
 
@@ -100,6 +99,15 @@ public class BoardController : MonoBehaviour
     private int columns;
 
     private int rows;
+
+    private RhythmFlash flashAnim;
+
+    public bool danceFloorHidden = false;
+
+    void Start()
+    {
+        flashAnim = GetComponent<RhythmFlash>();
+    }
 
     void InitialiseList()
     {
@@ -306,6 +314,8 @@ public class BoardController : MonoBehaviour
             new Vector3(columns - 1, rows - 1, 0f),
             Quaternion.identity);
         newExit.transform.SetParent (objects);
+
+        if (danceFloorHidden) danceFloor.gameObject.SetActive(false);
     }
 
     public void ClearBoard()
@@ -314,5 +324,21 @@ public class BoardController : MonoBehaviour
         flashAnim.danceFloorLeft.Clear();
         flashAnim.danceFloorRight.Clear();
         if (boardHolder != null) Destroy(boardHolder.gameObject);
+    }
+
+    public void HideShowDanceFloor(TextMeshProUGUI buttonText)
+    {
+        if (!danceFloorHidden)
+        {
+            buttonText.text = "dance floor: off";
+            danceFloorHidden = true;
+            if (danceFloor != null) danceFloor.gameObject.SetActive(false);
+        }
+        else
+        {
+            buttonText.text = "dance floor: on";
+            danceFloorHidden = false;
+            if (danceFloor != null) danceFloor.gameObject.SetActive(true);
+        }
     }
 }
