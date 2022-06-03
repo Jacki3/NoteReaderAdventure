@@ -57,6 +57,8 @@ public class PauseMenu : MonoBehaviour
 
     public void ReturnToMain()
     {
+        SoundController.PlaySound(SoundController.Sound.ButtonClick);
+
         pauseButtons.SetActive(false);
         background.SetActive(false);
         gameCanvas.enabled = false;
@@ -64,31 +66,37 @@ public class PauseMenu : MonoBehaviour
         rhythmBar.SetActive(true);
         isMainMenu = true;
 
+        GameStateController.state = GameStateController.States.MainMenu;
+        mainMenu.levelGen.boardController.ClearBoard();
+        LevelController.i.DelayResetPlayer();
+
         //fade music back to main menu
-        //clear the game scene - set state
+        //clear the game scene
     }
 
     public void ShowMenu()
     {
-        GameStateController.PauseGame(false);
+        if (GameStateController.state != GameStateController.States.MainMenu)
+        {
+            GameStateController.PauseGame(false);
 
-        if (GameStateController.gamePaused)
-        {
-            gameObject.SetActive(true);
-            EventSystem.current.SetSelectedGameObject (resumeButton);
-            mixer.GetFloat("MusicVol", out currentMusicVol);
-            print (currentMusicVol);
-            mixer.SetFloat("MusicVol", currentMusicVol - 5);
-            optionButtons.SetActive(false);
-            mainButtons.SetActive(true);
-            rhythmBar.SetActive(false);
-        }
-        else
-        {
-            mixer.GetFloat("MusicVol", out currentMusicVol);
-            mixer.SetFloat("MusicVol", currentMusicVol + 5);
-            rhythmBar.SetActive(true);
-            gameObject.SetActive(false);
+            if (GameStateController.gamePaused)
+            {
+                GetComponent<Canvas>().enabled = true;
+                EventSystem.current.SetSelectedGameObject (resumeButton);
+                mixer.GetFloat("MusicVol", out currentMusicVol);
+                mixer.SetFloat("MusicVol", currentMusicVol - 8);
+                optionButtons.SetActive(false);
+                mainButtons.SetActive(true);
+                rhythmBar.SetActive(false);
+            }
+            else
+            {
+                mixer.GetFloat("MusicVol", out currentMusicVol);
+                mixer.SetFloat("MusicVol", currentMusicVol + 8);
+                rhythmBar.SetActive(true);
+                GetComponent<Canvas>().enabled = false;
+            }
         }
     }
 
@@ -174,6 +182,11 @@ public class PauseMenu : MonoBehaviour
     private IEnumerator
     FadeStartMenuAudio(float duration, float targetVolMenu, float targetVolGame)
     {
+        background.SetActive(true);
+        pauseButtons.SetActive(true);
+        GetComponent<Canvas>().enabled = false;
+        isMainMenu = false;
+
         float currentTime = 0;
         float currentVolMenu;
         float currentVolGame;
@@ -201,10 +214,6 @@ public class PauseMenu : MonoBehaviour
             // mixer.SetFloat("MusicVol", Mathf.Log10(newVolGame) * 20);
             yield return null;
         }
-        background.SetActive(true);
-        pauseButtons.SetActive(true);
-        gameObject.SetActive(false);
-        isMainMenu = false;
         yield break;
     }
 

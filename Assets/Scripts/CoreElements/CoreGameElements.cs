@@ -20,7 +20,7 @@ public class CoreGameElements : MonoBehaviour
         else
             _i = this;
 
-        GameStateController.state = GameStateController.States.Intro;
+        GameStateController.state = GameStateController.States.MainMenu;
     }
 
     void Start()

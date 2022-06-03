@@ -328,6 +328,8 @@ public class BoardController : MonoBehaviour
 
     public void HideShowDanceFloor(TextMeshProUGUI buttonText)
     {
+        SoundController.PlaySound(SoundController.Sound.ButtonClick);
+
         if (!danceFloorHidden)
         {
             buttonText.text = "dance floor: off";

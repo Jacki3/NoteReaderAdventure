@@ -50,7 +50,7 @@ public class RigidPlayerController : MovingObject
     {
         inverseMoveTime = 1f / moveTime;
 
-        if (!readingMode)
+        if (!readingMode && GameStateController.gamePaused == false)
         {
             if (PlayerController.inputActions.Player.Up.WasPressedThisFrame())
                 AttemptMove<MonoBehaviour>(0, 1);
@@ -76,31 +76,26 @@ public class RigidPlayerController : MovingObject
     protected override void AttemptMove<T>(int xDir, int yDir)
     {
         RaycastHit2D hit;
-        if (!GameStateController.gamePaused)
+        if (Move(xDir, yDir, out hit))
         {
-            if (Move(xDir, yDir, out hit))
-            {
-                var camShake = CoreGameElements.i.cameraShakes.movementShake;
-                CameraShaker
-                    .Instance
-                    .ShakeOnce(camShake.magnitude,
-                    camShake.roughness,
-                    camShake.fadeInTime,
-                    camShake.fadeOutTime);
+            var camShake = CoreGameElements.i.cameraShakes.movementShake;
+            CameraShaker
+                .Instance
+                .ShakeOnce(camShake.magnitude,
+                camShake.roughness,
+                camShake.fadeInTime,
+                camShake.fadeOutTime);
 
-                //animate movement here
-                if (AudioController.canPlay)
-                {
-                    SoundController
-                        .PlaySound(SoundController.Sound.ButtonClick);
-                    ScoreController.AddStreak_Static();
-                }
-                else
-                {
-                    SoundController
-                        .PlaySound(SoundController.Sound.IncorectNote);
-                    ScoreController.ResetStreak_Static(true);
-                }
+            //animate movement here
+            if (AudioController.canPlay)
+            {
+                SoundController.PlaySound(SoundController.Sound.ButtonClick);
+                ScoreController.AddStreak_Static();
+            }
+            else
+            {
+                SoundController.PlaySound(SoundController.Sound.IncorectNote);
+                ScoreController.ResetStreak_Static(true);
             }
         }
         base.AttemptMove<T>(xDir, yDir);

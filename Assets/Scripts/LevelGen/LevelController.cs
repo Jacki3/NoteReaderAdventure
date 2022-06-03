@@ -55,7 +55,8 @@ public class LevelController : MonoBehaviour
             FXController
                 .SetAnimatorTrigger_Static(FXController.Animations.LevelFader,
                 "Fade");
-            Invoke("ResetPlayer", .2f);
+            DelayResetPlayer();
+            levelLoader.LoadLevel(currentLevel + 1);
         }
         else
         {
@@ -64,11 +65,13 @@ public class LevelController : MonoBehaviour
         }
     }
 
+    public void DelayResetPlayer()
+    {
+        Invoke("ResetPlayer", .2f);
+    }
+
     private void ResetPlayer()
     {
-        int currentLevel = levelLoader.currentLevel;
-        levelLoader.LoadLevel(currentLevel + 1);
-
         player.position = playerDefaultPos;
         mainCam.position = Vector3.zero;
         player.GetComponent<BoxCollider2D>().enabled = true;

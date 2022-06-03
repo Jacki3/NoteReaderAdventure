@@ -30,7 +30,7 @@ public class StartMenu : MonoBehaviour
 
     private void Awake()
     {
-        // GameStateController.PauseGame();
+        GameStateController.PauseGame(false);
         gameCanvas.enabled = false;
     }
 
@@ -70,7 +70,7 @@ public class StartMenu : MonoBehaviour
 
     public void StartGame()
     {
-        // GameStateController.PauseGame(); //perhaps change this for state behaviour so game is always running but rather than pausing it switches to state of play within main menu + add a state for main menu and pause
+        GameStateController.state = GameStateController.States.Play;
         levelSelect.SetActive(false);
         mainButtons.SetActive(true);
         levelsVisible = false;
