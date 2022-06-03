@@ -7,4 +7,6 @@ public interface INotation
     void NotationComplete();
 
     void PlayedCorrectNote();
+
+    Transform GetTransform();
 }

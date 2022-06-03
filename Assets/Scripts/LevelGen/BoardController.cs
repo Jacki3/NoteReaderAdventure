@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 using Random = UnityEngine.Random;
 
@@ -84,6 +86,8 @@ public class BoardController : MonoBehaviour
 
     public GameObject exit;
 
+    public List<INotation> notations = new List<INotation>();
+
     private Transform boardHolder;
 
     private Transform tiles;
@@ -102,9 +106,9 @@ public class BoardController : MonoBehaviour
 
     private RhythmFlash flashAnim;
 
-    public bool danceFloorHidden = false;
+    private bool danceFloorHidden = false;
 
-    void Start()
+    void Awake()
     {
         flashAnim = GetComponent<RhythmFlash>();
     }
@@ -244,6 +248,14 @@ public class BoardController : MonoBehaviour
                 Instantiate(tileChoice, randomPos, Quaternion.identity);
 
             newObj.transform.SetParent (objects);
+
+            INotation newNotation = newObj.GetComponent<INotation>();
+            if (newNotation != null)
+            {
+                notations.Add (newNotation);
+                print("newnotation");
+                print(newNotation.GetTransform().position);
+            }
         }
     }
 
@@ -288,10 +300,10 @@ public class BoardController : MonoBehaviour
         BoardSetup();
         InitialiseList();
         LayoutObjectAtRand(propTiles, propCount.minimum, propCount.maximum);
-        LayoutObjectAtRand(smashableTiles,
-        smashableCount.minimum,
-        smashableCount.maximum);
 
+        // LayoutObjectAtRand(smashableTiles,
+        // smashableCount.minimum,
+        // smashableCount.maximum);
         if (spawnEnemies && level % 5 == 0)
         {
             spawnNotation = false;
@@ -343,4 +355,17 @@ public class BoardController : MonoBehaviour
             if (danceFloor != null) danceFloor.gameObject.SetActive(true);
         }
     }
+
+    public void RemoveNotationFromList(Transform pos)
+    {
+        foreach (INotation notation in notations.ToList())
+        {
+            if (notation.GetTransform().position == pos.position)
+            {
+                notations.Remove (notation);
+            }
+        }
+    }
+
+    //bool func returning notations empty or not
 }

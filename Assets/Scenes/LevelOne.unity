@@ -30609,6 +30609,34 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 474810474}
   m_PrefabAsset: {fileID: 0}
+--- !u!83 &478015756
+AudioClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: helm
+  m_LoadType: 0
+  m_Channels: 1
+  m_Frequency: 48000
+  m_BitsPerSample: 32
+  m_Length: 0
+  m_IsTrackerFormat: 0
+  m_Ambisonic: 0
+  m_SubsoundIndex: 0
+  m_PreloadAudioData: 1
+  m_LoadInBackground: 0
+  m_Legacy3D: 0
+  m_Resource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_CompressionFormat: 0
+  m_EditorResource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_EditorCompressionFormat: 0
 --- !u!1001 &479415757
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30789,7 +30817,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7732655359041420551, guid: 2c6320ca7b645724eaefeea208dd58c7,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 478015756}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -49589,8 +49617,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d481e16bf29822048acd0ea03494dbe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCanvas: {fileID: 2051032038}
   SFXMixer: {fileID: 24100000, guid: 2c6320ca7b645724eaefeea208dd58c7, type: 2}
-  totalLevels: 51
+  totalLevels: 12
   latetstLevel: 1
   maxHealth: 12
   criticalHealth: 3
@@ -72289,6 +72318,34 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1243234462}
   m_PrefabAsset: {fileID: 0}
+--- !u!83 &1244199837
+AudioClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: helm
+  m_LoadType: 0
+  m_Channels: 1
+  m_Frequency: 48000
+  m_BitsPerSample: 32
+  m_Length: 0
+  m_IsTrackerFormat: 0
+  m_Ambisonic: 0
+  m_SubsoundIndex: 0
+  m_PreloadAudioData: 1
+  m_LoadInBackground: 0
+  m_Legacy3D: 0
+  m_Resource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_CompressionFormat: 0
+  m_EditorResource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_EditorCompressionFormat: 0
 --- !u!1 &1248799086
 GameObject:
   m_ObjectHideFlags: 0
@@ -77250,7 +77307,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -941277463048152142, guid: 2c6320ca7b645724eaefeea208dd58c7,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 1244199837}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -107318,22 +107375,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: f352fd3298518ee429248a0e49d10185,
+      objectReference: {fileID: 11400000, guid: bc9b35644fbb905468391d76a7040fd5,
         type: 2}
     - target: {fileID: 5941064514624492639, guid: cbe86acf416c02c4c9ba6049b21368d8,
         type: 3}
       propertyPath: m_fontStyle
-      value: 0
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 5941064514624492639, guid: cbe86acf416c02c4c9ba6049b21368d8,
         type: 3}
       propertyPath: m_fontColor.b
-      value: 0.6367924
+      value: 0.8820755
       objectReference: {fileID: 0}
     - target: {fileID: 5941064514624492639, guid: cbe86acf416c02c4c9ba6049b21368d8,
         type: 3}
       propertyPath: m_fontColor.g
-      value: 0.6367924
+      value: 0.8820755
       objectReference: {fileID: 0}
     - target: {fileID: 5941064514624492639, guid: cbe86acf416c02c4c9ba6049b21368d8,
         type: 3}
@@ -107344,12 +107401,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -4418251926608725453, guid: f352fd3298518ee429248a0e49d10185,
+      objectReference: {fileID: 3024607450294678299, guid: bc9b35644fbb905468391d76a7040fd5,
         type: 2}
     - target: {fileID: 5941064514624492639, guid: cbe86acf416c02c4c9ba6049b21368d8,
         type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4288848639
+      value: 4292993535
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbe86acf416c02c4c9ba6049b21368d8, type: 3}

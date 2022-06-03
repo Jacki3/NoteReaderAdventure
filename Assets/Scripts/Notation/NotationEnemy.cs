@@ -118,4 +118,9 @@ public class NotationEnemy : MonoBehaviour, INotation
             }
         }
     }
+
+    public Transform GetTransform()
+    {
+        return transform;
+    }
 }

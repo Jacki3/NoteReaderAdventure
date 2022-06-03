@@ -80,4 +80,9 @@ public class NotationItem : MonoBehaviour, INotation
             }
         }
     }
+
+    public Transform GetTransform()
+    {
+        return transform;
+    }
 }

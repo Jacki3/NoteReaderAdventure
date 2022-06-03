@@ -8,7 +8,18 @@ public class TestEndGoal : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            LevelController.i.LevelComplete();
+            if (
+                LevelController.i.levelLoader.boardController.notations.Count <=
+                1
+            )
+                LevelController.i.LevelComplete();
+            else
+            {
+                Tooltip
+                    .SetToolTip_Static("Notations Left to Complete!",
+                    Vector3.zero,
+                    CoreGameElements.i.mainCanvas.transform);
+            }
         }
     }
 }

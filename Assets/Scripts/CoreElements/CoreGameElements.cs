@@ -56,6 +56,8 @@ public class CoreGameElements : MonoBehaviour
         public CameraShakeComps movementShake;
     }
 
+    public Canvas mainCanvas;
+
     public AudioMixer SFXMixer;
 
     public int totalLevels;

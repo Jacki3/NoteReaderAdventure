@@ -51,7 +51,15 @@ public class DestructableObject : MonoBehaviour, INotation
 
     public void NotationComplete()
     {
+        LevelController.i.levelLoader.boardController.RemoveNotationFromList (
+            transform
+        );
         DestroyObject();
+    }
+
+    public Transform GetTransform()
+    {
+        return transform;
     }
 
     public virtual void DestroyObject()

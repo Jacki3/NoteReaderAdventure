@@ -116,4 +116,9 @@ public class RhythmEnemy : MovingObject, INotation
             }
         }
     }
+
+    public Transform GetTransform()
+    {
+        return transform;
+    }
 }
