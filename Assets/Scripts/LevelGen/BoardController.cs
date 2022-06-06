@@ -253,8 +253,6 @@ public class BoardController : MonoBehaviour
             if (newNotation != null)
             {
                 notations.Add (newNotation);
-                print("newnotation");
-                print(newNotation.GetTransform().position);
             }
         }
     }
@@ -333,6 +331,7 @@ public class BoardController : MonoBehaviour
     public void ClearBoard()
     {
         //Clear the board and increase sizes
+        notations.Clear();
         flashAnim.danceFloorLeft.Clear();
         flashAnim.danceFloorRight.Clear();
         if (boardHolder != null) Destroy(boardHolder.gameObject);
@@ -363,6 +362,7 @@ public class BoardController : MonoBehaviour
             if (notation.GetTransform().position == pos.position)
             {
                 notations.Remove (notation);
+                print(notations.Count);
             }
         }
     }

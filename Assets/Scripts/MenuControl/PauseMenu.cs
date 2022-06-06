@@ -70,8 +70,9 @@ public class PauseMenu : MonoBehaviour
         mainMenu.levelGen.boardController.ClearBoard();
         LevelController.i.DelayResetPlayer();
 
-        //fade music back to main menu
-        //clear the game scene
+        metroSource.enabled = false;
+        StartCoroutine(FadeStartMenuAudio(audioFadeDur, -1, -80));
+        //save player stats
     }
 
     public void ShowMenu()

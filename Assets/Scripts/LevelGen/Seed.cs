@@ -18,10 +18,10 @@ public class Seed : MonoBehaviour
 
     void Start()
     {
-        defaultGameSeed = gameSeed;
-
         if (!PlayerPrefs.HasKey("FirstPlay"))
         {
+            Debug.Log("First Run!");
+            PlayerPrefs.DeleteAll();
             int totalLevels = CoreGameElements.i.totalLevels;
 
             PlayerPrefs.SetInt("FirstPlay", 1);
@@ -33,7 +33,7 @@ public class Seed : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.H))
         {
-            GenerateAllLevels(50);
+            GenerateAllLevels(1);
         }
 
         if (Input.GetKeyDown(KeyCode.L))
@@ -46,10 +46,12 @@ public class Seed : MonoBehaviour
     {
         for (int i = 0; i < totalLevels; i++)
         {
-            gameSeed = "TestLevels_" + level;
+            gameSeed = "TestLvlsBuild10_" + level;
             currentSeed = gameSeed.GetHashCode();
             Random.InitState (currentSeed);
             boardController.SetupScene (level);
+            defaultGameSeed = gameSeed;
+            PlayerPrefs.SetString("DefaultSeed", defaultGameSeed);
 
             PlayerPrefs.SetInt("testRowsMin" + level, boardController.rowsMin);
             PlayerPrefs.SetInt("testRowsMax" + level, boardController.rowsMax);
@@ -87,6 +89,9 @@ public class Seed : MonoBehaviour
             PlayerPrefs.GetInt("testPropsMin" + levelToLoad);
         boardController.propCount.maximum =
             PlayerPrefs.GetInt("testPropsMax" + levelToLoad);
+
+        if (defaultGameSeed == null)
+            defaultGameSeed = PlayerPrefs.GetString("DefaultSeed");
 
         string levelName = defaultGameSeed + levelToLoad;
         currentSeed = levelName.GetHashCode();

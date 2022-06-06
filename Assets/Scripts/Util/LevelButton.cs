@@ -11,4 +11,8 @@ public class LevelButton : MonoBehaviour
     {
         levelText.text = text;
     }
+
+    public void SetScoreText()
+    {
+    }
 }
