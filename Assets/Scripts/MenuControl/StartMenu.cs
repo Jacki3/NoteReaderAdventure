@@ -86,7 +86,9 @@ public class StartMenu : MonoBehaviour
 
     public void ContinueGame()
     {
-        int levelAt = PlayerPrefs.GetInt("LevelAt", 1);
+        // int levelAt = PlayerPrefs.GetInt("LevelAt", 1);
+        int levelAt = CoreGameElements.i.gameSave.levelAt;
+        if (levelAt == 0) levelAt = 1;
         if (levelAt < CoreGameElements.i.latetstLevel)
             levelAt = CoreGameElements.i.latetstLevel;
         levelGen.LoadLevel (levelAt);
@@ -95,7 +97,9 @@ public class StartMenu : MonoBehaviour
 
     public void UpdateLevelButtons()
     {
-        int levelAt = PlayerPrefs.GetInt("LevelAt", 1);
+        // int levelAt = PlayerPrefs.GetInt("LevelAt", 1);
+        int levelAt = CoreGameElements.i.gameSave.levelAt;
+        if (levelAt == 0) levelAt = 1;
 
         //Saving a local int for latest level as player prefs require resets (this ensures players can go from game to menu)
         if (levelAt < CoreGameElements.i.latetstLevel)

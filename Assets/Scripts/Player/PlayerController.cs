@@ -280,6 +280,6 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
 
     public void Damage(int damageToInflict)
     {
-        HealthController.RemoveHealth (damageToInflict);
+        HealthController.RemoveHealth(damageToInflict, true);
     }
 }

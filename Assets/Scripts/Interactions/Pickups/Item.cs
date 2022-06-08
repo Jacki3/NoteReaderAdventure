@@ -26,5 +26,6 @@ public class Item : MonoBehaviour
         //disable collision etc.
         SoundController.PlaySound (soundType);
         MissionHolder.i.CheckValidMission (missionObject);
+        ItemSpawner.RemoveItem(this);
     }
 }

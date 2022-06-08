@@ -90,12 +90,10 @@ public class RigidPlayerController : MovingObject
             if (AudioController.canPlay)
             {
                 SoundController.PlaySound(SoundController.Sound.ButtonClick);
-                ScoreController.AddStreak_Static();
             }
             else
             {
                 SoundController.PlaySound(SoundController.Sound.IncorectNote);
-                ScoreController.ResetStreak_Static(true);
             }
         }
         base.AttemptMove<T>(xDir, yDir);
@@ -118,6 +116,6 @@ public class RigidPlayerController : MovingObject
 
     public void LoseHealth(int healthLost)
     {
-        HealthController.RemoveHealth (healthLost);
+        HealthController.RemoveHealth(healthLost, true);
     }
 }

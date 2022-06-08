@@ -49,6 +49,24 @@ public class Notation : MonoBehaviour
 
     public GameObject notation;
 
+    private string[]
+        noteNames =
+        {
+            "C",
+            "C#",
+            "D",
+            "D#",
+            "E",
+            "F",
+            "F#",
+            "G",
+            "G#",
+            "A",
+            "A#",
+            "B",
+            "B#"
+        };
+
     private void Awake()
     {
         parentRenderer = transform.parent.GetComponent<SpriteRenderer>();
@@ -251,16 +269,19 @@ public class Notation : MonoBehaviour
 
     public void PlayNote()
     {
-        Color32 noteColour = CoreGameElements.i.noteColours[notes[0] % 12];
+        Color32 noteColour = Color.black;
+        if (CoreGameElements.i.useColours)
+            noteColour = CoreGameElements.i.noteColours[notes[0] % 12];
+
+        string noteName = noteNames[notes[0] % 12];
+        NotePopup
+            .Create(noteImages[0].transform.position, noteName, noteColour);
+
         PlayerWeapon
             .ShootProjectileStatic(this.notation.transform.position,
             noteColour);
 
         EZCameraShake.CameraShaker.Instance.ShakeOnce(.45f, 1f, .5f, 1f);
-
-        if (AudioController.canPlay)
-            ScoreController
-                .AddRhythmScore_Static(CoreGameElements.i.scoreForRhythm);
 
         notationAnimator.SetTrigger("Correct");
         Destroy(noteImages[0].gameObject);

@@ -331,6 +331,7 @@ public class BoardController : MonoBehaviour
     public void ClearBoard()
     {
         //Clear the board and increase sizes
+        ItemSpawner.ClearItems();
         notations.Clear();
         flashAnim.danceFloorLeft.Clear();
         flashAnim.danceFloorRight.Clear();

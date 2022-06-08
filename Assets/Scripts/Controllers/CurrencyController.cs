@@ -24,10 +24,13 @@ public static class CurrencyController
         else
         {
             totalCoinsCollected -= coins;
+            if (totalCoinsCollected <= 0) totalCoinsCollected = 0;
             ScoreDisplayUpdater
                 .StartRoutineDown(totalCoinsCollected,
                 UIController.UITextComponents.coinText);
         }
+
+        CoreGameElements.i.gameSave.playerCoins = totalCoinsCollected;
     }
 
     public static int GetTotalCoins()

@@ -7,7 +7,7 @@ public static class HealthController
 {
     private static int maxHealth;
 
-    private static int currentHealth;
+    private static int currentHealth = CoreGameElements.i.maxHealth;
 
     private static int criticalHealthAmount;
 
@@ -17,9 +17,7 @@ public static class HealthController
 
     private static bool strongShield = false;
 
-    //this should be replaced by a controller which handles 'global/core things' such as health, score, XP etc. OR be a monobehaviour!
-    [RuntimeInitializeOnLoadMethod]
-    private static void SetHealth()
+    public static void SetHealth(int health)
     {
         if (CoreGameElements.i != null)
         {
@@ -27,8 +25,9 @@ public static class HealthController
             criticalHealthAmount = CoreGameElements.i.criticalHealth;
             lowHealthAmount = CoreGameElements.i.lowHealth;
         }
-        currentHealth = maxHealth;
         PlayerSkills.onSkillUnlocked += UpdateMaxHealth;
+        int healthDiff = CoreGameElements.i.maxHealth - health;
+        RemoveHealth(healthDiff, false);
     }
 
     private static void UpdateMaxHealth(PlayerSkills.SkillType skillType)
@@ -47,7 +46,7 @@ public static class HealthController
         }
     }
 
-    public static void RemoveHealth(int healthRemoved)
+    public static void RemoveHealth(int healthRemoved, bool animate)
     {
         if (strongShield)
         {
@@ -64,31 +63,28 @@ public static class HealthController
         else
         {
             currentHealth -= healthRemoved;
-            EZCameraShake.CameraShaker.Instance.ShakeOnce(.35f, 1f, .5f, 1f); //make the shaking vars like an object then create new objects (not individual floats but a whole object)
-            SoundController.PlaySound(SoundController.Sound.PlayerHurt);
             UIController.UpdateHearts(healthRemoved, true);
+            if (animate)
+            {
+                EZCameraShake
+                    .CameraShaker
+                    .Instance
+                    .ShakeOnce(.35f, 1f, .5f, 1f);
+                SoundController.PlaySound(SoundController.Sound.PlayerHurt);
+                FXController
+                    .SetAnimatorTrigger_Static(FXController
+                        .Animations
+                        .PlayerAnimator,
+                    "TakenDamage");
+            }
         }
 
-        if (currentHealth > 0)
-        {
-            //flash screen?
-            FXController
-                .LerpSlider_Static(currentHealth,
-                currentHealth + healthRemoved,
-                .5f,
-                maxHealth,
-                UIController.UIImageComponents.healthBar);
-            FXController
-                .SetAnimatorTrigger_Static(FXController
-                    .Animations
-                    .PlayerAnimator,
-                "TakenDamage");
-        }
-        else
+        if (currentHealth <= 0)
         {
             LivesController.RemoveLife();
             SoundController.PlaySound(SoundController.Sound.PlayerDeath);
         }
+        CoreGameElements.i.gameSave.playerHealth = currentHealth;
     }
 
     public static void AddHealth(int healthAdded)

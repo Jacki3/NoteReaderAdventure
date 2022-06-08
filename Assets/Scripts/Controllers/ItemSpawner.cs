@@ -59,4 +59,15 @@ public class ItemSpawner : MonoBehaviour
         Debug.LogError("ItemType" + itemType + "missing!");
         return null;
     }
+
+    public static void RemoveItem(Item item)
+    {
+        allItems.Remove (item);
+    }
+
+    public static void ClearItems()
+    {
+        foreach (Item item in allItems) Destroy(item.gameObject);
+        allItems.Clear();
+    }
 }

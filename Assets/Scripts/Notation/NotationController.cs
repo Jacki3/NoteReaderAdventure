@@ -104,15 +104,17 @@ public class NotationController : MonoBehaviour
                 //incorrect note accross all notes
                 //should be reading circle button NOT 25
                 //repeating what the notation script does?
-                ScoreController.ResetStreak_Static(false);
+                if (visibleNotation.Count > 0)
+                    ScoreController.ResetStreak_Static(false);
 
                 foreach (Notation notation in visibleNotation)
                 {
                     //why is this not just incorrectNote? Why a whole nother animation?
                     incorrectNotes++;
+                    print (incorrectNotes);
                     if (incorrectNotes > incorrectNotesToDamage)
                     {
-                        HealthController.RemoveHealth(1);
+                        HealthController.RemoveHealth(1, true);
                         incorrectNotes = 0;
                     }
                     notation.AllIncorrect();
@@ -127,6 +129,15 @@ public class NotationController : MonoBehaviour
             hasActiveNotation = false;
             activeNotation = null;
         }
+
+        if (AudioController.canPlay)
+        {
+            ScoreController
+                .AddRhythmScore_Static(CoreGameElements.i.scoreForRhythm);
+            ScoreController.AddStreak_Static();
+        }
+        else
+            ScoreController.ResetStreak_Static(true);
     }
 
     private void DestroyPlayedNote(int note)

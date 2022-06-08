@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -55,6 +56,10 @@ public class CoreGameElements : MonoBehaviour
 
         public CameraShakeComps movementShake;
     }
+
+    public SaveFile gameSave;
+
+    public NotePopup notePopup;
 
     public Canvas mainCanvas;
 
