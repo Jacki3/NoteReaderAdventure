@@ -35606,7 +35606,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7732655359041420551, guid: 2c6320ca7b645724eaefeea208dd58c7,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 1766104723}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -41900,11 +41900,10 @@ MonoBehaviour:
   levelSelect: {fileID: 539331733}
   gameCanvas: {fileID: 2051032038}
   pauseMenu: {fileID: 584827267}
-  menuAnimator: {fileID: 657277359}
+  startText: {fileID: 517335069}
   levelGen: {fileID: 876928465}
   button: {fileID: 7084040296955532462, guid: bd8792361e445f543b26fd7a11d4645f, type: 3}
   lvlSelectContent: {fileID: 1388977083}
-  levelButtons: []
 --- !u!225 &657277361
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -54407,6 +54406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d481e16bf29822048acd0ea03494dbe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveDeleted: 0
   notePopup: {fileID: -8162950674869725870, guid: 44d6fba72f045af40a680c87afe9bdcd,
     type: 3}
   mainCanvas: {fileID: 2051032038}
@@ -67033,6 +67033,34 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1166914056}
   m_PrefabAsset: {fileID: 0}
+--- !u!83 &1168864196
+AudioClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: helm
+  m_LoadType: 0
+  m_Channels: 1
+  m_Frequency: 48000
+  m_BitsPerSample: 32
+  m_Length: 0
+  m_IsTrackerFormat: 0
+  m_Ambisonic: 0
+  m_SubsoundIndex: 0
+  m_PreloadAudioData: 1
+  m_LoadInBackground: 0
+  m_Legacy3D: 0
+  m_Resource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_CompressionFormat: 0
+  m_EditorResource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_EditorCompressionFormat: 0
 --- !u!1 &1170358502
 GameObject:
   m_ObjectHideFlags: 0
@@ -82206,7 +82234,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -941277463048152142, guid: 2c6320ca7b645724eaefeea208dd58c7,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 1168864196}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -98006,6 +98034,34 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1891926539}
   m_PrefabAsset: {fileID: 0}
+--- !u!83 &1766104723
+AudioClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: helm
+  m_LoadType: 0
+  m_Channels: 1
+  m_Frequency: 48000
+  m_BitsPerSample: 32
+  m_Length: 0
+  m_IsTrackerFormat: 0
+  m_Ambisonic: 0
+  m_SubsoundIndex: 0
+  m_PreloadAudioData: 1
+  m_LoadInBackground: 0
+  m_Legacy3D: 0
+  m_Resource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_CompressionFormat: 0
+  m_EditorResource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_EditorCompressionFormat: 0
 --- !u!4 &1767172693 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5281063671732302502, guid: c5c395a83c3338d46bd52e936cf46245,

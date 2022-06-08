@@ -15,12 +15,6 @@ public class GameHandler : MonoBehaviour
         Load();
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.C)) HealthController.RemoveHealth(1, true);
-        if (Input.GetKeyDown(KeyCode.P)) Save();
-    }
-
     private void Save()
     {
         string json = JsonUtility.ToJson(CoreGameElements.i.gameSave);
@@ -46,6 +40,8 @@ public class GameHandler : MonoBehaviour
         {
             //first time loading game, create the savegame object to be saved n loadedz
             SaveFile save = new SaveFile();
+            StartMenu.SetStartTextStatic(save.firstRun);
+            save.firstRun = false;
             CoreGameElements.i.gameSave = save;
 
             seed.SetLevels();

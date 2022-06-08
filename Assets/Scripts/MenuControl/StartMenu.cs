@@ -14,7 +14,7 @@ public class StartMenu : MonoBehaviour
 
     public Canvas pauseMenu;
 
-    public Animator menuAnimator;
+    public TMPro.TextMeshProUGUI startText;
 
     public Seed levelGen;
 
@@ -26,10 +26,13 @@ public class StartMenu : MonoBehaviour
 
     private bool levelsVisible;
 
-    public List<LevelButton> levelButtons = new List<LevelButton>();
+    private List<LevelButton> levelButtons = new List<LevelButton>();
+
+    private static StartMenu i;
 
     private void Awake()
     {
+        i = this;
         GameStateController.PauseGame(false);
         gameCanvas.enabled = false;
     }
@@ -68,6 +71,19 @@ public class StartMenu : MonoBehaviour
         }
     }
 
+    public static void SetStartTextStatic(bool firstRun)
+    {
+        i.SetStartText (firstRun);
+    }
+
+    private void SetStartText(bool firstRun)
+    {
+        if (firstRun)
+            startText.text = "new game";
+        else
+            startText.text = "continue";
+    }
+
     public void StartGame()
     {
         GameStateController.state = GameStateController.States.Play;
@@ -100,7 +116,6 @@ public class StartMenu : MonoBehaviour
         if (levelAt == 0) levelAt = 1;
 
         //Saving a local int for latest level as player prefs require resets (this ensures players can go from game to menu)
-
         if (levelAt < CoreGameElements.i.latetstLevel)
             levelAt = CoreGameElements.i.latetstLevel;
         if (CoreGameElements.i.unlockAllLevels) levelAt = levelButtons.Count;

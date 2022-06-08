@@ -15,6 +15,8 @@ public class SaveFile
 
     public string defaultGameSeed;
 
+    public bool firstRun = true;
+
     public List<Board> boards = new List<Board>();
 
     [Serializable]
