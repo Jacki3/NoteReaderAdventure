@@ -59,6 +59,8 @@ public class CoreGameElements : MonoBehaviour
 
     public SaveFile gameSave;
 
+    public bool saveDeleted = false;
+
     public NotePopup notePopup;
 
     public Canvas mainCanvas;

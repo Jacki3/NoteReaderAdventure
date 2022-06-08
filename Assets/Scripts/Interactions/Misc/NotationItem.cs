@@ -25,6 +25,10 @@ public class NotationItem : MonoBehaviour, INotation
 
     public void NotationComplete()
     {
+        LevelController.i.levelLoader.boardController.RemoveNotationFromList (
+            transform
+        );
+
         notationsCompleted++;
         if (notationsCompleted >= notationsToComplete)
             AllNotationsComplete();

@@ -39,7 +39,6 @@ public class LevelController : MonoBehaviour
 
     public void LevelComplete()
     {
-        // int nextLevel = PlayerPrefs.GetInt("LevelAt", 1);
         int nextLevel = CoreGameElements.i.gameSave.levelAt;
         if (nextLevel == 0) nextLevel = 1;
         int currentLevel = levelLoader.currentLevel;
@@ -51,7 +50,6 @@ public class LevelController : MonoBehaviour
                 nextLevel++;
                 CoreGameElements.i.latetstLevel = nextLevel;
                 CoreGameElements.i.gameSave.levelAt = nextLevel;
-                // PlayerPrefs.SetInt("LevelAt", nextLevel);
             }
 
             player.GetComponent<BoxCollider2D>().enabled = false;

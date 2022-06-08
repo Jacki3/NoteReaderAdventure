@@ -1,4 +1,6 @@
 using System.Collections;
+using System.IO;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
@@ -236,5 +238,18 @@ public class PauseMenu : MonoBehaviour
             yield return null;
         }
         yield break;
+    }
+
+    public void DeleteSave()
+    {
+        if (File.Exists(Application.dataPath + "/save.txt"))
+        {
+            File.Delete(Application.dataPath + "/save.txt");
+            CoreGameElements.i.gameSave = null;
+            CoreGameElements.i.saveDeleted = true;
+            Application.LoadLevel(0);
+        }
+        else
+            Debug.Log("No save exists!");
     }
 }

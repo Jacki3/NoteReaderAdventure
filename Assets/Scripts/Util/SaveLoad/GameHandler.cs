@@ -7,8 +7,11 @@ using UnityEngine.PlayerLoop;
 
 public class GameHandler : MonoBehaviour
 {
+    public Seed seed;
+
     void Start()
     {
+        CoreGameElements.i.saveDeleted = false;
         Load();
     }
 
@@ -44,6 +47,13 @@ public class GameHandler : MonoBehaviour
             //first time loading game, create the savegame object to be saved n loadedz
             SaveFile save = new SaveFile();
             CoreGameElements.i.gameSave = save;
+
+            seed.SetLevels();
         }
+    }
+
+    void OnApplicationQuit()
+    {
+        if (!CoreGameElements.i.saveDeleted) Save();
     }
 }
