@@ -55,6 +55,12 @@ public class Seed : MonoBehaviour
 
     public void LoadLevel(int levelToLoad)
     {
+        if (levelToLoad == 1)
+        {
+            SaveFile save = CoreGameElements.i.gameSave;
+            StartMenu.SetStartTextStatic(save.firstRun);
+            save.firstRun = false;
+        }
         currentLevel = levelToLoad;
         boardController.firstTimeSetup = false;
 

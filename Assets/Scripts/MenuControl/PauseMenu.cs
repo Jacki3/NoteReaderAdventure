@@ -68,6 +68,8 @@ public class PauseMenu : MonoBehaviour
         rhythmBar.SetActive(true);
         isMainMenu = true;
 
+        StartMenu.SetStartTextStatic(CoreGameElements.i.gameSave.firstRun);
+
         GameStateController.state = GameStateController.States.MainMenu;
         mainMenu.levelGen.boardController.ClearBoard();
         LevelController.i.DelayResetPlayer();
