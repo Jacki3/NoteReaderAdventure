@@ -88,6 +88,8 @@ public class BoardController : MonoBehaviour
 
     public List<INotation> notations = new List<INotation>();
 
+    public int boardMaxScore;
+
     private Transform boardHolder;
 
     private Transform tiles;
@@ -253,6 +255,7 @@ public class BoardController : MonoBehaviour
             if (newNotation != null)
             {
                 notations.Add (newNotation);
+                boardMaxScore += newNotation.GetObjectScore();
             }
         }
     }
@@ -331,6 +334,7 @@ public class BoardController : MonoBehaviour
     public void ClearBoard()
     {
         //Clear the board and increase sizes
+        boardMaxScore = 0;
         ItemSpawner.ClearItems();
         notations.Clear();
         flashAnim.danceFloorLeft.Clear();
@@ -363,7 +367,6 @@ public class BoardController : MonoBehaviour
             if (notation.GetTransform().position == pos.position)
             {
                 notations.Remove (notation);
-                print(notations.Count);
             }
         }
     }

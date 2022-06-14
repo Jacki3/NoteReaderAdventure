@@ -9,4 +9,6 @@ public interface INotation
     void PlayedCorrectNote();
 
     Transform GetTransform();
+
+    int GetObjectScore();
 }

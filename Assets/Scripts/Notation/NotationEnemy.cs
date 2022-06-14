@@ -6,6 +6,8 @@ public class NotationEnemy : MonoBehaviour, INotation
 {
     public int notationsToComplete = 1;
 
+    public int scoreToAdd;
+
     public Mission.Object missionObject;
 
     public AudioClip attackSound;
@@ -122,5 +124,10 @@ public class NotationEnemy : MonoBehaviour, INotation
     public Transform GetTransform()
     {
         return transform;
+    }
+
+    public int GetObjectScore()
+    {
+        return scoreToAdd;
     }
 }

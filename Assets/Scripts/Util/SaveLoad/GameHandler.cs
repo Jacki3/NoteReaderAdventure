@@ -15,7 +15,7 @@ public class GameHandler : MonoBehaviour
 
     void Start()
     {
-        DATA_PATH = Application.persistentDataPath + "/save.txt";
+        DATA_PATH = Application.dataPath + "/save.txt";
         CoreGameElements.i.saveDeleted = false;
         Load();
     }
@@ -55,6 +55,7 @@ public class GameHandler : MonoBehaviour
             seed.SetLevels();
         }
         StartMenu.SetStartTextStatic(save.firstRun);
+        StartMenu.UpdateButtonsStatic();
     }
 
     void OnApplicationQuit()

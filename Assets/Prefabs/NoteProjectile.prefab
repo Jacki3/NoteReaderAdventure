@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  target: {x: 6, y: 3, z: 0}
+  target: {x: 5.0019875, y: 3.0172203, z: 0}
   projectileColour:
     serializedVersion: 2
     rgba: 4294967295

@@ -40,8 +40,16 @@ public class LevelController : MonoBehaviour
     public void LevelComplete()
     {
         int nextLevel = CoreGameElements.i.gameSave.levelAt;
+
         if (nextLevel == 0) nextLevel = 1;
         int currentLevel = levelLoader.currentLevel;
+
+        int score = ScoreController.GetScoreStatic();
+        int highScore =
+            CoreGameElements.i.gameSave.boards[currentLevel - 1].score;
+        if (score > highScore)
+            CoreGameElements.i.gameSave.boards[currentLevel - 1].score = score;
+        ScoreController.ResetScoreStatic();
 
         if (currentLevel < CoreGameElements.i.totalLevels)
         {

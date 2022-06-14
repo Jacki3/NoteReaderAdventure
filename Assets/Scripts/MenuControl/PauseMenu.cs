@@ -70,6 +70,8 @@ public class PauseMenu : MonoBehaviour
 
         StartMenu.SetStartTextStatic(CoreGameElements.i.gameSave.firstRun);
 
+        mainMenu.UpdateLevelButtons();
+
         GameStateController.state = GameStateController.States.MainMenu;
         mainMenu.levelGen.boardController.ClearBoard();
         LevelController.i.DelayResetPlayer();

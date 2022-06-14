@@ -159,7 +159,7 @@ MonoBehaviour:
   soundType: 3
   totalItemsSpawnable: 5
   XPToGive: 10
-  scoreToAdd: 10
+  scoreToAdd: 5
   canSpawnHealth: 1
   canBeSmashed: 0
   tutorialObject: 0

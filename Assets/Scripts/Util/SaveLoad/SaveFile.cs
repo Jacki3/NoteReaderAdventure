@@ -24,6 +24,10 @@ public class SaveFile
     {
         public int level;
 
+        public int score;
+
+        public int maxScore;
+
         public int rowsMins;
 
         public int rowsMax;
@@ -35,5 +39,10 @@ public class SaveFile
         public int propsMin;
 
         public int propsMax;
+
+        public bool HasMaxScore()
+        {
+            return score >= maxScore ? true : false;
+        }
     }
 }

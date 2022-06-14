@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RhythmEnemy : MovingObject, INotation
 {
+    public int scoreToAdd;
+
     public int playerDmg;
 
     public int beatDelay = 1;
@@ -120,5 +122,10 @@ public class RhythmEnemy : MovingObject, INotation
     public Transform GetTransform()
     {
         return transform;
+    }
+
+    public int GetObjectScore()
+    {
+        return scoreToAdd;
     }
 }

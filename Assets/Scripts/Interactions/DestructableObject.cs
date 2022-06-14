@@ -117,4 +117,9 @@ public class DestructableObject : MonoBehaviour, INotation
         _explodable.explode (_spriteRenderer);
         ef.doExplosion(transform.position);
     }
+
+    public int GetObjectScore()
+    {
+        return scoreToAdd;
+    }
 }
