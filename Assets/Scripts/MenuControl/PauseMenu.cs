@@ -17,6 +17,8 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject optionsResume;
 
+    public GameObject areYouSurePopup;
+
     public GameObject rhythmBar;
 
     public Canvas gameCanvas;
@@ -50,6 +52,8 @@ public class PauseMenu : MonoBehaviour
 
     private bool isMainMenu = true;
 
+    private bool popUpVisible;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -77,7 +81,7 @@ public class PauseMenu : MonoBehaviour
         LevelController.i.DelayResetPlayer();
 
         metroSource.enabled = false;
-        StartCoroutine(FadeStartMenuAudio(audioFadeDur, -1, -80));
+        StartCoroutine(FadeStartMenuAudio(audioFadeDur, 9, -80));
         //save player stats
     }
 
@@ -90,12 +94,12 @@ public class PauseMenu : MonoBehaviour
             if (GameStateController.gamePaused)
             {
                 GetComponent<Canvas>().enabled = true;
+                optionButtons.SetActive(false);
+                pauseButtons.SetActive(true);
+                rhythmBar.SetActive(false);
                 EventSystem.current.SetSelectedGameObject (resumeButton);
                 mixer.GetFloat("MusicVol", out currentMusicVol);
                 mixer.SetFloat("MusicVol", currentMusicVol - 8);
-                optionButtons.SetActive(false);
-                mainButtons.SetActive(true);
-                rhythmBar.SetActive(false);
             }
             else
             {
@@ -107,7 +111,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    public void ShowOptions()
+    public void ShowOptions(bool showMain)
     {
         SoundController.PlaySound(SoundController.Sound.ButtonClick);
 
@@ -115,20 +119,26 @@ public class PauseMenu : MonoBehaviour
         {
             EventSystem.current.SetSelectedGameObject (resumeButton); //repeats above - concat showmenu but avoid pausing game everytime
             optionButtons.SetActive(false);
-            if (isMainMenu)
-                mainButtons.SetActive(true);
-            else
-                pauseButtons.SetActive(true);
+            if (showMain)
+            {
+                if (isMainMenu)
+                    mainButtons.SetActive(true);
+                else
+                    pauseButtons.SetActive(true);
+            }
             optionsVisible = false;
         }
         else
         {
             optionButtons.SetActive(true);
             EventSystem.current.SetSelectedGameObject (optionsResume);
-            if (isMainMenu)
-                mainButtons.SetActive(false);
-            else
-                pauseButtons.SetActive(false);
+            if (showMain)
+            {
+                if (isMainMenu)
+                    mainButtons.SetActive(false);
+                else
+                    pauseButtons.SetActive(false);
+            }
             optionsVisible = true;
         }
     }
@@ -137,6 +147,7 @@ public class PauseMenu : MonoBehaviour
     {
         SoundController.PlaySound(SoundController.Sound.ButtonClick);
 
+        //save COLOUR
         if (CoreGameElements.i.useColours)
         {
             CoreGameElements.i.useColours = false;
@@ -149,25 +160,45 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    public void ShowAreYouSure()
+    {
+        SoundController.PlaySound(SoundController.Sound.ButtonClick);
+        ShowOptions(false);
+        if (popUpVisible)
+        {
+            popUpVisible = false;
+            areYouSurePopup.SetActive(false);
+        }
+        else
+        {
+            popUpVisible = true;
+            areYouSurePopup.SetActive(true);
+        }
+    }
+
     public void SetMusicLevel(float value)
     {
+        //save MUSIC LEVEL
         mixer.SetFloat("MusicVol", (Mathf.Log10(value) * 20) - 10);
         if (isMainMenu) mixer.SetFloat("MainMenuVol", Mathf.Log10(value) * 20);
     }
 
     public void SetSFXLevel(float value)
     {
+        //save SFX LEVEL
         mixer.SetFloat("SFXVol", Mathf.Log10(value) * 20);
     }
 
     public void SetKeysLevel(float value)
     {
+        //save KEYS LEVEL
         mixer.SetFloat("KeysVol", Mathf.Log10(value) * 20);
         mixer.SetFloat("KeysMoveVol", Mathf.Log10(value) * 20);
     }
 
     public void SetMetroLevel(float value)
     {
+        //save METRO LEVEL
         mixer.SetFloat("MetroVol", Mathf.Log10(value) * 20);
     }
 
@@ -179,6 +210,9 @@ public class PauseMenu : MonoBehaviour
 
     public void MusicFade()
     {
+        isMainMenu = false;
+        background.SetActive(true);
+        pauseButtons.SetActive(true);
         musicAudio.Play();
         metroSource.enabled = true;
         StartCoroutine(FadeStartMenuAudio(audioFadeDur,
@@ -189,10 +223,7 @@ public class PauseMenu : MonoBehaviour
     private IEnumerator
     FadeStartMenuAudio(float duration, float targetVolMenu, float targetVolGame)
     {
-        background.SetActive(true);
-        pauseButtons.SetActive(true);
-        GetComponent<Canvas>().enabled = false;
-        isMainMenu = false;
+        GetComponent<Canvas>().enabled = isMainMenu ? true : false;
 
         float currentTime = 0;
         float currentVolMenu;
@@ -217,8 +248,7 @@ public class PauseMenu : MonoBehaviour
                     targetValueGame,
                     currentTime / duration);
             mixer.SetFloat("MainMenuVol", Mathf.Log10(newVolMenu) * 20);
-
-            // mixer.SetFloat("MusicVol", Mathf.Log10(newVolGame) * 20);
+            mixer.SetFloat("MusicVol", Mathf.Log10(newVolGame) * 20);
             yield return null;
         }
         yield break;

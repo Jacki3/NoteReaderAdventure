@@ -79,6 +79,8 @@ public class CoreGameElements : MonoBehaviour
 
     public int totalLives = 5;
 
+    public int difficultyDivider = 4;
+
     public int totalCollectiblesThisLevel;
 
     public int totalCoinsCollected;
@@ -106,6 +108,18 @@ public class CoreGameElements : MonoBehaviour
     public Pattern[] patternsBass;
 
     public CameraShakes cameraShakes;
+
+    public Difficuties currentDifficulty;
+
+    public enum Difficuties
+    {
+        easy,
+        medium,
+        hard,
+        harder,
+        ultraHard,
+        hardest
+    }
 
     [System.NonSerialized]
     public Color32[]

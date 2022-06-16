@@ -17,7 +17,8 @@ public static class UIController
         livesText,
         arenaWinText,
         multiplyText,
-        levelText
+        levelText,
+        danceFloorText
     }
 
     public enum UIImageComponents

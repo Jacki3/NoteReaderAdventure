@@ -45,6 +45,7 @@ public class GameHandler : MonoBehaviour
             //Load the game elements in (probably better to use for loop, find objects or elements that match and set them somehow?)
             CurrencyController.AddRemoveCoins(save.playerCoins, true);
             HealthController.SetHealth(save.playerHealth);
+            seed.boardController.SetDanceFloor();
         }
         else
         {

@@ -17,6 +17,8 @@ public class SaveFile
 
     public bool firstRun = true;
 
+    public bool danceFloorEnabled = true;
+
     public List<Board> boards = new List<Board>();
 
     [Serializable]
