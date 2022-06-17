@@ -39,6 +39,9 @@ public class LevelController : MonoBehaviour
 
     public void LevelComplete()
     {
+        CoreGameElements.i.gameSave.playerCoins =
+            CurrencyController.GetTotalCoins();
+
         int nextLevel = CoreGameElements.i.gameSave.levelAt;
 
         if (nextLevel == 0) nextLevel = 1;

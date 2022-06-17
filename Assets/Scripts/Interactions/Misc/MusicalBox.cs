@@ -2,23 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestructableObject : MonoBehaviour
+public class MusicalBox : NotationItem
 {
-    public Mission.Object objectType;
-
     public ItemSpawner.ItemType spawnableItem;
-
-    public SoundController.Sound soundType;
 
     public int totalItemsSpawnable = 1;
 
-    public int XPToGive;
-
-    public int scoreToAdd;
-
     public bool canSpawnHealth;
-
-    public bool canBeSmashed;
 
     public bool tutorialObject;
 
@@ -35,16 +25,13 @@ public class DestructableObject : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected override void AllNotationsComplete()
     {
-        //something about interfaces...?
-        if (other.tag == "SmashCircle" && canBeSmashed)
-        {
-            DestroyObject();
-        }
+        base.AllNotationsComplete();
+        DestroyObject();
     }
 
-    public virtual void DestroyObject()
+    public void DestroyObject()
     {
         //if health is below certain value then spawn lots of health OR if it is slightly low then spawn some (random)
         if (canSpawnHealth && HealthController.CriticalHealth())
@@ -89,10 +76,6 @@ public class DestructableObject : MonoBehaviour
             }
         }
 
-        MissionHolder.i.CheckValidMission (objectType);
-        if (scoreToAdd > 0) ScoreController.AddScore_Static(scoreToAdd);
-        ExperienceController.AddXP (XPToGive);
-        SoundController.PlaySound (soundType);
         ExplosionForce ef = GameObject.FindObjectOfType<ExplosionForce>();
         ef.force = 20;
         ef.radius = 5;

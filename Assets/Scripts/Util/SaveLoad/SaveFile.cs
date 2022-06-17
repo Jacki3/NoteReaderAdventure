@@ -17,7 +17,7 @@ public class SaveFile
 
     public bool firstRun = true;
 
-    public bool danceFloorEnabled = true;
+    public bool danceFloorEnabled = false;
 
     public List<Board> boards = new List<Board>();
 

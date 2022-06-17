@@ -22,8 +22,6 @@ public class Item : MonoBehaviour
 
     protected virtual void PickUp()
     {
-        // increment(); -- alternative solution could be events driven from parent classes?
-        //disable collision etc.
         SoundController.PlaySound (soundType);
         MissionHolder.i.CheckValidMission (missionObject);
         ItemSpawner.RemoveItem(this);

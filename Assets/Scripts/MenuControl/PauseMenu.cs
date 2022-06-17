@@ -1,9 +1,11 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -59,12 +61,23 @@ public class PauseMenu : MonoBehaviour
         animator = GetComponent<Animator>();
         PlayerController.inputActions.Player.Escape.performed += ctx =>
             ShowMenu();
+
+        List<Button> allButtons = new List<Button>();
+        transform.GetComponentsInChildrenRecursively<Button> (allButtons);
+
+        foreach (Button button in allButtons)
+        {
+            button
+                .onClick
+                .AddListener(delegate ()
+                {
+                    ButtonClickSound();
+                });
+        }
     }
 
     public void ReturnToMain()
     {
-        SoundController.PlaySound(SoundController.Sound.ButtonClick);
-
         pauseButtons.SetActive(false);
         background.SetActive(false);
         gameCanvas.enabled = false;
@@ -113,8 +126,6 @@ public class PauseMenu : MonoBehaviour
 
     public void ShowOptions(bool showMain)
     {
-        SoundController.PlaySound(SoundController.Sound.ButtonClick);
-
         if (optionsVisible)
         {
             EventSystem.current.SetSelectedGameObject (resumeButton); //repeats above - concat showmenu but avoid pausing game everytime
@@ -145,8 +156,6 @@ public class PauseMenu : MonoBehaviour
 
     public void SetColour(TMPro.TextMeshProUGUI text)
     {
-        SoundController.PlaySound(SoundController.Sound.ButtonClick);
-
         //save COLOUR
         if (CoreGameElements.i.useColours)
         {
@@ -162,7 +171,6 @@ public class PauseMenu : MonoBehaviour
 
     public void ShowAreYouSure()
     {
-        SoundController.PlaySound(SoundController.Sound.ButtonClick);
         ShowOptions(false);
         if (popUpVisible)
         {
@@ -204,7 +212,6 @@ public class PauseMenu : MonoBehaviour
 
     public void Quit()
     {
-        SoundController.PlaySound(SoundController.Sound.ButtonClick);
         GameStateController.Quit();
     }
 
@@ -285,5 +292,10 @@ public class PauseMenu : MonoBehaviour
         }
         else
             Debug.Log("No save exists!");
+    }
+
+    private void ButtonClickSound()
+    {
+        SoundController.PlaySound(SoundController.Sound.ButtonClick);
     }
 }

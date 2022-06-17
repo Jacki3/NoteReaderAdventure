@@ -29,7 +29,7 @@ public class Seed : MonoBehaviour
         {
             SaveFile.Board newBoard = new SaveFile.Board();
 
-            gameSeed = "LvlBuilderer_";
+            gameSeed = "LvlBuilder1_";
             defaultGameSeed = gameSeed;
             gameSeed += level;
             currentSeed = gameSeed.GetHashCode();
@@ -48,8 +48,6 @@ public class Seed : MonoBehaviour
             newBoard.maxScore =
                 boardController.boardMaxScore *
                 ScoreController.GetMaxMultiplierStatic();
-
-            print(newBoard.maxScore);
 
             CoreGameElements.i.gameSave.boards.Add (newBoard);
 
@@ -94,5 +92,10 @@ public class Seed : MonoBehaviour
         UIController
             .UpdateTextUI(UIController.UITextComponents.levelText,
             "Level " + levelToLoad);
+
+        int coins = CoreGameElements.i.gameSave.playerCoins;
+        CurrencyController.totalCoinsCollected = coins;
+        ScoreDisplayUpdater
+            .StartRoutineDown(coins, UIController.UITextComponents.coinText);
     }
 }

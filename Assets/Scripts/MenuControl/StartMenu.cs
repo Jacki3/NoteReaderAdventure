@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StartMenu : MonoBehaviour
 {
@@ -69,6 +70,19 @@ public class StartMenu : MonoBehaviour
             newButton.transform.localScale = size;
             string lvlName = (i + 1).ToString();
             newButton.SetLevelText (lvlName);
+        }
+
+        List<Button> allButtons = new List<Button>();
+        transform.GetComponentsInChildrenRecursively<Button> (allButtons);
+
+        foreach (Button button in allButtons)
+        {
+            button
+                .onClick
+                .AddListener(delegate ()
+                {
+                    ButtonClickSound();
+                });
         }
     }
 
@@ -147,7 +161,6 @@ public class StartMenu : MonoBehaviour
 
     public void ShowOptions()
     {
-        SoundController.PlaySound(SoundController.Sound.ButtonClick);
         if (optionsVisible)
         {
             optionButtons.SetActive(false);
@@ -164,7 +177,6 @@ public class StartMenu : MonoBehaviour
 
     public void ShowLevelSelect()
     {
-        SoundController.PlaySound(SoundController.Sound.ButtonClick);
         UpdateLevelButtons();
 
         if (levelsVisible)
@@ -183,7 +195,11 @@ public class StartMenu : MonoBehaviour
 
     public void Quit()
     {
-        SoundController.PlaySound(SoundController.Sound.ButtonClick);
         GameStateController.Quit();
+    }
+
+    private void ButtonClickSound()
+    {
+        SoundController.PlaySound(SoundController.Sound.ButtonClick);
     }
 }

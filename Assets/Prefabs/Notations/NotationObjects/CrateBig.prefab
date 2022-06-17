@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7933061868076363337}
   - component: {fileID: 7933061868076363339}
   - component: {fileID: 7933061868076363336}
-  - component: {fileID: -3733418015417639173}
   - component: {fileID: -8355838086837301282}
+  - component: {fileID: 2621726223009435372}
   m_Layer: 23
   m_Name: CrateBig
   m_TagString: Untagged
@@ -142,27 +142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7af6dd9712bb07c43a7a851e83d317f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-3733418015417639173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7933061868076363333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd4fbb82c25c0f94faa20bf668aa1f59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectType: 6
-  spawnableItem: 0
-  soundType: 3
-  totalItemsSpawnable: 5
-  XPToGive: 10
-  scoreToAdd: 5
-  canSpawnHealth: 1
-  canBeSmashed: 0
-  tutorialObject: 0
 --- !u!61 &-8355838086837301282
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -189,6 +168,28 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2621726223009435372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7933061868076363333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4feaf4e7b3594241b8d54b7c59a2c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notationsToComplete: 1
+  XPToAdd: 40
+  scoreToAdd: 20
+  animator: {fileID: 0}
+  missionObject: 6
+  sound: 3
+  spawnableItem: 0
+  totalItemsSpawnable: 5
+  canSpawnHealth: 0
+  tutorialObject: 0
 --- !u!1001 &936089519613345141
 PrefabInstance:
   m_ObjectHideFlags: 0

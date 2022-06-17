@@ -260,6 +260,7 @@ public class BoardController : MonoBehaviour
             INotation newNotation = newObj.GetComponent<INotation>();
             if (newNotation != null)
             {
+                print (newNotation);
                 notations.Add (newNotation);
                 boardMaxScore += newNotation.GetObjectScore();
             }
@@ -310,9 +311,9 @@ public class BoardController : MonoBehaviour
         InitialiseList();
         LayoutObjectAtRand(propTiles, propCount.minimum, propCount.maximum);
 
-        LayoutObjectAtRand(smashableTiles,
-        smashableCount.minimum,
-        smashableCount.maximum);
+        // LayoutObjectAtRand(smashableTiles,
+        // smashableCount.minimum,
+        // smashableCount.maximum);
         if (spawnEnemies && level % 5 == 0)
         {
             spawnNotation = false;
@@ -419,9 +420,9 @@ public class BoardController : MonoBehaviour
         {
             UIController
                 .UpdateTextUI(UIController.UITextComponents.danceFloorText,
-                "dance floor: off");
-            danceFloorHidden = true;
-            if (danceFloor != null) danceFloor.gameObject.SetActive(false);
+                "dance floor: on");
+            danceFloorHidden = false;
+            if (danceFloor != null) danceFloor.gameObject.SetActive(true);
         }
     }
 

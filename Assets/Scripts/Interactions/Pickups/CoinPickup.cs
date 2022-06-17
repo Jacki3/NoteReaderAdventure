@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class CoinPickup : Item
 {
+    public int valueOfCoin = 1;
+
     protected override void PickUp()
     {
         base.PickUp();
-        CurrencyController.AddRemoveCoins(1, true);
+        CurrencyController.AddRemoveCoins(valueOfCoin, true);
         Destroy (gameObject);
-        //destroy on animate - make an animation rather than code it!
     }
 }
