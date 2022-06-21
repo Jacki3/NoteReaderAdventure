@@ -6,27 +6,44 @@ public class RhythmEnemy : MovingObject, INotation
 {
     public int scoreToAdd;
 
-    public int playerDmg;
+    public int XPToAdd;
 
-    public int beatDelay = 1;
+    public int playerDmg;
 
     public int notationsToComplete;
 
+    public int minDelay;
+
+    public int maxDelay;
+
+    public Mission.Object missionObject;
+
+    public SoundController.Sound completeSound;
+
+    private int beatDelay;
+
     private int notationsCompleted = 0;
 
-    private Animator animator;
+    protected Animator animator;
 
     private Transform target;
 
     private float secPerBeat;
 
+    private Explodable _explodable;
+
+    private SpriteRenderer _spriteRenderer;
+
     protected override void Start()
     {
         base.Start();
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        animator = GetComponent<Animator>();
+        _explodable = GetComponent<Explodable>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        target = GameObject.FindGameObjectWithTag("Player").transform; //this might be untrue for all enemies (just bear in mind)
         StartCoroutine(MoveToBeat());
 
-        beatDelay = Random.Range(2, 8);
+        beatDelay = Random.Range(minDelay, maxDelay);
         if (beatDelay % 2 != 0) beatDelay++;
     }
 
@@ -46,8 +63,9 @@ public class RhythmEnemy : MovingObject, INotation
         }
     }
 
-    private void MoveEnemy()
+    protected virtual void MoveEnemy()
     {
+        //some enemies might have their own movement and when player is close enough then they will follow this logic
         int xDir = 0;
         int yDir = 0;
 
@@ -65,29 +83,56 @@ public class RhythmEnemy : MovingObject, INotation
 
     protected override void OnCantMove<T>(T Component)
     {
-        RigidPlayerController hitPlayer = Component as RigidPlayerController;
-        hitPlayer.LoseHealth (playerDmg);
     }
 
     public void NotationComplete()
     {
+        LevelController.i.levelLoader.boardController.RemoveNotationFromList (
+            transform
+        );
         notationsCompleted++;
         if (notationsCompleted >= notationsToComplete)
         {
-            print("destroy");
-            Destroy (gameObject);
+            AllNotationsComplete();
         }
         else
         {
-            //take damage - play sound, animate etc.
+            TakeDamage();
         }
+    }
+
+    protected virtual void AllNotationsComplete()
+    {
+        if (XPToAdd > 0) ExperienceController.AddXP(XPToAdd);
+        if (scoreToAdd > 0) ScoreController.AddScore_Static(scoreToAdd);
+        if (missionObject != Mission.Object.None)
+            MissionHolder.i.CheckValidMission(missionObject);
+        if (completeSound != SoundController.Sound.None)
+            SoundController.PlaySound(completeSound);
+
+        var notationFloating =
+            transform.GetComponentInChildren<ParticleSystem>();
+        if (notationFloating != null)
+            notationFloating.gameObject.SetActive(false);
+
+        ExplosionForce ef = GameObject.FindObjectOfType<ExplosionForce>();
+        ef.force = 20;
+        ef.radius = 5;
+        _explodable.explode (_spriteRenderer);
+        ef.doExplosion(transform.position);
+    }
+
+    protected virtual void TakeDamage()
+    {
     }
 
     public void PlayedCorrectNote()
     {
-        print("dmg");
+        CorrectNote();
+    }
 
-        //take damage - play sound, animate etc.
+    protected virtual void CorrectNote()
+    {
     }
 
     void OnBecameInvisible()

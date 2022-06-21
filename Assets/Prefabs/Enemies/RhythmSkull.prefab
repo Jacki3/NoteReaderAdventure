@@ -10,11 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 2706733211840462386}
   - component: {fileID: 2706733211840462387}
-  - component: {fileID: 2706733211840462385}
   - component: {fileID: 2706733211840462384}
   - component: {fileID: 2706733211840462399}
+  - component: {fileID: 1742280356552638185}
+  - component: {fileID: 920101592563234940}
+  - component: {fileID: -2394066626272473093}
   m_Layer: 23
-  m_Name: RhythmEnemy
+  m_Name: RhythmSkull
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,25 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2706733211840462385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2706733211840462388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 767b7558468bef043b690bcb7fe16ff5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveTime: 0
-  blockingLayer:
-    serializedVersion: 2
-    m_Bits: 8388608
-  playerDmg: 1
-  beatDelay: 2
-  notationsToComplete: 1
 --- !u!61 &2706733211840462384
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -152,6 +135,69 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1742280356552638185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2706733211840462388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd391141a93b8a40a83d4b1f0551420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveTime: 0.05
+  blockingLayer:
+    serializedVersion: 2
+    m_Bits: 8388608
+  scoreToAdd: 25
+  XPToAdd: 50
+  playerDmg: 1
+  notationsToComplete: 1
+  minDelay: 4
+  maxDelay: 8
+  missionObject: 9
+  completeSound: 0
+--- !u!95 &920101592563234940
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2706733211840462388}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 637b493654ec73146a82fbdd0eae1db2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-2394066626272473093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2706733211840462388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75953d6b31f574644be1238b08e89b8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allowRuntimeFragmentation: 1
+  extraPoints: 15
+  subshatterSteps: 0
+  fragmentLayer: Layer 1
+  sortingLayerName: Layer 1
+  orderInLayer: 1
+  shatterType: 1
+  fragments: []
 --- !u!1001 &3172855143507318997
 PrefabInstance:
   m_ObjectHideFlags: 0
