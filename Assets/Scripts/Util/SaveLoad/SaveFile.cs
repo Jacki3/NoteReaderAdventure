@@ -19,6 +19,18 @@ public class SaveFile
 
     public bool danceFloorEnabled = false;
 
+    public float musicVol = 1;
+
+    public float SFXVol = 1;
+
+    public float metroVol = 1;
+
+    public float keysVol = 1;
+
+    public bool usingColour = false;
+
+    public List<Mission> allMissions = new List<Mission>();
+
     public List<Board> boards = new List<Board>();
 
     [Serializable]

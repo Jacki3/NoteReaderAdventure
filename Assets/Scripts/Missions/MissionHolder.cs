@@ -69,6 +69,30 @@ public class MissionHolder : MonoBehaviour
         missionPlaceholders.Add (_missionPlaceholder);
     }
 
+    public void LoadAllMissionsFromSave()
+    {
+        Mission temp = new Mission();
+        foreach (Mission savedMission in CoreGameElements.i.gameSave.allMissions
+        )
+        {
+            if (savedMission.isActiveMission && !savedMission.missionComplete())
+            {
+                temp = savedMission;
+
+                // for (int i = 0; i < savedMission.currentAmount; i++)
+                // {
+                //     IncrementCurrentAmount (savedMission);
+                // }
+            }
+        }
+        print(temp.currentAmount);
+        for (int i = 0; i < temp.currentAmount; i++)
+        {
+            print (i);
+            IncrementCurrentAmount (temp);
+        }
+    }
+
     public void IncrementCurrentAmount(Mission mission)
     {
         if (mission.isActiveMission)
@@ -140,5 +164,30 @@ public class MissionHolder : MonoBehaviour
             ) return placeHolder;
         }
         return null;
+    }
+
+    public void SaveAllMissions()
+    {
+        foreach (Mission mission in currentMissions)
+        {
+            foreach (Mission
+                savedMission
+                in
+                CoreGameElements.i.gameSave.allMissions
+            )
+            {
+                if (
+                    mission.missionObjectString ==
+                    savedMission.missionObjectString
+                )
+                {
+                    savedMission.currentAmount = mission.currentAmount;
+                    savedMission.isActiveMission = mission.isActiveMission;
+                    print(savedMission.missionObjectString +
+                    savedMission.currentAmount +
+                    savedMission.isActiveMission);
+                }
+            }
+        }
     }
 }

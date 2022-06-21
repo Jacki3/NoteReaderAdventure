@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 622865271519007276}
   - component: {fileID: 622865271519007267}
   - component: {fileID: -8162950674869725870}
+  - component: {fileID: 5858334342513922571}
   m_Layer: 0
   m_Name: NotePopup
   m_TagString: Untagged
@@ -99,7 +100,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: G
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8dbd984936cb4364983ea14c9d5f1702, type: 2}
   m_sharedMaterial: {fileID: 3024607450294678299, guid: 8dbd984936cb4364983ea14c9d5f1702,
@@ -127,8 +128,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -183,3 +184,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9345e71ab57bd54438610e112c6f765c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floatSpeed: 0.3
+  dissapearSpeed: 0.4
+--- !u!95 &5858334342513922571
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622865271519007266}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7ebc2c90bbac31548a92341763c0ea1f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

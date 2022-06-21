@@ -75,6 +75,11 @@ public class LevelController : MonoBehaviour
             print("GAME COMPLETE!");
             //GAME DONE! SHOW CREDITS! USE GAME STATE MANAGER!
         }
+
+        MissionHolder.i.SaveAllMissions();
+
+        foreach (Mission mission in CoreGameElements.i.gameSave.allMissions)
+        print(mission.currentAmount);
     }
 
     public void DelayResetPlayer()

@@ -260,7 +260,6 @@ public class BoardController : MonoBehaviour
             INotation newNotation = newObj.GetComponent<INotation>();
             if (newNotation != null)
             {
-                print (newNotation);
                 notations.Add (newNotation);
                 boardMaxScore += newNotation.GetObjectScore();
             }
@@ -384,8 +383,6 @@ public class BoardController : MonoBehaviour
 
     public void HideShowDanceFloor()
     {
-        SoundController.PlaySound(SoundController.Sound.ButtonClick);
-
         if (!danceFloorHidden)
         {
             UIController

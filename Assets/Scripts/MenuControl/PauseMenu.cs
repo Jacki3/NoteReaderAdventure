@@ -9,6 +9,10 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
+    public GameObject musicSlider;
+
+    public GameObject mainMenuStart;
+
     public GameObject mainButtons;
 
     public GameObject pauseButtons;
@@ -78,6 +82,8 @@ public class PauseMenu : MonoBehaviour
 
     public void ReturnToMain()
     {
+        EventSystem.current.SetSelectedGameObject (mainMenuStart);
+
         pauseButtons.SetActive(false);
         background.SetActive(false);
         gameCanvas.enabled = false;
@@ -128,21 +134,26 @@ public class PauseMenu : MonoBehaviour
     {
         if (optionsVisible)
         {
-            EventSystem.current.SetSelectedGameObject (resumeButton); //repeats above - concat showmenu but avoid pausing game everytime
             optionButtons.SetActive(false);
             if (showMain)
             {
                 if (isMainMenu)
+                {
                     mainButtons.SetActive(true);
+                    EventSystem.current.SetSelectedGameObject (mainMenuStart);
+                }
                 else
+                {
                     pauseButtons.SetActive(true);
+                    EventSystem.current.SetSelectedGameObject (resumeButton); //repeats above - concat showmenu but avoid pausing game everytime
+                }
             }
             optionsVisible = false;
         }
         else
         {
             optionButtons.SetActive(true);
-            EventSystem.current.SetSelectedGameObject (optionsResume);
+            EventSystem.current.SetSelectedGameObject (musicSlider);
             if (showMain)
             {
                 if (isMainMenu)
@@ -154,19 +165,34 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    public void SetColour(TMPro.TextMeshProUGUI text)
+    public void SetColour(bool switchSetting)
     {
-        //save COLOUR
+        if (switchSetting)
+        {
+            if (CoreGameElements.i.useColours)
+            {
+                CoreGameElements.i.useColours = false;
+            }
+            else
+            {
+                CoreGameElements.i.useColours = true;
+            }
+        }
+
         if (CoreGameElements.i.useColours)
-        {
-            CoreGameElements.i.useColours = false;
-            text.colorGradientPreset = colorGradientWhite;
-        }
+            UIController
+                .UpdateTextColour(UIController
+                    .UITextComponents
+                    .colourOptionText,
+                colorGradient);
         else
-        {
-            CoreGameElements.i.useColours = true;
-            text.colorGradientPreset = colorGradient;
-        }
+            UIController
+                .UpdateTextColour(UIController
+                    .UITextComponents
+                    .colourOptionText,
+                colorGradientWhite);
+
+        CoreGameElements.i.gameSave.usingColour = CoreGameElements.i.useColours;
     }
 
     public void ShowAreYouSure()
@@ -186,28 +212,69 @@ public class PauseMenu : MonoBehaviour
 
     public void SetMusicLevel(float value)
     {
-        //save MUSIC LEVEL
         mixer.SetFloat("MusicVol", (Mathf.Log10(value) * 20) - 10);
-        if (isMainMenu) mixer.SetFloat("MainMenuVol", Mathf.Log10(value) * 20);
+        mixer.SetFloat("MainMenuVol", Mathf.Log10(value) * 20);
+        CoreGameElements.i.gameSave.musicVol =
+            CoreUIElements
+                .i
+                .GetSliderComponent(UIController.UIImageComponents.musicVolBar)
+                .value;
     }
 
     public void SetSFXLevel(float value)
     {
-        //save SFX LEVEL
         mixer.SetFloat("SFXVol", Mathf.Log10(value) * 20);
+        CoreGameElements.i.gameSave.SFXVol =
+            CoreUIElements
+                .i
+                .GetSliderComponent(UIController.UIImageComponents.SFXVolBar)
+                .value;
     }
 
     public void SetKeysLevel(float value)
     {
-        //save KEYS LEVEL
         mixer.SetFloat("KeysVol", Mathf.Log10(value) * 20);
         mixer.SetFloat("KeysMoveVol", Mathf.Log10(value) * 20);
+        CoreGameElements.i.gameSave.keysVol =
+            CoreUIElements
+                .i
+                .GetSliderComponent(UIController.UIImageComponents.keyVolBar)
+                .value;
     }
 
     public void SetMetroLevel(float value)
     {
-        //save METRO LEVEL
         mixer.SetFloat("MetroVol", Mathf.Log10(value) * 20);
+        CoreGameElements.i.gameSave.metroVol =
+            CoreUIElements
+                .i
+                .GetSliderComponent(UIController.UIImageComponents.metroVolBar)
+                .value;
+    }
+
+    public void SetAllSliders()
+    {
+        float musicVal = CoreGameElements.i.gameSave.musicVol;
+        float sfxVal = CoreGameElements.i.gameSave.SFXVol;
+        float keysVal = CoreGameElements.i.gameSave.keysVol;
+        float metroVal = CoreGameElements.i.gameSave.metroVol;
+
+        UIController
+            .UpdateSliderAmount(UIController.UIImageComponents.musicVolBar,
+            1,
+            musicVal);
+        UIController
+            .UpdateSliderAmount(UIController.UIImageComponents.SFXVolBar,
+            1,
+            sfxVal);
+        UIController
+            .UpdateSliderAmount(UIController.UIImageComponents.keyVolBar,
+            1,
+            keysVal);
+        UIController
+            .UpdateSliderAmount(UIController.UIImageComponents.metroVolBar,
+            1,
+            metroVal);
     }
 
     public void Quit()

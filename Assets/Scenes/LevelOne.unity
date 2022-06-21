@@ -9873,7 +9873,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: colour
+  m_text: 'movement mode: rhythm'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bc9b35644fbb905468391d76a7040fd5, type: 2}
   m_sharedMaterial: {fileID: 3024607450294678299, guid: bc9b35644fbb905468391d76a7040fd5,
@@ -9938,7 +9938,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -121.569695, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -14171,7 +14171,7 @@ GameObject:
   - component: {fileID: 205029371}
   - component: {fileID: 205029370}
   m_Layer: 5
-  m_Name: MovementMode
+  m_Name: ColourButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14190,11 +14190,11 @@ RectTransform:
   m_Children:
   - {fileID: 1949839564}
   m_Father: {fileID: 689282422}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -668}
+  m_AnchoredPosition: {x: 0, y: -578}
   m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &205029370
@@ -14210,9 +14210,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 1892964726}
+    m_SelectOnDown: {fileID: 467702538}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -14243,14 +14243,14 @@ MonoBehaviour:
       - m_Target: {fileID: 584827269}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: SetColour
-        m_Mode: 2
+        m_Mode: 6
         m_Arguments:
-          m_ObjectArgument: {fileID: 1949839565}
-          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &205029371
 MonoBehaviour:
@@ -35248,7 +35248,7 @@ GameObject:
   - component: {fileID: 467702539}
   - component: {fileID: 467702538}
   m_Layer: 5
-  m_Name: ColourButton
+  m_Name: MovementButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35267,11 +35267,11 @@ RectTransform:
   m_Children:
   - {fileID: 120454124}
   m_Father: {fileID: 689282422}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -578}
+  m_AnchoredPosition: {x: 0, y: -668}
   m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &467702538
@@ -35287,9 +35287,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 205029370}
+    m_SelectOnDown: {fileID: 533963209}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -35320,14 +35320,14 @@ MonoBehaviour:
       - m_Target: {fileID: 584827269}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: SetColour
-        m_Mode: 2
+        m_Mode: 6
         m_Arguments:
-          m_ObjectArgument: {fileID: 120454125}
-          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &467702539
 MonoBehaviour:
@@ -35866,7 +35866,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7732655359041420551, guid: 2c6320ca7b645724eaefeea208dd58c7,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 1592311135}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -37477,9 +37477,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 467702538}
+    m_SelectOnDown: {fileID: 833149912}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -37615,9 +37615,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 1098206647}
+    m_SelectOnDown: {fileID: 1291790373}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -39335,9 +39335,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 323529045}
+    m_SelectOnDown: {fileID: 1450627243}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -39691,6 +39691,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc63e1d829af63248b1214d0f9964ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicSlider: {fileID: 1098206645}
+  mainMenuStart: {fileID: 54087746}
   mainButtons: {fileID: 2065858858}
   pauseButtons: {fileID: 2048965325}
   optionButtons: {fileID: 689282421}
@@ -42159,6 +42161,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 932af373dacc5424cb0df2efd129cab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstButton: {fileID: 54087746}
+  levelOneButton: {fileID: 0}
   mainButtons: {fileID: 2065858858}
   optionButtons: {fileID: 689282421}
   levelSelect: {fileID: 539331733}
@@ -43241,8 +43245,8 @@ RectTransform:
   - {fileID: 678294206}
   - {fileID: 512614768}
   - {fileID: 1460316147}
-  - {fileID: 467702537}
   - {fileID: 205029369}
+  - {fileID: 467702537}
   - {fileID: 533963208}
   - {fileID: 833149911}
   - {fileID: 2093577715}
@@ -51310,11 +51314,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 533963209}
+    m_SelectOnDown: {fileID: 1098206647}
     m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 2093577716}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -69748,9 +69752,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 833149912}
+    m_SelectOnDown: {fileID: 534884764}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -84244,9 +84248,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 534884764}
+    m_SelectOnDown: {fileID: 1892964726}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -87340,9 +87344,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 1201129397}
+    m_SelectOnDown: {fileID: 54087748}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -87603,7 +87607,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -941277463048152142, guid: 2c6320ca7b645724eaefeea208dd58c7,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 2024148347}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -93834,6 +93838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seed: {fileID: 876928465}
+  pauseMenu: {fileID: 584827269}
 --- !u!1001 &1579303878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -94334,6 +94339,34 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 248456906}
   m_PrefabAsset: {fileID: 0}
+--- !u!83 &1592311135
+AudioClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: helm
+  m_LoadType: 0
+  m_Channels: 1
+  m_Frequency: 48000
+  m_BitsPerSample: 32
+  m_Length: 0
+  m_IsTrackerFormat: 0
+  m_Ambisonic: 0
+  m_SubsoundIndex: 0
+  m_PreloadAudioData: 1
+  m_LoadInBackground: 0
+  m_Legacy3D: 0
+  m_Resource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_CompressionFormat: 0
+  m_EditorResource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_EditorCompressionFormat: 0
 --- !u!1001 &1593255496
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -105205,6 +105238,8 @@ MonoBehaviour:
     textPlaceholder: {fileID: 369754027}
   - textComponent: 14
     textPlaceholder: {fileID: 1160030935}
+  - textComponent: 15
+    textPlaceholder: {fileID: 120454125}
   imageComponents:
   - imageComponent: 1
     image: {fileID: 0}
@@ -105224,6 +105259,18 @@ MonoBehaviour:
   - imageComponent: 9
     image: {fileID: 2074594023}
     slider: {fileID: 751483148}
+  - imageComponent: 10
+    image: {fileID: 0}
+    slider: {fileID: 1098206647}
+  - imageComponent: 11
+    image: {fileID: 0}
+    slider: {fileID: 534884764}
+  - imageComponent: 12
+    image: {fileID: 0}
+    slider: {fileID: 1892964726}
+  - imageComponent: 13
+    image: {fileID: 0}
+    slider: {fileID: 1291790373}
   hearts:
   - {fileID: 1553494372}
   - {fileID: 786728873}
@@ -107499,9 +107546,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 1291790373}
+    m_SelectOnDown: {fileID: 205029370}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -109561,7 +109608,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'movement mode: rhythm'
+  m_text: colour
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bc9b35644fbb905468391d76a7040fd5, type: 2}
   m_sharedMaterial: {fileID: 3024607450294678299, guid: bc9b35644fbb905468391d76a7040fd5,
@@ -111740,6 +111787,34 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1612137950}
   m_PrefabAsset: {fileID: 0}
+--- !u!83 &2024148347
+AudioClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: helm
+  m_LoadType: 0
+  m_Channels: 1
+  m_Frequency: 48000
+  m_BitsPerSample: 32
+  m_Length: 0
+  m_IsTrackerFormat: 0
+  m_Ambisonic: 0
+  m_SubsoundIndex: 0
+  m_PreloadAudioData: 1
+  m_LoadInBackground: 0
+  m_Legacy3D: 0
+  m_Resource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_CompressionFormat: 0
+  m_EditorResource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_EditorCompressionFormat: 0
 --- !u!1001 &2024215479
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -114252,11 +114327,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 833149912}
+    m_SelectOnDown: {fileID: 1098206647}
+    m_SelectOnLeft: {fileID: 833149912}
+    m_SelectOnRight: {fileID: 833149912}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}

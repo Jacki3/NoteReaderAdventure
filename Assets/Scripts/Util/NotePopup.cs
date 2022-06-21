@@ -7,6 +7,10 @@ using Unity.Mathematics;
 
 public class NotePopup : MonoBehaviour
 {
+    public float floatSpeed;
+
+    public float dissapearSpeed;
+
     public static NotePopup Create(Vector3 pos, string note, Color textColor)
     {
         NotePopup notePopup =
@@ -38,14 +42,12 @@ public class NotePopup : MonoBehaviour
 
     void Update()
     {
-        float ySpeed = .5f;
-        transform.position += new Vector3(0, ySpeed) * Time.deltaTime;
+        transform.position += new Vector3(0, floatSpeed) * Time.deltaTime;
 
         dissapearTimer -= Time.deltaTime;
         if (dissapearTimer < 0)
         {
-            float dissapearSped = 3f;
-            textColour.a -= dissapearSped * Time.deltaTime;
+            textColour.a -= dissapearSpeed * Time.deltaTime;
             textMesh.color = textColour;
 
             if (textColour.a < 0) Destroy(gameObject);

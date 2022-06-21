@@ -2,10 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class StartMenu : MonoBehaviour
 {
+    public GameObject firstButton;
+
+    public GameObject levelOneButton;
+
     public GameObject mainButtons;
 
     public GameObject optionButtons;
@@ -41,6 +46,8 @@ public class StartMenu : MonoBehaviour
 
     void Start()
     {
+        EventSystem.current.SetSelectedGameObject (firstButton);
+
         //should avoid creating buttons everytime?
         int totalLevels = CoreGameElements.i.totalLevels;
 
@@ -49,6 +56,8 @@ public class StartMenu : MonoBehaviour
             //Create a new button
             LevelButton newButton =
                 Instantiate(button, Vector3.zero, Quaternion.identity);
+
+            if (i == 0) levelOneButton = newButton.gameObject;
 
             levelButtons.Add (newButton);
 
@@ -163,6 +172,7 @@ public class StartMenu : MonoBehaviour
     {
         if (optionsVisible)
         {
+            EventSystem.current.SetSelectedGameObject (firstButton);
             optionButtons.SetActive(false);
             mainButtons.SetActive(true);
             optionsVisible = false;
@@ -181,12 +191,14 @@ public class StartMenu : MonoBehaviour
 
         if (levelsVisible)
         {
+            EventSystem.current.SetSelectedGameObject (firstButton);
             levelSelect.SetActive(false);
             mainButtons.SetActive(true);
             levelsVisible = false;
         }
         else
         {
+            EventSystem.current.SetSelectedGameObject (levelOneButton);
             levelSelect.SetActive(true);
             mainButtons.SetActive(false);
             levelsVisible = true;

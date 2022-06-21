@@ -11,6 +11,8 @@ public class GameHandler : MonoBehaviour
 {
     public Seed seed;
 
+    public PauseMenu pauseMenu;
+
     private static string DATA_PATH;
 
     void Start()
@@ -46,12 +48,21 @@ public class GameHandler : MonoBehaviour
             CurrencyController.AddRemoveCoins(save.playerCoins, true);
             HealthController.SetHealth(save.playerHealth);
             seed.boardController.SetDanceFloor();
+            pauseMenu.SetAllSliders();
+            pauseMenu.SetColour(false);
+            MissionHolder.i.LoadAllMissionsFromSave();
         }
         else
         {
             //first time loading game, create the savegame object to be saved n loadedz
             save = new SaveFile();
             CoreGameElements.i.gameSave = save;
+
+            foreach (Mission mission in MissionHolder.i.currentMissions)
+            {
+                print("adding mission");
+                save.allMissions.Add (mission);
+            }
 
             seed.SetLevels();
         }
