@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 public static class UIController
 {
@@ -16,7 +17,10 @@ public static class UIController
         collectibleText,
         livesText,
         arenaWinText,
-        multiplyText
+        multiplyText,
+        levelText,
+        danceFloorText,
+        colourOptionText
     }
 
     public enum UIImageComponents
@@ -30,7 +34,11 @@ public static class UIController
         silverKey,
         ironKey,
         staminaBar,
-        outerBeat
+        outerBeat,
+        musicVolBar,
+        SFXVolBar,
+        metroVolBar,
+        keyVolBar
     }
 
     private static int heartIndex = 0;
@@ -49,6 +57,15 @@ public static class UIController
         //reflection - get type of UI element
         //find exisisting element type and change value of text - could still apply
         CoreUIElements.i.GetTextComponent(component).text += text;
+    }
+
+    public static void UpdateTextColour(
+        UITextComponents component,
+        TMP_ColorGradient colorGradient
+    )
+    {
+        CoreUIElements.i.GetTextComponent(component).colorGradientPreset =
+            colorGradient;
     }
 
     public static void UpdateImageSprite(

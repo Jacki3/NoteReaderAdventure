@@ -9,7 +9,10 @@ public class ItemSpawner : MonoBehaviour
 {
     public enum ItemType
     {
-        Coin,
+        BronzeCoin,
+        SilverCoin,
+        GoldCoin,
+        UltraCoin,
         SmallHealthPotion,
         HealthPotion,
         LargeHealthPotion,

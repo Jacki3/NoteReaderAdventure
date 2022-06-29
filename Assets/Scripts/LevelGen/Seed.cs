@@ -14,7 +14,7 @@ public class Seed : MonoBehaviour
 
     public BoardController boardController;
 
-    private string defaultGameSeed;
+    public string defaultGameSeed;
 
     public void SetLevels()
     {
@@ -27,13 +27,14 @@ public class Seed : MonoBehaviour
     {
         for (int i = 0; i < totalLevels; i++)
         {
-            gameSeed = "LvlBuild_" + level;
+            SaveFile.Board newBoard = new SaveFile.Board();
+
+            gameSeed = "LvlBuilder2_";
+            defaultGameSeed = gameSeed;
+            gameSeed += level;
             currentSeed = gameSeed.GetHashCode();
             Random.InitState (currentSeed);
             boardController.SetupScene (level);
-            defaultGameSeed = gameSeed;
-
-            SaveFile.Board newBoard = new SaveFile.Board();
 
             CoreGameElements.i.gameSave.defaultGameSeed = defaultGameSeed;
 
@@ -44,22 +45,32 @@ public class Seed : MonoBehaviour
             newBoard.columnsMax = boardController.columnsMax;
             newBoard.propsMin = boardController.propCount.minimum;
             newBoard.propsMax = boardController.propCount.maximum;
+            newBoard.maxScore =
+                boardController.boardMaxScore *
+                ScoreController.GetMaxMultiplierStatic();
 
             CoreGameElements.i.gameSave.boards.Add (newBoard);
 
             level++;
 
+            //if final level to gen, delete it so it does not play in background
             if (i == totalLevels - 1) boardController.ClearBoard();
         }
     }
 
     public void LoadLevel(int levelToLoad)
     {
+        if (levelToLoad == 1)
+        {
+            SaveFile save = CoreGameElements.i.gameSave;
+            StartMenu.SetStartTextStatic(save.firstRun);
+            save.firstRun = false;
+        }
         currentLevel = levelToLoad;
         boardController.firstTimeSetup = false;
 
         SaveFile.Board currentBoard =
-            CoreGameElements.i.gameSave.boards[levelToLoad];
+            CoreGameElements.i.gameSave.boards[levelToLoad - 1];
 
         boardController.rowsMin = currentBoard.rowsMins;
         boardController.rowsMax = currentBoard.rowsMax;
@@ -68,12 +79,26 @@ public class Seed : MonoBehaviour
         boardController.propCount.minimum = currentBoard.propsMin;
         boardController.propCount.maximum = currentBoard.propsMax;
 
-        if (defaultGameSeed == null)
+        if (defaultGameSeed == "")
             defaultGameSeed = CoreGameElements.i.gameSave.defaultGameSeed;
 
         string levelName = defaultGameSeed + levelToLoad;
         currentSeed = levelName.GetHashCode();
         Random.InitState (currentSeed);
         boardController.SetupScene (levelToLoad);
+        FXController
+            .SetAnimatorTrigger_Static(FXController.Animations.LevelFader,
+            "Fade");
+        UIController
+            .UpdateTextUI(UIController.UITextComponents.levelText,
+            "Level " + levelToLoad);
+
+        int coins = CoreGameElements.i.gameSave.playerCoins;
+        CurrencyController.totalCoinsCollected = coins;
+        MissionHolder.i.LoadAllMissionsFromSave();
+
+        ExperienceController.SetXP();
+        ScoreDisplayUpdater
+            .StartRoutineDown(coins, UIController.UITextComponents.coinText);
     }
 }

@@ -9,20 +9,31 @@ public static class ExperienceController
 
     private static int XPToNextLvl;
 
-    [RuntimeInitializeOnLoadMethod]
-    static void SetInitialLevel()
+    public static void SetInitialLevel()
     {
         SetLevel(1);
+    }
+
+    public static void SetXP()
+    {
+        currentXP = CoreGameElements.i.gameSave.XP;
+        XPToNextLvl = CoreGameElements.i.gameSave.XPToNextLvl;
+        int savedLevel = CoreGameElements.i.gameSave.currentLevel;
+        level = savedLevel;
+
+        UIController
+            .UpdateTextUI(UIController.UITextComponents.currentLvlText,
+            level.ToString());
+        UIController
+            .UpdateSliderAmount(UIController.UIImageComponents.XPBar,
+            XPToNextLvl,
+            currentXP);
     }
 
     public static bool AddXP(int XPToAdd)
     {
         currentXP += XPToAdd;
 
-        // UIController
-        //     .UpdateSliderAmount(UIController.UIImageComponents.XPBar,
-        //     XPToNextLvl,
-        //     currentXP);
         FXController
             .LerpSlider_Static(currentXP,
             currentXP - XPToAdd,
@@ -66,9 +77,8 @@ public static class ExperienceController
             SoundController.PlaySound(SoundController.Sound.PlayerLvlUp);
         }
 
-        //look into this math -- seems to be an error that lvl 1 and 2 both require 100 XP?
         XPToNextLvl =
-            (int)(50f * (Mathf.Pow(level + 1, 2) - (5 * (level + 1)) + 8));
+            (int)(50f * (Mathf.Pow(level + 1.1f, 2) - (5 * (level + 1)) + 8));
 
         UIController
             .UpdateTextUI(UIController.UITextComponents.currentXPText,
@@ -79,10 +89,6 @@ public static class ExperienceController
         UIController
             .UpdateTextUI(UIController.UITextComponents.XPToNextLvlText,
             XPToNextLvl.ToString());
-        // UIController
-        //     .UpdateSliderAmount(UIController.UIImageComponents.XPBar,
-        //     XPToNextLvl,
-        //     currentXP);
 
         //animation controller updated level up
     }
@@ -93,5 +99,12 @@ public static class ExperienceController
             return true;
         else
             return false;
+    }
+
+    public static void SaveXP()
+    {
+        CoreGameElements.i.gameSave.XP = currentXP;
+        CoreGameElements.i.gameSave.XPToNextLvl = XPToNextLvl;
+        CoreGameElements.i.gameSave.currentLevel = level;
     }
 }

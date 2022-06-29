@@ -1,9 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class StartMenu : MonoBehaviour
 {
+    public GameObject firstButton;
+
+    public GameObject levelOneButton;
+
     public GameObject mainButtons;
 
     public GameObject optionButtons;
@@ -39,6 +46,8 @@ public class StartMenu : MonoBehaviour
 
     void Start()
     {
+        EventSystem.current.SetSelectedGameObject (firstButton);
+
         //should avoid creating buttons everytime?
         int totalLevels = CoreGameElements.i.totalLevels;
 
@@ -47,6 +56,8 @@ public class StartMenu : MonoBehaviour
             //Create a new button
             LevelButton newButton =
                 Instantiate(button, Vector3.zero, Quaternion.identity);
+
+            if (i == 0) levelOneButton = newButton.gameObject;
 
             levelButtons.Add (newButton);
 
@@ -68,6 +79,19 @@ public class StartMenu : MonoBehaviour
             newButton.transform.localScale = size;
             string lvlName = (i + 1).ToString();
             newButton.SetLevelText (lvlName);
+        }
+
+        List<Button> allButtons = new List<Button>();
+        transform.GetComponentsInChildrenRecursively<Button> (allButtons);
+
+        foreach (Button button in allButtons)
+        {
+            button
+                .onClick
+                .AddListener(delegate ()
+                {
+                    ButtonClickSound();
+                });
         }
     }
 
@@ -91,9 +115,6 @@ public class StartMenu : MonoBehaviour
         mainButtons.SetActive(true);
         levelsVisible = false;
         gameObject.SetActive(false);
-        FXController
-            .SetAnimatorTrigger_Static(FXController.Animations.LevelFader,
-            "Fade");
         pauseMenu.GetComponent<PauseMenu>().MusicFade();
 
         gameCanvas.enabled = true;
@@ -110,12 +131,17 @@ public class StartMenu : MonoBehaviour
         StartGame();
     }
 
+    public static void UpdateButtonsStatic()
+    {
+        i.UpdateLevelButtons();
+    }
+
     public void UpdateLevelButtons()
     {
         int levelAt = CoreGameElements.i.gameSave.levelAt;
         if (levelAt == 0) levelAt = 1;
 
-        //Saving a local int for latest level as player prefs require resets (this ensures players can go from game to menu)
+        //Saving a local int for latest level as saving require resets (this ensures players can go from game to menu) but you could just save now with json
         if (levelAt < CoreGameElements.i.latetstLevel)
             levelAt = CoreGameElements.i.latetstLevel;
         if (CoreGameElements.i.unlockAllLevels) levelAt = levelButtons.Count;
@@ -127,14 +153,26 @@ public class StartMenu : MonoBehaviour
                     levelButtons[i].GetComponent<UnityEngine.UI.Button>();
                 interactabeButton.interactable = true;
             }
+
+            SaveFile newSave = CoreGameElements.i.gameSave;
+            var board = newSave.boards[i];
+            int score = board.score;
+            if (score > 0)
+            {
+                levelButtons[i].SetScoreText(score.ToString());
+
+                if (board.HasMaxScore()) levelButtons[i].SetCrown();
+            }
+            else
+                levelButtons[i].SetScoreText("???");
         }
     }
 
     public void ShowOptions()
     {
-        SoundController.PlaySound(SoundController.Sound.ButtonClick);
         if (optionsVisible)
         {
+            EventSystem.current.SetSelectedGameObject (firstButton);
             optionButtons.SetActive(false);
             mainButtons.SetActive(true);
             optionsVisible = false;
@@ -149,17 +187,18 @@ public class StartMenu : MonoBehaviour
 
     public void ShowLevelSelect()
     {
-        SoundController.PlaySound(SoundController.Sound.ButtonClick);
         UpdateLevelButtons();
 
         if (levelsVisible)
         {
+            EventSystem.current.SetSelectedGameObject (firstButton);
             levelSelect.SetActive(false);
             mainButtons.SetActive(true);
             levelsVisible = false;
         }
         else
         {
+            EventSystem.current.SetSelectedGameObject (levelOneButton);
             levelSelect.SetActive(true);
             mainButtons.SetActive(false);
             levelsVisible = true;
@@ -168,7 +207,11 @@ public class StartMenu : MonoBehaviour
 
     public void Quit()
     {
-        SoundController.PlaySound(SoundController.Sound.ButtonClick);
         GameStateController.Quit();
+    }
+
+    private void ButtonClickSound()
+    {
+        SoundController.PlaySound(SoundController.Sound.ButtonClick);
     }
 }

@@ -89,4 +89,10 @@ public class NotationItem : MonoBehaviour, INotation
     {
         return transform;
     }
+
+    public int GetObjectScore()
+    {
+        //check if this is just adding for one object (the interface will execute on all objects)
+        return scoreToAdd;
+    }
 }

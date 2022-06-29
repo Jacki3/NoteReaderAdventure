@@ -111,7 +111,6 @@ public class NotationController : MonoBehaviour
                 {
                     //why is this not just incorrectNote? Why a whole nother animation?
                     incorrectNotes++;
-                    print (incorrectNotes);
                     if (incorrectNotes > incorrectNotesToDamage)
                     {
                         HealthController.RemoveHealth(1, true);

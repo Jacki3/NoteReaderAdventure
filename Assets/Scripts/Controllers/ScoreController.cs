@@ -191,4 +191,36 @@ public class ScoreController : MonoBehaviour
     {
         instance.ResetStreak (rhythmMissed);
     }
+
+    public static int GetMaxMultiplierStatic()
+    {
+        return instance.GetMaxMultiplier();
+    }
+
+    public int GetMaxMultiplier()
+    {
+        return maxMultiplier;
+    }
+
+    public static int GetScoreStatic()
+    {
+        return instance.GetScore();
+    }
+
+    public int GetScore()
+    {
+        return score;
+    }
+
+    public static void ResetScoreStatic()
+    {
+        instance.ResetScore();
+    }
+
+    public void ResetScore()
+    {
+        score = 0;
+        ScoreDisplayUpdater
+            .StartRoutineDown(score, UIController.UITextComponents.scoreText);
+    }
 }

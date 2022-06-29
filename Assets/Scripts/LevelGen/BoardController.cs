@@ -78,7 +78,13 @@ public class BoardController : MonoBehaviour
 
     public GameObject[] propTiles;
 
-    public GameObject[] notationTiles;
+    public GameObject[] easyNotations;
+
+    public GameObject[] medNotations;
+
+    public GameObject[] hardNotations;
+
+    public GameObject[] hardestNotations;
 
     public GameObject[] enemyTiles;
 
@@ -87,6 +93,8 @@ public class BoardController : MonoBehaviour
     public GameObject exit;
 
     public List<INotation> notations = new List<INotation>();
+
+    public int boardMaxScore;
 
     private Transform boardHolder;
 
@@ -253,6 +261,7 @@ public class BoardController : MonoBehaviour
             if (newNotation != null)
             {
                 notations.Add (newNotation);
+                boardMaxScore += newNotation.GetObjectScore();
             }
         }
     }
@@ -268,6 +277,8 @@ public class BoardController : MonoBehaviour
 
     public void SetupScene(int level)
     {
+        DifficultyPicker.ChooseDifficultyOnLevel (level);
+
         ClearBoard();
         if (level % 2 != 0 && rowsMax != maxSize && firstTimeSetup)
         {
@@ -316,7 +327,38 @@ public class BoardController : MonoBehaviour
             //(int) Mathf.Log(level, 2f); -- what is best method to increase notations over time & how are enemies introduced?
             int notationCount =
                 (int) Mathf.FloorToInt(1.5f * Mathf.Sqrt(level));
-            LayoutObjectAtRand (notationTiles, notationCount, notationCount);
+
+            GameObject[] potentialNotations = null;
+
+            switch (CoreGameElements.i.currentDifficulty)
+            {
+                case CoreGameElements.Difficuties.easy:
+                    {
+                        potentialNotations = easyNotations;
+                        break;
+                    }
+                case CoreGameElements.Difficuties.medium:
+                    {
+                        potentialNotations = medNotations;
+                        break;
+                    }
+                case CoreGameElements.Difficuties.hard:
+                    {
+                        potentialNotations = hardNotations;
+                        break;
+                    }
+                case CoreGameElements.Difficuties.hardest:
+                    {
+                        potentialNotations = hardestNotations;
+                        break;
+                    }
+            }
+
+            LayoutObjectAtRand (
+                potentialNotations,
+                notationCount,
+                notationCount
+            );
         }
 
         GameObject newExit =
@@ -331,6 +373,7 @@ public class BoardController : MonoBehaviour
     public void ClearBoard()
     {
         //Clear the board and increase sizes
+        boardMaxScore = 0;
         ItemSpawner.ClearItems();
         notations.Clear();
         flashAnim.danceFloorLeft.Clear();
@@ -338,19 +381,43 @@ public class BoardController : MonoBehaviour
         if (boardHolder != null) Destroy(boardHolder.gameObject);
     }
 
-    public void HideShowDanceFloor(TextMeshProUGUI buttonText)
+    public void HideShowDanceFloor()
     {
-        SoundController.PlaySound(SoundController.Sound.ButtonClick);
-
         if (!danceFloorHidden)
         {
-            buttonText.text = "dance floor: off";
+            UIController
+                .UpdateTextUI(UIController.UITextComponents.danceFloorText,
+                "dance floor: off");
             danceFloorHidden = true;
             if (danceFloor != null) danceFloor.gameObject.SetActive(false);
         }
         else
         {
-            buttonText.text = "dance floor: on";
+            UIController
+                .UpdateTextUI(UIController.UITextComponents.danceFloorText,
+                "dance floor: on");
+            danceFloorHidden = false;
+            if (danceFloor != null) danceFloor.gameObject.SetActive(true);
+        }
+        CoreGameElements.i.gameSave.danceFloorEnabled = danceFloorHidden;
+    }
+
+    public void SetDanceFloor()
+    {
+        danceFloorHidden = CoreGameElements.i.gameSave.danceFloorEnabled;
+        if (danceFloorHidden)
+        {
+            UIController
+                .UpdateTextUI(UIController.UITextComponents.danceFloorText,
+                "dance floor: off");
+            danceFloorHidden = true;
+            if (danceFloor != null) danceFloor.gameObject.SetActive(false);
+        }
+        else
+        {
+            UIController
+                .UpdateTextUI(UIController.UITextComponents.danceFloorText,
+                "dance floor: on");
             danceFloorHidden = false;
             if (danceFloor != null) danceFloor.gameObject.SetActive(true);
         }
@@ -363,10 +430,7 @@ public class BoardController : MonoBehaviour
             if (notation.GetTransform().position == pos.position)
             {
                 notations.Remove (notation);
-                print(notations.Count);
             }
         }
     }
-
-    //bool func returning notations empty or not
 }

@@ -79,6 +79,9 @@ public class CoreGameElements : MonoBehaviour
 
     public int totalLives = 5;
 
+    [Tooltip("After how many levels should difficulty change?")]
+    public int difficultyChangeLevel; //after how many levels should the difficulty change
+
     public int totalCollectiblesThisLevel;
 
     public int totalCoinsCollected;
@@ -97,15 +100,29 @@ public class CoreGameElements : MonoBehaviour
 
     public bool useTutorial = true;
 
-    public int[] notes;
+    public int[] easyNotes;
 
-    public int[] notesBass;
+    public int[] mediumNotes;
+
+    public int[] hardNotes;
 
     public Pattern[] patterns;
 
     public Pattern[] patternsBass;
 
     public CameraShakes cameraShakes;
+
+    public Difficuties currentDifficulty;
+
+    public enum Difficuties
+    {
+        easy,
+        medium,
+        hard,
+        harder,
+        ultraHard,
+        hardest
+    }
 
     [System.NonSerialized]
     public Color32[]

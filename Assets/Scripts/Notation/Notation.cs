@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Notation : MonoBehaviour
@@ -28,6 +29,8 @@ public class Notation : MonoBehaviour
 
     public Color32 playedNoteColour;
 
+    public GameObject notation;
+
     public ExplodableNotation explodableNotation;
 
     private SpriteRenderer parentRenderer;
@@ -46,8 +49,6 @@ public class Notation : MonoBehaviour
     private bool usingBass;
 
     private List<SpriteRenderer> playedNotes = new List<SpriteRenderer>();
-
-    public GameObject notation;
 
     private string[]
         noteNames =
@@ -96,6 +97,7 @@ public class Notation : MonoBehaviour
             int patternIndex = 0;
             for (int i = 0; i < totalNotesToSpawn; i++)
             {
+                notes = NotesController.pattern.ToList(); //this is new and could just work?
                 notes.Add(NotesController.pattern[patternIndex]);
                 patternIndex++;
             }

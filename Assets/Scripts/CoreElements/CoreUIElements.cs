@@ -70,7 +70,7 @@ public class CoreUIElements : MonoBehaviour
         {
             if (image.imageComponent == imageComponent) return image.image;
         }
-        Debug.LogError("Text Component" + imageComponent + "missing!");
+        Debug.LogError("Image Component" + imageComponent + "missing!");
         return null;
     }
 

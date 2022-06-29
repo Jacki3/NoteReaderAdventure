@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class CurrencyController
 {
-    private static int totalCoinsCollected = 0;
+    public static int totalCoinsCollected = 0;
 
     private static int totalCollectiblesCollected = 0;
 
@@ -29,8 +29,6 @@ public static class CurrencyController
                 .StartRoutineDown(totalCoinsCollected,
                 UIController.UITextComponents.coinText);
         }
-
-        CoreGameElements.i.gameSave.playerCoins = totalCoinsCollected;
     }
 
     public static int GetTotalCoins()
