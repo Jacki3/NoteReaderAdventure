@@ -45,11 +45,10 @@ public class GameHandler : MonoBehaviour
             CoreGameElements.i.gameSave = save;
 
             //Load the game elements in (probably better to use for loop, find objects or elements that match and set them somehow?)
-            CurrencyController.AddRemoveCoins(save.playerCoins, true);
-            HealthController.SetHealth(save.playerHealth);
             seed.boardController.SetDanceFloor();
             pauseMenu.SetAllSliders();
             pauseMenu.SetColour(false);
+            HealthController.SetHealth();
         }
         else
         {
@@ -63,6 +62,7 @@ public class GameHandler : MonoBehaviour
             }
 
             ExperienceController.SetInitialLevel();
+            HealthController.SetHealth();
 
             seed.SetLevels();
         }

@@ -42,6 +42,7 @@ public class LevelController : MonoBehaviour
         CoreGameElements.i.gameSave.playerCoins =
             CurrencyController.GetTotalCoins();
         ExperienceController.SaveXP();
+        HealthController.SaveHealth();
         MissionHolder.i.SaveAllMissions();
 
         int nextLevel = CoreGameElements.i.gameSave.levelAt;

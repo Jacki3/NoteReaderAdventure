@@ -17,7 +17,7 @@ public static class HealthController
 
     private static bool strongShield = false;
 
-    public static void SetHealth(int health)
+    public static void SetHealth()
     {
         if (CoreGameElements.i != null)
         {
@@ -26,8 +26,21 @@ public static class HealthController
             lowHealthAmount = CoreGameElements.i.lowHealth;
         }
         PlayerSkills.onSkillUnlocked += UpdateMaxHealth;
-        int healthDiff = CoreGameElements.i.maxHealth - health;
-        RemoveHealth(healthDiff, false);
+    }
+
+    public static void UpdateHealth()
+    {
+        UIController.ResetHearts();
+        currentHealth = CoreGameElements.i.gameSave.playerHealth;
+        int healthRemoved = maxHealth - currentHealth;
+        bool lifeLowerThanMax = currentHealth < maxHealth ? true : false;
+        Debug.Log (maxHealth);
+        Debug.Log (currentHealth);
+        Debug.Log (healthRemoved);
+        if (lifeLowerThanMax)
+        {
+            UIController.UpdateHearts (healthRemoved, lifeLowerThanMax);
+        }
     }
 
     private static void UpdateMaxHealth(PlayerSkills.SkillType skillType)
@@ -84,7 +97,8 @@ public static class HealthController
             LivesController.RemoveLife();
             SoundController.PlaySound(SoundController.Sound.PlayerDeath);
         }
-        CoreGameElements.i.gameSave.playerHealth = currentHealth;
+
+        Debug.Log (currentHealth);
     }
 
     public static void AddHealth(int healthAdded)
@@ -106,8 +120,10 @@ public static class HealthController
         FXController
             .SetAnimatorTrigger_Static(FXController.Animations.PlayerAnimator,
             "HealthGained");
+
         //sound
         //animate
+        Debug.Log (currentHealth);
     }
 
     public static void UpgradeMaxHealth(int heatlhUpgraded)
@@ -175,4 +191,7 @@ public static class HealthController
     public static bool HasShield() => hasShield;
 
     public static bool HasProtectiveShield() => strongShield;
+
+    public static void SaveHealth() =>
+        CoreGameElements.i.gameSave.playerHealth = currentHealth;
 }

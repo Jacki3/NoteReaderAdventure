@@ -1,4 +1,6 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
+using TMPro;
 using UnityEngine;
 
 public static class UIController
@@ -128,6 +130,16 @@ public static class UIController
                     hearts[heartIndex].fillAmount += heartValue;
                 }
             }
+        }
+    }
+
+    public static void ResetHearts()
+    {
+        var hearts = CoreUIElements.i.hearts;
+        for (int i = 0; i < hearts.Count; i++)
+        {
+            heartIndex = 0;
+            hearts[i].fillAmount = 1;
         }
     }
 

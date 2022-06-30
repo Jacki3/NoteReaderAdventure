@@ -82,6 +82,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ReturnToMain()
     {
+        EndScreens.HideScreensStatic();
         EventSystem.current.SetSelectedGameObject (mainMenuStart);
 
         pauseButtons.SetActive(false);

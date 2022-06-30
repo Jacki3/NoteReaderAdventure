@@ -4,8 +4,7 @@ public static class LivesController
 {
     private static int currentLives;
 
-    [RuntimeInitializeOnLoadMethod]
-    private static void SetLives()
+    public static void SetLives()
     {
         if (CoreGameElements.i != null)
             currentLives = CoreGameElements.i.totalLives;
@@ -29,17 +28,9 @@ public static class LivesController
 
     public static bool GameOver()
     {
-        if (currentLives <= 0)
-        {
-            EndScreens.ShowGameOverStatic();
-            return true;
-        }
-        else
-        {
-            HealthController.ResetHealth();
-            EndScreens.ShowLifeOverStatic();
-            return false;
-        }
+        HealthController.ResetHealth();
+        EndScreens.ShowLifeOverStatic();
+        return false;
     }
 
     private static void UpdateUI()

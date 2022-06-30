@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class EndScreens : MonoBehaviour
 {
+    public GameObject firstButton;
+
     public GameObject gameOverScreen;
 
     public GameObject lifeLostScreen;
@@ -18,27 +22,15 @@ public class EndScreens : MonoBehaviour
 
     private void Awake()
     {
-        canvas = transform.GetChild(0).GetComponent<Canvas>();
         instance = this;
-    }
-
-    private void Update()
-    {
-        if (gameOverScreen.activeSelf)
-        {
-            if (
-                PlayerController
-                    .inputActions
-                    .Player
-                    .Escape
-                    .WasPressedThisFrame()
-            ) Application.Quit();
-        }
+        canvas = transform.GetChild(0).GetComponent<Canvas>();
     }
 
     public static void ShowGameOverStatic() => instance.ShowGameOver();
 
     public static void ShowLifeOverStatic() => instance.ShowLifeOver();
+
+    public static void HideScreensStatic() => instance.HideScreens();
 
     public void ShowGameOver()
     {
@@ -54,6 +46,7 @@ public class EndScreens : MonoBehaviour
         GameStateController.PauseGame(true);
         canvas.enabled = true;
         lifeLostScreen.SetActive(true);
+        EventSystem.current.SetSelectedGameObject (firstButton);
     }
 
     public void ResumeGame()
@@ -61,6 +54,14 @@ public class EndScreens : MonoBehaviour
         backgroundAnimator.SetTrigger("Resume");
         mainCanvas.enabled = true;
         GameStateController.PauseGame(true);
+        lifeLostScreen.SetActive(false);
+        LevelController.i.ResetPlayerPos();
+        LevelController.i.levelLoader.LoadLevel(-1);
+    }
+
+    private void HideScreens()
+    {
+        canvas.enabled = false;
         lifeLostScreen.SetActive(false);
     }
 }

@@ -60,6 +60,7 @@ public class Seed : MonoBehaviour
 
     public void LoadLevel(int levelToLoad)
     {
+        if (levelToLoad == -1) levelToLoad = currentLevel;
         if (levelToLoad == 1)
         {
             SaveFile save = CoreGameElements.i.gameSave;
@@ -92,11 +93,11 @@ public class Seed : MonoBehaviour
         UIController
             .UpdateTextUI(UIController.UITextComponents.levelText,
             "Level " + levelToLoad);
-
+        HealthController.UpdateHealth();
         int coins = CoreGameElements.i.gameSave.playerCoins;
-        CurrencyController.totalCoinsCollected = coins;
+        CurrencyController.totalCoinsCollected = 0;
+        CurrencyController.AddRemoveCoins(coins, true);
         MissionHolder.i.LoadAllMissionsFromSave();
-
         ExperienceController.SetXP();
         ScoreDisplayUpdater
             .StartRoutineDown(coins, UIController.UITextComponents.coinText);
