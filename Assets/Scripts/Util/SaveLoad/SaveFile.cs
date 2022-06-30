@@ -11,6 +11,14 @@ public class SaveFile
 
     public int playerHealth = CoreGameElements.i.maxHealth;
 
+    public int XP = 0;
+
+    public int XPToNextLvl = 0;
+
+    public int currentLevel = 0;
+
+    public int overallScore;
+
     public int levelAt;
 
     public string defaultGameSeed;

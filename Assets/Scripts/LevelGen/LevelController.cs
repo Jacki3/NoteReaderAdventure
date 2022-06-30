@@ -41,6 +41,8 @@ public class LevelController : MonoBehaviour
     {
         CoreGameElements.i.gameSave.playerCoins =
             CurrencyController.GetTotalCoins();
+        ExperienceController.SaveXP();
+        MissionHolder.i.SaveAllMissions();
 
         int nextLevel = CoreGameElements.i.gameSave.levelAt;
 
@@ -75,11 +77,12 @@ public class LevelController : MonoBehaviour
             print("GAME COMPLETE!");
             //GAME DONE! SHOW CREDITS! USE GAME STATE MANAGER!
         }
+    }
 
-        MissionHolder.i.SaveAllMissions();
-
-        foreach (Mission mission in CoreGameElements.i.gameSave.allMissions)
-        print(mission.currentAmount);
+    public void ResetPlayerPos()
+    {
+        player.GetComponent<BoxCollider2D>().enabled = false;
+        Invoke("ResetPlayer", .5f);
     }
 
     public void DelayResetPlayer()

@@ -29,7 +29,7 @@ public class Seed : MonoBehaviour
         {
             SaveFile.Board newBoard = new SaveFile.Board();
 
-            gameSeed = "LvlBuilder1_";
+            gameSeed = "LvlBuilder3_";
             defaultGameSeed = gameSeed;
             gameSeed += level;
             currentSeed = gameSeed.GetHashCode();
@@ -95,6 +95,9 @@ public class Seed : MonoBehaviour
 
         int coins = CoreGameElements.i.gameSave.playerCoins;
         CurrencyController.totalCoinsCollected = coins;
+        MissionHolder.i.LoadAllMissionsFromSave();
+
+        ExperienceController.SetXP();
         ScoreDisplayUpdater
             .StartRoutineDown(coins, UIController.UITextComponents.coinText);
     }

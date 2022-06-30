@@ -186,7 +186,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   missionObject: 6
   sound: 3
-  spawnableItem: 0
+  spawnableItem: 2
   totalItemsSpawnable: 5
   canSpawnHealth: 0
   tutorialObject: 0
@@ -372,6 +372,11 @@ PrefabInstance:
       propertyPath: notation
       value: 
       objectReference: {fileID: 7933061868076363333}
+    - target: {fileID: 754718087950397077, guid: c4d92f58a88dafb469021a2d424f655c,
+        type: 3}
+      propertyPath: usePattern
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 754718088009971508, guid: c4d92f58a88dafb469021a2d424f655c,
         type: 3}
       propertyPath: m_Layer

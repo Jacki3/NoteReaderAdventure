@@ -71,43 +71,41 @@ public class MissionHolder : MonoBehaviour
 
     public void LoadAllMissionsFromSave()
     {
-        Mission temp = new Mission();
         foreach (Mission savedMission in CoreGameElements.i.gameSave.allMissions
         )
         {
-            if (savedMission.isActiveMission && !savedMission.missionComplete())
+            if (savedMission.currentAmount > 0)
             {
-                temp = savedMission;
-
-                // for (int i = 0; i < savedMission.currentAmount; i++)
-                // {
-                //     IncrementCurrentAmount (savedMission);
-                // }
+                for (int i = 0; i < savedMission.currentAmount; i++)
+                {
+                    IncrementCurrentAmount(savedMission, false);
+                }
             }
-        }
-        print(temp.currentAmount);
-        for (int i = 0; i < temp.currentAmount; i++)
-        {
-            print (i);
-            IncrementCurrentAmount (temp);
         }
     }
 
-    public void IncrementCurrentAmount(Mission mission)
+    public void IncrementCurrentAmount(Mission mission, bool increment)
     {
         if (mission.isActiveMission)
         {
-            mission.currentAmount++;
+            string currentAmountString = "0";
+
+            if (increment) mission.currentAmount++;
             MissionPlaceholder placeHolder = FindMissionPlaceholder(mission);
 
             string placeHolderText = placeHolder.missionText.text.text;
 
             //this is clunky and can be included with MissionComplete()?
+            if (increment)
+            {
+                currentAmountString = (mission.currentAmount - 1).ToString();
+            }
+
             if (mission.currentAmount <= mission.requiredAmount)
             {
                 placeHolderText =
                     placeHolderText
-                        .Replace((mission.currentAmount - 1).ToString(),
+                        .Replace(currentAmountString,
                         mission.currentAmount.ToString());
 
                 placeHolder.missionText.text.text = placeHolderText;
@@ -123,8 +121,9 @@ public class MissionHolder : MonoBehaviour
                 placeHolder
                     .GetComponent<Animator>()
                     .SetTrigger("MissionComplete");
-                SoundController
-                    .PlaySound(SoundController.Sound.MissionComplete);
+                if (increment)
+                    SoundController
+                        .PlaySound(SoundController.Sound.MissionComplete);
             }
             else
             {
@@ -141,7 +140,7 @@ public class MissionHolder : MonoBehaviour
         {
             if (mission.missionObject == missionObject)
             {
-                IncrementCurrentAmount (mission);
+                IncrementCurrentAmount(mission, true);
             }
             else
             {
@@ -170,22 +169,22 @@ public class MissionHolder : MonoBehaviour
     {
         foreach (Mission mission in currentMissions)
         {
-            foreach (Mission
-                savedMission
-                in
-                CoreGameElements.i.gameSave.allMissions
-            )
+            if (mission.currentAmount > 0)
             {
-                if (
-                    mission.missionObjectString ==
-                    savedMission.missionObjectString
+                foreach (Mission
+                    savedMission
+                    in
+                    CoreGameElements.i.gameSave.allMissions
                 )
                 {
-                    savedMission.currentAmount = mission.currentAmount;
-                    savedMission.isActiveMission = mission.isActiveMission;
-                    print(savedMission.missionObjectString +
-                    savedMission.currentAmount +
-                    savedMission.isActiveMission);
+                    if (
+                        mission.missionObjectString ==
+                        savedMission.missionObjectString
+                    )
+                    {
+                        savedMission.currentAmount = mission.currentAmount;
+                        savedMission.isActiveMission = mission.isActiveMission;
+                    }
                 }
             }
         }

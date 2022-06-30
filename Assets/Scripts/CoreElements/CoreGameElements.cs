@@ -79,7 +79,8 @@ public class CoreGameElements : MonoBehaviour
 
     public int totalLives = 5;
 
-    public int difficultyDivider = 4;
+    [Tooltip("After how many levels should difficulty change?")]
+    public int difficultyChangeLevel; //after how many levels should the difficulty change
 
     public int totalCollectiblesThisLevel;
 
@@ -99,9 +100,11 @@ public class CoreGameElements : MonoBehaviour
 
     public bool useTutorial = true;
 
-    public int[] notes;
+    public int[] easyNotes;
 
-    public int[] notesBass;
+    public int[] mediumNotes;
+
+    public int[] hardNotes;
 
     public Pattern[] patterns;
 

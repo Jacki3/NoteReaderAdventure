@@ -13,9 +13,12 @@ public static class DifficultyPicker
 
     public static void ChooseDifficultyOnLevel(int level)
     {
-        float diff =
+        if (CoreGameElements.i.difficultyChangeLevel == 0)
+            Debug.LogError("Difficulty Change Level is 0!");
+        float difficultyDivider =
             CoreGameElements.i.totalLevels /
-            CoreGameElements.i.difficultyDivider;
+            CoreGameElements.i.difficultyChangeLevel;
+        float diff = CoreGameElements.i.totalLevels / difficultyDivider;
 
         var easyLevelRange = new Count();
         var medLevelRange = new Count();

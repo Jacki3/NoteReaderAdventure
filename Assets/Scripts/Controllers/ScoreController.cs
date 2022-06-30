@@ -105,6 +105,7 @@ public class ScoreController : MonoBehaviour
 
             previousScore = totalScoreToAdd / 4; //look at this math logic
         }
+        CoreGameElements.i.gameSave.overallScore += score;
     }
 
     public static void AddScore_Static(int scoreToAdd)

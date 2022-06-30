@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro.Examples;
 using UnityEngine;
 
 public class Notation : MonoBehaviour
@@ -28,6 +30,8 @@ public class Notation : MonoBehaviour
 
     public Color32 playedNoteColour;
 
+    public GameObject notation;
+
     public ExplodableNotation explodableNotation;
 
     private SpriteRenderer parentRenderer;
@@ -46,8 +50,6 @@ public class Notation : MonoBehaviour
     private bool usingBass;
 
     private List<SpriteRenderer> playedNotes = new List<SpriteRenderer>();
-
-    public GameObject notation;
 
     private string[]
         noteNames =
@@ -93,12 +95,7 @@ public class Notation : MonoBehaviour
             NotesController.CanUsePattern(totalNotesToSpawn, usingBass)
         )
         {
-            int patternIndex = 0;
-            for (int i = 0; i < totalNotesToSpawn; i++)
-            {
-                notes.Add(NotesController.pattern[patternIndex]);
-                patternIndex++;
-            }
+            notes = NotesController.pattern.ToList();
         }
         else
         {
@@ -153,12 +150,69 @@ public class Notation : MonoBehaviour
 
         foreach (Transform transform in newNote.transform)
         {
-            transform.GetComponent<SpriteRenderer>().sortingLayerName =
-                newNote.sortingLayerName;
-            transform.GetComponent<SpriteRenderer>().sortingOrder =
-                newNote.sortingOrder;
+            SpriteRenderer noteRenderer =
+                transform.GetComponent<SpriteRenderer>();
+            if (noteRenderer != null)
+            {
+                transform.GetComponent<SpriteRenderer>().sortingLayerName =
+                    newNote.sortingLayerName;
+                transform.GetComponent<SpriteRenderer>().sortingOrder =
+                    newNote.sortingOrder;
+            }
 
             transform.gameObject.SetActive(false);
+        }
+
+        int accidentalNote = index % 12;
+
+        if (!isTemp)
+        {
+            switch (accidentalNote)
+            {
+                case 1:
+                case 3:
+                case 6:
+                case 8:
+                case 10:
+                    if (Random.value < .5)
+                    {
+                        index -= 1;
+                        newNote
+                            .transform
+                            .GetChild(7)
+                            .gameObject
+                            .SetActive(true);
+                        newNote
+                            .transform
+                            .GetChild(7)
+                            .gameObject
+                            .GetComponent<TextMesh>()
+                            .text = "♯";
+                    }
+                    else
+                    {
+                        index += 1;
+                        newNote
+                            .transform
+                            .GetChild(7)
+                            .gameObject
+                            .SetActive(true);
+                        newNote
+                            .transform
+                            .GetChild(7)
+                            .gameObject
+                            .GetComponent<TextMesh>()
+                            .text = "♭";
+                    }
+                    break;
+            }
+            noteImages.Add (newNote);
+        }
+        else
+        {
+            newNote.color = playedNoteColour;
+            newNote.transform.GetChild(6).GetComponent<SpriteRenderer>().color =
+                playedNoteColour;
         }
 
         newNote.transform.localPosition =
@@ -201,14 +255,6 @@ public class Notation : MonoBehaviour
                 newNote.transform.GetChild(6).gameObject.SetActive(true);
                 newNote.enabled = false;
                 break;
-        }
-        if (!isTemp)
-            noteImages.Add(newNote);
-        else
-        {
-            newNote.color = playedNoteColour;
-            newNote.transform.GetChild(6).GetComponent<SpriteRenderer>().color =
-                playedNoteColour;
         }
 
         return newNote;

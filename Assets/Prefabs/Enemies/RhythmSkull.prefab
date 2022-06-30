@@ -305,6 +305,11 @@ PrefabInstance:
       propertyPath: notation
       value: 
       objectReference: {fileID: 2706733211840462388}
+    - target: {fileID: 754718087950397077, guid: c4d92f58a88dafb469021a2d424f655c,
+        type: 3}
+      propertyPath: usePattern
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 754718088009971510, guid: c4d92f58a88dafb469021a2d424f655c,
         type: 3}
       propertyPath: m_SortingLayer

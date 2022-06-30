@@ -10,18 +10,31 @@ public static class NotesController
 
     public static int GetRandomNote(bool bass)
     {
-        if (!bass)
+        switch (CoreGameElements.i.currentDifficulty)
         {
-            int randIndex = Random.Range(0, CoreGameElements.i.notes.Length);
-            int randNote = CoreGameElements.i.notes[randIndex];
-            return randNote;
-        }
-        else
-        {
-            int randIndex =
-                Random.Range(0, CoreGameElements.i.notesBass.Length);
-            int randNote = CoreGameElements.i.notesBass[randIndex];
-            return randNote;
+            case CoreGameElements.Difficuties.easy:
+                {
+                    int randIndex =
+                        Random.Range(0, CoreGameElements.i.easyNotes.Length);
+                    int randNote = CoreGameElements.i.easyNotes[randIndex];
+                    return randNote;
+                }
+            case CoreGameElements.Difficuties.medium:
+                {
+                    int randIndex =
+                        Random.Range(0, CoreGameElements.i.mediumNotes.Length);
+                    int randNote = CoreGameElements.i.mediumNotes[randIndex];
+                    return randNote;
+                }
+            case CoreGameElements.Difficuties.hard:
+                {
+                    int randIndex =
+                        Random.Range(0, CoreGameElements.i.hardNotes.Length);
+                    int randNote = CoreGameElements.i.hardNotes[randIndex];
+                    return randNote;
+                }
+            default:
+                return 0;
         }
     }
 

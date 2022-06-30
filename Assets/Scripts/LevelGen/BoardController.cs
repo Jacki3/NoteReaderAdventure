@@ -310,9 +310,10 @@ public class BoardController : MonoBehaviour
         InitialiseList();
         LayoutObjectAtRand(propTiles, propCount.minimum, propCount.maximum);
 
-        // LayoutObjectAtRand(smashableTiles,
-        // smashableCount.minimum,
-        // smashableCount.maximum);
+        LayoutObjectAtRand(smashableTiles,
+        smashableCount.minimum,
+        smashableCount.maximum);
+
         if (spawnEnemies && level % 5 == 0)
         {
             spawnNotation = false;

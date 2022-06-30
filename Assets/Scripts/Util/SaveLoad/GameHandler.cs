@@ -50,7 +50,6 @@ public class GameHandler : MonoBehaviour
             seed.boardController.SetDanceFloor();
             pauseMenu.SetAllSliders();
             pauseMenu.SetColour(false);
-            MissionHolder.i.LoadAllMissionsFromSave();
         }
         else
         {
@@ -60,9 +59,10 @@ public class GameHandler : MonoBehaviour
 
             foreach (Mission mission in MissionHolder.i.currentMissions)
             {
-                print("adding mission");
                 save.allMissions.Add (mission);
             }
+
+            ExperienceController.SetInitialLevel();
 
             seed.SetLevels();
         }

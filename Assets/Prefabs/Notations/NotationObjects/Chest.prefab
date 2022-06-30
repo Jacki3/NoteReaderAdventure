@@ -107,7 +107,7 @@ MonoBehaviour:
   missionObject: 7
   sound: 13
   openChest: {fileID: 21300040, guid: 29c9cded5e558164aaf8c9bf08aa1510, type: 3}
-  itemToSpawn: 0
+  itemToSpawn: 3
   totalItemsToSpawn: 10
 --- !u!61 &-7020039285224332081
 BoxCollider2D:

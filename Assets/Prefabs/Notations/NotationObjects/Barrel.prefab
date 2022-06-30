@@ -187,12 +187,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   notationsToComplete: 1
-  XPToAdd: 5
+  XPToAdd: 55
   scoreToAdd: 10
   animator: {fileID: 0}
   missionObject: 6
   sound: 3
-  spawnableItem: 3
+  spawnableItem: 0
   totalItemsSpawnable: 1
   canSpawnHealth: 0
   tutorialObject: 0
