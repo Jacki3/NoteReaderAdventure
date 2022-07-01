@@ -9,11 +9,47 @@ public class NumberBox : MonoBehaviour
 
     public float slideDuration;
 
+    public int[] notes = { 0, 2, 4, 5, 7, 9, 11, -1 };
+
     private int x = 0;
 
     private int y = 0;
 
     private Action<int, int> moveTile = null;
+
+    private int note;
+
+    private KeyCode[]
+        keyCodes =
+        {
+            KeyCode.Alpha1,
+            KeyCode.Alpha2,
+            KeyCode.Alpha3,
+            KeyCode.Alpha4,
+            KeyCode.Alpha5,
+            KeyCode.Alpha6,
+            KeyCode.Alpha7,
+            KeyCode.Alpha8,
+            KeyCode.Alpha9
+        };
+
+    void Awake()
+    {
+        MIDIController.NoteOn += CheckMoveTile;
+        MIDIController.NoteOff += NoteOff;
+    }
+
+    void Update()
+    {
+        for (int i = 0; i < keyCodes.Length; i++)
+        {
+            if (Input.GetKeyDown(keyCodes[i]))
+            {
+                int numberPressed = i + 1;
+                CheckMoveTile(numberPressed, 0);
+            }
+        }
+    }
 
     public void Init(
         int i,
@@ -27,6 +63,7 @@ public class NumberBox : MonoBehaviour
         UpdatePos (i, j);
         GetComponent<SpriteRenderer>().sprite = sprite;
         moveTile = _moveTile;
+        note = notes[index - 1];
     }
 
     public void UpdatePos(int i, int j)
@@ -35,11 +72,6 @@ public class NumberBox : MonoBehaviour
         y = j;
 
         StartCoroutine(Slide());
-    }
-
-    public void PrintIndex()
-    {
-        print (index);
     }
 
     private IEnumerator Slide()
@@ -64,8 +96,19 @@ public class NumberBox : MonoBehaviour
         return (index == maxTiles);
     }
 
+    private void CheckMoveTile(int number, float t)
+    {
+        if (number == index || number % 12 == note)
+            if (moveTile != null) moveTile(x, y);
+    }
+
     private void OnMouseDown()
     {
         if (Input.GetMouseButtonDown(0) && moveTile != null) moveTile(x, y);
+    }
+
+    private void NoteOff(int note)
+    {
+        //Ensures MIDI controller has handling for note off events
     }
 }

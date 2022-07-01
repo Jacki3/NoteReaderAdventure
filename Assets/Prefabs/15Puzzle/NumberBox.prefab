@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   slideDuration: 0.2
+  notes: 0000000002000000040000000500000007000000090000000b000000ffffffff
 --- !u!61 &-1829185996609864662
 BoxCollider2D:
   m_ObjectHideFlags: 0
