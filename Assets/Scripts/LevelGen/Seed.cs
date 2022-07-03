@@ -60,7 +60,7 @@ public class Seed : MonoBehaviour
 
     public void LoadLevel(int levelToLoad)
     {
-        if (levelToLoad == -1) levelToLoad = currentLevel;
+        if (levelToLoad == -1) levelToLoad = currentLevel + 1;
         if (levelToLoad == 1)
         {
             SaveFile save = CoreGameElements.i.gameSave;

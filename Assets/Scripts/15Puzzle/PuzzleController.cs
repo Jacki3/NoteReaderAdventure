@@ -12,22 +12,24 @@ public class PuzzleController : MonoBehaviour
 {
     public NumberBox boxPrefab;
 
+    public StartMenu startMenu;
+
+    public int[] notes = { 0, 2, 4, 5, 7, 9, 11, -1 };
+
     public NumberBox[,] boxes = new NumberBox[4, 2];
 
     public Sprite[] numberSprites;
 
     private Vector2 lastMove;
 
-    private int lastY;
-
-    private int lastX;
-
     private int[] correctOrder = { 5, 1, 6, 2, 7, 3, 8, 4 };
 
-    void Start()
+    private List<NumberBox> allBoxes = new List<NumberBox>();
+
+    public void GeneratePuzzle()
     {
         Init();
-        for (int i = 0; i < boxes.Length; i++) ShuffleBoard();
+        for (int i = 0; i < correctOrder.Length; i++) ShuffleBoard();
     }
 
     private void Init()
@@ -39,12 +41,16 @@ public class PuzzleController : MonoBehaviour
             {
                 NumberBox box =
                     Instantiate(boxPrefab, Vector2.zero, Quaternion.identity);
+                allBoxes.Add (box);
+                int spriteIndex = notes[index];
+                if (spriteIndex == -1) spriteIndex = numberSprites.Length - 1;
                 box
                     .Init(x,
                     y,
                     index + 1,
-                    numberSprites[index],
-                    ClickToMoveTile);
+                    numberSprites[spriteIndex],
+                    ClickToMoveTile,
+                    spriteIndex);
                 boxes[x, y] = box;
                 index++;
             }
@@ -69,7 +75,15 @@ public class PuzzleController : MonoBehaviour
         bool isEqual = Enumerable.SequenceEqual(correctOrder, boxNumbers);
 
         //if it is, you win
-        if (isEqual) print("WIN!");
+        if (isEqual)
+        {
+            foreach (NumberBox box in boxes)
+            {
+                Destroy(box.gameObject);
+            }
+            LevelController.i.levelLoader.LoadLevel(-1);
+            startMenu.StartGame();
+        }
     }
 
     private void SwapTile(int x, int y, int getX, int getY)
@@ -92,10 +106,10 @@ public class PuzzleController : MonoBehaviour
     private int GetX(int x, int y)
     {
         //if right is empty
-        if (x < 3 && boxes[x + 1, y].IsEmpty(numberSprites.Length)) return 1;
+        if (x < 3 && boxes[x + 1, y].IsEmpty(correctOrder.Length)) return 1;
 
         //if left is empty
-        if (x > 0 && boxes[x - 1, y].IsEmpty(numberSprites.Length)) return -1;
+        if (x > 0 && boxes[x - 1, y].IsEmpty(correctOrder.Length)) return -1;
 
         return 0;
     }
@@ -103,10 +117,10 @@ public class PuzzleController : MonoBehaviour
     private int GetY(int x, int y)
     {
         //if above is empty
-        if (y < 1 && boxes[x, y + 1].IsEmpty(numberSprites.Length)) return 1;
+        if (y < 1 && boxes[x, y + 1].IsEmpty(correctOrder.Length)) return 1;
 
         //if below is empty
-        if (y > 0 && boxes[x, y - 1].IsEmpty(numberSprites.Length)) return -1;
+        if (y > 0 && boxes[x, y - 1].IsEmpty(correctOrder.Length)) return -1;
 
         return 0;
     }
@@ -117,7 +131,7 @@ public class PuzzleController : MonoBehaviour
         {
             for (int j = 0; j < 2; j++)
             {
-                if (boxes[i, j].IsEmpty(numberSprites.Length))
+                if (boxes[i, j].IsEmpty(correctOrder.Length))
                 {
                     Vector2 pos = GetValidMove(i, j);
                     SwapTile(i, j, (int) pos.x, (int) pos.y);

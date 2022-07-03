@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
@@ -30,6 +31,8 @@ public class PauseMenu : MonoBehaviour
     public Canvas gameCanvas;
 
     public StartMenu mainMenu;
+
+    public GameObject skillTree;
 
     public TMPro.TMP_ColorGradient colorGradient;
 
@@ -80,7 +83,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    public void ReturnToMain()
+    public void ReturnToMain(bool fromPuzzle)
     {
         EndScreens.HideScreensStatic();
         EventSystem.current.SetSelectedGameObject (mainMenuStart);
@@ -102,7 +105,8 @@ public class PauseMenu : MonoBehaviour
 
         metroSource.enabled = false;
         StartCoroutine(FadeStartMenuAudio(audioFadeDur, 9, -80));
-        //save player stats
+
+        if (fromPuzzle) mainMenu.ShowPuzzle();
     }
 
     public void ShowMenu()
@@ -347,6 +351,40 @@ public class PauseMenu : MonoBehaviour
             yield return null;
         }
         yield break;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.M)) ShowSkillMenu();
+        if (Input.GetKeyUp(KeyCode.H)) HideSkillMenu();
+    }
+
+    public void ShowSkillMenu()
+    {
+        if (GameStateController.state != GameStateController.States.MainMenu)
+        {
+            GameStateController.PauseGame(false);
+
+            if (GameStateController.gamePaused)
+            {
+                GetComponent<Canvas>().enabled = true;
+                skillTree.SetActive(true);
+                optionButtons.SetActive(false);
+                pauseButtons.SetActive(false);
+                rhythmBar.SetActive(false);
+                EventSystem.current.SetSelectedGameObject (resumeButton); //make this a skill button
+                mixer.GetFloat("MusicVol", out currentMusicVol);
+                mixer.SetFloat("MusicVol", currentMusicVol - 8);
+            }
+        }
+    }
+
+    public void HideSkillMenu()
+    {
+        mixer.GetFloat("MusicVol", out currentMusicVol);
+        mixer.SetFloat("MusicVol", currentMusicVol + 8);
+        rhythmBar.SetActive(true);
+        GetComponent<Canvas>().enabled = false;
     }
 
     public void DeleteSave()

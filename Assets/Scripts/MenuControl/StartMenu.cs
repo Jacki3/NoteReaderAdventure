@@ -29,6 +29,10 @@ public class StartMenu : MonoBehaviour
 
     public Transform lvlSelectContent;
 
+    public GameObject player;
+
+    public PuzzleController puzzleController;
+
     private bool optionsVisible;
 
     private bool levelsVisible;
@@ -116,6 +120,7 @@ public class StartMenu : MonoBehaviour
         levelsVisible = false;
         gameObject.SetActive(false);
         pauseMenu.GetComponent<PauseMenu>().MusicFade();
+        player.SetActive(true);
 
         gameCanvas.enabled = true;
         if (GameStateController.gamePaused) GameStateController.PauseGame(true);
@@ -203,6 +208,15 @@ public class StartMenu : MonoBehaviour
             mainButtons.SetActive(false);
             levelsVisible = true;
         }
+    }
+
+    public void ShowPuzzle()
+    {
+        gameObject.SetActive(false);
+        player.SetActive(false);
+        puzzleController.GeneratePuzzle();
+
+        GameStateController.state = GameStateController.States.Puzzle;
     }
 
     public void Quit()

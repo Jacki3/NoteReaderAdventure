@@ -9,8 +9,6 @@ public class NumberBox : MonoBehaviour
 
     public float slideDuration;
 
-    public int[] notes = { 0, 2, 4, 5, 7, 9, 11, -1 };
-
     private int x = 0;
 
     private int y = 0;
@@ -56,14 +54,15 @@ public class NumberBox : MonoBehaviour
         int j,
         int _index,
         Sprite sprite,
-        Action<int, int> _moveTile
+        Action<int, int> _moveTile,
+        int _note
     )
     {
         index = _index;
         UpdatePos (i, j);
         GetComponent<SpriteRenderer>().sprite = sprite;
         moveTile = _moveTile;
-        note = notes[index - 1];
+        note = _note;
     }
 
     public void UpdatePos(int i, int j)
@@ -98,8 +97,9 @@ public class NumberBox : MonoBehaviour
 
     private void CheckMoveTile(int number, float t)
     {
-        if (number == index || number % 12 == note)
-            if (moveTile != null) moveTile(x, y);
+        if (GameStateController.state == GameStateController.States.Puzzle)
+            if (number == index || number % 12 == note)
+                if (moveTile != null) moveTile(x, y);
     }
 
     private void OnMouseDown()

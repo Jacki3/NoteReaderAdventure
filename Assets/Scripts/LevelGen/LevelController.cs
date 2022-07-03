@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class LevelController : MonoBehaviour
 {
-    public Seed levelLoader;
-
     public Transform player;
 
     public Transform mainCam;
+
+    public PauseMenu pauseMenu;
+
+    [HideInInspector]
+    public Seed levelLoader;
 
     private static LevelController _i;
 
@@ -71,7 +74,11 @@ public class LevelController : MonoBehaviour
                 .SetAnimatorTrigger_Static(FXController.Animations.LevelFader,
                 "Fade");
             DelayResetPlayer();
-            levelLoader.LoadLevel(currentLevel + 1);
+
+            if (currentLevel % 2 == 0)
+                pauseMenu.ReturnToMain(true);
+            else
+                levelLoader.LoadLevel(currentLevel + 1);
         }
         else
         {
