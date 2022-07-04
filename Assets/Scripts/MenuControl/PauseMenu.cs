@@ -34,6 +34,8 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject skillTree;
 
+    public GameObject skillTreeFirstButton;
+
     public TMPro.TMP_ColorGradient colorGradient;
 
     public TMPro.TMP_ColorGradient colorGradientWhite;
@@ -63,6 +65,11 @@ public class PauseMenu : MonoBehaviour
 
     private bool popUpVisible;
 
+    void Awake()
+    {
+        ExperienceController.LevelUp += ShowSkillMenu;
+    }
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -83,7 +90,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    public void ReturnToMain(bool fromPuzzle)
+    public void ReturnToMain(bool fromPuzzle, bool fromShop)
     {
         EndScreens.HideScreensStatic();
         EventSystem.current.SetSelectedGameObject (mainMenuStart);
@@ -107,6 +114,7 @@ public class PauseMenu : MonoBehaviour
         StartCoroutine(FadeStartMenuAudio(audioFadeDur, 9, -80));
 
         if (fromPuzzle) mainMenu.ShowPuzzle();
+        if (fromShop) mainMenu.ShowShop();
     }
 
     public void ShowMenu()
@@ -117,7 +125,9 @@ public class PauseMenu : MonoBehaviour
 
             if (GameStateController.gamePaused)
             {
+                GameStateController.state = GameStateController.States.Paused;
                 GetComponent<Canvas>().enabled = true;
+                background.SetActive(true);
                 optionButtons.SetActive(false);
                 pauseButtons.SetActive(true);
                 rhythmBar.SetActive(false);
@@ -131,6 +141,7 @@ public class PauseMenu : MonoBehaviour
                 mixer.SetFloat("MusicVol", currentMusicVol + 8);
                 rhythmBar.SetActive(true);
                 GetComponent<Canvas>().enabled = false;
+                GameStateController.state = GameStateController.States.Play;
             }
         }
     }
@@ -353,12 +364,6 @@ public class PauseMenu : MonoBehaviour
         yield break;
     }
 
-    void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.M)) ShowSkillMenu();
-        if (Input.GetKeyUp(KeyCode.H)) HideSkillMenu();
-    }
-
     public void ShowSkillMenu()
     {
         if (GameStateController.state != GameStateController.States.MainMenu)
@@ -367,7 +372,9 @@ public class PauseMenu : MonoBehaviour
 
             if (GameStateController.gamePaused)
             {
+                GameStateController.state = GameStateController.States.Paused;
                 GetComponent<Canvas>().enabled = true;
+                background.SetActive(false);
                 skillTree.SetActive(true);
                 optionButtons.SetActive(false);
                 pauseButtons.SetActive(false);
@@ -375,6 +382,9 @@ public class PauseMenu : MonoBehaviour
                 EventSystem.current.SetSelectedGameObject (resumeButton); //make this a skill button
                 mixer.GetFloat("MusicVol", out currentMusicVol);
                 mixer.SetFloat("MusicVol", currentMusicVol - 8);
+                EventSystem.current.SetSelectedGameObject (
+                    skillTreeFirstButton
+                );
             }
         }
     }
@@ -384,7 +394,10 @@ public class PauseMenu : MonoBehaviour
         mixer.GetFloat("MusicVol", out currentMusicVol);
         mixer.SetFloat("MusicVol", currentMusicVol + 8);
         rhythmBar.SetActive(true);
+        skillTree.SetActive(false);
         GetComponent<Canvas>().enabled = false;
+        GameStateController.PauseGame(false);
+        GameStateController.state = GameStateController.States.Play;
     }
 
     public void DeleteSave()

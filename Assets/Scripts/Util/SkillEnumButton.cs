@@ -13,6 +13,20 @@ public class SkillEnumButton : MonoBehaviour, ISelectHandler
             skillLine,
             backGround;
 
+    private PauseMenu pauseMenu;
+
+    void Start()
+    {
+        pauseMenu = transform.root.GetComponent<PauseMenu>();
+
+        var unlockedSkills = CoreGameElements.i.gameSave.savedUnlockedSkills;
+
+        foreach (PlayerSkills.SkillType _skillType in unlockedSkills)
+        {
+            if (skillType == _skillType) UpdateUI();
+        }
+    }
+
     public void OnSelect(BaseEventData eventData)
     {
         ShowSkillInfo();
@@ -22,12 +36,9 @@ public class SkillEnumButton : MonoBehaviour, ISelectHandler
     {
         var currentSkill = PlayerSkills.GetSkillType(skillType);
         Tooltip
-            .SetToolTip_Static(currentSkill.skillName +
-            "\n" +
-            currentSkill.skillDescription +
-            "\n" +
-            "Skill Points Required: " +
-            currentSkill.skillPointsRequired,
+            .SetToolTipSkill_Static(currentSkill.skillName +
+            "\n\n" +
+            currentSkill.skillDescription,
             toolTipSpawn.localPosition,
             transform.root);
     }
@@ -36,9 +47,15 @@ public class SkillEnumButton : MonoBehaviour, ISelectHandler
     {
         if (PlayerSkills.CanUnlock(enumScript.skillType, toolTipSpawn))
         {
-            UIController.UpdateImageColour(iconImage, Color.white);
-            UIController.UpdateImageColour(skillLine, Color.white);
-            UIController.UpdateImageColour(backGround, Color.white);
+            UpdateUI();
+            pauseMenu.HideSkillMenu();
         }
+    }
+
+    private void UpdateUI()
+    {
+        UIController.UpdateImageColour(iconImage, Color.white);
+        UIController.UpdateImageColour(skillLine, Color.white);
+        UIController.UpdateImageColour(backGround, Color.white);
     }
 }

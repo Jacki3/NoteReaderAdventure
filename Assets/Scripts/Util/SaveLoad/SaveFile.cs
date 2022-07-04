@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SaveFile
 {
@@ -38,6 +39,11 @@ public class SaveFile
     public bool usingColour = false;
 
     public List<Mission> allMissions = new List<Mission>();
+
+    public List<PlayerSkills.SkillType>
+        savedUnlockedSkills = new List<PlayerSkills.SkillType>();
+
+    public int additionalHearts;
 
     public List<Board> boards = new List<Board>();
 

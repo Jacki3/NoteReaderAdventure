@@ -45,6 +45,8 @@ public static class UIController
 
     private static int heartIndex = 0;
 
+    private static int additionalHearts = 0;
+
     //this should be called set text?
     public static void UpdateTextUI(UITextComponents component, string text)
     {
@@ -143,7 +145,7 @@ public static class UIController
         }
     }
 
-    public static void AddHeart()
+    public static void AddHeart(bool updateUI)
     {
         var hearts = CoreUIElements.i.hearts;
         var heart = CoreUIElements.i.heart;
@@ -164,5 +166,20 @@ public static class UIController
         var heartChild = newHeart.transform.GetChild(0);
 
         CoreUIElements.i.AddHeartToList (heartChild);
+        if (!updateUI) additionalHearts++;
+    }
+
+    public static void SaveUIHearts()
+    {
+        CoreGameElements.i.gameSave.additionalHearts = additionalHearts;
+    }
+
+    public static void LoadUIHearts()
+    {
+        additionalHearts = CoreGameElements.i.gameSave.additionalHearts;
+        for (int i = 0; i < additionalHearts; i++)
+        {
+            AddHeart(true);
+        }
     }
 }

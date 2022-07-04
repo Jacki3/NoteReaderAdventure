@@ -34,9 +34,6 @@ public static class HealthController
         currentHealth = CoreGameElements.i.gameSave.playerHealth;
         int healthRemoved = maxHealth - currentHealth;
         bool lifeLowerThanMax = currentHealth < maxHealth ? true : false;
-        Debug.Log (maxHealth);
-        Debug.Log (currentHealth);
-        Debug.Log (healthRemoved);
         if (lifeLowerThanMax)
         {
             UIController.UpdateHearts (healthRemoved, lifeLowerThanMax);
@@ -132,7 +129,7 @@ public static class HealthController
         currentHealth = maxHealth;
 
         UIController.UpdateHearts(maxHealth, false);
-        UIController.AddHeart();
+        UIController.AddHeart(false);
 
         UpgradeHealthBar();
     }
@@ -173,6 +170,7 @@ public static class HealthController
     {
         currentHealth = maxHealth;
 
+        UIController.ResetHearts();
         FXController
             .LerpSlider_Static(maxHealth,
             currentHealth,

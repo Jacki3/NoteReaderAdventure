@@ -3,6 +3,10 @@ using UnityEngine;
 
 public static class ExperienceController
 {
+    public delegate void LevelUpHandler();
+
+    public static event LevelUpHandler LevelUp;
+
     private static int level = 0;
 
     private static int currentXP;
@@ -20,10 +24,10 @@ public static class ExperienceController
         XPToNextLvl = CoreGameElements.i.gameSave.XPToNextLvl;
         int savedLevel = CoreGameElements.i.gameSave.currentLevel;
         level = savedLevel;
-
-        UIController
-            .UpdateTextUI(UIController.UITextComponents.currentLvlText,
-            level.ToString());
+        if (level >= 1)
+            UIController
+                .UpdateTextUI(UIController.UITextComponents.currentLvlText,
+                level.ToString());
         UIController
             .UpdateSliderAmount(UIController.UIImageComponents.XPBar,
             XPToNextLvl,
@@ -69,12 +73,9 @@ public static class ExperienceController
         {
             PlayerSkills.AddSkillPoint();
             FXController.SpawnEffect_Static(FXController.Effects.PlayerLevelUp);
-            FXController
-                .SetAnimatorTrigger_Static(FXController
-                    .Animations
-                    .PlayerAnimator,
-                "HealthGained");
+            HealthController.ResetHealth();
             SoundController.PlaySound(SoundController.Sound.PlayerLvlUp);
+            LevelUp();
         }
 
         XPToNextLvl =
@@ -89,8 +90,6 @@ public static class ExperienceController
         UIController
             .UpdateTextUI(UIController.UITextComponents.XPToNextLvlText,
             XPToNextLvl.ToString());
-
-        //animation controller updated level up
     }
 
     public static bool GetLevelRequirement(int levelRequired)

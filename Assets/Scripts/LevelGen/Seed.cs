@@ -101,5 +101,7 @@ public class Seed : MonoBehaviour
         ExperienceController.SetXP();
         ScoreDisplayUpdater
             .StartRoutineDown(coins, UIController.UITextComponents.coinText);
+
+        GameStateController.state = GameStateController.States.Play;
     }
 }

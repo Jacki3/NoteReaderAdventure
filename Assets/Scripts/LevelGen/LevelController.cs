@@ -47,6 +47,8 @@ public class LevelController : MonoBehaviour
         ExperienceController.SaveXP();
         HealthController.SaveHealth();
         MissionHolder.i.SaveAllMissions();
+        PlayerSkills.SaveAllSkills();
+        UIController.SaveUIHearts();
 
         int nextLevel = CoreGameElements.i.gameSave.levelAt;
 
@@ -75,10 +77,12 @@ public class LevelController : MonoBehaviour
                 "Fade");
             DelayResetPlayer();
 
-            if (currentLevel % 2 == 0)
-                pauseMenu.ReturnToMain(true);
+            if (currentLevel % 2 == 1)
+                pauseMenu.ReturnToMain(true, false);
             else
-                levelLoader.LoadLevel(currentLevel + 1);
+                pauseMenu.ReturnToMain(false, true);
+
+            // levelLoader.LoadLevel(currentLevel + 1);
         }
         else
         {

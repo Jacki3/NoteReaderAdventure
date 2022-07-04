@@ -11,6 +11,8 @@ public class Tooltip : MonoBehaviour
 
     private float paddingSize;
 
+    private Vector3 scale;
+
     private static Tooltip instance;
 
     private float spawnTime;
@@ -28,6 +30,7 @@ public class Tooltip : MonoBehaviour
         gameObject.SetActive(false);
         paddingSize = toolTipText.text.rectTransform.anchoredPosition.x;
         backgroundImage = backgroundImageRect.GetComponent<Image>();
+        scale = transform.localScale;
     }
 
     private void Update()
@@ -50,6 +53,7 @@ public class Tooltip : MonoBehaviour
     //add a 'warning' version of this
     public void SetToolTip(string text, Vector3 position, Transform parent)
     {
+        if (parent == null) parent = transform.root;
         transform.SetParent (parent);
 
         spawnTime = Time.time;
@@ -62,6 +66,8 @@ public class Tooltip : MonoBehaviour
             new Vector2(toolTipText.text.preferredWidth + paddingSize * 2,
                 toolTipText.text.preferredHeight + paddingSize * 2);
 
+        transform.localScale = scale;
+
         backgroundImageRect.sizeDelta = backgroundSize;
     }
 
@@ -72,5 +78,35 @@ public class Tooltip : MonoBehaviour
     )
     {
         instance.SetToolTip (text, position, parent);
+    }
+
+    public void SetToolTipSkill(string text, Vector3 position, Transform parent)
+    {
+        if (parent == null) parent = transform.root;
+        transform.SetParent (parent);
+
+        spawnTime = Time.time;
+        lifeTime = 60;
+
+        gameObject.SetActive(true);
+        transform.localPosition = position;
+        toolTipText.text.text = text;
+        toolTipText.text.color = Color.white;
+        Vector2 backgroundSize =
+            new Vector2(toolTipText.text.preferredWidth + paddingSize * 2,
+                toolTipText.text.preferredHeight + paddingSize * 2);
+
+        transform.localScale = scale;
+
+        backgroundImageRect.sizeDelta = backgroundSize;
+    }
+
+    public static void SetToolTipSkill_Static(
+        string text,
+        Vector3 position,
+        Transform parent
+    )
+    {
+        instance.SetToolTipSkill (text, position, parent);
     }
 }

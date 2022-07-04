@@ -26,8 +26,17 @@ public class PuzzleController : MonoBehaviour
 
     private List<NumberBox> allBoxes = new List<NumberBox>();
 
+    private Canvas puzzleCanvas;
+
+    void Start()
+    {
+        puzzleCanvas = GetComponentInChildren<Canvas>();
+        puzzleCanvas.enabled = false;
+    }
+
     public void GeneratePuzzle()
     {
+        puzzleCanvas.enabled = true;
         Init();
         for (int i = 0; i < correctOrder.Length; i++) ShuffleBoard();
     }
@@ -77,13 +86,19 @@ public class PuzzleController : MonoBehaviour
         //if it is, you win
         if (isEqual)
         {
-            foreach (NumberBox box in boxes)
-            {
-                Destroy(box.gameObject);
-            }
-            LevelController.i.levelLoader.LoadLevel(-1);
-            startMenu.StartGame();
+            FinishPuzzle();
         }
+    }
+
+    public void FinishPuzzle()
+    {
+        puzzleCanvas.enabled = false;
+        foreach (NumberBox box in boxes)
+        {
+            Destroy(box.gameObject);
+        }
+        LevelController.i.levelLoader.LoadLevel(-1);
+        startMenu.StartGame();
     }
 
     private void SwapTile(int x, int y, int getX, int getY)
@@ -125,7 +140,12 @@ public class PuzzleController : MonoBehaviour
         return 0;
     }
 
-    private void ShuffleBoard()
+    public void NewShuffle()
+    {
+        for (int i = 0; i < 99; i++) ShuffleBoard();
+    }
+
+    public void ShuffleBoard()
     {
         for (int i = 0; i < 4; i++)
         {

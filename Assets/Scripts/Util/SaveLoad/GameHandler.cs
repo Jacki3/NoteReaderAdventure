@@ -49,6 +49,8 @@ public class GameHandler : MonoBehaviour
             pauseMenu.SetAllSliders();
             pauseMenu.SetColour(false);
             HealthController.SetHealth();
+            PlayerSkills.LoadAllSkills();
+            UIController.LoadUIHearts();
         }
         else
         {

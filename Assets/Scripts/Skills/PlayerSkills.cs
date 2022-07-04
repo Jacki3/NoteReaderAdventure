@@ -23,11 +23,9 @@ public static class PlayerSkills
         smashRadius_2,
         sprintDuration_1,
         sprintDuration_2
-
-        //magic? should this be separate via statue?
     }
 
-    private static List<SkillType> unlockedSkills = new List<SkillType>();
+    public static List<SkillType> unlockedSkills = new List<SkillType>();
 
     private static int skillPoints;
 
@@ -109,6 +107,7 @@ public static class PlayerSkills
         int skillPointsRequired = GetSkillType(skillType).skillPointsRequired;
         if (IsSkillUnlocked(skillType))
         {
+            Debug.Log("SKILL ALREADY UNLOCKED");
             Tooltip
                 .SetToolTip_Static("Skill Already Unlocked!",
                 toolTipSpawn.localPosition,
@@ -164,6 +163,24 @@ public static class PlayerSkills
                 SoundController.PlaySound(SoundController.Sound.IncorectNote);
                 return false;
             }
+        }
+    }
+
+    public static void SaveAllSkills()
+    {
+        foreach (SkillType skill in unlockedSkills)
+        {
+            CoreGameElements.i.gameSave.savedUnlockedSkills.Add (skill);
+        }
+    }
+
+    public static void LoadAllSkills()
+    {
+        var savedUnlockedSkills =
+            CoreGameElements.i.gameSave.savedUnlockedSkills;
+        foreach (SkillType skill in savedUnlockedSkills)
+        {
+            unlockedSkills.Add (skill);
         }
     }
 }

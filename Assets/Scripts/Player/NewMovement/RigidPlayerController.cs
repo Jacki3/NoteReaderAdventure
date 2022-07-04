@@ -50,7 +50,10 @@ public class RigidPlayerController : MovingObject
     {
         inverseMoveTime = 1f / moveTime;
 
-        if (!readingMode && GameStateController.gamePaused == false)
+        if (
+            !readingMode &&
+            GameStateController.state == GameStateController.States.Play
+        )
         {
             if (PlayerController.inputActions.Player.Up.WasPressedThisFrame())
                 AttemptMove<MonoBehaviour>(0, 1);

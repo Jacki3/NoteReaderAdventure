@@ -11,17 +11,13 @@ public class ItemShopController : MonoBehaviour
 
     public int buttonDistanceY = 120;
 
+    public PauseMenu pauseMenu;
+
     private IShopCustomer shopCustomer;
 
-    private Transform container;
+    public Transform container;
 
     private List<ShopButton> shopButtons = new List<ShopButton>();
-
-    private void Awake()
-    {
-        // this is kinda yuck ?
-        container = transform.Find("Container");
-    }
 
     private void Start()
     {
@@ -212,5 +208,18 @@ public class ItemShopController : MonoBehaviour
         }
         Debug.LogError("no item!");
         return null;
+    }
+
+    public void ContinueGame()
+    {
+        HideShop();
+        LevelController.i.levelLoader.LoadLevel(-1);
+        pauseMenu.mainMenu.StartGame();
+    }
+
+    public void ExitToMenu()
+    {
+        HideShop();
+        pauseMenu.ReturnToMain(false, false);
     }
 }

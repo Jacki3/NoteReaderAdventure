@@ -33,6 +33,8 @@ public class StartMenu : MonoBehaviour
 
     public PuzzleController puzzleController;
 
+    public ItemShopController itemShop;
+
     private bool optionsVisible;
 
     private bool levelsVisible;
@@ -217,6 +219,14 @@ public class StartMenu : MonoBehaviour
         puzzleController.GeneratePuzzle();
 
         GameStateController.state = GameStateController.States.Puzzle;
+    }
+
+    public void ShowShop()
+    {
+        gameObject.SetActive(false);
+        player.SetActive(false);
+        itemShop.ShowShop(player.GetComponent<IShopCustomer>());
+        GameStateController.state = GameStateController.States.Shopping;
     }
 
     public void Quit()

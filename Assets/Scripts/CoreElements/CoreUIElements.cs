@@ -49,7 +49,7 @@ public class CoreUIElements : MonoBehaviour
 
     public List<Image> hearts = new List<Image>();
 
-    public GameObject heart;
+    public Image heart;
 
     public TextMeshProUGUI
     GetTextComponent(UIController.UITextComponents textComponent)
