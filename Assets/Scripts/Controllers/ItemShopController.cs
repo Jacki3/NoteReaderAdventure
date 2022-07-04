@@ -11,11 +11,11 @@ public class ItemShopController : MonoBehaviour
 
     public int buttonDistanceY = 120;
 
+    public Transform scrollRect;
+
     public PauseMenu pauseMenu;
 
     private IShopCustomer shopCustomer;
-
-    public Transform container;
 
     private List<ShopButton> shopButtons = new List<ShopButton>();
 
@@ -45,12 +45,11 @@ public class ItemShopController : MonoBehaviour
     )
     {
         ShopButton shopItemTransform =
-            Instantiate(itemTemplateButton, container);
+            Instantiate(itemTemplateButton, scrollRect);
 
-        shopItemTransform.transform.localPosition =
-            new Vector2(itemTemplateButton.transform.localPosition.x,
-                itemTemplateButton.transform.localPosition.y - yDiff);
-
+        // shopItemTransform.transform.localPosition =
+        //     new Vector2(itemTemplateButton.transform.localPosition.x,
+        //         itemTemplateButton.transform.localPosition.y - yDiff);
         ShopButton newButton = shopItemTransform.GetComponent<ShopButton>();
         newButton.itemText.text.text = itemName;
         newButton.costText.text.text = itemCost.ToString();
