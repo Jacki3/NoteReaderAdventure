@@ -66,6 +66,11 @@ public class PuzzleController : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        print(GameStateController.state);
+    }
+
     private void ClickToMoveTile(int x, int y)
     {
         int getX = GetX(x, y);
@@ -99,6 +104,7 @@ public class PuzzleController : MonoBehaviour
         }
         LevelController.i.levelLoader.LoadLevel(-1);
         startMenu.StartGame();
+        gameObject.SetActive(false);
     }
 
     private void SwapTile(int x, int y, int getX, int getY)

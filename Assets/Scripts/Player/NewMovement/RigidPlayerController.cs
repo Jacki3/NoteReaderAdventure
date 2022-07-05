@@ -2,9 +2,13 @@
 using EZCameraShake;
 using UnityEngine;
 
-public class RigidPlayerController : MovingObject
+public class RigidPlayerController : MovingObject, IShopCustomer
 {
     private Animator animator;
+
+    public SmashCircle smashCircle;
+
+    public Transform smashCircleSpawnPoint;
 
     private SpriteRenderer spriteRenderer;
 
@@ -18,16 +22,18 @@ public class RigidPlayerController : MovingObject
 
     public static event NotationCircleSwitch notationCircleDeactivated;
 
+    private AudioSource audioSource;
+
     private void Awake()
     {
         inputActions = new NoteReadingRPGAdventure();
 
-        // inputActions.Player.Smash.performed += ctx => SpawnCircle();
-        // inputActions.Player.Escape.performed += ctx => ShowMenu();
-        // inputActions.Player.ReadModeSwitch.performed += ctx => SetReadingMode();
+        inputActions.Player.Smash.performed += ctx => SpawnCircle();
+        inputActions.Player.ReadModeSwitch.performed += ctx => SetReadingMode();
+
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        // PlayerSkills.onSkillUnlocked += SkillUnlocked;
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void OnEnable()
@@ -55,19 +61,26 @@ public class RigidPlayerController : MovingObject
             GameStateController.state == GameStateController.States.Play
         )
         {
-            if (PlayerController.inputActions.Player.Up.WasPressedThisFrame())
+            if (inputActions.Player.Up.WasPressedThisFrame())
+            {
                 AttemptMove<MonoBehaviour>(0, 1);
-            else if (
-                PlayerController.inputActions.Player.Down.WasPressedThisFrame()
-            )
+                animator.SetInteger("Direction", 1);
+            }
+            else if (inputActions.Player.Down.WasPressedThisFrame())
+            {
                 AttemptMove<MonoBehaviour>(0, -1);
-            else if (
-                PlayerController.inputActions.Player.Left.WasPressedThisFrame()
-            )
+                animator.SetInteger("Direction", 0);
+            }
+            else if (inputActions.Player.Left.WasPressedThisFrame())
+            {
                 AttemptMove<MonoBehaviour>(-1, 0);
-            else if (
-                PlayerController.inputActions.Player.Right.WasPressedThisFrame()
-            ) AttemptMove<MonoBehaviour>(1, 0);
+                animator.SetInteger("Direction", 3);
+            }
+            else if (inputActions.Player.Right.WasPressedThisFrame())
+            {
+                AttemptMove<MonoBehaviour>(1, 0);
+                animator.SetInteger("Direction", 2);
+            }
         }
 
         //applying cosmetic items - can be a lot better!
@@ -115,6 +128,94 @@ public class RigidPlayerController : MovingObject
         {
             destructableObject.DestroyObject();
         }
+    }
+
+    private void SpawnCircle()
+    {
+        if (
+            !readingMode &&
+            GameStateController.state == GameStateController.States.Play ||
+            GameStateController.state == GameStateController.States.Tutorial &&
+            !readingMode
+        )
+        {
+            SoundController.PlaySound(SoundController.Sound.SmashCircle);
+            var newCircle = Instantiate(smashCircle);
+            newCircle.SetLayerAndPosition (
+                smashCircleSpawnPoint,
+                spriteRenderer
+            );
+        }
+    }
+
+    public void SetReadingMode()
+    {
+        if (
+            GameStateController.state == GameStateController.States.Play ||
+            GameStateController.state == GameStateController.States.Tutorial
+        )
+        {
+            if (!GameStateController.gamePaused)
+            {
+                if (readingMode)
+                {
+                    readingMode = false;
+                    notationCircleDeactivated();
+                }
+                else
+                {
+                    readingMode = true;
+                    notationCircleActivated();
+                }
+            }
+        }
+    }
+
+    public void BoughtItem(CoreItems.ItemType itemType)
+    {
+        SoundController.PlaySound(SoundController.Sound.Purchase);
+        switch (itemType)
+        {
+            case CoreItems.ItemType.smallHealthRefill:
+                HealthController.AddHealth(1);
+                break;
+            case CoreItems.ItemType.healthRefill:
+                HealthController.AddHealth(6);
+                break;
+            case CoreItems.ItemType.largeHealthRefill:
+                HealthController.AddHealth(12);
+                break;
+            case CoreItems.ItemType.shield:
+                HealthController.AddShield(false);
+                SpriteController.SetSprite(SpriteController.Sprites.shield);
+                break;
+            case CoreItems.ItemType.protectiveShield:
+                HealthController.AddShield(true);
+                SpriteController
+                    .SetSprite(SpriteController.Sprites.protectiveShield);
+                break;
+            case CoreItems.ItemType.coolSunGlasses:
+                SpriteController
+                    .SetSprite(SpriteController.Sprites.coolSunGlasses);
+                break;
+            case CoreItems.ItemType.nerdGlasses:
+                SpriteController
+                    .SetSprite(SpriteController.Sprites.nerdGlasses);
+                break;
+            case CoreItems.ItemType.life:
+                LivesController.AddLife();
+                break;
+        }
+    }
+
+    public bool TrySpendCoinAmount(int coinAmount)
+    {
+        if (CurrencyController.GetTotalCoins() >= coinAmount)
+        {
+            return true;
+        }
+        else
+            return false;
     }
 
     public void LoseHealth(int healthLost)

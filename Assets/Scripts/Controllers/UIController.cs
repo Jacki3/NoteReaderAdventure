@@ -22,7 +22,8 @@ public static class UIController
         multiplyText,
         levelText,
         danceFloorText,
-        colourOptionText
+        colourOptionText,
+        shopCoinText
     }
 
     public enum UIImageComponents

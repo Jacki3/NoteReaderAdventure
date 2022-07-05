@@ -40,6 +40,10 @@ public class PauseMenu : MonoBehaviour
 
     public TMPro.TMP_ColorGradient colorGradientWhite;
 
+    public GameObject background;
+
+    public Button returnButton;
+
     [Header("Audio")]
     public float audioFadeDur;
 
@@ -52,8 +56,6 @@ public class PauseMenu : MonoBehaviour
     public AudioSource musicAudio;
 
     public AudioSource metroSource;
-
-    public GameObject background;
 
     private bool optionsVisible;
 
@@ -73,8 +75,15 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        PlayerController.inputActions.Player.Escape.performed += ctx =>
+        RigidPlayerController.inputActions.Player.Escape.performed += ctx =>
             ShowMenu();
+
+        returnButton
+            .onClick
+            .AddListener(delegate ()
+            {
+                ReturnToMain(false, false);
+            });
 
         List<Button> allButtons = new List<Button>();
         transform.GetComponentsInChildrenRecursively<Button> (allButtons);
@@ -92,6 +101,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ReturnToMain(bool fromPuzzle, bool fromShop)
     {
+        RigidPlayerController.readingMode = false;
         EndScreens.HideScreensStatic();
         EventSystem.current.SetSelectedGameObject (mainMenuStart);
 

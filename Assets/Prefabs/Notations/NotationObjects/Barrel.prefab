@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   notationsToComplete: 1
-  XPToAdd: 55
+  XPToAdd: 10
   scoreToAdd: 10
   animator: {fileID: 0}
   missionObject: 6

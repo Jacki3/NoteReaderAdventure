@@ -14,6 +14,8 @@ public class Seed : MonoBehaviour
 
     public BoardController boardController;
 
+    public LevelController levelController;
+
     public string defaultGameSeed;
 
     public void SetLevels()
@@ -101,6 +103,10 @@ public class Seed : MonoBehaviour
         ExperienceController.SetXP();
         ScoreDisplayUpdater
             .StartRoutineDown(coins, UIController.UITextComponents.coinText);
+        ScoreDisplayUpdater
+            .StartRoutineDown(coins,
+            UIController.UITextComponents.shopCoinText);
+        levelController.ResetPlayerPos();
 
         GameStateController.state = GameStateController.States.Play;
     }

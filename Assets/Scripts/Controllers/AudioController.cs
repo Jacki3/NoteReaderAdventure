@@ -75,7 +75,7 @@ public class AudioController : MonoBehaviour
     private void PlaySound(int note, float velocity)
     {
         //hard code - should be equal to the note used for reading circle in input manager
-        if (PlayerController.readingMode && note != 61)
+        if (RigidPlayerController.readingMode && note != 61)
             helmController.NoteOn(note, velocity);
         else
             helmControllerMovement.NoteOn(note, velocity);

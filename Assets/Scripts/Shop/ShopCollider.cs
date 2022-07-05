@@ -25,7 +25,11 @@ public class ShopCollider : MonoBehaviour
     void Update()
     {
         if (
-            PlayerController.inputActions.UI.Submit.WasPressedThisFrame() &&
+            RigidPlayerController
+                .inputActions
+                .UI
+                .Submit
+                .WasPressedThisFrame() &&
             hasCustomer
         )
         {
@@ -36,7 +40,11 @@ public class ShopCollider : MonoBehaviour
 
         if (
             isShopping &&
-            PlayerController.inputActions.Player.Escape.WasPressedThisFrame()
+            RigidPlayerController
+                .inputActions
+                .Player
+                .Escape
+                .WasPressedThisFrame()
         )
         {
             itemShop.HideShop();

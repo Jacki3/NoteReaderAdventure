@@ -104,7 +104,7 @@ public class NotationController : MonoBehaviour
 
                         incorrectNotes = 0;
                     }
-                    else if (note != 25 && PlayerController.readingMode)
+                    else if (note != 25 && RigidPlayerController.readingMode)
                     {
                         //incorrect note accross all notes
                         //should be reading circle button NOT 25

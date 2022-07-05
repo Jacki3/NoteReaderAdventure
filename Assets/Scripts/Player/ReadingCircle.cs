@@ -19,8 +19,8 @@ public class ReadingCircle : MonoBehaviour
 
     private void Awake()
     {
-        PlayerController.notationCircleActivated += ZoomCameraOut;
-        PlayerController.notationCircleDeactivated += ZoomCameraIn;
+        RigidPlayerController.notationCircleActivated += ZoomCameraOut;
+        RigidPlayerController.notationCircleDeactivated += ZoomCameraIn;
         PlayerSkills.onSkillUnlocked += UpgradeReaderCircle;
     }
 
@@ -45,7 +45,7 @@ public class ReadingCircle : MonoBehaviour
 
     void Update()
     {
-        if (PlayerController.readingMode)
+        if (RigidPlayerController.readingMode)
         {
             spriteRenderer.enabled = true;
         }

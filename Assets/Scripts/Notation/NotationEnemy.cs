@@ -107,7 +107,7 @@ public class NotationEnemy : MonoBehaviour, INotation
 
     void OnBecameVisible()
     {
-        if (PlayerController.readingMode)
+        if (RigidPlayerController.readingMode)
         {
             foreach (Transform child in transform)
             {

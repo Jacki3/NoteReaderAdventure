@@ -72,8 +72,8 @@ public class Notation : MonoBehaviour
     private void Awake()
     {
         parentRenderer = transform.parent.GetComponent<SpriteRenderer>();
-        PlayerController.notationCircleActivated += ShowNotation;
-        PlayerController.notationCircleDeactivated += HideNotation;
+        RigidPlayerController.notationCircleActivated += ShowNotation;
+        RigidPlayerController.notationCircleDeactivated += HideNotation;
         MIDIController.NoteOn += ShowPlayedNote;
         MIDIController.NoteOff += DestroyPlayedNote;
     }
@@ -348,8 +348,8 @@ public class Notation : MonoBehaviour
 
             // var explodedNotation = Instantiate(explodableNotation);
             // explodedNotation.transform.position = transform.position;
-            PlayerController.notationCircleActivated -= ShowNotation;
-            PlayerController.notationCircleDeactivated -= HideNotation;
+            RigidPlayerController.notationCircleActivated -= ShowNotation;
+            RigidPlayerController.notationCircleDeactivated -= HideNotation;
 
             if (notationInterface != null)
             {

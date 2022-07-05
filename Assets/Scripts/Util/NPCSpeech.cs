@@ -39,7 +39,11 @@ public class NPCSpeech : MonoBehaviour
     void Update()
     {
         if (
-            PlayerController.inputActions.UI.Submit.WasPressedThisFrame() ||
+            RigidPlayerController
+                .inputActions
+                .UI
+                .Submit
+                .WasPressedThisFrame() ||
             Input.GetMouseButtonUp(0)
         )
         {

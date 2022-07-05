@@ -43,12 +43,9 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
 
     public static bool readingMode;
 
-    public delegate void NotationCircleSwitch();
-
-    public static event NotationCircleSwitch notationCircleActivated;
-
-    public static event NotationCircleSwitch notationCircleDeactivated;
-
+    // public delegate void NotationCircleSwitch();
+    // public static event NotationCircleSwitch notationCircleActivated;
+    // public static event NotationCircleSwitch notationCircleDeactivated;
     private AudioSource audioSource;
 
     private void Awake()
@@ -80,79 +77,73 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
         var move = inputActions.Player.Move.ReadValue<Vector2>();
         var sprint = inputActions.Player.Sprint.ReadValue<float>();
 
-        if (
-            !readingMode &&
-            GameStateController.state == GameStateController.States.Play ||
-            GameStateController.state == GameStateController.States.Tutorial &&
-            !readingMode
-        )
-        {
-            dir = move;
-        }
-        else
-        {
-            dir = Vector2.zero;
-        }
-
+        // if (
+        //     !readingMode &&
+        //     GameStateController.state == GameStateController.States.Play ||
+        //     GameStateController.state == GameStateController.States.Tutorial &&
+        //     !readingMode
+        // )
+        // {
+        //     dir = move;
+        // }
+        // else
+        // {
+        //     dir = Vector2.zero;
+        // }
         //this can be done better also leads to stuck movement if cursor clicks off screen etc.
-        switch (dir)
-        {
-            case Vector2 v:
-                if (v == Vector2.left)
-                {
-                    animator.SetInteger("Direction", 3);
-                    break;
-                }
-                else if (v == Vector2.right)
-                {
-                    animator.SetInteger("Direction", 2);
-                    break;
-                }
-                if (v == Vector2.up)
-                {
-                    animator.SetInteger("Direction", 1);
-                    break;
-                }
-                else if (v == Vector2.down) animator.SetInteger("Direction", 0);
-                break;
-        }
-
-        if (sprint >= .1f && CanSprint())
-        {
-            if (dir.magnitude > 0) SprintBar.StartSprinting();
-            if (SprintBar.canSprint)
-                moveSpeed = sprintSpeed;
-            else
-                moveSpeed = walkSpeed;
-        }
-        else
-        {
-            SprintBar.StopSprinting();
-            moveSpeed = walkSpeed;
-        }
-
-        if (dir.magnitude < 0) SprintBar.StopSprinting();
-
-        dir.Normalize();
-        animator.SetBool("IsMoving", dir.magnitude > 0);
-
-        if (dir.magnitude > 0)
-        {
-            if (GameStateController.state == GameStateController.States.Tutorial
-            )
-            {
-                TutorialManager
-                    .CheckTutorialStatic(Tutorial.TutorialValidation.Move);
-            }
-            audioSource.clip = moveSound;
-        }
-        else
-        {
-            audioSource.clip = null;
-            SprintBar.StopSprinting();
-        }
-        if (!audioSource.isPlaying) audioSource.Play();
-
+        // switch (dir)
+        // {
+        //     case Vector2 v:
+        //         if (v == Vector2.left)
+        //         {
+        //             animator.SetInteger("Direction", 3);
+        //             break;
+        //         }
+        //         else if (v == Vector2.right)
+        //         {
+        //             animator.SetInteger("Direction", 2);
+        //             break;
+        //         }
+        //         if (v == Vector2.up)
+        //         {
+        //             animator.SetInteger("Direction", 1);
+        //             break;
+        //         }
+        //         else if (v == Vector2.down) animator.SetInteger("Direction", 0);
+        //         break;
+        // }
+        // if (sprint >= .1f && CanSprint())
+        // {
+        //     if (dir.magnitude > 0) SprintBar.StartSprinting();
+        //     if (SprintBar.canSprint)
+        //         moveSpeed = sprintSpeed;
+        //     else
+        //         moveSpeed = walkSpeed;
+        // }
+        // else
+        // {
+        //     SprintBar.StopSprinting();
+        //     moveSpeed = walkSpeed;
+        // }
+        // if (dir.magnitude < 0) SprintBar.StopSprinting();
+        // dir.Normalize();
+        // animator.SetBool("IsMoving", dir.magnitude > 0);
+        // if (dir.magnitude > 0)
+        // {
+        //     if (GameStateController.state == GameStateController.States.Tutorial
+        //     )
+        //     {
+        //         TutorialManager
+        //             .CheckTutorialStatic(Tutorial.TutorialValidation.Move);
+        //     }
+        //     audioSource.clip = moveSound;
+        // }
+        // else
+        // {
+        //     audioSource.clip = null;
+        //     SprintBar.StopSprinting();
+        // }
+        // if (!audioSource.isPlaying) audioSource.Play();
         // GetComponent<Rigidbody2D>().velocity = moveSpeed * dir; //using get component?
         //lulw -- set for other items in one method
         if (dir.y == -1)
@@ -200,12 +191,12 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
                 if (readingMode)
                 {
                     readingMode = false;
-                    notationCircleDeactivated();
+                    // notationCircleDeactivated();
                 }
                 else
                 {
                     readingMode = true;
-                    notationCircleActivated();
+                    // notationCircleActivated();
                 }
             }
         }

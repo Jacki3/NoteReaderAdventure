@@ -98,8 +98,9 @@ public class NumberBox : MonoBehaviour
     private void CheckMoveTile(int number, float t)
     {
         if (GameStateController.state == GameStateController.States.Puzzle)
-            if (number == index || number % 12 == note)
-                if (moveTile != null) moveTile(x, y);
+        {
+            if (number % 12 == note) if (moveTile != null) moveTile(x, y);
+        }
     }
 
     private void OnMouseDown()

@@ -122,7 +122,7 @@ public class StartMenu : MonoBehaviour
         levelsVisible = false;
         gameObject.SetActive(false);
         pauseMenu.GetComponent<PauseMenu>().MusicFade();
-        player.SetActive(true);
+        player.GetComponent<SpriteRenderer>().enabled = true;
 
         gameCanvas.enabled = true;
         if (GameStateController.gamePaused) GameStateController.PauseGame(true);
@@ -215,7 +215,8 @@ public class StartMenu : MonoBehaviour
     public void ShowPuzzle()
     {
         gameObject.SetActive(false);
-        player.SetActive(false);
+        player.GetComponent<SpriteRenderer>().enabled = false;
+        puzzleController.gameObject.SetActive(true);
         puzzleController.GeneratePuzzle();
 
         GameStateController.state = GameStateController.States.Puzzle;
@@ -224,7 +225,7 @@ public class StartMenu : MonoBehaviour
     public void ShowShop()
     {
         gameObject.SetActive(false);
-        player.SetActive(false);
+        player.GetComponent<SpriteRenderer>().enabled = false;
         itemShop.ShowShop(player.GetComponent<IShopCustomer>());
         GameStateController.state = GameStateController.States.Shopping;
     }
