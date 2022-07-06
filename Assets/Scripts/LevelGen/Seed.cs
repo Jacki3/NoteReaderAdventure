@@ -108,6 +108,7 @@ public class Seed : MonoBehaviour
             UIController.UITextComponents.shopCoinText);
         levelController.ResetPlayerPos();
 
+        //load music on levels which are procedureally generated
         MusicGenController.RegenMusic();
 
         GameStateController.state = GameStateController.States.Play;
