@@ -74,6 +74,7 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(FadeStartMenuAudio(audioFadeDur, 9, -80));
         animator = GetComponent<Animator>();
         RigidPlayerController.inputActions.Player.Escape.performed += ctx =>
             ShowMenu();
@@ -144,11 +145,19 @@ public class PauseMenu : MonoBehaviour
                 EventSystem.current.SetSelectedGameObject (resumeButton);
                 mixer.GetFloat("MusicVol", out currentMusicVol);
                 mixer.SetFloat("MusicVol", currentMusicVol - 8);
+                mixer.GetFloat("LSequencer", out currentMusicVol);
+                mixer.SetFloat("LSequencer", currentMusicVol - 8);
+                mixer.GetFloat("BSequencer", out currentMusicVol);
+                mixer.SetFloat("BSequencer", currentMusicVol - 8);
             }
             else
             {
                 mixer.GetFloat("MusicVol", out currentMusicVol);
                 mixer.SetFloat("MusicVol", currentMusicVol + 8);
+                mixer.GetFloat("LSequencer", out currentMusicVol);
+                mixer.SetFloat("LSequencer", currentMusicVol + 8);
+                mixer.GetFloat("BSequencer", out currentMusicVol);
+                mixer.SetFloat("BSequencer", currentMusicVol + 8);
                 rhythmBar.SetActive(true);
                 GetComponent<Canvas>().enabled = false;
                 GameStateController.state = GameStateController.States.Play;
@@ -238,8 +247,11 @@ public class PauseMenu : MonoBehaviour
 
     public void SetMusicLevel(float value)
     {
+        // mixer.SetFloat("MainMenuVol", Mathf.Log10(value) * 20);
         mixer.SetFloat("MusicVol", (Mathf.Log10(value) * 20) - 10);
-        mixer.SetFloat("MainMenuVol", Mathf.Log10(value) * 20);
+        mixer.SetFloat("MusicVol", (Mathf.Log10(value) * 20) - 8);
+        mixer.SetFloat("LSequencer", Mathf.Log10(value) * 20 - 8);
+        mixer.SetFloat("BSequencer", Mathf.Log10(value) * 20 - 8);
         CoreGameElements.i.gameSave.musicVol =
             CoreUIElements
                 .i
@@ -317,7 +329,7 @@ public class PauseMenu : MonoBehaviour
         metroSource.enabled = true;
         StartCoroutine(FadeStartMenuAudio(audioFadeDur,
         menuVolTarget,
-        musicVolTarget));
+        CoreGameElements.i.gameSave.musicVol));
     }
 
     private IEnumerator
@@ -328,12 +340,19 @@ public class PauseMenu : MonoBehaviour
         float currentTime = 0;
         float currentVolMenu;
         float currentVolGame;
+        float LSequencerVol;
+        float BSequencerVol;
         mixer.GetFloat("MainMenuVol", out currentVolMenu);
         mixer.GetFloat("MusicVol", out currentVolGame);
+        mixer.GetFloat("LSequencer", out LSequencerVol);
+        mixer.GetFloat("BSequencer", out BSequencerVol);
         currentVolMenu = Mathf.Pow(10, currentVolMenu / 20);
         currentVolGame = Mathf.Pow(10, currentVolGame / 20);
+        LSequencerVol = Mathf.Pow(10, LSequencerVol / 20);
+        BSequencerVol = Mathf.Pow(10, BSequencerVol / 20);
         float targetValueMenu = Mathf.Clamp(targetVolMenu, 0.0001f, 1);
         float targetValueGame = Mathf.Clamp(targetVolGame, 0.0001f, 1);
+
         while (currentTime < duration)
         {
             currentTime += Time.deltaTime;
@@ -347,8 +366,21 @@ public class PauseMenu : MonoBehaviour
                     .Lerp(currentVolGame,
                     targetValueGame,
                     currentTime / duration);
+            float newVolL =
+                Mathf
+                    .Lerp(currentVolGame,
+                    targetValueGame,
+                    currentTime / duration);
+            float newVolB =
+                Mathf
+                    .Lerp(currentVolGame,
+                    targetValueGame,
+                    currentTime / duration);
+
             mixer.SetFloat("MainMenuVol", Mathf.Log10(newVolMenu) * 20);
             mixer.SetFloat("MusicVol", Mathf.Log10(newVolGame) * 20);
+            mixer.SetFloat("LSequencer", Mathf.Log10(newVolL) * 20);
+            mixer.SetFloat("BSequencer", Mathf.Log10(newVolB) * 20);
             yield return null;
         }
         yield break;

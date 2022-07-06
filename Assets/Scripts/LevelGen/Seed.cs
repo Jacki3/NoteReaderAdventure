@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -62,7 +62,7 @@ public class Seed : MonoBehaviour
 
     public void LoadLevel(int levelToLoad)
     {
-        if (levelToLoad == -1) levelToLoad = currentLevel + 1;
+        if (levelToLoad == -1) levelToLoad = currentLevel;
         if (levelToLoad == 1)
         {
             SaveFile save = CoreGameElements.i.gameSave;
@@ -107,6 +107,8 @@ public class Seed : MonoBehaviour
             .StartRoutineDown(coins,
             UIController.UITextComponents.shopCoinText);
         levelController.ResetPlayerPos();
+
+        MusicGenController.RegenMusic();
 
         GameStateController.state = GameStateController.States.Play;
     }
