@@ -1,19 +1,43 @@
 fileFormatVersion: 2
-guid: ec47f75fe8aff1644ac73998f4ad31b5
+guid: f320ef8f71cc0fc4cbbcefeb998a1923
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 21300000
-    second: TX Player F
+      213: -5149071998860218855
+    second: TX PlayerSunnies_0
   - first:
-      213: 21300002
-    second: TX Player B
+      213: 5544021161853995607
+    second: TX PlayerSunnies_1
   - first:
-      213: 21300004
-    second: TX Player S
+      213: 5716488165409735231
+    second: TX PlayerSunnies_2
   - first:
-      213: 21300006
-    second: TX Shadow Player
+      213: 4787940438903315092
+    second: TX PlayerSunnies_3
+  - first:
+      213: 2955267891229818014
+    second: TX PlayerSunnies_4
+  - first:
+      213: 8977398231980895628
+    second: TX PlayerSunnies_5
+  - first:
+      213: -7468570962891071876
+    second: TX PlayerSunnies_6
+  - first:
+      213: 3695269843810724522
+    second: TX PlayerSunnies_7
+  - first:
+      213: 3636971901636395560
+    second: TX PlayerSunnies_8
+  - first:
+      213: 1022241363077367660
+    second: TX PlayerSunnies_9
+  - first:
+      213: -6605007772506970626
+    second: TX PlayerSunnies_10
+  - first:
+      213: 5381354470765272676
+    second: TX PlayerSunnies_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -71,14 +95,14 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 1
+  applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
-    textureCompression: 1
+    textureFormat: -1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -89,8 +113,8 @@ TextureImporter:
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
-    textureCompression: 1
+    textureFormat: -1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -101,97 +125,97 @@ TextureImporter:
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
-    textureCompression: 1
+    textureFormat: -1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TX Player F
+      name: TX PlayerSunnies_0
       rect:
         serializedVersion: 2
         x: 6
         y: 70
         width: 21
         height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 1, z: 0, w: 30}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a5766e0acb972fc4a822fd0da3d78646
-      internalID: 21300000
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TX Player B
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 70
-        width: 21
-        height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 1, z: 0, w: 30}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a5b86785e343a0d4cb6789e18659fc2b
-      internalID: 21300002
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TX Player S
-      rect:
-        serializedVersion: 2
-        x: 69
-        y: 70
-        width: 21
-        height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 1, z: 0, w: 31}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a9ca82717e2de784b8635c80e5b0c18f
-      internalID: 21300004
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TX Shadow Player
-      rect:
-        serializedVersion: 2
-        x: 99
-        y: 68
-        width: 27
-        height: 28
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a919befe8cac95409cfc0454a956cba
-      internalID: 21300006
+      spriteID: 91ea6094c42da88b0800000000000000
+      internalID: -5149071998860218855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX PlayerSunnies_1
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 71
+        width: 21
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75a4e8b8fd150fc40800000000000000
+      internalID: 5544021161853995607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX PlayerSunnies_3
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 71
+        width: 21
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49a5f8a267e227240800000000000000
+      internalID: 4787940438903315092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TX PlayerSunnies_6
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 20
+        width: 21
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 31}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7e9419874e4a5890800000000000000
+      internalID: -7468570962891071876
       vertices: []
       indices: 
       edges: []
@@ -199,7 +223,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 57e538b12da3cef4ea18b351a5a2ff6d
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 

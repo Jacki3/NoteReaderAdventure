@@ -77,8 +77,8 @@ public class RhythmEnemy : MovingObject, INotation
         {
             xDir = target.position.x > transform.position.x ? 1 : -1;
         }
-
-        AttemptMove<RigidPlayerController> (xDir, yDir);
+        if (GameStateController.state == GameStateController.States.Play)
+            AttemptMove<RigidPlayerController>(xDir, yDir);
     }
 
     protected override void OnCantMove<T>(T Component)

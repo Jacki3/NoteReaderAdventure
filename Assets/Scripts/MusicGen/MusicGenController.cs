@@ -1,5 +1,6 @@
 ﻿﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using AudioHelm;
 using UnityEngine;
 
@@ -29,13 +30,13 @@ public class MusicGenController : MonoBehaviour
         switch (CoreGameElements.i.currentDifficulty)
         {
             case CoreGameElements.Difficuties.easy:
-                scale = CoreGameElements.i.easyNotes;
+                scale = CoreGameElements.i.easyNotes.ToArray();
                 break;
             case CoreGameElements.Difficuties.medium:
-                scale = CoreGameElements.i.mediumNotes;
+                scale = CoreGameElements.i.mediumNotes.ToArray();
                 break;
             case CoreGameElements.Difficuties.hard:
-                scale = CoreGameElements.i.hardNotes;
+                scale = CoreGameElements.i.hardNotes.ToArray();
                 break;
         }
         for (int i = 0; i < scale.Length; i++) scale[i] %= 12;

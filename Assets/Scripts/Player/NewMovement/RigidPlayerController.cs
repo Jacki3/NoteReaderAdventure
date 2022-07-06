@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class RigidPlayerController : MovingObject, IShopCustomer
 {
+    public Sprite northSprite;
+
+    public Sprite southSprite;
+
+    public Sprite eastSprite;
+
     private Animator animator;
 
     public SmashCircle smashCircle;
@@ -64,21 +70,27 @@ public class RigidPlayerController : MovingObject, IShopCustomer
             if (inputActions.Player.Up.WasPressedThisFrame())
             {
                 AttemptMove<MonoBehaviour>(0, 1);
+                spriteRenderer.sprite = southSprite;
                 animator.SetInteger("Direction", 1);
             }
             else if (inputActions.Player.Down.WasPressedThisFrame())
             {
                 AttemptMove<MonoBehaviour>(0, -1);
+                spriteRenderer.sprite = northSprite;
                 animator.SetInteger("Direction", 0);
             }
             else if (inputActions.Player.Left.WasPressedThisFrame())
             {
                 AttemptMove<MonoBehaviour>(-1, 0);
+                spriteRenderer.flipX = false;
+                spriteRenderer.sprite = eastSprite;
                 animator.SetInteger("Direction", 3);
             }
             else if (inputActions.Player.Right.WasPressedThisFrame())
             {
                 AttemptMove<MonoBehaviour>(1, 0);
+                spriteRenderer.flipX = true;
+                spriteRenderer.sprite = eastSprite;
                 animator.SetInteger("Direction", 2);
             }
         }
