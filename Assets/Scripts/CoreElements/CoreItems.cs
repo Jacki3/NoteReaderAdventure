@@ -12,7 +12,9 @@ public class CoreItems
         largeHealthRefill,
         coolSunGlasses,
         nerdGlasses,
-        life
+        life,
+        kittyBackpack,
+        goldEarrings
     }
 
     public ItemType item;

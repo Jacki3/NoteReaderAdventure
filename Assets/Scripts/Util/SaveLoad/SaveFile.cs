@@ -40,6 +40,14 @@ public class SaveFile
 
     public List<Mission> allMissions = new List<Mission>();
 
+    public TextureController.CustomisationItem[] savedCustomItems;
+
+    public Sprite frontSprite;
+
+    public Sprite backSprite;
+
+    public Sprite sideSprite;
+
     public List<PlayerSkills.SkillType>
         savedUnlockedSkills = new List<PlayerSkills.SkillType>();
 

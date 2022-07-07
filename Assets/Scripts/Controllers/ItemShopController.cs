@@ -27,11 +27,7 @@ public class ItemShopController : MonoBehaviour
 
         foreach (CoreItems item in shopItems)
         {
-            CreateButtons(item.item,
-            item.itemSprite,
-            item.itemName,
-            item.cost,
-            yDiff);
+            CreateButtons(item.item, item.itemSprite, item.itemName, item.cost);
             yDiff += buttonDistanceY;
         }
     }
@@ -40,8 +36,7 @@ public class ItemShopController : MonoBehaviour
         CoreItems.ItemType itemType,
         Sprite itemSprite,
         string itemName,
-        int itemCost,
-        int yDiff
+        int itemCost
     )
     {
         ShopButton shopItemTransform =
@@ -140,6 +135,14 @@ public class ItemShopController : MonoBehaviour
                         .CheckValidMission(Mission.Object.ShopPurchase);
                     CurrencyController.AddRemoveCoins(cost, false);
                 }
+            }
+            else if (TextureController.CheckBoughtItemStatic(itemType) == false)
+            {
+                SoundController.PlaySound(SoundController.Sound.IncorectNote);
+                Tooltip
+                    .SetToolTip_Static("Already got item!",
+                    currentShopButton.transform.localPosition,
+                    currentShopButton.transform.root);
             }
             else
             {

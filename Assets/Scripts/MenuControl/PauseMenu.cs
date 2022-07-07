@@ -44,6 +44,8 @@ public class PauseMenu : MonoBehaviour
 
     public Button returnButton;
 
+    public GameObject customMenu;
+
     [Header("Audio")]
     public float audioFadeDur;
 
@@ -66,6 +68,8 @@ public class PauseMenu : MonoBehaviour
     private bool isMainMenu = true;
 
     private bool popUpVisible;
+
+    private bool customMenuVisible = false;
 
     void Awake()
     {
@@ -161,6 +165,39 @@ public class PauseMenu : MonoBehaviour
                 rhythmBar.SetActive(true);
                 GetComponent<Canvas>().enabled = false;
                 GameStateController.state = GameStateController.States.Play;
+            }
+        }
+    }
+
+    public void ShowPlayerCustomisation()
+    {
+        if (customMenuVisible)
+        {
+            customMenuVisible = false;
+            customMenu.SetActive(false);
+            if (isMainMenu)
+            {
+                mainButtons.SetActive(true);
+                EventSystem.current.SetSelectedGameObject (mainMenuStart);
+            }
+            else
+            {
+                pauseButtons.SetActive(true);
+                EventSystem.current.SetSelectedGameObject (resumeButton); //repeats below - concat showmenu but avoid pausing game everytime
+            }
+        }
+        else
+        {
+            customMenuVisible = true;
+            customMenu.SetActive(true);
+            if (isMainMenu)
+            {
+                mainButtons.SetActive(false);
+            }
+            else
+            {
+                pauseButtons.SetActive(false);
+                EventSystem.current.SetSelectedGameObject (resumeButton); //repeats below - concat showmenu but avoid pausing game everytime
             }
         }
     }

@@ -13,6 +13,8 @@ public class GameHandler : MonoBehaviour
 
     public PauseMenu pauseMenu;
 
+    public RigidPlayerController player;
+
     private static string DATA_PATH;
 
     void Start()
@@ -24,6 +26,7 @@ public class GameHandler : MonoBehaviour
 
     private void Save()
     {
+        TextureController.SaveItemsStatic();
         string json = JsonUtility.ToJson(CoreGameElements.i.gameSave);
         byte[] bytesToEncode = Encoding.UTF8.GetBytes(json);
         string encodedText = Convert.ToBase64String(bytesToEncode);
@@ -51,6 +54,15 @@ public class GameHandler : MonoBehaviour
             HealthController.SetHealth();
             PlayerSkills.LoadAllSkills();
             UIController.LoadUIHearts();
+            TextureController.LoadItemsStatic();
+            TextureController.CreateItemButtonsFirst();
+            player
+                .SetSprites(save.frontSprite, save.backSprite, save.sideSprite);
+            TextureController
+                .SetSpriteStatic(TextureController.Orientation.front,
+                save.frontSprite,
+                save.backSprite,
+                save.sideSprite);
         }
         else
         {
@@ -65,6 +77,7 @@ public class GameHandler : MonoBehaviour
 
             ExperienceController.SetInitialLevel();
             HealthController.SetHealth();
+            TextureController.CreateItemButtonsFirst();
 
             seed.SetLevels();
         }

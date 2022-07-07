@@ -10,13 +10,9 @@ public class RigidPlayerController : MovingObject, IShopCustomer
 
     public Sprite eastSprite;
 
-    private Animator animator;
-
     public SmashCircle smashCircle;
 
     public Transform smashCircleSpawnPoint;
-
-    private SpriteRenderer spriteRenderer;
 
     public static NoteReadingRPGAdventure inputActions;
 
@@ -29,6 +25,10 @@ public class RigidPlayerController : MovingObject, IShopCustomer
     public static event NotationCircleSwitch notationCircleDeactivated;
 
     private AudioSource audioSource;
+
+    private Animator animator;
+
+    private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
@@ -186,37 +186,32 @@ public class RigidPlayerController : MovingObject, IShopCustomer
     public void BoughtItem(CoreItems.ItemType itemType)
     {
         SoundController.PlaySound(SoundController.Sound.Purchase);
-        switch (itemType)
+        if (TextureController.CheckBoughtItemStatic(itemType) == false)
         {
-            case CoreItems.ItemType.smallHealthRefill:
-                HealthController.AddHealth(1);
-                break;
-            case CoreItems.ItemType.healthRefill:
-                HealthController.AddHealth(6);
-                break;
-            case CoreItems.ItemType.largeHealthRefill:
-                HealthController.AddHealth(12);
-                break;
-            case CoreItems.ItemType.shield:
-                HealthController.AddShield(false);
-                SpriteController.SetSprite(SpriteController.Sprites.shield);
-                break;
-            case CoreItems.ItemType.protectiveShield:
-                HealthController.AddShield(true);
-                SpriteController
-                    .SetSprite(SpriteController.Sprites.protectiveShield);
-                break;
-            case CoreItems.ItemType.coolSunGlasses:
-                SpriteController
-                    .SetSprite(SpriteController.Sprites.coolSunGlasses);
-                break;
-            case CoreItems.ItemType.nerdGlasses:
-                SpriteController
-                    .SetSprite(SpriteController.Sprites.nerdGlasses);
-                break;
-            case CoreItems.ItemType.life:
-                LivesController.AddLife();
-                break;
+            switch (itemType)
+            {
+                case CoreItems.ItemType.smallHealthRefill:
+                    HealthController.AddHealth(1);
+                    break;
+                case CoreItems.ItemType.healthRefill:
+                    HealthController.AddHealth(6);
+                    break;
+                case CoreItems.ItemType.largeHealthRefill:
+                    HealthController.AddHealth(12);
+                    break;
+                case CoreItems.ItemType.shield:
+                    HealthController.AddShield(false);
+                    SpriteController.SetSprite(SpriteController.Sprites.shield);
+                    break;
+                case CoreItems.ItemType.protectiveShield:
+                    HealthController.AddShield(true);
+                    SpriteController
+                        .SetSprite(SpriteController.Sprites.protectiveShield);
+                    break;
+                case CoreItems.ItemType.life:
+                    LivesController.AddLife();
+                    break;
+            }
         }
     }
 
@@ -233,5 +228,13 @@ public class RigidPlayerController : MovingObject, IShopCustomer
     public void LoseHealth(int healthLost)
     {
         HealthController.RemoveHealth(healthLost, true);
+    }
+
+    public void SetSprites(Sprite front, Sprite back, Sprite side)
+    {
+        northSprite = front;
+        southSprite = back;
+        eastSprite = side;
+        spriteRenderer.sprite = northSprite;
     }
 }

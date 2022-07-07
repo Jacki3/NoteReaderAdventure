@@ -80,10 +80,9 @@ public class LevelController : MonoBehaviour
             //load a puzzle every even level, load a shop every fifth level or just load the next level
             if (currentLevel % 2 == 1 && currentLevel % 5 != 0)
                 pauseMenu.ReturnToMain(true, false);
-            else if (currentLevel % 5 == 0)
-                pauseMenu.ReturnToMain(false, true);
-            else
-                levelLoader.LoadLevel(currentLevel + 1);
+            else if (currentLevel % 5 == 0) pauseMenu.ReturnToMain(false, true);
+            // else
+            //     levelLoader.LoadLevel(currentLevel + 1);
         }
         else
         {
