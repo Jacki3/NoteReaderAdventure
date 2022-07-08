@@ -27,16 +27,58 @@ public class MusicGenController : MonoBehaviour
     private void RegenerateMusic()
     {
         int[] scale = null;
-        switch (CoreGameElements.i.currentDifficulty)
+        switch (CoreGameElements.i.currentDifficultyNotes)
         {
-            case CoreGameElements.Difficuties.easy:
-                scale = CoreGameElements.i.easyNotes.ToArray();
+            case CoreGameElements.DifficutiesNotes.one:
+                scale = CoreGameElements.i.allNotes.oneNotes.ToArray();
                 break;
-            case CoreGameElements.Difficuties.medium:
-                scale = CoreGameElements.i.mediumNotes.ToArray();
+            case CoreGameElements.DifficutiesNotes.two:
+                scale = CoreGameElements.i.allNotes.twoNotes.ToArray();
                 break;
-            case CoreGameElements.Difficuties.hard:
-                scale = CoreGameElements.i.hardNotes.ToArray();
+            case CoreGameElements.DifficutiesNotes.three:
+                scale = CoreGameElements.i.allNotes.threeNotes.ToArray();
+                break;
+            case CoreGameElements.DifficutiesNotes.four:
+                scale = CoreGameElements.i.allNotes.fourNotes.ToArray();
+                break;
+            case CoreGameElements.DifficutiesNotes.five:
+                scale = CoreGameElements.i.allNotes.fiveNotes.ToArray();
+                break;
+            case CoreGameElements.DifficutiesNotes.six:
+                scale = CoreGameElements.i.allNotes.sixNotes.ToArray();
+                break;
+            case CoreGameElements.DifficutiesNotes.seven:
+                scale = CoreGameElements.i.allNotes.sevenNotes.ToArray();
+                break;
+            case CoreGameElements.DifficutiesNotes.eight:
+                scale = CoreGameElements.i.allNotes.eightNotes.ToArray();
+                break;
+            case CoreGameElements.DifficutiesNotes.nine:
+                scale = CoreGameElements.i.allNotes.nineNotes.ToArray();
+                break;
+            case CoreGameElements.DifficutiesNotes.ten:
+                scale = CoreGameElements.i.allNotes.tenNotes.ToArray();
+                break;
+            case CoreGameElements.DifficutiesNotes.eleven:
+                scale = CoreGameElements.i.allNotes.elevenNotes.ToArray();
+                break;
+            case CoreGameElements.DifficutiesNotes.twelve:
+                scale = CoreGameElements.i.allNotes.twelveNotes.ToArray();
+                break;
+            case CoreGameElements.DifficutiesNotes.thirteen:
+                scale = CoreGameElements.i.allNotes.thirteenNotes.ToArray();
+                break;
+            case CoreGameElements.DifficutiesNotes.fourteen:
+                scale = CoreGameElements.i.allNotes.fourteenNotes.ToArray();
+                break;
+            case CoreGameElements.DifficutiesNotes.fifteen:
+                scale = CoreGameElements.i.allNotes.fifteenNotes.ToArray();
+                break;
+            case CoreGameElements.DifficutiesNotes.sixteen:
+                scale = CoreGameElements.i.allNotes.sixteenNotes.ToArray();
+                break;
+            case CoreGameElements.DifficutiesNotes.seventeen:
+                scale = CoreGameElements.i.allNotes.seventeenNotes.ToArray();
                 break;
         }
         for (int i = 0; i < scale.Length; i++) scale[i] %= 12;

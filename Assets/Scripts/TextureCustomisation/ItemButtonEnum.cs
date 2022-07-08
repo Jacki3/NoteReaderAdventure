@@ -15,7 +15,7 @@ public class ItemButtonEnum : MonoBehaviour
 
     public UnityEngine.UI.Image image;
 
-    public UnityEngine.UI.Image background;
+    public UnityEngine.UI.Button itemButton;
 
     public TextureController.CustomisationItem customItem;
 
@@ -71,6 +71,6 @@ public class ItemButtonEnum : MonoBehaviour
     public void UnlockSpirte()
     {
         image.color = Color.white;
-        background.color = Color.white;
+        itemButton.interactable = true;
     }
 }

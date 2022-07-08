@@ -192,21 +192,27 @@ public class RigidPlayerController : MovingObject, IShopCustomer
             {
                 case CoreItems.ItemType.smallHealthRefill:
                     HealthController.AddHealth(1);
+                    HealthController.SaveHealth();
                     break;
                 case CoreItems.ItemType.healthRefill:
                     HealthController.AddHealth(6);
+                    HealthController.SaveHealth();
                     break;
                 case CoreItems.ItemType.largeHealthRefill:
                     HealthController.AddHealth(12);
+                    HealthController.SaveHealth();
                     break;
                 case CoreItems.ItemType.shield:
                     HealthController.AddShield(false);
                     SpriteController.SetSprite(SpriteController.Sprites.shield);
+                    HealthController.SaveHealth();
+
                     break;
                 case CoreItems.ItemType.protectiveShield:
                     HealthController.AddShield(true);
                     SpriteController
                         .SetSprite(SpriteController.Sprites.protectiveShield);
+                    HealthController.SaveHealth();
                     break;
                 case CoreItems.ItemType.life:
                     LivesController.AddLife();

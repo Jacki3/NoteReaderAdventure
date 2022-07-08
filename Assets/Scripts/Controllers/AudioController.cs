@@ -16,7 +16,7 @@ public class AudioController : MonoBehaviour
 
     private HelmController helmController;
 
-    private AudioHelmClock helmClock;
+    public static AudioHelmClock helmClock;
 
     public static float secPerBeat;
 

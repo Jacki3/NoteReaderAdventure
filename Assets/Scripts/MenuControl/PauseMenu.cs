@@ -46,6 +46,10 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject customMenu;
 
+    public GameObject shopCanvas;
+
+    public GameObject heartsUI;
+
     [Header("Audio")]
     public float audioFadeDur;
 
@@ -129,7 +133,11 @@ public class PauseMenu : MonoBehaviour
         StartCoroutine(FadeStartMenuAudio(audioFadeDur, 9, -80));
 
         if (fromPuzzle) mainMenu.ShowPuzzle();
-        if (fromShop) mainMenu.ShowShop();
+        if (fromShop)
+        {
+            heartsUI.transform.SetParent(shopCanvas.transform, false);
+            mainMenu.ShowShop();
+        }
     }
 
     public void ShowMenu()
@@ -359,6 +367,7 @@ public class PauseMenu : MonoBehaviour
 
     public void MusicFade()
     {
+        heartsUI.transform.SetParent(gameCanvas.transform);
         isMainMenu = false;
         background.SetActive(true);
         pauseButtons.SetActive(true);

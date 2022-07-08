@@ -81,7 +81,6 @@ public class Notation : MonoBehaviour
     void Start()
     {
         holder.SetActive(false);
-
         if (
             CoreGameElements.i.useBassNotes &&
             Random.value > CoreGameElements.i.chanceOfBassNotes
@@ -89,7 +88,6 @@ public class Notation : MonoBehaviour
             usingBass = true;
         else
             usingBass = false;
-
         if (
             usePattern &&
             NotesController.CanUsePattern(totalNotesToSpawn, usingBass)
@@ -105,7 +103,6 @@ public class Notation : MonoBehaviour
                 notes.Add (randNote);
             }
         }
-
         for (int i = 0; i < totalNotesToSpawn; i++)
         {
             SpawnNotes(startingSpawnPosX, notes[i], usingBass, false);
@@ -116,7 +113,6 @@ public class Notation : MonoBehaviour
             else
                 startingSpawnPosX += distanceBetweenNotesX;
         }
-
         if (arenaMode) ShowNotation();
     }
 

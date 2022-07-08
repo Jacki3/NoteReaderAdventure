@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public static class HealthController
@@ -30,6 +31,7 @@ public static class HealthController
 
     public static void UpdateHealth()
     {
+        UpdateShield();
         UIController.ResetHearts();
         currentHealth = CoreGameElements.i.gameSave.playerHealth;
         int healthRemoved = maxHealth - currentHealth;
@@ -152,6 +154,22 @@ public static class HealthController
         //sound
     }
 
+    private static void UpdateShield()
+    {
+        hasShield = CoreGameElements.i.gameSave.hasShield;
+        strongShield = CoreGameElements.i.gameSave.hasStrongShield;
+
+        if (hasShield || strongShield)
+        {
+            AddShield (strongShield);
+            if (hasShield)
+                SpriteController.SetSprite(SpriteController.Sprites.shield);
+            if (strongShield)
+                SpriteController
+                    .SetSprite(SpriteController.Sprites.protectiveShield);
+        }
+    }
+
     public static void AddShield(bool _strongShield)
     {
         if (_strongShield)
@@ -190,6 +208,10 @@ public static class HealthController
 
     public static bool HasProtectiveShield() => strongShield;
 
-    public static void SaveHealth() =>
+    public static void SaveHealth()
+    {
         CoreGameElements.i.gameSave.playerHealth = currentHealth;
+        CoreGameElements.i.gameSave.hasShield = hasShield;
+        CoreGameElements.i.gameSave.hasStrongShield = strongShield;
+    }
 }

@@ -48,6 +48,10 @@ public class SaveFile
 
     public Sprite sideSprite;
 
+    public bool hasShield = false;
+
+    public bool hasStrongShield = false;
+
     public List<PlayerSkills.SkillType>
         savedUnlockedSkills = new List<PlayerSkills.SkillType>();
 

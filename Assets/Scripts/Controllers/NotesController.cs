@@ -10,27 +10,176 @@ public static class NotesController
 
     public static int GetRandomNote(bool bass)
     {
-        switch (CoreGameElements.i.currentDifficulty)
+        switch (CoreGameElements.i.currentDifficultyNotes)
         {
-            case CoreGameElements.Difficuties.easy:
+            case CoreGameElements.DifficutiesNotes.one:
                 {
                     int randIndex =
-                        Random.Range(0, CoreGameElements.i.easyNotes.Length);
-                    int randNote = CoreGameElements.i.easyNotes[randIndex];
+                        Random
+                            .Range(0,
+                            CoreGameElements.i.allNotes.oneNotes.Length);
+                    int randNote =
+                        CoreGameElements.i.allNotes.oneNotes[randIndex];
                     return randNote;
                 }
-            case CoreGameElements.Difficuties.medium:
+            case CoreGameElements.DifficutiesNotes.two:
                 {
                     int randIndex =
-                        Random.Range(0, CoreGameElements.i.mediumNotes.Length);
-                    int randNote = CoreGameElements.i.mediumNotes[randIndex];
+                        Random
+                            .Range(0,
+                            CoreGameElements.i.allNotes.twoNotes.Length);
+                    int randNote =
+                        CoreGameElements.i.allNotes.twoNotes[randIndex];
                     return randNote;
                 }
-            case CoreGameElements.Difficuties.hard:
+            case CoreGameElements.DifficutiesNotes.three:
                 {
                     int randIndex =
-                        Random.Range(0, CoreGameElements.i.hardNotes.Length);
-                    int randNote = CoreGameElements.i.hardNotes[randIndex];
+                        Random
+                            .Range(0,
+                            CoreGameElements.i.allNotes.threeNotes.Length);
+                    int randNote =
+                        CoreGameElements.i.allNotes.threeNotes[randIndex];
+                    return randNote;
+                }
+            case CoreGameElements.DifficutiesNotes.four:
+                {
+                    int randIndex =
+                        Random
+                            .Range(0,
+                            CoreGameElements.i.allNotes.fourNotes.Length);
+                    int randNote =
+                        CoreGameElements.i.allNotes.fourNotes[randIndex];
+                    return randNote;
+                }
+            case CoreGameElements.DifficutiesNotes.five:
+                {
+                    int randIndex =
+                        Random
+                            .Range(0,
+                            CoreGameElements.i.allNotes.fiveNotes.Length);
+                    int randNote =
+                        CoreGameElements.i.allNotes.fiveNotes[randIndex];
+                    return randNote;
+                }
+            case CoreGameElements.DifficutiesNotes.six:
+                {
+                    int randIndex =
+                        Random
+                            .Range(0,
+                            CoreGameElements.i.allNotes.sixNotes.Length);
+                    int randNote =
+                        CoreGameElements.i.allNotes.sixNotes[randIndex];
+                    return randNote;
+                }
+            case CoreGameElements.DifficutiesNotes.seven:
+                {
+                    int randIndex =
+                        Random
+                            .Range(0,
+                            CoreGameElements.i.allNotes.sevenNotes.Length);
+                    int randNote =
+                        CoreGameElements.i.allNotes.sevenNotes[randIndex];
+                    return randNote;
+                }
+            case CoreGameElements.DifficutiesNotes.eight:
+                {
+                    int randIndex =
+                        Random
+                            .Range(0,
+                            CoreGameElements.i.allNotes.eightNotes.Length);
+                    int randNote =
+                        CoreGameElements.i.allNotes.eightNotes[randIndex];
+                    return randNote;
+                }
+            case CoreGameElements.DifficutiesNotes.nine:
+                {
+                    int randIndex =
+                        Random
+                            .Range(0,
+                            CoreGameElements.i.allNotes.nineNotes.Length);
+                    int randNote =
+                        CoreGameElements.i.allNotes.nineNotes[randIndex];
+                    return randNote;
+                }
+            case CoreGameElements.DifficutiesNotes.ten:
+                {
+                    int randIndex =
+                        Random
+                            .Range(0,
+                            CoreGameElements.i.allNotes.tenNotes.Length);
+                    int randNote =
+                        CoreGameElements.i.allNotes.tenNotes[randIndex];
+                    return randNote;
+                }
+            case CoreGameElements.DifficutiesNotes.eleven:
+                {
+                    int randIndex =
+                        Random
+                            .Range(0,
+                            CoreGameElements.i.allNotes.elevenNotes.Length);
+                    int randNote =
+                        CoreGameElements.i.allNotes.elevenNotes[randIndex];
+                    return randNote;
+                }
+            case CoreGameElements.DifficutiesNotes.twelve:
+                {
+                    int randIndex =
+                        Random
+                            .Range(0,
+                            CoreGameElements.i.allNotes.twelveNotes.Length);
+                    int randNote =
+                        CoreGameElements.i.allNotes.twelveNotes[randIndex];
+                    return randNote;
+                }
+            case CoreGameElements.DifficutiesNotes.thirteen:
+                {
+                    int randIndex =
+                        Random
+                            .Range(0,
+                            CoreGameElements.i.allNotes.thirteenNotes.Length);
+                    int randNote =
+                        CoreGameElements.i.allNotes.thirteenNotes[randIndex];
+                    return randNote;
+                }
+            case CoreGameElements.DifficutiesNotes.fourteen:
+                {
+                    int randIndex =
+                        Random
+                            .Range(0,
+                            CoreGameElements.i.allNotes.fourteenNotes.Length);
+                    int randNote =
+                        CoreGameElements.i.allNotes.fourteenNotes[randIndex];
+                    return randNote;
+                }
+            case CoreGameElements.DifficutiesNotes.fifteen:
+                {
+                    int randIndex =
+                        Random
+                            .Range(0,
+                            CoreGameElements.i.allNotes.fifteenNotes.Length);
+                    int randNote =
+                        CoreGameElements.i.allNotes.fifteenNotes[randIndex];
+                    return randNote;
+                }
+            case CoreGameElements.DifficutiesNotes.sixteen:
+                {
+                    int randIndex =
+                        Random
+                            .Range(0,
+                            CoreGameElements.i.allNotes.sixteenNotes.Length);
+                    int randNote =
+                        CoreGameElements.i.allNotes.sixteenNotes[randIndex];
+                    return randNote;
+                }
+            case CoreGameElements.DifficutiesNotes.seventeen:
+                {
+                    int randIndex =
+                        Random
+                            .Range(0,
+                            CoreGameElements.i.allNotes.seventeenNotes.Length);
+                    int randNote =
+                        CoreGameElements.i.allNotes.seventeenNotes[randIndex];
                     return randNote;
                 }
             default:

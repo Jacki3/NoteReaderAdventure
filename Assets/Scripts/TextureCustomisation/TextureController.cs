@@ -161,6 +161,51 @@ public class TextureController : MonoBehaviour
                 frontScrollRect.gameObject.SetActive(true);
             }
         }
+        else
+        {
+            if (!backFacing && !leftFacing && !rightFacing && frontFacing)
+            {
+                //Player is front facing and right arrow has been pressed and player is now showing right side
+                leftFacing = true;
+                frontFacing = false;
+                playerImage.sprite = sideFacingSprite;
+                rotation.y = 0;
+                playerImage.GetComponent<RectTransform>().localRotation =
+                    rotation;
+                sideScrollRect.gameObject.SetActive(true);
+                frontScrollRect.gameObject.SetActive(false);
+            }
+            else if (!backFacing && !rightFacing && !frontFacing && leftFacing)
+            {
+                //Player is facing right and right arrow is pressed now player is back facing
+                backFacing = true;
+                rightFacing = false;
+                playerImage.sprite = backFacingSprite;
+                sideScrollRect.gameObject.SetActive(false);
+                backScrollRect.gameObject.SetActive(true);
+            }
+            else if (!leftFacing && !rightFacing && !frontFacing && backFacing)
+            {
+                //player is facing back and right is pressed now player is facing left
+                rightFacing = true;
+                backFacing = false;
+                rotation.y = 180;
+                playerImage.GetComponent<RectTransform>().localRotation =
+                    rotation;
+                playerImage.sprite = sideFacingSprite;
+                sideScrollRect.gameObject.SetActive(true);
+                backScrollRect.gameObject.SetActive(false);
+            }
+            else
+            {
+                //player is facing left and right is pressed now player faces front
+                frontFacing = true;
+                leftFacing = false;
+                playerImage.sprite = frontFacingSprite;
+                sideScrollRect.gameObject.SetActive(false);
+                frontScrollRect.gameObject.SetActive(true);
+            }
+        }
         playerImage.type = UnityEngine.UI.Image.Type.Simple;
     }
 

@@ -82,6 +82,8 @@ public class CoreGameElements : MonoBehaviour
     [Tooltip("After how many levels should difficulty change?")]
     public int difficultyChangeLevel; //after how many levels should the difficulty change
 
+    public int difficultyChangeLevelNotes; //after how many levels should the difficulty change
+
     public int totalCollectiblesThisLevel;
 
     public int totalCoinsCollected;
@@ -100,11 +102,45 @@ public class CoreGameElements : MonoBehaviour
 
     public bool useTutorial = true;
 
-    public int[] easyNotes;
+    public Notes allNotes;
 
-    public int[] mediumNotes;
+    [Serializable]
+    public class Notes
+    {
+        public int[] oneNotes;
 
-    public int[] hardNotes;
+        public int[] twoNotes;
+
+        public int[] threeNotes;
+
+        public int[] fourNotes;
+
+        public int[] fiveNotes;
+
+        public int[] sixNotes;
+
+        public int[] sevenNotes;
+
+        public int[] eightNotes;
+
+        public int[] nineNotes;
+
+        public int[] tenNotes;
+
+        public int[] elevenNotes;
+
+        public int[] twelveNotes;
+
+        public int[] thirteenNotes;
+
+        public int[] fourteenNotes;
+
+        public int[] fifteenNotes;
+
+        public int[] sixteenNotes;
+
+        public int[] seventeenNotes;
+    }
 
     public Pattern[] patterns;
 
@@ -114,14 +150,41 @@ public class CoreGameElements : MonoBehaviour
 
     public Difficuties currentDifficulty;
 
+    public DifficutiesNotes currentDifficultyNotes;
+
     public enum Difficuties
     {
+        absoluteBeginner,
+        veryEasy,
         easy,
         medium,
+        intermediate,
         hard,
-        harder,
+        veryHard,
         ultraHard,
+        superHard,
         hardest
+    }
+
+    public enum DifficutiesNotes
+    {
+        one,
+        two,
+        three,
+        four,
+        five,
+        six,
+        seven,
+        eight,
+        nine,
+        ten,
+        eleven,
+        twelve,
+        thirteen,
+        fourteen,
+        fifteen,
+        sixteen,
+        seventeen
     }
 
     [System.NonSerialized]

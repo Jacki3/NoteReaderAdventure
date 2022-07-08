@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -78,13 +79,31 @@ public class BoardController : MonoBehaviour
 
     public GameObject[] propTiles;
 
-    public GameObject[] easyNotations;
+    public Notations allNotations;
 
-    public GameObject[] medNotations;
+    [Serializable]
+    public class Notations
+    {
+        public GameObject[] absoluteBeginnerNotations;
 
-    public GameObject[] hardNotations;
+        public GameObject[] veryEasyNotations;
 
-    public GameObject[] hardestNotations;
+        public GameObject[] easyNotations;
+
+        public GameObject[] medNotations;
+
+        public GameObject[] intermediateNotations;
+
+        public GameObject[] hardNotations;
+
+        public GameObject[] veryHardNotations;
+
+        public GameObject[] ultraHardNotations;
+
+        public GameObject[] superHardNotations;
+
+        public GameObject[] hardestNotations;
+    }
 
     public GameObject[] enemyTiles;
 
@@ -278,6 +297,7 @@ public class BoardController : MonoBehaviour
     public void SetupScene(int level)
     {
         DifficultyPicker.ChooseDifficultyOnLevel (level);
+        DifficultyPicker.ChooseDifficultyOnLevelNotes (level);
 
         ClearBoard();
         if (level % 2 != 0 && rowsMax != maxSize && firstTimeSetup)
@@ -333,24 +353,55 @@ public class BoardController : MonoBehaviour
 
             switch (CoreGameElements.i.currentDifficulty)
             {
+                case CoreGameElements.Difficuties.absoluteBeginner:
+                    {
+                        potentialNotations =
+                            allNotations.absoluteBeginnerNotations;
+                        break;
+                    }
+                case CoreGameElements.Difficuties.veryEasy:
+                    {
+                        potentialNotations = allNotations.veryEasyNotations;
+                        break;
+                    }
                 case CoreGameElements.Difficuties.easy:
                     {
-                        potentialNotations = easyNotations;
+                        potentialNotations = allNotations.easyNotations;
                         break;
                     }
                 case CoreGameElements.Difficuties.medium:
                     {
-                        potentialNotations = medNotations;
+                        potentialNotations = allNotations.medNotations;
+                        break;
+                    }
+                case CoreGameElements.Difficuties.intermediate:
+                    {
+                        potentialNotations = allNotations.intermediateNotations;
                         break;
                     }
                 case CoreGameElements.Difficuties.hard:
                     {
-                        potentialNotations = hardNotations;
+                        potentialNotations = allNotations.hardNotations;
+                        break;
+                    }
+                case CoreGameElements.Difficuties.veryHard:
+                    {
+                        potentialNotations = allNotations.veryHardNotations;
+                        break;
+                    }
+                case CoreGameElements.Difficuties.ultraHard:
+                    {
+                        potentialNotations = allNotations.ultraHardNotations;
+                        break;
+                    }
+                case CoreGameElements.Difficuties.superHard:
+                    {
+                        potentialNotations = allNotations.superHardNotations;
                         break;
                     }
                 case CoreGameElements.Difficuties.hardest:
                     {
-                        potentialNotations = hardestNotations;
+                        potentialNotations = allNotations.hardestNotations;
                         break;
                     }
             }
