@@ -131,6 +131,7 @@ public class PauseMenu : MonoBehaviour
 
         metroSource.enabled = false;
         StartCoroutine(FadeStartMenuAudio(audioFadeDur, 9, -80));
+        MusicGenController.DisableMusic();
 
         if (fromPuzzle) mainMenu.ShowPuzzle();
         if (fromShop)

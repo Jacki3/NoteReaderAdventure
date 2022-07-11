@@ -31,7 +31,7 @@ public class Seed : MonoBehaviour
         {
             SaveFile.Board newBoard = new SaveFile.Board();
 
-            gameSeed = "LvlBuilder3_";
+            gameSeed = "LvlBuilder5_";
             defaultGameSeed = gameSeed;
             gameSeed += level;
             currentSeed = gameSeed.GetHashCode();

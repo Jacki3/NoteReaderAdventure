@@ -105,6 +105,7 @@ public class Notation : MonoBehaviour
         }
         for (int i = 0; i < totalNotesToSpawn; i++)
         {
+            if (notes[i] < 19) usingBass = true;
             SpawnNotes(startingSpawnPosX, notes[i], usingBass, false);
             if (totalNotesToSpawn == 2)
                 startingSpawnPosX += distanceBetweenNotesX + -startingSpawnPosX;

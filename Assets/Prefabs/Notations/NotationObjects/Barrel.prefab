@@ -192,7 +192,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   missionObject: 6
   sound: 3
-  spawnableItem: 0
+  spawnableItem: 1
   totalItemsSpawnable: 1
   canSpawnHealth: 0
   tutorialObject: 0

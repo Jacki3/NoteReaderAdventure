@@ -94,7 +94,7 @@ public class MusicGenController : MonoBehaviour
         {
             drumMachines[i].enabled = false;
         }
-        // drumMachines[randomDrumIndex].enabled = true;
+        drumMachines[randomDrumIndex].enabled = true;
     }
 
     public static void DisableMusic()

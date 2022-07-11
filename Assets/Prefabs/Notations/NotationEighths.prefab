@@ -432,16 +432,16 @@ MonoBehaviour:
   - {fileID: 4172393251708472365}
   - {fileID: 6713887413043703292}
   totalNotesToSpawn: 8
-  usePattern: 1
+  usePattern: 0
   playedNoteColour:
     serializedVersion: 2
     rgba: 2148733715
+  notation: {fileID: 0}
   explodableNotation: {fileID: -1546795743365737730, guid: f3ba6c5e2392ce446bc7a6dbc6ad1e46,
     type: 3}
   notes: 
   arenaMode: 0
   objectShow: 0
-  notation: {fileID: 0}
 --- !u!1 &754718088009971508
 GameObject:
   m_ObjectHideFlags: 0
