@@ -8,6 +8,8 @@ public static class NotesController
 
     private static List<int[]> possiblePatterns = new List<int[]>();
 
+    private static CoreGameElements.Pattern[] newPatterns;
+
     public static int GetRandomNote(bool bass)
     {
         switch (CoreGameElements.i.currentDifficultyNotes)
@@ -190,34 +192,112 @@ public static class NotesController
     public static bool CanUsePattern(int totalNotesToSpawn, bool bass)
     {
         possiblePatterns.Clear();
-        if (!bass)
+
+        switch (CoreGameElements.i.currentDifficultyNotes)
         {
-            for (int i = 0; i < CoreGameElements.i.patterns.Length; i++)
-            {
-                if (
-                    CoreGameElements.i.patterns[i].pattern.Length ==
-                    totalNotesToSpawn
-                )
+            case CoreGameElements.DifficutiesNotes.one:
                 {
-                    possiblePatterns
-                        .Add(CoreGameElements.i.patterns[i].pattern);
+                    newPatterns = CoreGameElements.i.allPatterns.onePatterns;
+                    break;
+                }
+            case CoreGameElements.DifficutiesNotes.two:
+                {
+                    newPatterns = CoreGameElements.i.allPatterns.twoPatterns;
+                    break;
+                }
+            case CoreGameElements.DifficutiesNotes.three:
+                {
+                    newPatterns = CoreGameElements.i.allPatterns.threePatterns;
+                    break;
+                }
+            case CoreGameElements.DifficutiesNotes.four:
+                {
+                    newPatterns = CoreGameElements.i.allPatterns.fourPatterns;
+                    break;
+                }
+            case CoreGameElements.DifficutiesNotes.five:
+                {
+                    newPatterns = CoreGameElements.i.allPatterns.fivePatterns;
+                    break;
+                }
+            case CoreGameElements.DifficutiesNotes.six:
+                {
+                    newPatterns = CoreGameElements.i.allPatterns.sixPatterns;
+                    break;
+                }
+            case CoreGameElements.DifficutiesNotes.seven:
+                {
+                    newPatterns = CoreGameElements.i.allPatterns.sevenPatterns;
+                    break;
+                }
+            case CoreGameElements.DifficutiesNotes.eight:
+                {
+                    newPatterns = CoreGameElements.i.allPatterns.eightPatterns;
+                    break;
+                }
+            case CoreGameElements.DifficutiesNotes.nine:
+                {
+                    newPatterns = CoreGameElements.i.allPatterns.ninePatterns;
+                    break;
+                }
+            case CoreGameElements.DifficutiesNotes.ten:
+                {
+                    newPatterns = CoreGameElements.i.allPatterns.tenPatterns;
+                    break;
+                }
+            case CoreGameElements.DifficutiesNotes.eleven:
+                {
+                    newPatterns = CoreGameElements.i.allPatterns.elevenPatterns;
+                    break;
+                }
+            case CoreGameElements.DifficutiesNotes.twelve:
+                {
+                    newPatterns = CoreGameElements.i.allPatterns.twelvePatterns;
+                    break;
+                }
+            case CoreGameElements.DifficutiesNotes.thirteen:
+                {
+                    newPatterns =
+                        CoreGameElements.i.allPatterns.thirteenPatterns;
+                    break;
+                }
+            case CoreGameElements.DifficutiesNotes.fourteen:
+                {
+                    newPatterns =
+                        CoreGameElements.i.allPatterns.fourteenPatterns;
+                    break;
+                }
+            case CoreGameElements.DifficutiesNotes.fifteen:
+                {
+                    newPatterns =
+                        CoreGameElements.i.allPatterns.fifteenPatterns;
+                    break;
+                }
+            case CoreGameElements.DifficutiesNotes.sixteen:
+                {
+                    newPatterns =
+                        CoreGameElements.i.allPatterns.sixteenPatterns;
+                    break;
+                }
+            case CoreGameElements.DifficutiesNotes.seventeen:
+                {
+                    newPatterns =
+                        CoreGameElements.i.allPatterns.seventeenPatterns;
+                    break;
+                }
+        }
+
+        if (newPatterns != null)
+        {
+            for (int i = 0; i < newPatterns.Length; i++)
+            {
+                if (newPatterns[i].pattern.Length == totalNotesToSpawn)
+                {
+                    possiblePatterns.Add(newPatterns[i].pattern);
                 }
             }
         }
-        else
-        {
-            for (int i = 0; i < CoreGameElements.i.patternsBass.Length; i++)
-            {
-                if (
-                    CoreGameElements.i.patternsBass[i].pattern.Length ==
-                    totalNotesToSpawn
-                )
-                {
-                    possiblePatterns
-                        .Add(CoreGameElements.i.patternsBass[i].pattern);
-                }
-            }
-        }
+
         if (possiblePatterns.Count > 0)
         {
             for (int i = 0; i < totalNotesToSpawn; i++)

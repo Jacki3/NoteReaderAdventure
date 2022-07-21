@@ -27,6 +27,7 @@ public class MIDIController : MonoBehaviour
             midiDevice.onWillNoteOn += (note, velocity) =>
             {
                 NoteOn(note.noteNumber, velocity);
+                print(note.noteNumber);
             };
 
             midiDevice.onWillNoteOff += (note) =>

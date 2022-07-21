@@ -135,8 +135,6 @@ public static class DifficultyPicker
                 CoreGameElements.Difficuties.hardest;
             AudioController.helmClock.bpm = 120;
         }
-        Debug.Log (level);
-        Debug.Log(CoreGameElements.i.currentDifficulty);
     }
 
     public static void ChooseDifficultyOnLevelNotes(int level)

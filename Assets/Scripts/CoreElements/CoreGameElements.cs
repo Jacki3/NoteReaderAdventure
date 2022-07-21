@@ -142,9 +142,45 @@ public class CoreGameElements : MonoBehaviour
         public int[] seventeenNotes;
     }
 
-    public Pattern[] patterns;
+    public Patterns allPatterns;
 
-    public Pattern[] patternsBass;
+    [Serializable]
+    public class Patterns
+    {
+        public Pattern[] onePatterns;
+
+        public Pattern[] twoPatterns;
+
+        public Pattern[] threePatterns;
+
+        public Pattern[] fourPatterns;
+
+        public Pattern[] fivePatterns;
+
+        public Pattern[] sixPatterns;
+
+        public Pattern[] sevenPatterns;
+
+        public Pattern[] eightPatterns;
+
+        public Pattern[] ninePatterns;
+
+        public Pattern[] tenPatterns;
+
+        public Pattern[] elevenPatterns;
+
+        public Pattern[] twelvePatterns;
+
+        public Pattern[] thirteenPatterns;
+
+        public Pattern[] fourteenPatterns;
+
+        public Pattern[] fifteenPatterns;
+
+        public Pattern[] sixteenPatterns;
+
+        public Pattern[] seventeenPatterns;
+    }
 
     public CameraShakes cameraShakes;
 

@@ -38,7 +38,6 @@ public class Notation : MonoBehaviour
 
     private bool isVisible;
 
-    [HideInInspector]
     public List<int> notes = new List<int>();
 
     private List<SpriteRenderer> noteImages = new List<SpriteRenderer>();
@@ -105,8 +104,12 @@ public class Notation : MonoBehaviour
         }
         for (int i = 0; i < totalNotesToSpawn; i++)
         {
-            if (notes[i] < 19) usingBass = true;
-            SpawnNotes(startingSpawnPosX, notes[i], usingBass, false);
+            if (notes[i] - MIDIController.startingMIDINumber < 19)
+                usingBass = true;
+            SpawnNotes(startingSpawnPosX,
+            notes[i] - MIDIController.startingMIDINumber,
+            usingBass,
+            false);
             if (totalNotesToSpawn == 2)
                 startingSpawnPosX += distanceBetweenNotesX + -startingSpawnPosX;
             else if (totalNotesToSpawn == 8 && i == 3)

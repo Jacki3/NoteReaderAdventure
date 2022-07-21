@@ -36332,7 +36332,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7732655359041420551, guid: 2c6320ca7b645724eaefeea208dd58c7,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 1719570952}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -41716,7 +41716,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3651042581913052498, guid: 2c6320ca7b645724eaefeea208dd58c7,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 893345225}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -59304,6 +59304,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 892286341}
   m_CullTransparentMesh: 0
+--- !u!83 &893345225
+AudioClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: helm
+  m_LoadType: 0
+  m_Channels: 1
+  m_Frequency: 48000
+  m_BitsPerSample: 32
+  m_Length: 0
+  m_IsTrackerFormat: 0
+  m_Ambisonic: 0
+  m_SubsoundIndex: 0
+  m_PreloadAudioData: 1
+  m_LoadInBackground: 0
+  m_Legacy3D: 0
+  m_Resource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_CompressionFormat: 0
+  m_EditorResource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_EditorCompressionFormat: 0
 --- !u!1001 &896733248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59679,7 +59707,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 1979474321757413247, guid: 2c6320ca7b645724eaefeea208dd58c7,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 2120874564}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -61326,33 +61354,49 @@ MonoBehaviour:
   totalCoinsCollected: 0
   scoreForRhythm: 0
   useColours: 0
-  useBassNotes: 0
+  useBassNotes: 1
   unlockAllLevels: 1
-  chanceOfBassNotes: 0.65
+  chanceOfBassNotes: 0.1
   useIntro: 0
   useTutorial: 0
   allNotes:
-    oneNotes: 18000000240000001f0000000c00000011000000
-    twoNotes: 050000000000000018000000240000002b000000
-    threeNotes: 18000000
-    fourNotes: 18000000
-    fiveNotes: 18000000
-    sixNotes: 18000000
-    sevenNotes: 18000000
-    eightNotes: 18000000
-    nineNotes: 18000000
-    tenNotes: 18000000
-    elevenNotes: 18000000
-    twelveNotes: 18000000
-    thirteenNotes: 18000000
-    fourteenNotes: 18000000
-    fifteenNotes: 18000000
-    sixteenNotes: 18000000
-    seventeenNotes: 18000000
-  patterns:
-  - pattern: 18000000240000001800000024000000
-  patternsBass:
-  - pattern: 00000000050000000000000005000000
+    oneNotes: 3c000000
+    twoNotes: 34000000
+    threeNotes: 34000000
+    fourNotes: 34000000
+    fiveNotes: 34000000
+    sixNotes: 34000000
+    sevenNotes: 34000000
+    eightNotes: 34000000
+    nineNotes: 34000000
+    tenNotes: 34000000
+    elevenNotes: 34000000
+    twelveNotes: 34000000
+    thirteenNotes: 34000000
+    fourteenNotes: 34000000
+    fifteenNotes: 34000000
+    sixteenNotes: 34000000
+    seventeenNotes: 34000000
+  allPatterns:
+    onePatterns:
+    - pattern: 04000000040000000400000004000000
+    - pattern: 03000000040000000400000004000000
+    twoPatterns: []
+    threePatterns: []
+    fourPatterns: []
+    fivePatterns: []
+    sixPatterns: []
+    sevenPatterns: []
+    eightPatterns: []
+    ninePatterns: []
+    tenPatterns: []
+    elevenPatterns: []
+    twelvePatterns: []
+    thirteenPatterns: []
+    fourteenPatterns: []
+    fifteenPatterns: []
+    sixteenPatterns: []
+    seventeenPatterns: []
   cameraShakes:
     healthShake:
       magnitude: 0.35
@@ -90740,7 +90784,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -941277463048152142, guid: 2c6320ca7b645724eaefeea208dd58c7,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 1932869140}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -104910,6 +104954,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1719235734}
   m_CullTransparentMesh: 0
+--- !u!83 &1719570952
+AudioClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: helm
+  m_LoadType: 0
+  m_Channels: 1
+  m_Frequency: 48000
+  m_BitsPerSample: 32
+  m_Length: 0
+  m_IsTrackerFormat: 0
+  m_Ambisonic: 0
+  m_SubsoundIndex: 0
+  m_PreloadAudioData: 1
+  m_LoadInBackground: 0
+  m_Legacy3D: 0
+  m_Resource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_CompressionFormat: 0
+  m_EditorResource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_EditorCompressionFormat: 0
 --- !u!1 &1719934237 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 666964023223498810, guid: 2dcd441f09d5a164fac0a8a6b6f350ac,
@@ -113312,6 +113384,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1932144606}
   m_CullTransparentMesh: 0
+--- !u!83 &1932869140
+AudioClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: helm
+  m_LoadType: 0
+  m_Channels: 1
+  m_Frequency: 48000
+  m_BitsPerSample: 32
+  m_Length: 0
+  m_IsTrackerFormat: 0
+  m_Ambisonic: 0
+  m_SubsoundIndex: 0
+  m_PreloadAudioData: 1
+  m_LoadInBackground: 0
+  m_Legacy3D: 0
+  m_Resource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_CompressionFormat: 0
+  m_EditorResource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_EditorCompressionFormat: 0
 --- !u!1001 &1935247948
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -119814,6 +119914,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbeab85cbe3b90b41a444794aab794ef, type: 3}
+--- !u!83 &2120874564
+AudioClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: helm
+  m_LoadType: 0
+  m_Channels: 1
+  m_Frequency: 48000
+  m_BitsPerSample: 32
+  m_Length: 0
+  m_IsTrackerFormat: 0
+  m_Ambisonic: 0
+  m_SubsoundIndex: 0
+  m_PreloadAudioData: 1
+  m_LoadInBackground: 0
+  m_Legacy3D: 0
+  m_Resource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_CompressionFormat: 0
+  m_EditorResource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_EditorCompressionFormat: 0
 --- !u!4 &2122841659 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4718320955904614338, guid: 86b5dc556e6e34848811bd2603ff6655,
@@ -124985,7 +125113,7 @@ PrefabInstance:
         type: 3}
       propertyPath: enemyTiles.Array.data[0]
       value: 
-      objectReference: {fileID: 2706733211840462388, guid: 1b252c2cc4253fe46b5fcdf52c0b158c,
+      objectReference: {fileID: 2706733211840462388, guid: a5285aa6620a52346a50aeac32a143be,
         type: 3}
     - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
         type: 3}
@@ -125186,6 +125314,11 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
         type: 3}
+      propertyPath: allEnemies.medNotations.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
       propertyPath: outerBottomWallTiles.Array.data[0]
       value: 
       objectReference: {fileID: 5869209335530165582, guid: 8787d014ad684634ab773b17e845c0f8,
@@ -125204,9 +125337,31 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
         type: 3}
+      propertyPath: allEnemies.easyNotations.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
+      propertyPath: allEnemies.hardNotations.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
       propertyPath: allNotations.medNotations.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
+      propertyPath: allEnemies.medNotations.Array.data[0]
+      value: 
+      objectReference: {fileID: 7547849817245264917, guid: 8943a0e824f4a764581b83fe4816cdfd,
+        type: 3}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
+      propertyPath: allEnemies.medNotations.Array.data[1]
+      value: 
+      objectReference: {fileID: 2706733211840462388, guid: 1b252c2cc4253fe46b5fcdf52c0b158c,
+        type: 3}
     - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
         type: 3}
       propertyPath: allNotations.easyNotations.Array.size
@@ -125219,10 +125374,59 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
         type: 3}
+      propertyPath: allEnemies.easyNotations.Array.data[0]
+      value: 
+      objectReference: {fileID: 4916957681689875234, guid: c418921eba7c9a3439d8f4616222f2a6,
+        type: 3}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
+      propertyPath: allEnemies.easyNotations.Array.data[1]
+      value: 
+      objectReference: {fileID: 7547849817245264917, guid: 8943a0e824f4a764581b83fe4816cdfd,
+        type: 3}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
+      propertyPath: allEnemies.hardNotations.Array.data[0]
+      value: 
+      objectReference: {fileID: 2706733211840462388, guid: 1b252c2cc4253fe46b5fcdf52c0b158c,
+        type: 3}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
+      propertyPath: allEnemies.hardNotations.Array.data[1]
+      value: 
+      objectReference: {fileID: 7547849817245264917, guid: 8943a0e824f4a764581b83fe4816cdfd,
+        type: 3}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
+      propertyPath: allEnemies.hardestNotations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
+      propertyPath: allEnemies.veryEasyNotations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
+      propertyPath: allEnemies.veryHardNotations.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
       propertyPath: allNotations.medNotations.Array.data[0]
       value: 
       objectReference: {fileID: 3047484597458193034, guid: ec05faee06078624f8468f204a602d39,
         type: 3}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
+      propertyPath: allEnemies.superHardNotations.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
+      propertyPath: allEnemies.ultraHardNotations.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
         type: 3}
       propertyPath: allNotations.easyNotations.Array.data[0]
@@ -125242,6 +125446,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
         type: 3}
+      propertyPath: allEnemies.hardestNotations.Array.data[0]
+      value: 
+      objectReference: {fileID: 852159925243770808, guid: 581f7552faf957d45b3fb10b5d3505d8,
+        type: 3}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
       propertyPath: allNotations.veryEasyNotations.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -125252,6 +125462,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
         type: 3}
+      propertyPath: allEnemies.veryEasyNotations.Array.data[0]
+      value: 
+      objectReference: {fileID: 4916957681689875234, guid: c418921eba7c9a3439d8f4616222f2a6,
+        type: 3}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
+      propertyPath: allEnemies.veryHardNotations.Array.data[0]
+      value: 
+      objectReference: {fileID: 2706733211840462388, guid: 1b252c2cc4253fe46b5fcdf52c0b158c,
+        type: 3}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
+      propertyPath: allEnemies.veryHardNotations.Array.data[1]
+      value: 
+      objectReference: {fileID: 8932302101509687925, guid: 56271ebda814a314aaa0ba8d9163199a,
+        type: 3}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
+      propertyPath: allEnemies.veryHardNotations.Array.data[2]
+      value: 
+      objectReference: {fileID: 7547849817245264917, guid: 8943a0e824f4a764581b83fe4816cdfd,
+        type: 3}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
       propertyPath: allNotations.superHardNotations.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -125260,6 +125494,47 @@ PrefabInstance:
       propertyPath: allNotations.ultraHardNotations.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
+      propertyPath: allEnemies.intermediateNotations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
+      propertyPath: allEnemies.superHardNotations.Array.data[0]
+      value: 
+      objectReference: {fileID: 852159925243770808, guid: 581f7552faf957d45b3fb10b5d3505d8,
+        type: 3}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
+      propertyPath: allEnemies.superHardNotations.Array.data[1]
+      value: 
+      objectReference: {fileID: 852159925243770808, guid: 581f7552faf957d45b3fb10b5d3505d8,
+        type: 3}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
+      propertyPath: allEnemies.superHardNotations.Array.data[2]
+      value: 
+      objectReference: {fileID: 2706733211840462388, guid: 1b252c2cc4253fe46b5fcdf52c0b158c,
+        type: 3}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
+      propertyPath: allEnemies.ultraHardNotations.Array.data[0]
+      value: 
+      objectReference: {fileID: 852159925243770808, guid: 581f7552faf957d45b3fb10b5d3505d8,
+        type: 3}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
+      propertyPath: allEnemies.ultraHardNotations.Array.data[1]
+      value: 
+      objectReference: {fileID: 2706733211840462388, guid: 1b252c2cc4253fe46b5fcdf52c0b158c,
+        type: 3}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
+      propertyPath: allEnemies.ultraHardNotations.Array.data[2]
+      value: 
+      objectReference: {fileID: 8932302101509687925, guid: 56271ebda814a314aaa0ba8d9163199a,
+        type: 3}
     - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
         type: 3}
       propertyPath: allNotations.hardestNotations.Array.data[0]
@@ -125297,6 +125572,17 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
         type: 3}
+      propertyPath: allEnemies.intermediateNotations.Array.data[0]
+      value: 
+      objectReference: {fileID: 2706733211840462388, guid: 1b252c2cc4253fe46b5fcdf52c0b158c,
+        type: 3}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
+      propertyPath: allEnemies.absoluteBeginnerNotations.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
       propertyPath: allNotations.intermediateNotations.Array.data[0]
       value: 
       objectReference: {fileID: 7933061868076363333, guid: 52d4957fa2d9081488a424a2e1a072bc,
@@ -125306,6 +125592,18 @@ PrefabInstance:
       propertyPath: allNotations.absoluteBeginnerNotations.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
+      propertyPath: allEnemies.absoluteBeginnerNotations.Array.data[0]
+      value: 
+      objectReference: {fileID: 8932302101509687925, guid: 56271ebda814a314aaa0ba8d9163199a,
+        type: 3}
+    - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
+        type: 3}
+      propertyPath: allEnemies.absoluteBeginnerNotations.Array.data[1]
+      value: 
+      objectReference: {fileID: 4916957681689875234, guid: c418921eba7c9a3439d8f4616222f2a6,
+        type: 3}
     - target: {fileID: 4562162175267461478, guid: 0eb726a998352294190e1a499059ff55,
         type: 3}
       propertyPath: allNotations.absoluteBeginnerNotations.Array.data[0]

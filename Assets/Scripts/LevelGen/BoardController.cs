@@ -105,7 +105,31 @@ public class BoardController : MonoBehaviour
         public GameObject[] hardestNotations;
     }
 
-    public GameObject[] enemyTiles;
+    public Enemies allEnemies;
+
+    [Serializable]
+    public class Enemies
+    {
+        public GameObject[] absoluteBeginnerNotations;
+
+        public GameObject[] veryEasyNotations;
+
+        public GameObject[] easyNotations;
+
+        public GameObject[] medNotations;
+
+        public GameObject[] intermediateNotations;
+
+        public GameObject[] hardNotations;
+
+        public GameObject[] veryHardNotations;
+
+        public GameObject[] ultraHardNotations;
+
+        public GameObject[] superHardNotations;
+
+        public GameObject[] hardestNotations;
+    }
 
     public GameObject[] smashableTiles;
 
@@ -334,11 +358,78 @@ public class BoardController : MonoBehaviour
         smashableCount.minimum,
         smashableCount.maximum);
 
+        GameObject[] potentialNotations = null;
+        GameObject[] potentialEnemies = null;
+
+        switch (CoreGameElements.i.currentDifficulty)
+        {
+            case CoreGameElements.Difficuties.absoluteBeginner:
+                {
+                    potentialNotations = allNotations.absoluteBeginnerNotations;
+                    potentialEnemies = allEnemies.absoluteBeginnerNotations;
+                    break;
+                }
+            case CoreGameElements.Difficuties.veryEasy:
+                {
+                    potentialNotations = allNotations.veryEasyNotations;
+                    potentialEnemies = allNotations.veryEasyNotations;
+                    break;
+                }
+            case CoreGameElements.Difficuties.easy:
+                {
+                    potentialNotations = allNotations.easyNotations;
+                    potentialEnemies = allNotations.easyNotations;
+                    break;
+                }
+            case CoreGameElements.Difficuties.medium:
+                {
+                    potentialNotations = allNotations.medNotations;
+                    potentialEnemies = allNotations.medNotations;
+                    break;
+                }
+            case CoreGameElements.Difficuties.intermediate:
+                {
+                    potentialNotations = allNotations.intermediateNotations;
+                    potentialEnemies = allNotations.intermediateNotations;
+                    break;
+                }
+            case CoreGameElements.Difficuties.hard:
+                {
+                    potentialNotations = allNotations.hardNotations;
+                    potentialEnemies = allNotations.hardNotations;
+                    break;
+                }
+            case CoreGameElements.Difficuties.veryHard:
+                {
+                    potentialNotations = allNotations.veryHardNotations;
+                    potentialEnemies = allNotations.veryHardNotations;
+                    break;
+                }
+            case CoreGameElements.Difficuties.ultraHard:
+                {
+                    potentialNotations = allNotations.ultraHardNotations;
+                    potentialEnemies = allNotations.ultraHardNotations;
+                    break;
+                }
+            case CoreGameElements.Difficuties.superHard:
+                {
+                    potentialNotations = allNotations.superHardNotations;
+                    potentialEnemies = allNotations.superHardNotations;
+                    break;
+                }
+            case CoreGameElements.Difficuties.hardest:
+                {
+                    potentialNotations = allNotations.hardestNotations;
+                    potentialEnemies = allNotations.hardestNotations;
+                    break;
+                }
+        }
+
         if (spawnEnemies && level % 5 == 0)
         {
             spawnNotation = false;
-            int enemyCount = (int) Mathf.FloorToInt(1 * Mathf.Sqrt(level));
-            LayoutObjectAtRand (enemyTiles, enemyCount, enemyCount);
+            int enemyCount = (int) Mathf.FloorToInt(2f * Mathf.Sqrt(level));
+            LayoutObjectAtRand (potentialEnemies, enemyCount, enemyCount);
         }
         else
             spawnNotation = true;
@@ -346,65 +437,7 @@ public class BoardController : MonoBehaviour
         if (spawnNotation)
         {
             //(int) Mathf.Log(level, 2f); -- what is best method to increase notations over time & how are enemies introduced?
-            int notationCount =
-                (int) Mathf.FloorToInt(1.5f * Mathf.Sqrt(level));
-
-            GameObject[] potentialNotations = null;
-
-            switch (CoreGameElements.i.currentDifficulty)
-            {
-                case CoreGameElements.Difficuties.absoluteBeginner:
-                    {
-                        potentialNotations =
-                            allNotations.absoluteBeginnerNotations;
-                        break;
-                    }
-                case CoreGameElements.Difficuties.veryEasy:
-                    {
-                        potentialNotations = allNotations.veryEasyNotations;
-                        break;
-                    }
-                case CoreGameElements.Difficuties.easy:
-                    {
-                        potentialNotations = allNotations.easyNotations;
-                        break;
-                    }
-                case CoreGameElements.Difficuties.medium:
-                    {
-                        potentialNotations = allNotations.medNotations;
-                        break;
-                    }
-                case CoreGameElements.Difficuties.intermediate:
-                    {
-                        potentialNotations = allNotations.intermediateNotations;
-                        break;
-                    }
-                case CoreGameElements.Difficuties.hard:
-                    {
-                        potentialNotations = allNotations.hardNotations;
-                        break;
-                    }
-                case CoreGameElements.Difficuties.veryHard:
-                    {
-                        potentialNotations = allNotations.veryHardNotations;
-                        break;
-                    }
-                case CoreGameElements.Difficuties.ultraHard:
-                    {
-                        potentialNotations = allNotations.ultraHardNotations;
-                        break;
-                    }
-                case CoreGameElements.Difficuties.superHard:
-                    {
-                        potentialNotations = allNotations.superHardNotations;
-                        break;
-                    }
-                case CoreGameElements.Difficuties.hardest:
-                    {
-                        potentialNotations = allNotations.hardestNotations;
-                        break;
-                    }
-            }
+            int notationCount = (int) Mathf.FloorToInt(3f * Mathf.Sqrt(level));
 
             LayoutObjectAtRand (
                 potentialNotations,

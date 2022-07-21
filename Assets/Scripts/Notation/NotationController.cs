@@ -56,8 +56,6 @@ public class NotationController : MonoBehaviour
             {
                 List<Notation> duplicateNotations = new List<Notation>();
 
-                note -= MIDIController.startingMIDINumber;
-
                 if (hasActiveNotation)
                 {
                     if (activeNotation.notes[0] == note)
