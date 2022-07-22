@@ -372,55 +372,55 @@ public class BoardController : MonoBehaviour
             case CoreGameElements.Difficuties.veryEasy:
                 {
                     potentialNotations = allNotations.veryEasyNotations;
-                    potentialEnemies = allNotations.veryEasyNotations;
+                    potentialEnemies = allEnemies.veryEasyNotations;
                     break;
                 }
             case CoreGameElements.Difficuties.easy:
                 {
                     potentialNotations = allNotations.easyNotations;
-                    potentialEnemies = allNotations.easyNotations;
+                    potentialEnemies = allEnemies.easyNotations;
                     break;
                 }
             case CoreGameElements.Difficuties.medium:
                 {
                     potentialNotations = allNotations.medNotations;
-                    potentialEnemies = allNotations.medNotations;
+                    potentialEnemies = allEnemies.medNotations;
                     break;
                 }
             case CoreGameElements.Difficuties.intermediate:
                 {
                     potentialNotations = allNotations.intermediateNotations;
-                    potentialEnemies = allNotations.intermediateNotations;
+                    potentialEnemies = allEnemies.intermediateNotations;
                     break;
                 }
             case CoreGameElements.Difficuties.hard:
                 {
                     potentialNotations = allNotations.hardNotations;
-                    potentialEnemies = allNotations.hardNotations;
+                    potentialEnemies = allEnemies.hardNotations;
                     break;
                 }
             case CoreGameElements.Difficuties.veryHard:
                 {
                     potentialNotations = allNotations.veryHardNotations;
-                    potentialEnemies = allNotations.veryHardNotations;
+                    potentialEnemies = allEnemies.veryHardNotations;
                     break;
                 }
             case CoreGameElements.Difficuties.ultraHard:
                 {
                     potentialNotations = allNotations.ultraHardNotations;
-                    potentialEnemies = allNotations.ultraHardNotations;
+                    potentialEnemies = allEnemies.ultraHardNotations;
                     break;
                 }
             case CoreGameElements.Difficuties.superHard:
                 {
                     potentialNotations = allNotations.superHardNotations;
-                    potentialEnemies = allNotations.superHardNotations;
+                    potentialEnemies = allEnemies.superHardNotations;
                     break;
                 }
             case CoreGameElements.Difficuties.hardest:
                 {
                     potentialNotations = allNotations.hardestNotations;
-                    potentialEnemies = allNotations.hardestNotations;
+                    potentialEnemies = allEnemies.hardestNotations;
                     break;
                 }
         }

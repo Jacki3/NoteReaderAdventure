@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -50,6 +51,10 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject heartsUI;
 
+    public RigidPlayerController rigidPlayerControllerScript;
+
+    public PlayerController playerControllerScript;
+
     [Header("Audio")]
     public float audioFadeDur;
 
@@ -74,6 +79,8 @@ public class PauseMenu : MonoBehaviour
     private bool popUpVisible;
 
     private bool customMenuVisible = false;
+
+    private bool controlsRigid = true;
 
     void Awake()
     {
@@ -500,6 +507,24 @@ public class PauseMenu : MonoBehaviour
         }
         else
             Debug.Log("No save exists!");
+    }
+
+    public void SetPlayerControls(TextMeshProUGUI buttonText)
+    {
+        if (!controlsRigid)
+        {
+            buttonText.text = "movement mode: rhythm";
+            controlsRigid = true;
+            rigidPlayerControllerScript.enabled = true;
+            playerControllerScript.enabled = false;
+        }
+        else
+        {
+            buttonText.text = "movement mode: hold";
+            controlsRigid = false;
+            rigidPlayerControllerScript.enabled = false;
+            playerControllerScript.enabled = true;
+        }
     }
 
     private void ButtonClickSound()

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using TMPro.Examples;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ public class Notation : MonoBehaviour
 
     public float startingSpawnPosX;
 
-    public SpriteRenderer noteImage;
+    public TextMeshPro noteImage;
 
     public SpriteRenderer clefRenderer;
 
@@ -28,6 +29,8 @@ public class Notation : MonoBehaviour
 
     public bool usePattern;
 
+    public bool useWholeNotes;
+
     public Color32 playedNoteColour;
 
     public GameObject notation;
@@ -40,7 +43,7 @@ public class Notation : MonoBehaviour
 
     public List<int> notes = new List<int>();
 
-    private List<SpriteRenderer> noteImages = new List<SpriteRenderer>();
+    private List<TextMeshPro> noteImages = new List<TextMeshPro>();
 
     public bool arenaMode = false;
 
@@ -48,7 +51,9 @@ public class Notation : MonoBehaviour
 
     private bool usingBass;
 
-    private List<SpriteRenderer> playedNotes = new List<SpriteRenderer>();
+    private bool wasFlat;
+
+    private List<TextMeshPro> playedNotes = new List<TextMeshPro>();
 
     private string[]
         noteNames =
@@ -68,6 +73,24 @@ public class Notation : MonoBehaviour
             "B#"
         };
 
+    private string[]
+        noteNamesFlats =
+        {
+            "C",
+            "C♭",
+            "D",
+            "D♭",
+            "E",
+            "F",
+            "F♭",
+            "G",
+            "G♭",
+            "A",
+            "A♭",
+            "B",
+            "B♭"
+        };
+
     private void Awake()
     {
         parentRenderer = transform.parent.GetComponent<SpriteRenderer>();
@@ -80,13 +103,7 @@ public class Notation : MonoBehaviour
     void Start()
     {
         holder.SetActive(false);
-        if (
-            CoreGameElements.i.useBassNotes &&
-            Random.value > CoreGameElements.i.chanceOfBassNotes
-        )
-            usingBass = true;
-        else
-            usingBass = false;
+
         if (
             usePattern &&
             NotesController.CanUsePattern(totalNotesToSpawn, usingBass)
@@ -132,7 +149,7 @@ public class Notation : MonoBehaviour
         }
     }
 
-    private SpriteRenderer
+    private TextMeshPro
     SpawnNotes(float spawnX, int index, bool bass, bool isTemp)
     {
         if (bass)
@@ -140,11 +157,20 @@ public class Notation : MonoBehaviour
         else
             clefRenderer.sprite = trebleSprite;
 
-        SpriteRenderer newNote = Instantiate(noteImage, holder.transform);
+        string tempNote = "q";
+
+        if (notes.Count == 2)
+            tempNote = "h";
+        else if (notes.Count == 1 && useWholeNotes) tempNote = "w";
+
+        //ensure the new note layer name is set to the background of the notation (as well as the children too)
+        TextMeshPro newNote = Instantiate(noteImage, holder.transform);
         SpriteRenderer holderChild =
             holder.transform.GetChild(1).GetComponent<SpriteRenderer>();
-        newNote.sortingLayerName = holderChild.sortingLayerName;
+
         newNote.sortingOrder = holderChild.sortingOrder + 2;
+
+        newNote.text = tempNote;
 
         newNote.enabled = true;
 
@@ -154,8 +180,6 @@ public class Notation : MonoBehaviour
                 transform.GetComponent<SpriteRenderer>();
             if (noteRenderer != null)
             {
-                transform.GetComponent<SpriteRenderer>().sortingLayerName =
-                    newNote.sortingLayerName;
                 transform.GetComponent<SpriteRenderer>().sortingOrder =
                     newNote.sortingOrder;
             }
@@ -188,6 +212,7 @@ public class Notation : MonoBehaviour
                             .gameObject
                             .GetComponent<TextMesh>()
                             .text = "♯";
+                        wasFlat = false;
                     }
                     else
                     {
@@ -203,6 +228,7 @@ public class Notation : MonoBehaviour
                             .gameObject
                             .GetComponent<TextMesh>()
                             .text = "♭";
+                        wasFlat = true;
                     }
                     break;
             }
@@ -218,6 +244,7 @@ public class Notation : MonoBehaviour
         newNote.transform.localPosition =
             new Vector2(spawnX, noteSpawnsY[index].localPosition.y);
 
+        //if using upside down notes, as the font atlas only has upside down q notes, IF using notation which has TWO notes, then use only upside notes
         switch (index)
         {
             case 0:
@@ -232,14 +259,12 @@ public class Notation : MonoBehaviour
                 newNote.transform.GetChild(0).gameObject.SetActive(true);
                 break;
             case 45:
-                newNote.flipX = true;
-                newNote.flipY = true;
-                newNote.transform.GetChild(4).gameObject.SetActive(true);
+                newNote.text = "\nö";
+                newNote.lineSpacing = -22;
                 break;
             case 47:
-                newNote.flipX = true;
-                newNote.flipY = true;
-                newNote.transform.GetChild(5).gameObject.SetActive(true);
+                newNote.text = "\nö";
+                newNote.lineSpacing = -22;
                 break;
             case 14:
             case 16:
@@ -252,8 +277,8 @@ public class Notation : MonoBehaviour
             case 40:
             case 41:
             case 43:
-                newNote.transform.GetChild(6).gameObject.SetActive(true);
-                newNote.enabled = false;
+                newNote.text = "\nö";
+                newNote.lineSpacing = -22;
                 break;
         }
 
@@ -267,7 +292,7 @@ public class Notation : MonoBehaviour
             if (isVisible || arenaMode || objectShow)
             {
                 int index = 0;
-                foreach (SpriteRenderer note in noteImages)
+                foreach (TextMeshPro note in noteImages)
                 {
                     if (CoreGameElements.i.useColours)
                     {
@@ -320,6 +345,7 @@ public class Notation : MonoBehaviour
             noteColour = CoreGameElements.i.noteColours[notes[0] % 12];
 
         string noteName = noteNames[notes[0] % 12];
+        if (wasFlat) noteName = noteNamesFlats[notes[0] % 12];
         NotePopup
             .Create(noteImages[0].transform.position, noteName, noteColour);
 

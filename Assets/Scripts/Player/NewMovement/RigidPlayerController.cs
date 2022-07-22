@@ -94,11 +94,6 @@ public class RigidPlayerController : MovingObject, IShopCustomer
                 animator.SetInteger("Direction", 2);
             }
         }
-
-        //applying cosmetic items - can be a lot better!
-        // if (dir.y == -1)
-        //     glasses.sortingOrder = mSpriteRenderer.sortingOrder + 1;
-        // if (dir.y == 1 || dir.x == 1 || dir.x == -1) glasses.sortingOrder = 0;
     }
 
     protected override void AttemptMove<T>(int xDir, int yDir)

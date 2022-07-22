@@ -377,6 +377,11 @@ PrefabInstance:
       propertyPath: usePattern
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 754718087950397077, guid: c4d92f58a88dafb469021a2d424f655c,
+        type: 3}
+      propertyPath: totalNotesToSpawn
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 754718088009971508, guid: c4d92f58a88dafb469021a2d424f655c,
         type: 3}
       propertyPath: m_Layer

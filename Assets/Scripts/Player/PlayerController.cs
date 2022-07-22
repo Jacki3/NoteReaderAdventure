@@ -5,9 +5,15 @@ using MidiJack;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
+public class PlayerController : MonoBehaviour, IShopCustomer
 {
     [Header("Player Settings")]
+    public Sprite northSprite;
+
+    public Sprite southSprite;
+
+    public Sprite eastSprite;
+
     public float walkSpeed = 3;
 
     public float
@@ -17,15 +23,9 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
             sprintSpeed_3 = 4.5f;
 
     [Header("Player Components")]
-    public SpriteRenderer glasses;
-
-    public Transform shieldSpawn;
-
     public SmashCircle smashCircle;
 
     public Transform smashCircleSpawnPoint;
-
-    public PauseMenu pauseMenu;
 
     public AudioClip moveSound;
 
@@ -37,26 +37,28 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
 
     private Vector2 dir;
 
-    private SpriteRenderer mSpriteRenderer;
-
     public static NoteReadingRPGAdventure inputActions;
 
     public static bool readingMode;
 
-    // public delegate void NotationCircleSwitch();
-    // public static event NotationCircleSwitch notationCircleActivated;
-    // public static event NotationCircleSwitch notationCircleDeactivated;
+    public delegate void NotationCircleSwitch();
+
+    public static event NotationCircleSwitch notationCircleActivated;
+
+    public static event NotationCircleSwitch notationCircleDeactivated;
+
     private AudioSource audioSource;
+
+    private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         inputActions = new NoteReadingRPGAdventure();
 
         inputActions.Player.Smash.performed += ctx => SpawnCircle();
-        inputActions.Player.Escape.performed += ctx => ShowMenu();
         inputActions.Player.ReadModeSwitch.performed += ctx => SetReadingMode();
 
-        mSpriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         PlayerSkills.onSkillUnlocked += SkillUnlocked;
@@ -77,90 +79,76 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
         var move = inputActions.Player.Move.ReadValue<Vector2>();
         var sprint = inputActions.Player.Sprint.ReadValue<float>();
 
-        // if (
-        //     !readingMode &&
-        //     GameStateController.state == GameStateController.States.Play ||
-        //     GameStateController.state == GameStateController.States.Tutorial &&
-        //     !readingMode
-        // )
-        // {
-        //     dir = move;
-        // }
-        // else
-        // {
-        //     dir = Vector2.zero;
-        // }
-        //this can be done better also leads to stuck movement if cursor clicks off screen etc.
-        // switch (dir)
-        // {
-        //     case Vector2 v:
-        //         if (v == Vector2.left)
-        //         {
-        //             animator.SetInteger("Direction", 3);
-        //             break;
-        //         }
-        //         else if (v == Vector2.right)
-        //         {
-        //             animator.SetInteger("Direction", 2);
-        //             break;
-        //         }
-        //         if (v == Vector2.up)
-        //         {
-        //             animator.SetInteger("Direction", 1);
-        //             break;
-        //         }
-        //         else if (v == Vector2.down) animator.SetInteger("Direction", 0);
-        //         break;
-        // }
-        // if (sprint >= .1f && CanSprint())
-        // {
-        //     if (dir.magnitude > 0) SprintBar.StartSprinting();
-        //     if (SprintBar.canSprint)
-        //         moveSpeed = sprintSpeed;
-        //     else
-        //         moveSpeed = walkSpeed;
-        // }
-        // else
-        // {
-        //     SprintBar.StopSprinting();
-        //     moveSpeed = walkSpeed;
-        // }
-        // if (dir.magnitude < 0) SprintBar.StopSprinting();
-        // dir.Normalize();
-        // animator.SetBool("IsMoving", dir.magnitude > 0);
-        // if (dir.magnitude > 0)
-        // {
-        //     if (GameStateController.state == GameStateController.States.Tutorial
-        //     )
-        //     {
-        //         TutorialManager
-        //             .CheckTutorialStatic(Tutorial.TutorialValidation.Move);
-        //     }
-        //     audioSource.clip = moveSound;
-        // }
-        // else
-        // {
-        //     audioSource.clip = null;
-        //     SprintBar.StopSprinting();
-        // }
-        // if (!audioSource.isPlaying) audioSource.Play();
-        // GetComponent<Rigidbody2D>().velocity = moveSpeed * dir; //using get component?
-        //lulw -- set for other items in one method
-        if (dir.y == -1)
-            glasses.sortingOrder = mSpriteRenderer.sortingOrder + 1;
-        if (dir.y == 1 || dir.x == 1 || dir.x == -1) glasses.sortingOrder = 0;
-    }
-
-    //again bad practice? doing something it should not really do -- should be listening for events not calling methods
-    private void ShowMenu()
-    {
-        if (GameStateController.state != GameStateController.States.Shopping)
+        if (
+            !readingMode &&
+            GameStateController.state == GameStateController.States.Play ||
+            GameStateController.state == GameStateController.States.Tutorial &&
+            !readingMode
+        )
         {
-            // pauseMenu.ShowMenu();
+            dir = move;
+            if (inputActions.Player.Up.WasPressedThisFrame())
+            {
+                spriteRenderer.sprite = southSprite;
+                animator.SetInteger("Direction", 1);
+            }
+            else if (inputActions.Player.Down.WasPressedThisFrame())
+            {
+                spriteRenderer.sprite = northSprite;
+                animator.SetInteger("Direction", 0);
+            }
+            else if (inputActions.Player.Left.WasPressedThisFrame())
+            {
+                spriteRenderer.flipX = false;
+                spriteRenderer.sprite = eastSprite;
+                animator.SetInteger("Direction", 3);
+            }
+            else if (inputActions.Player.Right.WasPressedThisFrame())
+            {
+                spriteRenderer.flipX = true;
+                spriteRenderer.sprite = eastSprite;
+                animator.SetInteger("Direction", 2);
+            }
         }
+        else
+        {
+            dir = Vector2.zero;
+        }
+
+        if (sprint >= .1f && CanSprint())
+        {
+            if (dir.magnitude > 0) SprintBar.StartSprinting();
+            if (SprintBar.canSprint)
+                moveSpeed = sprintSpeed;
+            else
+                moveSpeed = walkSpeed;
+        }
+        else
+        {
+            SprintBar.StopSprinting();
+            moveSpeed = walkSpeed;
+        }
+        if (dir.magnitude < 0) SprintBar.StopSprinting();
+        dir.Normalize();
+        if (dir.magnitude > 0)
+        {
+            if (GameStateController.state == GameStateController.States.Tutorial
+            )
+            {
+                TutorialManager
+                    .CheckTutorialStatic(Tutorial.TutorialValidation.Move);
+            }
+            audioSource.clip = moveSound;
+        }
+        else
+        {
+            audioSource.clip = null;
+            SprintBar.StopSprinting();
+        }
+        if (!audioSource.isPlaying) audioSource.Play();
+        GetComponent<Rigidbody2D>().velocity = moveSpeed * dir; //using get component?
     }
 
-    //this is bad practice right? -- try to copy from tooltip stuff
     private void SpawnCircle()
     {
         if (
@@ -174,7 +162,7 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
             var newCircle = Instantiate(smashCircle);
             newCircle.SetLayerAndPosition (
                 smashCircleSpawnPoint,
-                mSpriteRenderer
+                spriteRenderer
             );
         }
     }
@@ -191,12 +179,12 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
                 if (readingMode)
                 {
                     readingMode = false;
-                    // notationCircleDeactivated();
+                    notationCircleDeactivated();
                 }
                 else
                 {
                     readingMode = true;
-                    // notationCircleActivated();
+                    notationCircleActivated();
                 }
             }
         }
@@ -225,37 +213,38 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
     public void BoughtItem(CoreItems.ItemType itemType)
     {
         SoundController.PlaySound(SoundController.Sound.Purchase);
-        switch (itemType)
+        if (TextureController.CheckBoughtItemStatic(itemType) == false)
         {
-            case CoreItems.ItemType.smallHealthRefill:
-                HealthController.AddHealth(1);
-                break;
-            case CoreItems.ItemType.healthRefill:
-                HealthController.AddHealth(6);
-                break;
-            case CoreItems.ItemType.largeHealthRefill:
-                HealthController.AddHealth(12);
-                break;
-            case CoreItems.ItemType.shield:
-                HealthController.AddShield(false);
-                SpriteController.SetSprite(SpriteController.Sprites.shield);
-                break;
-            case CoreItems.ItemType.protectiveShield:
-                HealthController.AddShield(true);
-                SpriteController
-                    .SetSprite(SpriteController.Sprites.protectiveShield);
-                break;
-            case CoreItems.ItemType.coolSunGlasses:
-                SpriteController
-                    .SetSprite(SpriteController.Sprites.coolSunGlasses);
-                break;
-            case CoreItems.ItemType.nerdGlasses:
-                SpriteController
-                    .SetSprite(SpriteController.Sprites.nerdGlasses);
-                break;
-            case CoreItems.ItemType.life:
-                LivesController.AddLife();
-                break;
+            switch (itemType)
+            {
+                case CoreItems.ItemType.smallHealthRefill:
+                    HealthController.AddHealth(1);
+                    HealthController.SaveHealth();
+                    break;
+                case CoreItems.ItemType.healthRefill:
+                    HealthController.AddHealth(6);
+                    HealthController.SaveHealth();
+                    break;
+                case CoreItems.ItemType.largeHealthRefill:
+                    HealthController.AddHealth(12);
+                    HealthController.SaveHealth();
+                    break;
+                case CoreItems.ItemType.shield:
+                    HealthController.AddShield(false);
+                    SpriteController.SetSprite(SpriteController.Sprites.shield);
+                    HealthController.SaveHealth();
+
+                    break;
+                case CoreItems.ItemType.protectiveShield:
+                    HealthController.AddShield(true);
+                    SpriteController
+                        .SetSprite(SpriteController.Sprites.protectiveShield);
+                    HealthController.SaveHealth();
+                    break;
+                case CoreItems.ItemType.life:
+                    LivesController.AddLife();
+                    break;
+            }
         }
     }
 
@@ -269,8 +258,16 @@ public class PlayerController : MonoBehaviour, IShopCustomer, IDamagable
             return false;
     }
 
-    public void Damage(int damageToInflict)
+    public void LoseHealth(int healthLost)
     {
-        HealthController.RemoveHealth(damageToInflict, true);
+        HealthController.RemoveHealth(healthLost, true);
+    }
+
+    public void SetSprites(Sprite front, Sprite back, Sprite side)
+    {
+        northSprite = front;
+        southSprite = back;
+        eastSprite = side;
+        spriteRenderer.sprite = northSprite;
     }
 }

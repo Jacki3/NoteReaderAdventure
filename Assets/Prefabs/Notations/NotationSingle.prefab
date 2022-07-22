@@ -377,7 +377,7 @@ MonoBehaviour:
   notationAnimator: {fileID: 1352915590092746033}
   distanceBetweenNotesX: 0.35
   startingSpawnPosX: 0
-  noteImage: {fileID: 2041678455660970587, guid: f3e938766bd01ab4992d14b94883b265,
+  noteImage: {fileID: 7653911856414671756, guid: f3e938766bd01ab4992d14b94883b265,
     type: 3}
   clefRenderer: {fileID: 754718087487569048}
   bassSprite: {fileID: 21300000, guid: aa9848bf804e58040ab5f603a9503d61, type: 3}
@@ -436,12 +436,12 @@ MonoBehaviour:
   playedNoteColour:
     serializedVersion: 2
     rgba: 2148733715
+  notation: {fileID: 0}
   explodableNotation: {fileID: 9165166724435178323, guid: 5a06ad10ed8431243a7135647523f703,
     type: 3}
   notes: 
   arenaMode: 0
   objectShow: 0
-  notation: {fileID: 0}
 --- !u!1 &754718088009971508
 GameObject:
   m_ObjectHideFlags: 0
