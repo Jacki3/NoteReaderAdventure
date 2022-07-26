@@ -188,6 +188,10 @@ public class CoreGameElements : MonoBehaviour
 
     public DifficutiesNotes currentDifficultyNotes;
 
+    public string saveLocation;
+
+    public string saveFileName;
+
     public enum Difficuties
     {
         absoluteBeginner,

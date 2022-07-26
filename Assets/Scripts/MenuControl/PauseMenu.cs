@@ -47,6 +47,8 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject customMenu;
 
+    public GameObject MIDIMenu;
+
     public GameObject shopCanvas;
 
     public GameObject heartsUI;
@@ -79,6 +81,8 @@ public class PauseMenu : MonoBehaviour
     private bool popUpVisible;
 
     private bool customMenuVisible = false;
+
+    private bool MIDIMenuVisible;
 
     private bool controlsRigid = true;
 
@@ -218,6 +222,39 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    public void ShowMIDISetupMenu()
+    {
+        if (MIDIMenuVisible)
+        {
+            MIDIMenuVisible = false;
+            MIDIMenu.SetActive(false);
+            if (isMainMenu)
+            {
+                mainButtons.SetActive(true);
+                EventSystem.current.SetSelectedGameObject (mainMenuStart);
+            }
+            else
+            {
+                pauseButtons.SetActive(true);
+                EventSystem.current.SetSelectedGameObject (resumeButton); //repeats below - concat showmenu but avoid pausing game everytime
+            }
+        }
+        else
+        {
+            MIDIMenuVisible = true;
+            MIDIMenu.SetActive(true);
+            if (isMainMenu)
+            {
+                mainButtons.SetActive(false);
+            }
+            else
+            {
+                pauseButtons.SetActive(false);
+                EventSystem.current.SetSelectedGameObject (resumeButton); //repeats below - concat showmenu but avoid pausing game everytime
+            }
+        }
+    }
+
     public void ShowOptions(bool showMain)
     {
         if (optionsVisible)
@@ -251,6 +288,14 @@ public class PauseMenu : MonoBehaviour
             }
             optionsVisible = true;
         }
+    }
+
+    public void Return()
+    {
+        MIDIMenu.SetActive(false);
+        optionButtons.SetActive(true);
+        EventSystem.current.SetSelectedGameObject (musicSlider);
+        optionsVisible = true;
     }
 
     public void SetColour(bool switchSetting)

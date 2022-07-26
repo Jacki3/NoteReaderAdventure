@@ -318,6 +318,10 @@ public class TextureController : MonoBehaviour
         save.backSprite = backFacingSprite;
         save.sideSprite = sideFacingSprite;
         save.savedCustomItems = customItems.ToArray();
+        for (int i = 0; i < customItems.Length; i++)
+        {
+            save.savedCustomItems[i].isUnlocked = customItems[i].isUnlocked;
+        }
     }
 
     public static void LoadItemsStatic()
@@ -327,6 +331,11 @@ public class TextureController : MonoBehaviour
 
     private void LoadItems()
     {
-        customItems = CoreGameElements.i.gameSave.savedCustomItems.ToArray();
+        CustomisationItem[] savedItems =
+            CoreGameElements.i.gameSave.savedCustomItems;
+        for (int i = 0; i < customItems.Length; i++)
+        {
+            customItems[i].isUnlocked = savedItems[i].isUnlocked;
+        }
     }
 }

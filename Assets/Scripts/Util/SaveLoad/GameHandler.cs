@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters;
 using System.Text;
+using Microsoft.Win32;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -16,6 +17,15 @@ public class GameHandler : MonoBehaviour
     public RigidPlayerController player;
 
     private static string DATA_PATH;
+
+    private TimeSpan startTime;
+
+    private TimeSpan endTime;
+
+    void Awake()
+    {
+        startTime = DateTime.Now.TimeOfDay;
+    }
 
     void Start()
     {
@@ -56,8 +66,6 @@ public class GameHandler : MonoBehaviour
             UIController.LoadUIHearts();
             TextureController.LoadItemsStatic();
             TextureController.CreateItemButtonsFirst();
-            player
-                .SetSprites(save.frontSprite, save.backSprite, save.sideSprite);
             TextureController
                 .SetSpriteStatic(TextureController.Orientation.front,
                 save.frontSprite,
@@ -88,5 +96,11 @@ public class GameHandler : MonoBehaviour
     void OnApplicationQuit()
     {
         if (!CoreGameElements.i.saveDeleted) Save();
+
+        endTime = DateTime.Now.TimeOfDay;
+
+        TimeSpan diff = endTime - startTime;
+
+        LogFile.WriteCSV(diff.ToString());
     }
 }
