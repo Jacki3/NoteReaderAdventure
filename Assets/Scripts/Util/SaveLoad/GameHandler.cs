@@ -71,6 +71,9 @@ public class GameHandler : MonoBehaviour
                 save.frontSprite,
                 save.backSprite,
                 save.sideSprite);
+            UIController
+                .UpdateTextUI(UIController.UITextComponents.userIndexText,
+                save.userIndex);
         }
         else
         {

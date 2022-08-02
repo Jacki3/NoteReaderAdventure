@@ -56,7 +56,7 @@ public class EndScreens : MonoBehaviour
         GameStateController.PauseGame(true);
         lifeLostScreen.SetActive(false);
         LevelController.i.ResetPlayerPos();
-        LevelController.i.levelLoader.LoadLevel(-1);
+        LevelController.i.levelLoader.LoadLevel(-2);
     }
 
     private void HideScreens()

@@ -24,7 +24,7 @@ public class PuzzleController : MonoBehaviour
 
     private int[] correctOrder = { 5, 1, 6, 2, 7, 3, 8, 4 };
 
-    private List<NumberBox> allBoxes = new List<NumberBox>();
+    public List<NumberBox> allBoxes = new List<NumberBox>();
 
     private Canvas puzzleCanvas;
 
@@ -37,7 +37,13 @@ public class PuzzleController : MonoBehaviour
     public void GeneratePuzzle()
     {
         puzzleCanvas.enabled = true;
-        Init();
+        if (allBoxes.Count <= 0)
+            Init();
+        else
+            foreach (NumberBox box in boxes)
+            {
+                box.gameObject.SetActive(true);
+            }
         for (int i = 0; i < correctOrder.Length; i++) ShuffleBoard();
     }
 
@@ -100,7 +106,7 @@ public class PuzzleController : MonoBehaviour
         puzzleCanvas.enabled = false;
         foreach (NumberBox box in boxes)
         {
-            Destroy(box.gameObject);
+            box.gameObject.SetActive(false);
         }
         LevelController.i.levelLoader.LoadLevel(-1);
         startMenu.StartGame();

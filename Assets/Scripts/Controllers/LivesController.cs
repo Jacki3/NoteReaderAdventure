@@ -29,6 +29,7 @@ public static class LivesController
     public static bool GameOver()
     {
         HealthController.ResetHealth();
+        HealthController.SaveHealth();
         EndScreens.ShowLifeOverStatic();
         return false;
     }

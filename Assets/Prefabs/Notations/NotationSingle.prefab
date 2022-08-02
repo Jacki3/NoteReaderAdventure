@@ -433,6 +433,7 @@ MonoBehaviour:
   - {fileID: 6713887413043703292}
   totalNotesToSpawn: 1
   usePattern: 0
+  useWholeNotes: 0
   playedNoteColour:
     serializedVersion: 2
     rgba: 2148733715

@@ -60,6 +60,9 @@ public class RigidPlayerController : MovingObject, IShopCustomer
     // Update is called once per frame
     private void Update()
     {
+        if (Input.GetKeyUp(KeyCode.P))
+            CurrencyController.AddRemoveCoins(100, true);
+
         inverseMoveTime = 1f / moveTime;
 
         if (

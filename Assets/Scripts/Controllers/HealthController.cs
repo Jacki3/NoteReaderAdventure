@@ -211,6 +211,7 @@ public static class HealthController
     public static void SaveHealth()
     {
         CoreGameElements.i.gameSave.playerHealth = currentHealth;
+        CoreGameElements.i.gameSave.maxHealth = maxHealth;
         CoreGameElements.i.gameSave.hasShield = hasShield;
         CoreGameElements.i.gameSave.hasStrongShield = strongShield;
     }

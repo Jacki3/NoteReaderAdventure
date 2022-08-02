@@ -159,6 +159,9 @@ public class ItemShopController : MonoBehaviour
                 currentShopButton.transform.localPosition,
                 currentShopButton.transform.root);
         }
+
+        CoreGameElements.i.gameSave.playerCoins =
+            CurrencyController.GetTotalCoins();
     }
 
     public void ShowShop(IShopCustomer customer)

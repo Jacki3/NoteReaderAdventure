@@ -6,11 +6,15 @@ using UnityEngine.UI;
 
 public class SaveFile
 {
+    public string userIndex;
+
     public Vector3 playerPos;
 
     public int playerCoins;
 
     public int playerHealth = CoreGameElements.i.maxHealth;
+
+    public int maxHealth = CoreGameElements.i.maxHealth;
 
     public int XP = 0;
 

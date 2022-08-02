@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8907355298729512930}
   - component: {fileID: 8907355298729512933}
-  - component: {fileID: 8907355298729512932}
   - component: {fileID: 8907355298729512931}
   - component: {fileID: 8907355298729512929}
   - component: {fileID: 8907355298729512928}
   - component: {fileID: 7008058538228969153}
+  - component: {fileID: 2281744806319379713}
   m_Layer: 23
   m_Name: Barrel
   m_TagString: Untagged
@@ -89,38 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &8907355298729512932
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8907355298729512935}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 0.875, y: 1.125}
-    newSize: {x: 0.875, y: 1.125}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.40625, y: 1.125}
-      - {x: -0.4375, y: 1.0625}
-      - {x: -0.4375, y: 0.0625}
-      - {x: -0.40625, y: 0}
-      - {x: 0.4375, y: 0}
-      - {x: 0.4375, y: 1.09375}
-      - {x: 0.3125, y: 1.125}
 --- !u!50 &8907355298729512931
 Rigidbody2D:
   serializedVersion: 4
@@ -196,6 +164,32 @@ MonoBehaviour:
   totalItemsSpawnable: 1
   canSpawnHealth: 0
   tutorialObject: 0
+--- !u!61 &2281744806319379713
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8907355298729512935}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 0.875, y: 1.125}
+    newSize: {x: 0.875, y: 1.125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1001 &972705451624014147
 PrefabInstance:
   m_ObjectHideFlags: 0

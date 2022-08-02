@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class StartMenu : MonoBehaviour
 {
+    public UserIndex index;
+
     public GameObject firstButton;
 
     public GameObject levelOneButton;
@@ -130,12 +132,15 @@ public class StartMenu : MonoBehaviour
 
     public void ContinueGame()
     {
-        int levelAt = CoreGameElements.i.gameSave.levelAt;
-        if (levelAt == 0) levelAt = 1;
-        if (levelAt < CoreGameElements.i.latetstLevel)
-            levelAt = CoreGameElements.i.latetstLevel;
-        levelGen.LoadLevel (levelAt);
-        StartGame();
+        if (index.IndexFilled())
+        {
+            int levelAt = CoreGameElements.i.gameSave.levelAt;
+            if (levelAt == 0) levelAt = 1;
+            if (levelAt < CoreGameElements.i.latetstLevel)
+                levelAt = CoreGameElements.i.latetstLevel;
+            levelGen.LoadLevel (levelAt);
+            StartGame();
+        }
     }
 
     public static void UpdateButtonsStatic()

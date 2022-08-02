@@ -22,7 +22,9 @@ public static class UIController
         levelText,
         danceFloorText,
         colourOptionText,
-        shopCoinText
+        shopCoinText,
+        indexWarningText,
+        userIndexText
     }
 
     public enum UIImageComponents

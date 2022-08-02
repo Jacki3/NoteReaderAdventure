@@ -46,7 +46,8 @@ public class AudioController : MonoBehaviour
     {
         if (AudioSettings.dspTime >= nextTime)
         {
-            SpawnMetronomeBar();
+            if (GameStateController.state != GameStateController.States.Paused)
+                SpawnMetronomeBar();
             nextTime += secPerBeat;
             time = 1;
         }

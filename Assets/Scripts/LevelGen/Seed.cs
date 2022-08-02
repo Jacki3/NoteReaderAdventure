@@ -31,7 +31,7 @@ public class Seed : MonoBehaviour
         {
             SaveFile.Board newBoard = new SaveFile.Board();
 
-            gameSeed = "LvlBuilder5_";
+            gameSeed = "LvlBuilder6_";
             defaultGameSeed = gameSeed;
             gameSeed += level;
             currentSeed = gameSeed.GetHashCode();
@@ -63,6 +63,7 @@ public class Seed : MonoBehaviour
     public void LoadLevel(int levelToLoad)
     {
         if (levelToLoad == -1) levelToLoad = currentLevel + 1;
+        if (levelToLoad == -2) levelToLoad = currentLevel;
         if (levelToLoad == 1)
         {
             SaveFile save = CoreGameElements.i.gameSave;

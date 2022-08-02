@@ -29,7 +29,8 @@ public class Metronome : MonoBehaviour
     {
         if (AudioSettings.dspTime >= nextTime && audioSource.enabled)
         {
-            audioSource.Play();
+            if (GameStateController.state != GameStateController.States.Paused)
+                audioSource.Play();
             nextTime += AudioController.secPerBeat;
         }
     }
