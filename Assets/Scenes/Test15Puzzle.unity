@@ -282,21 +282,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxPrefab: {fileID: 2413928661252750163, guid: 8c290d36b51da11459356e368c868022,
     type: 3}
+  startMenu: {fileID: 0}
   notes: 0000000002000000040000000500000007000000090000000b000000ffffffff
   numberSprites:
-  - {fileID: -3579264085673418721, guid: d166e9bafc22bcf4d9f6f7e24b840725, type: 3}
-  - {fileID: 2396065250677530867, guid: d166e9bafc22bcf4d9f6f7e24b840725, type: 3}
-  - {fileID: -8475196411791622810, guid: d166e9bafc22bcf4d9f6f7e24b840725, type: 3}
-  - {fileID: 5358551930818553708, guid: d166e9bafc22bcf4d9f6f7e24b840725, type: 3}
-  - {fileID: 6689604729060027230, guid: d166e9bafc22bcf4d9f6f7e24b840725, type: 3}
-  - {fileID: -865361289563854660, guid: d166e9bafc22bcf4d9f6f7e24b840725, type: 3}
-  - {fileID: 4087159944485798588, guid: d166e9bafc22bcf4d9f6f7e24b840725, type: 3}
-  - {fileID: 1141320523981017935, guid: d166e9bafc22bcf4d9f6f7e24b840725, type: 3}
-  - {fileID: -8699687868729841746, guid: d166e9bafc22bcf4d9f6f7e24b840725, type: 3}
-  - {fileID: 545306238625526567, guid: d166e9bafc22bcf4d9f6f7e24b840725, type: 3}
-  - {fileID: 7034400949373464396, guid: d166e9bafc22bcf4d9f6f7e24b840725, type: 3}
-  - {fileID: -2138257346281768311, guid: d166e9bafc22bcf4d9f6f7e24b840725, type: 3}
+  - {fileID: -1040996542862338941, guid: 9b25cf53e70661a4abb138651fffe958, type: 3}
+  - {fileID: -1040996542862338941, guid: 9b25cf53e70661a4abb138651fffe958, type: 3}
+  - {fileID: 2813664400065060797, guid: 9b25cf53e70661a4abb138651fffe958, type: 3}
+  - {fileID: 2813664400065060797, guid: 9b25cf53e70661a4abb138651fffe958, type: 3}
+  - {fileID: -991140862751763597, guid: 9b25cf53e70661a4abb138651fffe958, type: 3}
+  - {fileID: 7070981461170951986, guid: 9b25cf53e70661a4abb138651fffe958, type: 3}
+  - {fileID: 7070981461170951986, guid: 9b25cf53e70661a4abb138651fffe958, type: 3}
+  - {fileID: -692265801970122319, guid: 9b25cf53e70661a4abb138651fffe958, type: 3}
+  - {fileID: -692265801970122319, guid: 9b25cf53e70661a4abb138651fffe958, type: 3}
+  - {fileID: -8822612903973417457, guid: 9b25cf53e70661a4abb138651fffe958, type: 3}
+  - {fileID: -8822612903973417457, guid: 9b25cf53e70661a4abb138651fffe958, type: 3}
+  - {fileID: -7519974901899469052, guid: 9b25cf53e70661a4abb138651fffe958, type: 3}
   - {fileID: 0}
+  allBoxes: []
 --- !u!4 &2014070712
 Transform:
   m_ObjectHideFlags: 0

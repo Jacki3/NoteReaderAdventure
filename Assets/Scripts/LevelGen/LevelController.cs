@@ -77,8 +77,12 @@ public class LevelController : MonoBehaviour
                 "Fade");
             DelayResetPlayer();
 
-            //load a puzzle every even level, load a shop every fifth level or just load the next level
-            if (currentLevel % 2 == 1 && currentLevel % 5 != 0)
+            //load a puzzle every odd level, load a shop every fifth level or just load the next level
+            if (
+                currentLevel != 1 &&
+                currentLevel % 2 == 1 &&
+                currentLevel % 5 != 0
+            )
                 pauseMenu.ReturnToMain(true, false);
             else if (currentLevel % 5 == 0)
                 pauseMenu.ReturnToMain(false, true);

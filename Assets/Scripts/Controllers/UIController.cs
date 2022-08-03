@@ -24,7 +24,8 @@ public static class UIController
         colourOptionText,
         shopCoinText,
         indexWarningText,
-        userIndexText
+        userIndexText,
+        userIndexFillText
     }
 
     public enum UIImageComponents
@@ -48,6 +49,11 @@ public static class UIController
     private static int heartIndex = 0;
 
     private static int additionalHearts = 0;
+
+    public static void UpdateIndexField(string text)
+    {
+        CoreUIElements.i.userIndex.text = text;
+    }
 
     //this should be called set text?
     public static void UpdateTextUI(UITextComponents component, string text)

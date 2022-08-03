@@ -47,6 +47,8 @@ public class CoreUIElements : MonoBehaviour
         public Slider slider;
     }
 
+    public TMP_InputField userIndex;
+
     public List<Image> hearts = new List<Image>();
 
     public Image heart;

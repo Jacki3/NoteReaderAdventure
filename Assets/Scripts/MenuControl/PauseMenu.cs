@@ -191,33 +191,36 @@ public class PauseMenu : MonoBehaviour
 
     public void ShowPlayerCustomisation()
     {
-        if (customMenuVisible)
+        if (mainMenu.index.IndexFilled())
         {
-            customMenuVisible = false;
-            customMenu.SetActive(false);
-            if (isMainMenu)
+            if (customMenuVisible)
             {
-                mainButtons.SetActive(true);
-                EventSystem.current.SetSelectedGameObject (mainMenuStart);
+                customMenuVisible = false;
+                customMenu.SetActive(false);
+                if (isMainMenu)
+                {
+                    mainButtons.SetActive(true);
+                    EventSystem.current.SetSelectedGameObject (mainMenuStart);
+                }
+                else
+                {
+                    pauseButtons.SetActive(true);
+                    EventSystem.current.SetSelectedGameObject (resumeButton); //repeats below - concat showmenu but avoid pausing game everytime
+                }
             }
             else
             {
-                pauseButtons.SetActive(true);
-                EventSystem.current.SetSelectedGameObject (resumeButton); //repeats below - concat showmenu but avoid pausing game everytime
-            }
-        }
-        else
-        {
-            customMenuVisible = true;
-            customMenu.SetActive(true);
-            if (isMainMenu)
-            {
-                mainButtons.SetActive(false);
-            }
-            else
-            {
-                pauseButtons.SetActive(false);
-                EventSystem.current.SetSelectedGameObject (resumeButton); //repeats below - concat showmenu but avoid pausing game everytime
+                customMenuVisible = true;
+                customMenu.SetActive(true);
+                if (isMainMenu)
+                {
+                    mainButtons.SetActive(false);
+                }
+                else
+                {
+                    pauseButtons.SetActive(false);
+                    EventSystem.current.SetSelectedGameObject (resumeButton); //repeats below - concat showmenu but avoid pausing game everytime
+                }
             }
         }
     }

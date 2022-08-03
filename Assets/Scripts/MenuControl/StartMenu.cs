@@ -199,21 +199,24 @@ public class StartMenu : MonoBehaviour
 
     public void ShowLevelSelect()
     {
-        UpdateLevelButtons();
+        if (index.IndexFilled())
+        {
+            UpdateLevelButtons();
 
-        if (levelsVisible)
-        {
-            EventSystem.current.SetSelectedGameObject (firstButton);
-            levelSelect.SetActive(false);
-            mainButtons.SetActive(true);
-            levelsVisible = false;
-        }
-        else
-        {
-            EventSystem.current.SetSelectedGameObject (levelOneButton);
-            levelSelect.SetActive(true);
-            mainButtons.SetActive(false);
-            levelsVisible = true;
+            if (levelsVisible)
+            {
+                EventSystem.current.SetSelectedGameObject (firstButton);
+                levelSelect.SetActive(false);
+                mainButtons.SetActive(true);
+                levelsVisible = false;
+            }
+            else
+            {
+                EventSystem.current.SetSelectedGameObject (levelOneButton);
+                levelSelect.SetActive(true);
+                mainButtons.SetActive(false);
+                levelsVisible = true;
+            }
         }
     }
 

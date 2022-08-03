@@ -10,6 +10,8 @@ using Random = UnityEngine.Random;
 
 public class PuzzleController : MonoBehaviour
 {
+    public Seed seed;
+
     public NumberBox boxPrefab;
 
     public StartMenu startMenu;
@@ -19,6 +21,16 @@ public class PuzzleController : MonoBehaviour
     public NumberBox[,] boxes = new NumberBox[4, 2];
 
     public Sprite[] numberSprites;
+
+    public Sprite[] letterSprites;
+
+    public Sprite[] trebleSprites;
+
+    public Sprite[] trebleSpritesHigh;
+
+    public Sprite[] bassSprites;
+
+    public Sprite[] bassSpritesHigh;
 
     private Vector2 lastMove;
 
@@ -36,6 +48,23 @@ public class PuzzleController : MonoBehaviour
 
     public void GeneratePuzzle()
     {
+        if (seed.currentLevel < 10)
+            numberSprites = letterSprites;
+        else if (seed.currentLevel >= 10 && seed.currentLevel < 35)
+        {
+            if (Random.value > .5f)
+                numberSprites = trebleSprites;
+            else
+                numberSprites = bassSprites;
+        }
+        else if (seed.currentLevel >= 35)
+        {
+            if (Random.value > .5f)
+                numberSprites = trebleSpritesHigh;
+            else
+                numberSprites = bassSpritesHigh;
+        }
+
         puzzleCanvas.enabled = true;
         if (allBoxes.Count <= 0)
             Init();
