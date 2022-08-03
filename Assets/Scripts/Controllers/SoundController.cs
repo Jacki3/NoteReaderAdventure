@@ -37,6 +37,9 @@ public static class SoundController
     {
         //cache previous soundcontroller object - is it playing, if not then use it OR make another (pool them)
         GameObject soundGameObject = new GameObject("SoundController");
+        DestroyOverTime destroyOverTime =
+            soundGameObject.AddComponent<DestroyOverTime>();
+        destroyOverTime.lifeTime = GetAudioClip(sound).length;
         AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
         audioSource.outputAudioMixerGroup =
             CoreGameElements.i.SFXMixer.FindMatchingGroups("SFX")[0];

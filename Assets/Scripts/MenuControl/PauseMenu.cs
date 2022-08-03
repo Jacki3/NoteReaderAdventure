@@ -423,7 +423,7 @@ public class PauseMenu : MonoBehaviour
 
     public void MusicFade()
     {
-        heartsUI.transform.SetParent(gameCanvas.transform);
+        heartsUI.transform.SetParent(gameCanvas.transform, false);
         isMainMenu = false;
         background.SetActive(true);
         pauseButtons.SetActive(true);
