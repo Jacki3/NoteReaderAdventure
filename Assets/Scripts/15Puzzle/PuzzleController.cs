@@ -52,10 +52,9 @@ public class PuzzleController : MonoBehaviour
             numberSprites = letterSprites;
         else if (seed.currentLevel >= 10 && seed.currentLevel < 35)
         {
-            if (Random.value > .5f)
-                numberSprites = trebleSprites;
-            else
-                numberSprites = bassSprites;
+            if (Random.value > .5f) numberSprites = trebleSprites;
+            // else
+            //     numberSprites = bassSprites;
         }
         else if (seed.currentLevel >= 35)
         {
@@ -69,10 +68,19 @@ public class PuzzleController : MonoBehaviour
         if (allBoxes.Count <= 0)
             Init();
         else
+        {
+            int index = 0;
             foreach (NumberBox box in boxes)
             {
+                int spriteIndex = notes[index];
+                if (spriteIndex == -1) spriteIndex = numberSprites.Length - 1;
                 box.gameObject.SetActive(true);
+
+                // box.UpdateImage(numberSprites[spriteIndex]);
+                allBoxes[index].UpdateImage(numberSprites[spriteIndex]);
+                index++;
             }
+        }
         for (int i = 0; i < correctOrder.Length; i++) ShuffleBoard();
     }
 

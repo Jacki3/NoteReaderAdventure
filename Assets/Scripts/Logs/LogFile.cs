@@ -3,17 +3,21 @@ using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using UnityEngine;
 
 public static class LogFile
 {
+    static string fileName;
+
+    static string wholeFilePath;
+
     public static void WriteCSV(string data)
     {
-        string fileName =
-            CoreGameElements.i.saveLocation +
-            "/" +
-            CoreGameElements.i.saveFileName;
+        fileName =
+            CoreGameElements.i.gameSave.userIndex + "_GAME DATA_" + ".csv";
+        wholeFilePath = Application.dataPath + "/" + fileName;
 
-        StreamWriter tw = new StreamWriter(fileName, true);
+        StreamWriter tw = new StreamWriter(wholeFilePath, true);
 
         string newData = "";
         newData += data;
@@ -22,11 +26,23 @@ public static class LogFile
 
         tw.Close();
 
+        UploadResults();
+    }
+
+    public static void UploadResults()
+    {
         ftp ftpClient =
             new ftp(@"ftp://ftp.lewin-of-greenwich-naval-history-forum.co.uk",
                 "lewin-of-greenwich-naval-history-forum.co.uk",
                 "YdFDyYkUjKyjmseVmGkhipAB");
-        string file = CoreGameElements.i.saveFileName;
-        ftpClient.upload("/" + file, @fileName);
+        ftpClient
+            .createDirectory("/Study4/GameData/" +
+            CoreGameElements.i.gameSave.userIndex);
+        ftpClient
+            .upload("/Study4/GameData/" +
+            CoreGameElements.i.gameSave.userIndex +
+            "/" +
+            fileName,
+            @wholeFilePath);
     }
 }

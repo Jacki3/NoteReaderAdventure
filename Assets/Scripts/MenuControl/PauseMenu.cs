@@ -57,6 +57,10 @@ public class PauseMenu : MonoBehaviour
 
     public PlayerController playerControllerScript;
 
+    public GameObject helpScreenFirstButton;
+
+    public GameObject customMenuFirstButton;
+
     [Header("Audio")]
     public float audioFadeDur;
 
@@ -215,6 +219,9 @@ public class PauseMenu : MonoBehaviour
                 if (isMainMenu)
                 {
                     mainButtons.SetActive(false);
+                    EventSystem.current.SetSelectedGameObject (
+                        customMenuFirstButton
+                    );
                 }
                 else
                 {
@@ -233,13 +240,14 @@ public class PauseMenu : MonoBehaviour
             MIDIMenu.SetActive(false);
             if (isMainMenu)
             {
-                mainButtons.SetActive(true);
-                EventSystem.current.SetSelectedGameObject (mainMenuStart);
+                optionButtons.SetActive(true);
+                EventSystem.current.SetSelectedGameObject (musicSlider);
             }
             else
             {
-                pauseButtons.SetActive(true);
-                EventSystem.current.SetSelectedGameObject (resumeButton); //repeats below - concat showmenu but avoid pausing game everytime
+                optionButtons.SetActive(true);
+                background.SetActive(true);
+                EventSystem.current.SetSelectedGameObject (musicSlider); //repeats below - concat showmenu but avoid pausing game everytime
             }
         }
         else
@@ -248,12 +256,15 @@ public class PauseMenu : MonoBehaviour
             MIDIMenu.SetActive(true);
             if (isMainMenu)
             {
-                mainButtons.SetActive(false);
+                optionButtons.SetActive(false);
             }
             else
             {
-                pauseButtons.SetActive(false);
-                EventSystem.current.SetSelectedGameObject (resumeButton); //repeats below - concat showmenu but avoid pausing game everytime
+                optionButtons.SetActive(false);
+                background.SetActive(false);
+                EventSystem.current.SetSelectedGameObject (
+                    helpScreenFirstButton
+                ); //repeats below - concat showmenu but avoid pausing game everytime
             }
         }
     }

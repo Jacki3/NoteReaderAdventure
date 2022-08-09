@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HelpScreen : MonoBehaviour
 {
@@ -23,6 +25,31 @@ public class HelpScreen : MonoBehaviour
 
     [SerializeField]
     private float distX;
+
+    [SerializeField]
+    private ControlSchema[] controlSchemas;
+
+    [Serializable]
+    private class ControlSchema
+    {
+        public ControlSchemas schema;
+
+        public Image schemaObject;
+    }
+
+    [SerializeField]
+    private Color highlightColour;
+
+    private enum ControlSchemas
+    {
+        Up,
+        Left,
+        Right,
+        Down,
+        Escape,
+        Interact,
+        ReadMode
+    }
 
     private float maxNote;
 
@@ -54,13 +81,58 @@ public class HelpScreen : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (RigidPlayerController.inputActions.Player.Up.IsPressed())
+            HighLightSchema(ControlSchemas.Up, true);
+        else
+            HighLightSchema(ControlSchemas.Up, false);
+        if (RigidPlayerController.inputActions.Player.Down.IsPressed())
+            HighLightSchema(ControlSchemas.Down, true);
+        else
+            HighLightSchema(ControlSchemas.Down, false);
+        if (RigidPlayerController.inputActions.Player.Left.IsPressed())
+            HighLightSchema(ControlSchemas.Left, true);
+        else
+            HighLightSchema(ControlSchemas.Left, false);
+        if (RigidPlayerController.inputActions.Player.Right.IsPressed())
+            HighLightSchema(ControlSchemas.Right, true);
+        else
+            HighLightSchema(ControlSchemas.Right, false);
+        if (RigidPlayerController.inputActions.Player.ReadModeSwitch.IsPressed()
+        )
+            HighLightSchema(ControlSchemas.ReadMode, true);
+        else
+            HighLightSchema(ControlSchemas.ReadMode, false);
+        if (RigidPlayerController.inputActions.Player.Escape.IsPressed())
+            HighLightSchema(ControlSchemas.Escape, true);
+        else
+            HighLightSchema(ControlSchemas.Escape, false);
+        if (RigidPlayerController.inputActions.UI.Submit.IsPressed())
+            HighLightSchema(ControlSchemas.Interact, true);
+        else
+            HighLightSchema(ControlSchemas.Interact, false);
+    }
+
+    private void HighLightSchema(ControlSchemas controlSchema, bool highLight)
+    {
+        foreach (ControlSchema _controlSchema in controlSchemas)
+        {
+            if (controlSchema == _controlSchema.schema)
+            {
+                Color newColour = highLight ? highlightColour : Color.white;
+                _controlSchema.schemaObject.color = newColour;
+            }
+        }
+    }
+
     private void SpawnNoteMarker(int note, float vel)
     {
         int x = note - startingMIDI;
 
         if (minNote <= x && x <= maxNote)
         {
-            float posY = -70;
+            float posY = noteMarker.transform.localPosition.y;
             float posX = xPositions[note - startingMIDI];
 
             for (int i = 0; i < sharpNotes.Length; i++)
@@ -79,7 +151,7 @@ public class HelpScreen : MonoBehaviour
         int x = note - startingMIDI;
         if (minNote <= x && x <= maxNote)
         {
-            float posY = -70;
+            float posY = noteMarker.transform.localPosition.y;
             float posX = xPositions[note - startingMIDI];
 
             for (int i = 0; i < sharpNotes.Length; i++)

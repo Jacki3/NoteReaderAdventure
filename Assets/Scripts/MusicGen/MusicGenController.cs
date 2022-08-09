@@ -6,6 +6,12 @@ using UnityEngine;
 
 public class MusicGenController : MonoBehaviour
 {
+    public AudioSource musicSource;
+
+    public AudioClip[] musicScores;
+
+    public AudioClip[] musicScoresEnemy;
+
     public SequenceGenerator[] sequenceGenerators;
 
     public SampleSequencer[] drumMachines;
@@ -19,12 +25,12 @@ public class MusicGenController : MonoBehaviour
         i = this;
     }
 
-    public static void RegenMusic()
+    public static void RegenMusic(bool isEnemy)
     {
-        i.RegenerateMusic();
+        i.RegenerateMusic (isEnemy);
     }
 
-    private void RegenerateMusic()
+    private void RegenerateMusic(bool isEnemyLevel)
     {
         int[] scale = null;
         switch (CoreGameElements.i.currentDifficultyNotes)
@@ -81,19 +87,31 @@ public class MusicGenController : MonoBehaviour
                 scale = CoreGameElements.i.allNotes.seventeenNotes.ToArray();
                 break;
         }
-        for (int i = 0; i < scale.Length; i++) scale[i] %= 12;
-        foreach (SequenceGenerator sequenceGenerator in sequenceGenerators)
+
+        // for (int i = 0; i < scale.Length; i++) scale[i] %= 12;
+        // foreach (SequenceGenerator sequenceGenerator in sequenceGenerators)
+        // {
+        //     if (scale.Length <= 0) scale = sequenceGenerator.scale;
+        //     sequenceGenerator.scale = scale;
+        //     sequenceGenerator.Generate();
+        // }
+        int randIndex = Random.Range(0, musicScores.Length);
+        AudioClip randomAudio = musicScores[randIndex];
+
+        if (isEnemyLevel)
         {
-            if (scale.Length <= 0) scale = sequenceGenerator.scale;
-            sequenceGenerator.scale = scale;
-            sequenceGenerator.Generate();
+            randIndex = Random.Range(0, musicScoresEnemy.Length);
+            randomAudio = musicScoresEnemy[randIndex];
         }
 
-        randomDrumIndex = Random.Range(0, drumMachines.Length);
-        for (int i = 0; i < drumMachines.Length; i++)
-        {
-            drumMachines[i].enabled = false;
-        }
+        musicSource.clip = randomAudio;
+        musicSource.Play();
+
+        // randomDrumIndex = Random.Range(0, drumMachines.Length);
+        // for (int i = 0; i < drumMachines.Length; i++)
+        // {
+        //     drumMachines[i].enabled = false;
+        // }
         // drumMachines[randomDrumIndex].enabled = true;
     }
 

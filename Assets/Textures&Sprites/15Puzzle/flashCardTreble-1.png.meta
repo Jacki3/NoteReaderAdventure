@@ -5,6 +5,27 @@ TextureImporter:
   - first:
       213: 2605084401554782644
     second: flashCardTreble-1_0
+  - first:
+      213: -5317138192910465953
+    second: flashCardTreble-1_1
+  - first:
+      213: -2479810728204712948
+    second: flashCardTreble-1_2
+  - first:
+      213: -6814635745465903083
+    second: flashCardTreble-1_3
+  - first:
+      213: 1291713187606181346
+    second: flashCardTreble-1_4
+  - first:
+      213: 8246401903522141676
+    second: flashCardTreble-1_5
+  - first:
+      213: -4515374851528081317
+    second: flashCardTreble-1_6
+  - first:
+      213: -7042155694944758184
+    second: flashCardTreble-1_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -102,7 +123,175 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: flashCardTreble-1_0
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 1605
+        width: 590
+        height: 590
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b9759cf57e172420800000000000000
+      internalID: 2605084401554782644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flashCardTreble-1_1
+      rect:
+        serializedVersion: 2
+        x: 985
+        y: 1605
+        width: 590
+        height: 590
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f54c8e52cfab536b0800000000000000
+      internalID: -5317138192910465953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flashCardTreble-1_2
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 1059
+        width: 590
+        height: 590
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c04c7230841f59dd0800000000000000
+      internalID: -2479810728204712948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flashCardTreble-1_3
+      rect:
+        serializedVersion: 2
+        x: 985
+        y: 1059
+        width: 590
+        height: 590
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51853dd15ec8d61a0800000000000000
+      internalID: -6814635745465903083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flashCardTreble-1_4
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 518
+        width: 590
+        height: 590
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e534f2ec461de110800000000000000
+      internalID: 1291713187606181346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flashCardTreble-1_5
+      rect:
+        serializedVersion: 2
+        x: 985
+        y: 518
+        width: 590
+        height: 590
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce5da8607da117270800000000000000
+      internalID: 8246401903522141676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flashCardTreble-1_6
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 0
+        width: 590
+        height: 590
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b50cfeafe7a2651c0800000000000000
+      internalID: -4515374851528081317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flashCardTreble-1_7
+      rect:
+        serializedVersion: 2
+        x: 985
+        y: 0
+        width: 590
+        height: 590
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 856d2d5d4bc354e90800000000000000
+      internalID: -7042155694944758184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

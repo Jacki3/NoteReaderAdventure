@@ -110,7 +110,8 @@ public class Seed : MonoBehaviour
         levelController.ResetPlayerPos();
 
         //load music on levels which are procedureally generated
-        MusicGenController.RegenMusic();
+        bool isEnemyLevel = levelToLoad % 5 == 0 ? true : false;
+        MusicGenController.RegenMusic (isEnemyLevel);
         Metronome.UnMuteMetro();
 
         GameStateController.state = GameStateController.States.Play;

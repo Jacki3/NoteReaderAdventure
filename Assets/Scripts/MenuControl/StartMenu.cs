@@ -37,6 +37,8 @@ public class StartMenu : MonoBehaviour
 
     public ItemShopController itemShop;
 
+    public GameObject[] worldButtons;
+
     private bool optionsVisible;
 
     private bool levelsVisible;
@@ -65,8 +67,6 @@ public class StartMenu : MonoBehaviour
             LevelButton newButton =
                 Instantiate(button, Vector3.zero, Quaternion.identity);
 
-            if (i == 0) levelOneButton = newButton.gameObject;
-
             levelButtons.Add (newButton);
 
             //Set load level to index
@@ -84,9 +84,10 @@ public class StartMenu : MonoBehaviour
             //Set size, level/score text and parent
             Vector3 size = newButton.transform.localScale;
             newButton.transform.SetParent (lvlSelectContent);
-            newButton.transform.localScale = size;
+            newButton.transform.localScale = size; //pretty sure this can be avoided with overloads of above method?
             string lvlName = (i + 1).ToString();
             newButton.SetLevelText (lvlName);
+            newButton.gameObject.SetActive(false);
         }
 
         List<Button> allButtons = new List<Button>();
@@ -100,6 +101,27 @@ public class StartMenu : MonoBehaviour
                 {
                     ButtonClickSound();
                 });
+        }
+    }
+
+    public void ShowLevels(int maxLevel)
+    {
+        int minLevel = maxLevel - 10;
+
+        foreach (GameObject worldButton in worldButtons)
+        worldButton.SetActive(false);
+
+        foreach (LevelButton button in levelButtons)
+        button.gameObject.SetActive(false);
+
+        for (int i = minLevel; i < maxLevel; i++)
+        {
+            levelButtons[i].gameObject.SetActive(true);
+
+            if (i == minLevel)
+                EventSystem
+                    .current
+                    .SetSelectedGameObject(levelButtons[i].gameObject);
         }
     }
 
@@ -119,6 +141,7 @@ public class StartMenu : MonoBehaviour
     public void StartGame()
     {
         GameStateController.state = GameStateController.States.Play;
+        ShowLevelSelect();
         levelSelect.SetActive(false);
         mainButtons.SetActive(true);
         levelsVisible = false;
@@ -209,9 +232,14 @@ public class StartMenu : MonoBehaviour
                 levelSelect.SetActive(false);
                 mainButtons.SetActive(true);
                 levelsVisible = false;
+                foreach (GameObject worldButton in worldButtons)
+                worldButton.SetActive(true);
+                foreach (LevelButton button in levelButtons)
+                button.gameObject.SetActive(false);
             }
             else
             {
+                levelOneButton = worldButtons[0];
                 EventSystem.current.SetSelectedGameObject (levelOneButton);
                 levelSelect.SetActive(true);
                 mainButtons.SetActive(false);

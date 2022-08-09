@@ -7,6 +7,7 @@ using System.Text;
 using Microsoft.Win32;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.UIElements;
 
 public class GameHandler : MonoBehaviour
 {
@@ -22,8 +23,13 @@ public class GameHandler : MonoBehaviour
 
     private TimeSpan endTime;
 
+    private DateTime startDate;
+
+    private DateTime endDate;
+
     void Awake()
     {
+        startDate = DateTime.Now;
         startTime = DateTime.Now.TimeOfDay;
     }
 
@@ -99,9 +105,16 @@ public class GameHandler : MonoBehaviour
         if (!CoreGameElements.i.saveDeleted) Save();
 
         endTime = DateTime.Now.TimeOfDay;
+        endDate = DateTime.Now;
 
         TimeSpan diff = endTime - startTime;
 
-        LogFile.WriteCSV(diff.ToString());
+        LogFile
+            .WriteCSV(startDate +
+            "," +
+            endDate +
+            "," +
+            diff.ToString() +
+            System.Environment.NewLine);
     }
 }

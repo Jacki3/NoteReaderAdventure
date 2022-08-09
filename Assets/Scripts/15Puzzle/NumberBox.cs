@@ -112,4 +112,9 @@ public class NumberBox : MonoBehaviour
     {
         //Ensures MIDI controller has handling for note off events
     }
+
+    public void UpdateImage(Sprite sprite)
+    {
+        GetComponent<SpriteRenderer>().sprite = sprite;
+    }
 }
