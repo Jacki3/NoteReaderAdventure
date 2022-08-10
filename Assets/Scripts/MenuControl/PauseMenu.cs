@@ -142,6 +142,7 @@ public class PauseMenu : MonoBehaviour
 
         GameStateController.state = GameStateController.States.MainMenu;
         mainMenu.levelGen.boardController.ClearBoard();
+        mainMenu.levelGen.HideCustomLevel();
         LevelController.i.DelayResetPlayer();
 
         metroSource.enabled = false;

@@ -18,6 +18,10 @@ public class Seed : MonoBehaviour
 
     public string defaultGameSeed;
 
+    public int[] customLevels;
+
+    public GameObject[] customLevelObjs;
+
     public void SetLevels()
     {
         Debug.Log("First Run!");
@@ -71,25 +75,48 @@ public class Seed : MonoBehaviour
             save.firstRun = false;
         }
         currentLevel = levelToLoad;
-        boardController.firstTimeSetup = false;
 
-        SaveFile.Board currentBoard =
-            CoreGameElements.i.gameSave.boards[levelToLoad - 1];
+        for (int i = 0; i < customLevels.Length; i++)
+        {
+            if (levelToLoad == customLevels[i])
+            {
+                customLevelObjs[i].SetActive(true);
+                levelController.ResetPlayerPos();
+                MusicGenController.StartCustomLvlMusic_Static();
+                break;
+            }
+            else
+            {
+                boardController.firstTimeSetup = false;
 
-        boardController.rowsMin = currentBoard.rowsMins;
-        boardController.rowsMax = currentBoard.rowsMax;
-        boardController.columsMin = currentBoard.columsMin;
-        boardController.columnsMax = currentBoard.columnsMax;
-        boardController.propCount.minimum = currentBoard.propsMin;
-        boardController.propCount.maximum = currentBoard.propsMax;
+                SaveFile.Board currentBoard =
+                    CoreGameElements.i.gameSave.boards[levelToLoad - 1];
 
-        if (defaultGameSeed == "")
-            defaultGameSeed = CoreGameElements.i.gameSave.defaultGameSeed;
+                boardController.rowsMin = currentBoard.rowsMins;
+                boardController.rowsMax = currentBoard.rowsMax;
+                boardController.columsMin = currentBoard.columsMin;
+                boardController.columnsMax = currentBoard.columnsMax;
+                boardController.propCount.minimum = currentBoard.propsMin;
+                boardController.propCount.maximum = currentBoard.propsMax;
 
-        string levelName = defaultGameSeed + levelToLoad;
-        currentSeed = levelName.GetHashCode();
-        Random.InitState (currentSeed);
-        boardController.SetupScene (levelToLoad);
+                if (defaultGameSeed == "")
+                    defaultGameSeed =
+                        CoreGameElements.i.gameSave.defaultGameSeed;
+
+                string levelName = defaultGameSeed + levelToLoad;
+                currentSeed = levelName.GetHashCode();
+                Random.InitState (currentSeed);
+                boardController.SetupScene (levelToLoad);
+
+                levelController.ResetPlayerPos();
+
+                //load music on levels which are procedureally generated
+                bool isEnemyLevel = levelToLoad % 5 == 0 ? true : false;
+                MusicGenController.RegenMusic (isEnemyLevel);
+                break;
+            }
+        }
+
         FXController
             .SetAnimatorTrigger_Static(FXController.Animations.LevelFader,
             "Fade");
@@ -107,13 +134,17 @@ public class Seed : MonoBehaviour
         ScoreDisplayUpdater
             .StartRoutineDown(coins,
             UIController.UITextComponents.shopCoinText);
-        levelController.ResetPlayerPos();
 
-        //load music on levels which are procedureally generated
-        bool isEnemyLevel = levelToLoad % 5 == 0 ? true : false;
-        MusicGenController.RegenMusic (isEnemyLevel);
         Metronome.UnMuteMetro();
 
         GameStateController.state = GameStateController.States.Play;
+    }
+
+    public void HideCustomLevel()
+    {
+        foreach (GameObject customLevel in customLevelObjs)
+        {
+            customLevel.SetActive(false);
+        }
     }
 }

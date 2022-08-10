@@ -25,6 +25,14 @@ public class Notation : MonoBehaviour
 
     public Transform[] noteSpawnsY;
 
+    public float[] noteSpawns;
+
+    public int totalYSpawn;
+
+    public float yDiff;
+
+    public float startingYPos;
+
     public int totalNotesToSpawn = 4;
 
     public bool usePattern;
@@ -98,6 +106,41 @@ public class Notation : MonoBehaviour
         RigidPlayerController.notationCircleDeactivated += HideNotation;
         MIDIController.NoteOn += ShowPlayedNote;
         MIDIController.NoteOff += DestroyPlayedNote;
+
+        noteSpawns = new float[totalYSpawn];
+        int index = 0;
+        for (int i = 0; i < totalYSpawn; i++)
+        {
+            noteSpawns[index] = startingYPos;
+            if (
+                index == 0 ||
+                index == 12 ||
+                index == 24 ||
+                index == 36 ||
+                index == 48 ||
+                index % 4 != 0 &&
+                index != 11 &&
+                index != 23 &&
+                index != 35 &&
+                index != 47
+            )
+            {
+                if (index < noteSpawns.Length - 2)
+                {
+                    noteSpawns[index + 1] = startingYPos;
+                    index += 2;
+                    startingYPos += yDiff;
+                }
+            }
+            else
+            {
+                if (index < noteSpawns.Length - 1)
+                {
+                    index++;
+                    startingYPos += yDiff;
+                }
+            }
+        }
     }
 
     void Start()
@@ -121,8 +164,7 @@ public class Notation : MonoBehaviour
         }
         for (int i = 0; i < totalNotesToSpawn; i++)
         {
-            if (notes[i] - MIDIController.startingMIDINumber < 19)
-                usingBass = true;
+            if (notes[0] < 60) usingBass = true;
             SpawnNotes(startingSpawnPosX,
             notes[i] - MIDIController.startingMIDINumber,
             usingBass,
@@ -241,8 +283,10 @@ public class Notation : MonoBehaviour
                 playedNoteColour;
         }
 
-        newNote.transform.localPosition =
-            new Vector2(spawnX, noteSpawnsY[index].localPosition.y);
+        float spawnY = noteSpawns[index % 12];
+        if (usingBass) spawnY += 0.37f;
+
+        newNote.transform.localPosition = new Vector2(spawnX, spawnY);
 
         //if using upside down notes, as the font atlas only has upside down q notes, IF using notation which has TWO notes, then use only upside notes
         switch (index)
@@ -260,11 +304,11 @@ public class Notation : MonoBehaviour
                 break;
             case 45:
                 newNote.text = "\nö";
-                newNote.lineSpacing = -22;
+                newNote.lineSpacing = 16;
                 break;
             case 47:
                 newNote.text = "\nö";
-                newNote.lineSpacing = -22;
+                newNote.lineSpacing = 16;
                 break;
             case 14:
             case 16:
@@ -278,7 +322,7 @@ public class Notation : MonoBehaviour
             case 41:
             case 43:
                 newNote.text = "\nö";
-                newNote.lineSpacing = -22;
+                newNote.lineSpacing = 16;
                 break;
         }
 

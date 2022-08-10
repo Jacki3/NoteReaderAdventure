@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -303,6 +304,42 @@ public class BoardController : MonoBehaviour
             INotation newNotation = newObj.GetComponent<INotation>();
             if (newNotation != null)
             {
+                foreach (INotation notation in notations)
+                {
+                    if (
+                        notation.GetTransform().position.x ==
+                        newObj.transform.position.x
+                    )
+                    {
+                        if (
+                            notation.GetTransform().position.y - 1 ==
+                            newObj.transform.position.y ||
+                            notation.GetTransform().position.y + 1 ==
+                            newObj.transform.position.y
+                        )
+                        {
+                            newNotation.MoveLeftRight(true);
+                        }
+                    }
+
+                    if (
+                        notation.GetTransform().position.y ==
+                        newObj.transform.position.y
+                    )
+                    {
+                        if (
+                            notation.GetTransform().position.x - 1 ==
+                            newObj.transform.position.x ||
+                            notation.GetTransform().position.x + 1 ==
+                            newObj.transform.position.x
+                        )
+                        {
+                            newNotation.MoveUpDown(true);
+                            notation.MoveUpDown(false);
+                        }
+                    }
+                }
+
                 notations.Add (newNotation);
                 boardMaxScore += newNotation.GetObjectScore();
             }
@@ -330,12 +367,14 @@ public class BoardController : MonoBehaviour
             rowsMax++;
             columsMin++;
             columnsMax++;
-            propCount.minimum++;
-            propCount.maximum++;
 
             //if first time setup, save all of above to player prefs and then destroy all again (perhaps clear out notation etc.)
             //if not the first time setup, then load all of above plus whatever level you are on e.g. rowsMin = playerPrefs.getInt("Level" + level + "rowsMin")
         }
+        propCount.minimum += 10;
+        propCount.maximum += 10;
+        smashableCount.minimum += 2;
+        smashableCount.maximum += 2;
 
         if (randomSize)
         {

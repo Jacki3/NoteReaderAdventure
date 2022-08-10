@@ -95,4 +95,21 @@ public class NotationItem : MonoBehaviour, INotation
         //check if this is just adding for one object (the interface will execute on all objects)
         return scoreToAdd;
     }
+
+    public void MoveUpDown(bool up)
+    {
+        // bool up = Random.value > .5f ? true : false;
+        if (up)
+            transform.position += Vector3.up;
+        else
+            transform.position -= Vector3.up;
+    }
+
+    public void MoveLeftRight(bool leftRight)
+    {
+        if (leftRight)
+            transform.position += Vector3.right;
+        else
+            transform.position -= Vector3.right;
+    }
 }

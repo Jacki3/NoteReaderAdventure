@@ -10,6 +10,8 @@ public class LevelController : MonoBehaviour
 
     public PauseMenu pauseMenu;
 
+    public Vector3 customSpawnPoint;
+
     [HideInInspector]
     public Seed levelLoader;
 
@@ -111,6 +113,13 @@ public class LevelController : MonoBehaviour
     {
         player.position = playerDefaultPos;
         mainCam.position = Vector3.zero;
+        player.GetComponent<BoxCollider2D>().enabled = true;
+    }
+
+    private void ResetPlayerCustom()
+    {
+        player.position = customSpawnPoint;
+        mainCam.position = Vector3.zero; //might not be right
         player.GetComponent<BoxCollider2D>().enabled = true;
     }
 }

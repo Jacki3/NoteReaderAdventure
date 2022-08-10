@@ -431,6 +431,10 @@ MonoBehaviour:
   - {fileID: 4240872106253866639}
   - {fileID: 4172393251708472365}
   - {fileID: 6713887413043703292}
+  noteSpawns: []
+  totalYSpawn: 48
+  yDiff: 0.08
+  startingYPos: -1
   totalNotesToSpawn: 4
   usePattern: 0
   useWholeNotes: 0

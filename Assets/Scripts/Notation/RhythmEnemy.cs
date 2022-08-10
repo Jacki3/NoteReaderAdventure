@@ -175,4 +175,21 @@ public class RhythmEnemy : MovingObject, INotation
     {
         return scoreToAdd;
     }
+
+    public void MoveUpDown(bool up)
+    {
+        // bool up = Random.value > .5f ? true : false;
+        if (up)
+            transform.position += Vector3.up;
+        else
+            transform.position -= Vector3.up;
+    }
+
+    public void MoveLeftRight(bool leftRight)
+    {
+        if (leftRight)
+            transform.position += Vector3.right;
+        else
+            transform.position -= Vector3.right;
+    }
 }

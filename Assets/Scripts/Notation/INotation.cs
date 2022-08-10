@@ -11,4 +11,8 @@ public interface INotation
     Transform GetTransform();
 
     int GetObjectScore();
+
+    void MoveUpDown(bool upDown);
+
+    void MoveLeftRight(bool leftRight);
 }

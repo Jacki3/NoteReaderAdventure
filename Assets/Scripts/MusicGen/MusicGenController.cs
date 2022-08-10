@@ -12,6 +12,8 @@ public class MusicGenController : MonoBehaviour
 
     public AudioClip[] musicScoresEnemy;
 
+    public AudioClip[] musicScoresCustom;
+
     public SequenceGenerator[] sequenceGenerators;
 
     public SampleSequencer[] drumMachines;
@@ -113,6 +115,20 @@ public class MusicGenController : MonoBehaviour
         //     drumMachines[i].enabled = false;
         // }
         // drumMachines[randomDrumIndex].enabled = true;
+    }
+
+    public static void StartCustomLvlMusic_Static()
+    {
+        i.StartCustomLvlMusic();
+    }
+
+    private void StartCustomLvlMusic()
+    {
+        int randIndex = Random.Range(0, musicScoresCustom.Length);
+        AudioClip randomAudio = musicScoresCustom[randIndex];
+
+        musicSource.clip = randomAudio;
+        musicSource.Play();
     }
 
     public static void DisableMusic()

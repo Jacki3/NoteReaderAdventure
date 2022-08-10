@@ -130,4 +130,36 @@ public class NotationEnemy : MonoBehaviour, INotation
     {
         return scoreToAdd;
     }
+
+    void INotation.NotationComplete()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    void INotation.PlayedCorrectNote()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    Transform INotation.GetTransform()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    int INotation.GetObjectScore()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void MoveUpDown(bool upDown)
+    {
+    }
+
+    public void MoveLeftRight(bool leftRight)
+    {
+        if (leftRight)
+            transform.position += Vector3.right;
+        else
+            transform.position -= Vector3.right;
+    }
 }
