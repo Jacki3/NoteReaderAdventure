@@ -376,7 +376,7 @@ MonoBehaviour:
   holder: {fileID: 4036023406232125405}
   notationAnimator: {fileID: 1352915590092746033}
   distanceBetweenNotesX: 0.35
-  startingSpawnPosX: -0.45
+  startingSpawnPosX: -0.3
   noteImage: {fileID: 7653911856414671756, guid: f3e938766bd01ab4992d14b94883b265,
     type: 3}
   clefRenderer: {fileID: 754718087487569048}

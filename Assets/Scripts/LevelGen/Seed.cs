@@ -1,6 +1,10 @@
-﻿﻿using System.Collections;
+﻿﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+
+using Random = UnityEngine.Random;
 
 public class Seed : MonoBehaviour
 {
@@ -18,9 +22,45 @@ public class Seed : MonoBehaviour
 
     public string defaultGameSeed;
 
+    public bool usingCustomLvl;
+
+    public int customLevelNum;
+
     public int[] customLevels;
 
-    public GameObject[] customLevelObjs;
+    public LevelObjs[] customLevel;
+
+    [Serializable]
+    public class LevelObjs
+    {
+        public string levelName;
+
+        public GameObject levelObj;
+
+        public List<Notation> levelNotations = new List<Notation>();
+
+        public bool AllNotationsComplete() => levelNotations.Count <= 0;
+
+        public void RemoveNotationFromList(Transform pos)
+        {
+            foreach (Notation notation in levelNotations.ToList())
+            {
+                INotation notationInterface =
+                    notation.notation.GetComponent<INotation>();
+
+                if (notationInterface != null)
+                {
+                    if (
+                        notationInterface.GetTransform().position ==
+                        pos.position
+                    )
+                    {
+                        levelNotations.Remove (notation);
+                    }
+                }
+            }
+        }
+    }
 
     public void SetLevels()
     {
@@ -76,17 +116,26 @@ public class Seed : MonoBehaviour
         }
         currentLevel = levelToLoad;
 
+        DifficultyPicker.ChooseDifficultyOnLevel (currentLevel);
+        DifficultyPicker.ChooseDifficultyOnLevelNotes (currentLevel);
+
+        HideCustomLevel();
+
         for (int i = 0; i < customLevels.Length; i++)
         {
             if (levelToLoad == customLevels[i])
             {
-                customLevelObjs[i].SetActive(true);
+                usingCustomLvl = true;
+                customLevelNum = i;
+                customLevel[i].levelObj.SetActive(true);
                 levelController.ResetPlayerPos();
                 MusicGenController.StartCustomLvlMusic_Static();
                 break;
             }
             else
             {
+                usingCustomLvl = false;
+
                 boardController.firstTimeSetup = false;
 
                 SaveFile.Board currentBoard =
@@ -142,9 +191,9 @@ public class Seed : MonoBehaviour
 
     public void HideCustomLevel()
     {
-        foreach (GameObject customLevel in customLevelObjs)
+        foreach (LevelObjs customLevel in customLevel)
         {
-            customLevel.SetActive(false);
+            customLevel.levelObj.SetActive(false);
         }
     }
 }

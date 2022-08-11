@@ -25,7 +25,11 @@ public static class UIController
         shopCoinText,
         indexWarningText,
         userIndexText,
-        userIndexFillText
+        userIndexFillText,
+        noteStreak,
+        rhythmStreak,
+        currentStreak,
+        currentRhythmStreak
     }
 
     public enum UIImageComponents

@@ -57,6 +57,10 @@ public class CoreGameElements : MonoBehaviour
         public CameraShakeComps movementShake;
     }
 
+    public int currentRhythmStreak;
+
+    public int currentNoteStreak;
+
     public SaveFile gameSave;
 
     public bool saveDeleted = false;

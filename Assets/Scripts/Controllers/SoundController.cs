@@ -30,7 +30,8 @@ public static class SoundController
         PlayerDeath,
         ZombieHurt,
         ZombieDeath,
-        ButtonClick
+        ButtonClick,
+        equipCosmetic
     }
 
     public static void PlaySound(Sound sound)

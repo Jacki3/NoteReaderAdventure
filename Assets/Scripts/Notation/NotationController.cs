@@ -63,10 +63,14 @@ public class NotationController : MonoBehaviour
                         incorrectNotes = 0;
                         activeNotation.PlayNote();
                         ScoreController.AddStreak_Static();
+                        CoreGameElements.i.currentNoteStreak++;
                     }
-                    else if (note != 25)
+                    else if (note != 61)
                     {
                         //should be reading circle button NOT 25
+                        CoreGameElements.i.currentNoteStreak = 0;
+
+                        //update UI
                         ScoreController.ResetStreak_Static(false);
                         activeNotation.IncorrecNote();
                         incorrectNotes++;
@@ -94,6 +98,7 @@ public class NotationController : MonoBehaviour
                             GetClosetObject
                                 .GetClosetObj(duplicateNotations, playerPos);
 
+                        CoreGameElements.i.currentNoteStreak++;
                         ScoreController.AddStreak_Static();
                         activeNotation = closetNotation;
                         hasActiveNotation = true;
@@ -102,14 +107,17 @@ public class NotationController : MonoBehaviour
 
                         incorrectNotes = 0;
                     }
-                    else if (note != 25 && RigidPlayerController.readingMode)
+                    else if (note != 61 && RigidPlayerController.readingMode)
                     {
                         //incorrect note accross all notes
                         //should be reading circle button NOT 25
                         //repeating what the notation script does?
                         if (visibleNotation.Count > 0)
+                        {
+                            //update UI
+                            CoreGameElements.i.currentNoteStreak = 0;
                             ScoreController.ResetStreak_Static(false);
-
+                        }
                         foreach (Notation notation in visibleNotation)
                         {
                             //why is this not just incorrectNote? Why a whole nother animation?
@@ -131,6 +139,21 @@ public class NotationController : MonoBehaviour
                     hasActiveNotation = false;
                     activeNotation = null;
                 }
+            }
+
+            int savedNoteStreak = CoreGameElements.i.gameSave.noteStreak;
+            int currentNoteStreak = CoreGameElements.i.currentNoteStreak;
+
+            UIController
+                .UpdateTextUI(UIController.UITextComponents.currentStreak,
+                currentNoteStreak.ToString());
+
+            if (currentNoteStreak > savedNoteStreak)
+            {
+                CoreGameElements.i.gameSave.noteStreak = currentNoteStreak;
+                UIController
+                    .UpdateTextUI(UIController.UITextComponents.noteStreak,
+                    currentNoteStreak.ToString());
             }
 
             if (AudioController.canPlay)

@@ -42,6 +42,15 @@ public class GameHandler : MonoBehaviour
 
     private void Save()
     {
+        int savedRhythmStreak = CoreGameElements.i.gameSave.rhythmStreak;
+        int currentRhythmStreak = CoreGameElements.i.currentRhythmStreak;
+        if (currentRhythmStreak > savedRhythmStreak)
+            CoreGameElements.i.gameSave.rhythmStreak = currentRhythmStreak;
+        int savedNoteStreak = CoreGameElements.i.gameSave.noteStreak;
+        int currentNoteStreak = CoreGameElements.i.currentNoteStreak;
+        if (currentNoteStreak > savedNoteStreak)
+            CoreGameElements.i.gameSave.noteStreak = currentNoteStreak;
+
         TextureController.SaveItemsStatic();
         string json = JsonUtility.ToJson(CoreGameElements.i.gameSave);
         byte[] bytesToEncode = Encoding.UTF8.GetBytes(json);
@@ -78,6 +87,15 @@ public class GameHandler : MonoBehaviour
                 save.backSprite,
                 save.sideSprite);
             UIController.UpdateIndexField(save.userIndex);
+
+            int noteStreak = save.noteStreak;
+            int rhythmStreak = save.rhythmStreak;
+            UIController
+                .UpdateTextUI(UIController.UITextComponents.noteStreak,
+                noteStreak.ToString());
+            UIController
+                .UpdateTextUI(UIController.UITextComponents.rhythmStreak,
+                rhythmStreak.ToString());
         }
         else
         {
@@ -104,17 +122,23 @@ public class GameHandler : MonoBehaviour
     {
         if (!CoreGameElements.i.saveDeleted) Save();
 
-        endTime = DateTime.Now.TimeOfDay;
-        endDate = DateTime.Now;
+        if (CoreGameElements.i.gameSave != null)
+        {
+            if (CoreGameElements.i.gameSave.userIndex.Length > 0)
+            {
+                endTime = DateTime.Now.TimeOfDay;
+                endDate = DateTime.Now;
 
-        TimeSpan diff = endTime - startTime;
+                TimeSpan diff = endTime - startTime;
 
-        LogFile
-            .WriteCSV(startDate +
-            "," +
-            endDate +
-            "," +
-            diff.ToString() +
-            System.Environment.NewLine);
+                LogFile
+                    .WriteCSV(startDate +
+                    "," +
+                    endDate +
+                    "," +
+                    diff.ToString() +
+                    System.Environment.NewLine);
+            }
+        }
     }
 }

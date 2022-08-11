@@ -20,7 +20,6 @@ public class NotationItem : MonoBehaviour, INotation
 
     public void PlayedCorrectNote()
     {
-        //do something when correct note is played
     }
 
     public void NotationComplete()
@@ -28,6 +27,12 @@ public class NotationItem : MonoBehaviour, INotation
         LevelController.i.levelLoader.boardController.RemoveNotationFromList (
             transform
         );
+        int index = LevelController.i.levelLoader.customLevelNum;
+        LevelController
+            .i
+            .levelLoader
+            .customLevel[index]
+            .RemoveNotationFromList(transform);
 
         notationsCompleted++;
         if (notationsCompleted >= notationsToComplete)

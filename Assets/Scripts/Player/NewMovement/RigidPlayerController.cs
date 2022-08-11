@@ -98,28 +98,61 @@ public class RigidPlayerController : MovingObject, IShopCustomer
 
     protected override void AttemptMove<T>(int xDir, int yDir)
     {
-        RaycastHit2D hit;
-        if (Move(xDir, yDir, out hit))
+        if (GameStateController.state == GameStateController.States.Play)
         {
-            var camShake = CoreGameElements.i.cameraShakes.movementShake;
-            CameraShaker
-                .Instance
-                .ShakeOnce(camShake.magnitude,
-                camShake.roughness,
-                camShake.fadeInTime,
-                camShake.fadeOutTime);
+            RaycastHit2D hit;
+            if (Move(xDir, yDir, out hit))
+            {
+                var camShake = CoreGameElements.i.cameraShakes.movementShake;
+                CameraShaker
+                    .Instance
+                    .ShakeOnce(camShake.magnitude,
+                    camShake.roughness,
+                    camShake.fadeInTime,
+                    camShake.fadeOutTime);
 
-            //animate movement here
-            if (AudioController.canPlay)
-            {
-                SoundController.PlaySound(SoundController.Sound.ButtonClick);
+                //animate movement here
+                if (AudioController.canPlay)
+                {
+                    print("ADDING RHYTHM");
+                    SoundController
+                        .PlaySound(SoundController.Sound.ButtonClick);
+                    CoreGameElements.i.currentRhythmStreak++;
+                    UIController
+                        .UpdateTextUI(UIController
+                            .UITextComponents
+                            .currentRhythmStreak,
+                        CoreGameElements.i.currentRhythmStreak.ToString());
+
+                    int savedRhythmStreak =
+                        CoreGameElements.i.gameSave.rhythmStreak;
+                    int currentRhythmStreak =
+                        CoreGameElements.i.currentRhythmStreak;
+                    if (currentRhythmStreak > savedRhythmStreak)
+                    {
+                        CoreGameElements.i.gameSave.rhythmStreak =
+                            currentRhythmStreak;
+                        UIController
+                            .UpdateTextUI(UIController
+                                .UITextComponents
+                                .rhythmStreak,
+                            currentRhythmStreak.ToString());
+                    }
+                }
+                else
+                {
+                    SoundController
+                        .PlaySound(SoundController.Sound.IncorectNote);
+                    CoreGameElements.i.currentRhythmStreak = 0;
+                    UIController
+                        .UpdateTextUI(UIController
+                            .UITextComponents
+                            .currentRhythmStreak,
+                        CoreGameElements.i.currentRhythmStreak.ToString());
+                }
             }
-            else
-            {
-                SoundController.PlaySound(SoundController.Sound.IncorectNote);
-            }
+            base.AttemptMove<T>(xDir, yDir);
         }
-        base.AttemptMove<T>(xDir, yDir);
     }
 
     protected override void OnCantMove<T>(T Component)

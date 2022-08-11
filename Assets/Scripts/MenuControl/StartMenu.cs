@@ -86,6 +86,14 @@ public class StartMenu : MonoBehaviour
             newButton.transform.SetParent (lvlSelectContent);
             newButton.transform.localScale = size; //pretty sure this can be avoided with overloads of above method?
             string lvlName = (i + 1).ToString();
+            int[] customLevels = levelGen.customLevels;
+            for (int j = 0; j < customLevels.Length; j++)
+            {
+                if (i + 1 == customLevels[j])
+                {
+                    lvlName = levelGen.customLevel[j].levelName;
+                }
+            }
             newButton.SetLevelText (lvlName);
             newButton.gameObject.SetActive(false);
         }

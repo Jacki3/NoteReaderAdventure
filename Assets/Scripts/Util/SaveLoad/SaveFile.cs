@@ -61,6 +61,10 @@ public class SaveFile
 
     public int additionalHearts;
 
+    public int rhythmStreak;
+
+    public int noteStreak;
+
     public List<Board> boards = new List<Board>();
 
     [Serializable]

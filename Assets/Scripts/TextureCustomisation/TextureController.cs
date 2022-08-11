@@ -70,12 +70,6 @@ public class TextureController : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-            CurrencyController.AddRemoveCoins(100, true);
-    }
-
     public static void CreateItemButtonsFirst()
     {
         i.CreateItemButtons();

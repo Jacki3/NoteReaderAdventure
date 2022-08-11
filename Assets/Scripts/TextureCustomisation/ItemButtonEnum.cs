@@ -32,6 +32,7 @@ public class ItemButtonEnum : MonoBehaviour
 
         if (customItem.isUnlocked)
         {
+            SoundController.PlaySound(SoundController.Sound.equipCosmetic);
             switch (customItem.orientation)
             {
                 case TextureController.Orientation.front:
@@ -63,7 +64,11 @@ public class ItemButtonEnum : MonoBehaviour
         }
         else
         {
-            //create a tooltip that says you have not unlocked the item
+            SoundController.PlaySound(SoundController.Sound.IncorectNote);
+            Tooltip
+                .SetToolTip_Static("Item not unlocked!",
+                Vector3.zero,
+                CoreGameElements.i.mainCanvas.transform);
         }
     }
 

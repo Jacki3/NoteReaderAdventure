@@ -368,6 +368,11 @@ PrefabInstance:
       propertyPath: notation
       value: 
       objectReference: {fileID: 6356876942272230227}
+    - target: {fileID: 754718087950397077, guid: c4d92f58a88dafb469021a2d424f655c,
+        type: 3}
+      propertyPath: totalNotesToSpawn
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4d92f58a88dafb469021a2d424f655c, type: 3}
 --- !u!4 &3472046039998297407 stripped

@@ -357,9 +357,6 @@ public class BoardController : MonoBehaviour
 
     public void SetupScene(int level)
     {
-        DifficultyPicker.ChooseDifficultyOnLevel (level);
-        DifficultyPicker.ChooseDifficultyOnLevelNotes (level);
-
         ClearBoard();
         if (level % 2 != 0 && rowsMax != maxSize && firstTimeSetup)
         {
@@ -368,13 +365,13 @@ public class BoardController : MonoBehaviour
             columsMin++;
             columnsMax++;
 
+            smashableCount.minimum++;
+            smashableCount.maximum++;
             //if first time setup, save all of above to player prefs and then destroy all again (perhaps clear out notation etc.)
             //if not the first time setup, then load all of above plus whatever level you are on e.g. rowsMin = playerPrefs.getInt("Level" + level + "rowsMin")
         }
-        propCount.minimum += 10;
-        propCount.maximum += 10;
-        smashableCount.minimum += 2;
-        smashableCount.maximum += 2;
+        propCount.minimum++;
+        propCount.maximum++;
 
         if (randomSize)
         {

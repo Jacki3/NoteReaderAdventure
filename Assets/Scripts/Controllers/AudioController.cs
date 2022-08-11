@@ -48,8 +48,10 @@ public class AudioController : MonoBehaviour
         {
             if (
                 GameStateController.state !=
-                GameStateController.States.Paused &&
-                GameStateController.state != GameStateController.States.Shopping
+                GameStateController.States.Paused ||
+                GameStateController.state !=
+                GameStateController.States.Shopping ||
+                GameStateController.state != GameStateController.States.Puzzle
             )
             {
                 SpawnMetronomeBar();
