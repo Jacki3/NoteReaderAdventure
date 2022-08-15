@@ -14,7 +14,9 @@ public class CoreItems
         nerdGlasses,
         life,
         kittyBackpack,
-        goldEarrings
+        goldEarrings,
+        torch,
+        water
     }
 
     public ItemType item;
@@ -24,6 +26,10 @@ public class CoreItems
     public int cost;
 
     public Sprite itemSprite;
+
+    public bool isCosmetic;
+
+    public bool isUsable;
 
     public static int GetCost(CoreItems itemType)
     {

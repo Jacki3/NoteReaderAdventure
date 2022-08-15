@@ -18,9 +18,26 @@ public class TutorialManager : MonoBehaviour
 
     private NPCSpeech spawnedNPC; //instance of tutorial npc prefab
 
+    public static bool tutorialSuccess;
+
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Start()
+    {
+    }
+
+    public static void LoadTutorial()
+    {
+        instance.StartTutorial();
+    }
+
+    //this gets called if you and when you load the tutorial level
+    public void StartTutorial()
+    {
+        ShowNextTutorial();
     }
 
     public static void CheckTutorialStatic(
@@ -49,9 +66,10 @@ public class TutorialManager : MonoBehaviour
 
     private void ShowSuccessText()
     {
-        spawnedNPC.speech = tutorials[tutorialIndex].successText;
-        spawnedNPC.speechIndex = 0;
-        spawnedNPC.StartSpeech();
+        tutorialSuccess = true;
+        tutorialNPC.speech = tutorials[tutorialIndex].successText;
+        tutorialNPC.speechIndex = 0;
+        tutorialNPC.StartSpeech();
     }
 
     public static void ShowNextTutorialStatic()
@@ -61,6 +79,7 @@ public class TutorialManager : MonoBehaviour
 
     private void ShowNextTutorial()
     {
+        tutorialSuccess = false;
         hintRenderer.enabled = false;
 
         if (tutorialIndex >= tutorials.Count)
@@ -69,10 +88,9 @@ public class TutorialManager : MonoBehaviour
         }
         else
         {
-            spawnedNPC = Instantiate(tutorialNPC, Camera.main.transform);
-            spawnedNPC.speech = tutorials[tutorialIndex].tutorialText;
-            spawnedNPC.StartSpeech();
-            spawnedNPC.state = GameStateController.States.Tutorial;
+            tutorialNPC.speech = tutorials[tutorialIndex].tutorialText;
+            tutorialNPC.speechIndex = 0;
+            tutorialNPC.StartSpeech();
 
             var hintSprite = tutorials[tutorialIndex].hintSprite;
             if (hintSprite != null)
@@ -97,7 +115,9 @@ public class TutorialManager : MonoBehaviour
 
     private void StartGame()
     {
-        GameStateController.state = GameStateController.States.Play;
-        foreach (BoxCollider2D blocker in blockers) blocker.enabled = false;
+        print("tutorial complete");
+        //should load and new level here - could load custom level one?
+        // GameStateController.state = GameStateController.States.Play;
+        // foreach (BoxCollider2D blocker in blockers) blocker.enabled = false;
     }
 }

@@ -46,6 +46,8 @@ public class SaveFile
 
     public TextureController.CustomisationItem[] savedCustomItems;
 
+    public IventoryItem[] iventoryItems;
+
     public Sprite frontSprite;
 
     public Sprite backSprite;
@@ -60,6 +62,8 @@ public class SaveFile
         savedUnlockedSkills = new List<PlayerSkills.SkillType>();
 
     public int additionalHearts;
+
+    public int livesLost;
 
     public int rhythmStreak;
 
@@ -87,6 +91,10 @@ public class SaveFile
         public int propsMin;
 
         public int propsMax;
+
+        public int smashMin;
+
+        public int smashMax;
 
         public bool HasMaxScore()
         {

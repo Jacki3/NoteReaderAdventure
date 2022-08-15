@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class ItemShopController : MonoBehaviour
 {
+    public InventoryController inventoryController;
+
     public List<CoreItems> shopItems = new List<CoreItems>();
 
     public ShopButton itemTemplateButton;
@@ -136,7 +138,21 @@ public class ItemShopController : MonoBehaviour
                     CurrencyController.AddRemoveCoins(cost, false);
                 }
             }
-            else if (TextureController.CheckBoughtItemStatic(itemType) == false)
+            else if (
+                item.isCosmetic &&
+                TextureController.CheckBoughtItemStatic(itemType) == false
+            )
+            {
+                SoundController.PlaySound(SoundController.Sound.IncorectNote);
+                Tooltip
+                    .SetToolTip_Static("Already got item!",
+                    currentShopButton.transform.localPosition,
+                    currentShopButton.transform.root);
+            }
+            else if (
+                item.isUsable &&
+                InventoryController.CheckBoughtItemStatic(itemType) == false
+            )
             {
                 SoundController.PlaySound(SoundController.Sound.IncorectNote);
                 Tooltip

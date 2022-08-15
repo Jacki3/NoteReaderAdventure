@@ -6,6 +6,10 @@ public class NPCSpeech : MonoBehaviour
 {
     public string[] speech;
 
+    public GameObject speechBubble;
+
+    public GameObject interactText;
+
     public TMPro.TextMeshPro text;
 
     public float timePerChar = .05f;
@@ -18,9 +22,9 @@ public class NPCSpeech : MonoBehaviour
 
     private TextWriter.TextWriterSingle textWriterSingle;
 
-    private bool firstPress = true;
-
     private Animator animator;
+
+    public bool isSpeaking;
 
     private void Awake()
     {
@@ -29,36 +33,35 @@ public class NPCSpeech : MonoBehaviour
 
     void Start()
     {
-        if (!CoreGameElements.i.useIntro)
-        {
-            Destroy(this.gameObject);
-            TutorialManager.StartGameStatic();
-        }
     }
 
     void Update()
     {
-        if (
-            RigidPlayerController
-                .inputActions
-                .UI
-                .Submit
-                .WasPressedThisFrame() ||
-            Input.GetMouseButtonUp(0)
-        )
-        {
-            if (!GameStateController.gamePaused) StartSpeech();
-
-            if (
-                firstPress &&
-                GameStateController.state == GameStateController.States.Tutorial
-            )
-                TutorialManager
-                    .CheckTutorialStatic(Tutorial.TutorialValidation.Play);
-        }
+        //ensure this is sets to true if you are loading tutorial otherwise it is false
+        // if (CoreGameElements.i.useTutorial)
+        // {
+        //     if (
+        //         RigidPlayerController
+        //             .inputActions
+        //             .UI
+        //             .Submit
+        //             .WasPressedThisFrame() ||
+        //         Input.GetMouseButtonUp(0)
+        //     )
+        //     {
+        //         if (!GameStateController.gamePaused) StartSpeech();
+        //         if (
+        //             firstPress &&
+        //             GameStateController.state ==
+        //             GameStateController.States.Tutorial
+        //         )
+        //             TutorialManager
+        //                 .CheckTutorialStatic(Tutorial.TutorialValidation.Play);
+        //     }
+        // }
     }
 
-    public void StartSpeech()
+    public virtual void StartSpeech()
     {
         if (speechIndex < speech.Length)
         {
@@ -69,6 +72,7 @@ public class NPCSpeech : MonoBehaviour
                 }
                 else
                 {
+                    isSpeaking = true;
                     string message = speech[speechIndex];
                     if (!GameStateController.gamePaused) StartTalking();
                     textWriterSingle =
@@ -82,30 +86,16 @@ public class NPCSpeech : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            if (CoreGameElements.i.useTutorial)
-            {
-                GameStateController.state = GameStateController.States.Tutorial;
-                TutorialManager.ShowNextTutorialStatic();
-            }
-            else
-            {
-                TutorialManager.StartGameStatic();
-            }
-
-            animator.SetTrigger("FInished"); //spelling mistake
-            this.enabled = false;
-        }
     }
 
-    private void StartTalking()
+    public virtual void StartTalking()
     {
         talkingSource.Play();
     }
 
-    private void StopTalking()
+    public virtual void StopTalking()
     {
+        isSpeaking = false;
         if (talkingSource != null) talkingSource.Stop();
         speechIndex++;
     }

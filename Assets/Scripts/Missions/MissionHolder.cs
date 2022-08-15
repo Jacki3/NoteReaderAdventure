@@ -1,5 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 public class MissionHolder : MonoBehaviour
@@ -71,15 +74,40 @@ public class MissionHolder : MonoBehaviour
 
     public void LoadAllMissionsFromSave()
     {
-        foreach (Mission savedMission in CoreGameElements.i.gameSave.allMissions
-        )
+        if (CoreGameElements.i.gameSave.allMissions.Count > 0)
         {
-            if (savedMission.currentAmount > 0)
+            currentMissions.Clear();
+            currentMissions = DeepCopy(CoreGameElements.i.gameSave.allMissions);
+
+            foreach (Mission savedMission in currentMissions)
             {
-                for (int i = 0; i < savedMission.currentAmount; i++)
+                if (savedMission.currentAmount > 0)
                 {
-                    IncrementCurrentAmount(savedMission, false);
+                    for (int i = 0; i < savedMission.currentAmount; i++)
+                    {
+                        IncrementCurrentAmount(savedMission, false);
+                    }
                 }
+            }
+        }
+        else
+        {
+            foreach (Mission mission in currentMissions)
+            {
+                MissionPlaceholder placeHolder =
+                    FindMissionPlaceholder(mission);
+
+                string currentAmountString = (mission.currentAmount).ToString();
+                string placeHolderText = placeHolder.missionText.text.text;
+
+                placeHolderText =
+                    placeHolderText.Replace(currentAmountString, "0");
+
+                placeHolder.missionText.text.text = placeHolderText;
+
+                mission.currentAmount = 0;
+                mission.isActiveMission = true;
+                // reset the anim so it is not highlighted anymore
             }
         }
     }
@@ -167,26 +195,17 @@ public class MissionHolder : MonoBehaviour
 
     public void SaveAllMissions()
     {
-        foreach (Mission mission in currentMissions)
-        {
-            if (mission.currentAmount > 0)
-            {
-                foreach (Mission
-                    savedMission
-                    in
-                    CoreGameElements.i.gameSave.allMissions
-                )
-                {
-                    if (
-                        mission.missionObjectString ==
-                        savedMission.missionObjectString
-                    )
-                    {
-                        savedMission.currentAmount = mission.currentAmount;
-                        savedMission.isActiveMission = mission.isActiveMission;
-                    }
-                }
-            }
-        }
+        CoreGameElements.i.gameSave.allMissions = DeepCopy(currentMissions);
+    }
+
+    public static T DeepCopy<T>(T item)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        MemoryStream stream = new MemoryStream();
+        formatter.Serialize (stream, item);
+        stream.Seek(0, SeekOrigin.Begin);
+        T result = (T) formatter.Deserialize(stream);
+        stream.Close();
+        return result;
     }
 }

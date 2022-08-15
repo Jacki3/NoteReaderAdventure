@@ -91,6 +91,8 @@ public class Seed : MonoBehaviour
             newBoard.columnsMax = boardController.columnsMax;
             newBoard.propsMin = boardController.propCount.minimum;
             newBoard.propsMax = boardController.propCount.maximum;
+            newBoard.smashMin = boardController.smashableCount.minimum;
+            newBoard.smashMax = boardController.smashableCount.maximum;
             newBoard.maxScore =
                 boardController.boardMaxScore *
                 ScoreController.GetMaxMultiplierStatic();
@@ -130,7 +132,20 @@ public class Seed : MonoBehaviour
                 customLevel[i].levelObj.SetActive(true);
                 levelController.ResetPlayerPos();
                 MusicGenController.StartCustomLvlMusic_Static();
-                break;
+                if (i == 0)
+                {
+                    CoreGameElements.i.useTutorial = true;
+                    GameStateController.state =
+                        GameStateController.States.Tutorial;
+                    TutorialManager.LoadTutorial();
+                    break;
+                }
+                else
+                {
+                    CoreGameElements.i.useTutorial = false;
+                    GameStateController.state = GameStateController.States.Play;
+                    break;
+                }
             }
             else
             {
@@ -147,6 +162,8 @@ public class Seed : MonoBehaviour
                 boardController.columnsMax = currentBoard.columnsMax;
                 boardController.propCount.minimum = currentBoard.propsMin;
                 boardController.propCount.maximum = currentBoard.propsMax;
+                boardController.smashableCount.minimum = currentBoard.smashMin;
+                boardController.smashableCount.maximum = currentBoard.smashMax;
 
                 if (defaultGameSeed == "")
                     defaultGameSeed =
@@ -162,6 +179,9 @@ public class Seed : MonoBehaviour
                 //load music on levels which are procedureally generated
                 bool isEnemyLevel = levelToLoad % 5 == 0 ? true : false;
                 MusicGenController.RegenMusic (isEnemyLevel);
+
+                //if we load a non custom level it will always be a non tutorial level
+                GameStateController.state = GameStateController.States.Play;
                 break;
             }
         }
@@ -185,8 +205,6 @@ public class Seed : MonoBehaviour
             UIController.UITextComponents.shopCoinText);
 
         Metronome.UnMuteMetro();
-
-        GameStateController.state = GameStateController.States.Play;
     }
 
     public void HideCustomLevel()

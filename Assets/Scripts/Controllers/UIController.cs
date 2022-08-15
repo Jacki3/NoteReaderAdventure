@@ -29,7 +29,8 @@ public static class UIController
         noteStreak,
         rhythmStreak,
         currentStreak,
-        currentRhythmStreak
+        currentRhythmStreak,
+        livesLostMenu
     }
 
     public enum UIImageComponents

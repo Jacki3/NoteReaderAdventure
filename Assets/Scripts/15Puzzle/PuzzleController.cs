@@ -16,6 +16,8 @@ public class PuzzleController : MonoBehaviour
 
     public StartMenu startMenu;
 
+    public Transform boxParent;
+
     public int[] notes = { 0, 2, 4, 5, 7, 9, 11, -1 };
 
     public NumberBox[,] boxes = new NumberBox[4, 2];
@@ -40,31 +42,39 @@ public class PuzzleController : MonoBehaviour
 
     private Canvas puzzleCanvas;
 
+    //starting pos = -1.5, -.5f
     void Start()
     {
-        puzzleCanvas = GetComponentInChildren<Canvas>();
-        puzzleCanvas.enabled = false;
+        if (Application.loadedLevel == 0)
+        {
+            puzzleCanvas = GetComponentInChildren<Canvas>();
+            puzzleCanvas.enabled = false;
+        }
+        else
+            GeneratePuzzle();
     }
 
     public void GeneratePuzzle()
     {
-        if (seed.currentLevel < 10)
-            numberSprites = letterSprites;
-        else if (seed.currentLevel >= 10 && seed.currentLevel < 35)
+        if (Application.loadedLevel == 0)
         {
-            if (Random.value > .5f) numberSprites = trebleSprites;
-            // else
-            //     numberSprites = bassSprites;
-        }
-        else if (seed.currentLevel >= 35)
-        {
-            if (Random.value > .5f)
-                numberSprites = trebleSpritesHigh;
-            else
-                numberSprites = bassSpritesHigh;
+            if (seed.currentLevel < 10)
+                numberSprites = letterSprites;
+            else if (seed.currentLevel >= 10 && seed.currentLevel < 35)
+            {
+                if (Random.value > .5f) numberSprites = trebleSprites;
+            }
+            else if (seed.currentLevel >= 35)
+            {
+                if (Random.value > .5f)
+                    numberSprites = trebleSpritesHigh;
+                else
+                    numberSprites = bassSpritesHigh;
+            }
+
+            puzzleCanvas.enabled = true;
         }
 
-        puzzleCanvas.enabled = true;
         if (allBoxes.Count <= 0)
             Init();
         else
@@ -93,6 +103,7 @@ public class PuzzleController : MonoBehaviour
             {
                 NumberBox box =
                     Instantiate(boxPrefab, Vector2.zero, Quaternion.identity);
+                box.transform.SetParent(boxParent, true);
                 allBoxes.Add (box);
                 int spriteIndex = notes[index];
                 if (spriteIndex == -1) spriteIndex = numberSprites.Length - 1;

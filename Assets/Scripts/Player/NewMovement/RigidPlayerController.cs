@@ -34,7 +34,7 @@ public class RigidPlayerController : MovingObject, IShopCustomer
     {
         inputActions = new NoteReadingRPGAdventure();
 
-        inputActions.Player.Smash.performed += ctx => SpawnCircle();
+        // inputActions.Player.Smash.performed += ctx => SpawnCircle();
         inputActions.Player.ReadModeSwitch.performed += ctx => SetReadingMode();
 
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -64,7 +64,8 @@ public class RigidPlayerController : MovingObject, IShopCustomer
 
         if (
             !readingMode &&
-            GameStateController.state == GameStateController.States.Play
+            GameStateController.state == GameStateController.States.Play ||
+            GameStateController.state == GameStateController.States.Tutorial
         )
         {
             if (inputActions.Player.Up.WasPressedThisFrame())
@@ -98,67 +99,68 @@ public class RigidPlayerController : MovingObject, IShopCustomer
 
     protected override void AttemptMove<T>(int xDir, int yDir)
     {
-        if (GameStateController.state == GameStateController.States.Play)
+        if (GameStateController.state == GameStateController.States.Tutorial)
         {
-            RaycastHit2D hit;
-            if (Move(xDir, yDir, out hit))
+            TutorialManager
+                .CheckTutorialStatic(Tutorial.TutorialValidation.Move);
+        }
+
+        RaycastHit2D hit;
+        if (Move(xDir, yDir, out hit))
+        {
+            var camShake = CoreGameElements.i.cameraShakes.movementShake;
+            CameraShaker
+                .Instance
+                .ShakeOnce(camShake.magnitude,
+                camShake.roughness,
+                camShake.fadeInTime,
+                camShake.fadeOutTime);
+
+            //animate movement here
+            if (AudioController.canPlay)
             {
-                var camShake = CoreGameElements.i.cameraShakes.movementShake;
-                CameraShaker
-                    .Instance
-                    .ShakeOnce(camShake.magnitude,
-                    camShake.roughness,
-                    camShake.fadeInTime,
-                    camShake.fadeOutTime);
+                SoundController.PlaySound(SoundController.Sound.ButtonClick);
+                CoreGameElements.i.currentRhythmStreak++;
+                UIController
+                    .UpdateTextUI(UIController
+                        .UITextComponents
+                        .currentRhythmStreak,
+                    CoreGameElements.i.currentRhythmStreak.ToString());
 
-                //animate movement here
-                if (AudioController.canPlay)
+                int savedRhythmStreak =
+                    CoreGameElements.i.gameSave.rhythmStreak;
+                int currentRhythmStreak =
+                    CoreGameElements.i.currentRhythmStreak;
+                if (currentRhythmStreak > savedRhythmStreak)
                 {
-                    print("ADDING RHYTHM");
-                    SoundController
-                        .PlaySound(SoundController.Sound.ButtonClick);
-                    CoreGameElements.i.currentRhythmStreak++;
+                    CoreGameElements.i.gameSave.rhythmStreak =
+                        currentRhythmStreak;
                     UIController
                         .UpdateTextUI(UIController
                             .UITextComponents
-                            .currentRhythmStreak,
-                        CoreGameElements.i.currentRhythmStreak.ToString());
-
-                    int savedRhythmStreak =
-                        CoreGameElements.i.gameSave.rhythmStreak;
-                    int currentRhythmStreak =
-                        CoreGameElements.i.currentRhythmStreak;
-                    if (currentRhythmStreak > savedRhythmStreak)
-                    {
-                        CoreGameElements.i.gameSave.rhythmStreak =
-                            currentRhythmStreak;
-                        UIController
-                            .UpdateTextUI(UIController
-                                .UITextComponents
-                                .rhythmStreak,
-                            currentRhythmStreak.ToString());
-                    }
-                }
-                else
-                {
-                    SoundController
-                        .PlaySound(SoundController.Sound.IncorectNote);
-                    CoreGameElements.i.currentRhythmStreak = 0;
-                    UIController
-                        .UpdateTextUI(UIController
-                            .UITextComponents
-                            .currentRhythmStreak,
-                        CoreGameElements.i.currentRhythmStreak.ToString());
+                            .rhythmStreak,
+                        currentRhythmStreak.ToString());
                 }
             }
-            base.AttemptMove<T>(xDir, yDir);
+            else
+            {
+                SoundController.PlaySound(SoundController.Sound.IncorectNote);
+                CoreGameElements.i.currentRhythmStreak = 0;
+                UIController
+                    .UpdateTextUI(UIController
+                        .UITextComponents
+                        .currentRhythmStreak,
+                    CoreGameElements.i.currentRhythmStreak.ToString());
+            }
         }
+        base.AttemptMove<T>(xDir, yDir);
     }
 
     protected override void OnCantMove<T>(T Component)
     {
         DestructableObject destructableObject = Component as DestructableObject;
         RhythmEnemy rhythmEnemy = Component as RhythmEnemy;
+        Bush bush = Component as Bush;
 
         if (Component == rhythmEnemy)
         {
@@ -167,6 +169,10 @@ public class RigidPlayerController : MovingObject, IShopCustomer
         else if (Component == destructableObject)
         {
             destructableObject.DestroyObject();
+        }
+        else if (Component == bush)
+        {
+            bush.WaterBush();
         }
     }
 

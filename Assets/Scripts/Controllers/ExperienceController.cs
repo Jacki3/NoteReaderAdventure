@@ -72,7 +72,8 @@ public static class ExperienceController
         if (level > 1)
         {
             PlayerSkills.AddSkillPoint();
-            FXController.SpawnEffect_Static(FXController.Effects.PlayerLevelUp);
+
+            // FXController.SpawnEffect_Static(FXController.Effects.PlayerLevelUp);
             HealthController.ResetHealth();
             SoundController.PlaySound(SoundController.Sound.PlayerLvlUp);
             LevelUp();
@@ -106,4 +107,6 @@ public static class ExperienceController
         CoreGameElements.i.gameSave.XPToNextLvl = XPToNextLvl;
         CoreGameElements.i.gameSave.currentLevel = level;
     }
+
+    public static int GetLevel() => level;
 }

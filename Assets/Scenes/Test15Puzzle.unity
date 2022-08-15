@@ -123,6 +123,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &1332726146
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1332726147}
+  m_Layer: 0
+  m_Name: Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1332726147
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332726146}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1395479504
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,9 +310,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9d6495de93c874a8e688d8c785125f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  seed: {fileID: 0}
   boxPrefab: {fileID: 2413928661252750163, guid: 8c290d36b51da11459356e368c868022,
     type: 3}
   startMenu: {fileID: 0}
+  boxParent: {fileID: 1332726147}
   notes: 0000000002000000040000000500000007000000090000000b000000ffffffff
   numberSprites:
   - {fileID: -1040996542862338941, guid: 9b25cf53e70661a4abb138651fffe958, type: 3}
@@ -298,6 +330,11 @@ MonoBehaviour:
   - {fileID: -8822612903973417457, guid: 9b25cf53e70661a4abb138651fffe958, type: 3}
   - {fileID: -7519974901899469052, guid: 9b25cf53e70661a4abb138651fffe958, type: 3}
   - {fileID: 0}
+  letterSprites: []
+  trebleSprites: []
+  trebleSpritesHigh: []
+  bassSprites: []
+  bassSpritesHigh: []
   allBoxes: []
 --- !u!4 &2014070712
 Transform:

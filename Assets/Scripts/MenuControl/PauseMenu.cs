@@ -178,6 +178,7 @@ public class PauseMenu : MonoBehaviour
                 mixer.SetFloat("LSequencer", currentMusicVol - 8);
                 mixer.GetFloat("BSequencer", out currentMusicVol);
                 mixer.SetFloat("BSequencer", currentMusicVol - 8);
+                Metronome.MuteMetro();
             }
             else
             {
@@ -190,6 +191,7 @@ public class PauseMenu : MonoBehaviour
                 rhythmBar.SetActive(true);
                 GetComponent<Canvas>().enabled = false;
                 GameStateController.state = GameStateController.States.Play;
+                Metronome.UnMuteMetro();
             }
         }
     }

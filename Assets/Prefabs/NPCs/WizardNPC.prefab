@@ -306,6 +306,8 @@ MonoBehaviour:
   - Hello Music Cat! The graveyard has been infected by evil spirits!
   - You must use your funky tunes to dispel the curse!
   - We are all relying on your musical skills... Do not less us down Music Cat!
+  speechBubble: {fileID: 0}
+  interactText: {fileID: 0}
   text: {fileID: 4760873076217039529}
   timePerChar: 0.03
   speechIndex: 0

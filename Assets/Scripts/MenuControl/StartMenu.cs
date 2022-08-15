@@ -148,7 +148,6 @@ public class StartMenu : MonoBehaviour
 
     public void StartGame()
     {
-        GameStateController.state = GameStateController.States.Play;
         ShowLevelSelect();
         levelSelect.SetActive(false);
         mainButtons.SetActive(true);
@@ -158,7 +157,8 @@ public class StartMenu : MonoBehaviour
         player.GetComponent<SpriteRenderer>().enabled = true;
 
         gameCanvas.enabled = true;
-        if (GameStateController.gamePaused) GameStateController.PauseGame(true);
+        if (GameStateController.gamePaused)
+            GameStateController.PauseGame(false);
     }
 
     public void ContinueGame()

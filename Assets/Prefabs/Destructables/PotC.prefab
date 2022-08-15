@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7793928941955052813}
   - component: {fileID: 7793928941955052815}
   - component: {fileID: 7793928941955052913}
-  - component: {fileID: 7793928941955052814}
   - component: {fileID: 265851848595007833}
   m_Layer: 23
   m_Name: PotC
@@ -149,18 +148,6 @@ MonoBehaviour:
   orderInLayer: 1
   shatterType: 1
   fragments: []
---- !u!114 &7793928941955052814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7793928941955052811}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7af6dd9712bb07c43a7a851e83d317f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &265851848595007833
 BoxCollider2D:
   m_ObjectHideFlags: 0

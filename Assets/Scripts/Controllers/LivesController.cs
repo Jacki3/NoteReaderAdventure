@@ -31,13 +31,23 @@ public static class LivesController
         HealthController.ResetHealth();
         HealthController.SaveHealth();
         EndScreens.ShowLifeOverStatic();
+        CoreGameElements.i.gameSave.livesLost++;
+        UpdateLivesUI();
         return false;
+    }
+
+    public static void UpdateLivesUI()
+    {
+        int livesLost = CoreGameElements.i.gameSave.livesLost;
+        UIController
+            .UpdateTextUI(UIController.UITextComponents.livesText,
+            livesLost.ToString());
+        UIController
+            .UpdateTextUI(UIController.UITextComponents.livesLostMenu,
+            livesLost.ToString());
     }
 
     private static void UpdateUI()
     {
-        UIController
-            .UpdateTextUI(UIController.UITextComponents.livesText,
-            currentLives.ToString());
     }
 }

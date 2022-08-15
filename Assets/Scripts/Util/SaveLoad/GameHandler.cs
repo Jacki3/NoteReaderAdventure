@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization.Formatters;
+using System.Linq;
 using System.Text;
-using Microsoft.Win32;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using UnityEngine.UIElements;
 
 public class GameHandler : MonoBehaviour
 {
@@ -87,6 +82,7 @@ public class GameHandler : MonoBehaviour
                 save.backSprite,
                 save.sideSprite);
             UIController.UpdateIndexField(save.userIndex);
+            InventoryController.LoadItemsStatic();
 
             int noteStreak = save.noteStreak;
             int rhythmStreak = save.rhythmStreak;
@@ -96,6 +92,7 @@ public class GameHandler : MonoBehaviour
             UIController
                 .UpdateTextUI(UIController.UITextComponents.rhythmStreak,
                 rhythmStreak.ToString());
+            LivesController.UpdateLivesUI();
         }
         else
         {
@@ -103,11 +100,11 @@ public class GameHandler : MonoBehaviour
             save = new SaveFile();
             CoreGameElements.i.gameSave = save;
 
-            foreach (Mission mission in MissionHolder.i.currentMissions)
-            {
-                save.allMissions.Add (mission);
-            }
-
+            // foreach (Mission mission in MissionHolder.i.currentMissions.ToList()
+            // )
+            // {
+            //     save.allMissions.Add (mission);
+            // }
             ExperienceController.SetInitialLevel();
             HealthController.SetHealth();
             TextureController.CreateItemButtonsFirst();
@@ -126,6 +123,21 @@ public class GameHandler : MonoBehaviour
         {
             if (CoreGameElements.i.gameSave.userIndex.Length > 0)
             {
+                //how many coins, what XP level and what is the current level they are at?
+                int coins = CurrencyController.GetTotalCoins();
+                int playerLevel = ExperienceController.GetLevel();
+                int levelReached = CoreGameElements.i.latetstLevel;
+
+                string stats =
+                    "Player Coins: " +
+                    coins +
+                    "," +
+                    "Current XP Lvl: " +
+                    playerLevel +
+                    "," +
+                    "Level Reached: " +
+                    levelReached;
+
                 endTime = DateTime.Now.TimeOfDay;
                 endDate = DateTime.Now;
 
@@ -136,7 +148,10 @@ public class GameHandler : MonoBehaviour
                     "," +
                     endDate +
                     "," +
+                    "Time Played: " +
                     diff.ToString() +
+                    "," +
+                    stats +
                     System.Environment.NewLine);
             }
         }
