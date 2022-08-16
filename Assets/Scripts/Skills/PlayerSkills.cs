@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 public static class PlayerSkills
@@ -168,19 +170,35 @@ public static class PlayerSkills
 
     public static void SaveAllSkills()
     {
-        foreach (SkillType skill in unlockedSkills)
-        {
-            CoreGameElements.i.gameSave.savedUnlockedSkills.Add (skill);
-        }
+        // foreach (SkillType skill in unlockedSkills)
+        // {
+        //     CoreGameElements.i.gameSave.savedUnlockedSkills.Add (skill);
+        // }
+        CoreGameElements.i.gameSave.savedUnlockedSkills =
+            DeepCopy(unlockedSkills);
     }
 
     public static void LoadAllSkills()
     {
-        var savedUnlockedSkills =
-            CoreGameElements.i.gameSave.savedUnlockedSkills;
-        foreach (SkillType skill in savedUnlockedSkills)
-        {
-            unlockedSkills.Add (skill);
-        }
+        // var savedUnlockedSkills =
+        //     CoreGameElements.i.gameSave.savedUnlockedSkills;
+        // foreach (SkillType skill in savedUnlockedSkills)
+        // {
+        //     unlockedSkills.Add (skill);
+        // }
+        unlockedSkills =
+            DeepCopy(CoreGameElements.i.gameSave.savedUnlockedSkills);
+        UIController.UpdateSkillButtons();
+    }
+
+    public static T DeepCopy<T>(T item)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        MemoryStream stream = new MemoryStream();
+        formatter.Serialize (stream, item);
+        stream.Seek(0, SeekOrigin.Begin);
+        T result = (T) formatter.Deserialize(stream);
+        stream.Close();
+        return result;
     }
 }

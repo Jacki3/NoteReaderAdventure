@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
 
 public static class ExperienceController
 {
@@ -22,6 +23,7 @@ public static class ExperienceController
     {
         currentXP = CoreGameElements.i.gameSave.XP;
         XPToNextLvl = CoreGameElements.i.gameSave.XPToNextLvl;
+
         int savedLevel = CoreGameElements.i.gameSave.currentLevel;
         level = savedLevel;
         if (level >= 1)
@@ -91,6 +93,13 @@ public static class ExperienceController
         UIController
             .UpdateTextUI(UIController.UITextComponents.XPToNextLvlText,
             XPToNextLvl.ToString());
+
+        if (level == 1)
+        {
+            CoreGameElements.i.gameSave.XP = currentXP;
+            CoreGameElements.i.gameSave.XPToNextLvl = XPToNextLvl;
+            CoreGameElements.i.gameSave.currentLevel = level;
+        }
     }
 
     public static bool GetLevelRequirement(int levelRequired)

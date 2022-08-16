@@ -53,6 +53,8 @@ public class CoreUIElements : MonoBehaviour
 
     public Image heart;
 
+    public SkillEnumButton[] skillButtons;
+
     public TextMeshProUGUI
     GetTextComponent(UIController.UITextComponents textComponent)
     {

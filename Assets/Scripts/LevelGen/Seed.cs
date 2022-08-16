@@ -198,6 +198,7 @@ public class Seed : MonoBehaviour
         CurrencyController.AddRemoveCoins(coins, true);
         MissionHolder.i.LoadAllMissionsFromSave();
         ExperienceController.SetXP();
+        PlayerSkills.LoadAllSkills();
         ScoreDisplayUpdater
             .StartRoutineDown(coins, UIController.UITextComponents.coinText);
         ScoreDisplayUpdater

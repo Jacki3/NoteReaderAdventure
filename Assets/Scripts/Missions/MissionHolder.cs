@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
@@ -81,12 +79,44 @@ public class MissionHolder : MonoBehaviour
 
             foreach (Mission savedMission in currentMissions)
             {
+                MissionPlaceholder placeHolder =
+                    FindMissionPlaceholder(savedMission);
+
+                placeHolder.missionText.text.text =
+                    savedMission.missionType +
+                    " " +
+                    savedMission.currentAmount +
+                    "/" +
+                    savedMission.requiredAmount +
+                    " " +
+                    savedMission.missionObjectString;
+
                 if (savedMission.currentAmount > 0)
                 {
-                    for (int i = 0; i < savedMission.currentAmount; i++)
+                    if (
+                        savedMission.currentAmount >=
+                        savedMission.requiredAmount
+                    )
                     {
-                        IncrementCurrentAmount(savedMission, false);
+                        string placeHolderText =
+                            placeHolder.missionText.text.text;
+                        placeHolderText = "<s>" + placeHolderText;
+                        placeHolder.missionText.text.text = placeHolderText;
+                        placeHolder.missionText.text.color = Color.white;
+                        placeHolder
+                            .GetComponent<Animator>()
+                            .SetTrigger("MissionComplete");
                     }
+                    else
+                    {
+                        placeHolder
+                            .GetComponent<Animator>()
+                            .SetTrigger("MissionIncrement");
+                    }
+                }
+                else
+                {
+                    placeHolder.GetComponent<Animator>().SetTrigger("Reset");
                 }
             }
         }
@@ -107,7 +137,8 @@ public class MissionHolder : MonoBehaviour
 
                 mission.currentAmount = 0;
                 mission.isActiveMission = true;
-                // reset the anim so it is not highlighted anymore
+
+                placeHolder.GetComponent<Animator>().SetTrigger("Reset");
             }
         }
     }
@@ -144,6 +175,7 @@ public class MissionHolder : MonoBehaviour
                 mission.isActiveMission = false;
                 placeHolderText = "<s>" + placeHolderText;
                 placeHolder.missionText.text.text = placeHolderText;
+                placeHolder.missionText.text.color = Color.white;
                 ExperienceController.AddXP(mission.XPReward);
                 CurrencyController.AddRemoveCoins(mission.coinReward, true);
                 placeHolder

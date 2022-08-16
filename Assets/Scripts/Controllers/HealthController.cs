@@ -32,7 +32,6 @@ public static class HealthController
     public static void UpdateHealth()
     {
         UpdateShield();
-        UIController.ResetHearts();
         currentHealth = CoreGameElements.i.gameSave.playerHealth;
         int healthRemoved = maxHealth - currentHealth;
         bool lifeLowerThanMax = currentHealth < maxHealth ? true : false;
@@ -40,6 +39,9 @@ public static class HealthController
         {
             UIController.UpdateHearts (healthRemoved, lifeLowerThanMax);
         }
+        UIController.ResetHearts();
+
+        Debug.Log (currentHealth);
     }
 
     private static void UpdateMaxHealth(PlayerSkills.SkillType skillType)

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.Universal.Internal;
 
 public static class UIController
 {
@@ -54,6 +55,14 @@ public static class UIController
     private static int heartIndex = 0;
 
     private static int additionalHearts = 0;
+
+    public static void UpdateSkillButtons()
+    {
+        foreach (SkillEnumButton button in CoreUIElements.i.skillButtons)
+        {
+            button.UpdateSkillUI();
+        }
+    }
 
     public static void UpdateIndexField(string text)
     {
@@ -151,10 +160,20 @@ public static class UIController
     public static void ResetHearts()
     {
         var hearts = CoreUIElements.i.hearts;
-        for (int i = 0; i < hearts.Count; i++)
+        int count = CoreGameElements.i.maxHealth / 4;
+
+        additionalHearts = CoreGameElements.i.gameSave.additionalHearts;
+
+        int diff = (hearts.Count - additionalHearts) - count;
+        for (int i = 0; i < count + additionalHearts; i++)
         {
             heartIndex = 0;
             hearts[i].fillAmount = 1;
+        }
+        for (int i = 0; i < diff; i++)
+        {
+            GameObject.Destroy(hearts[i].transform.parent.gameObject);
+            hearts.Remove(hearts[i]);
         }
     }
 
@@ -190,6 +209,7 @@ public static class UIController
     public static void LoadUIHearts()
     {
         additionalHearts = CoreGameElements.i.gameSave.additionalHearts;
+        Debug.Log (additionalHearts);
         for (int i = 0; i < additionalHearts; i++)
         {
             AddHeart(true);

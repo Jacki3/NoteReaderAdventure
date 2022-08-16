@@ -123,9 +123,9 @@ public class FXController : MonoBehaviour
         UIController.UIImageComponents slider
     )
     {
-        // instance
-        //     .StartCoroutine(instance
-        //         .LerpSlider(end, change, duration, max, slider));
+        instance
+            .StartCoroutine(instance
+                .LerpSlider(end, change, duration, max, slider));
     }
 
     private IEnumerator

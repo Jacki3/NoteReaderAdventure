@@ -99,12 +99,6 @@ public class GameHandler : MonoBehaviour
             //first time loading game, create the savegame object to be saved n loadedz
             save = new SaveFile();
             CoreGameElements.i.gameSave = save;
-
-            // foreach (Mission mission in MissionHolder.i.currentMissions.ToList()
-            // )
-            // {
-            //     save.allMissions.Add (mission);
-            // }
             ExperienceController.SetInitialLevel();
             HealthController.SetHealth();
             TextureController.CreateItemButtonsFirst();
