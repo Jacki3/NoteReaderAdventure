@@ -31,7 +31,8 @@ public static class SoundController
         ZombieHurt,
         ZombieDeath,
         ButtonClick,
-        equipCosmetic
+        equipCosmetic,
+        FlowerUp
     }
 
     public static void PlaySound(Sound sound)

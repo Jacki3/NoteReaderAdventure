@@ -1,7 +1,9 @@
 ﻿﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 using Random = UnityEngine.Random;
@@ -214,5 +216,16 @@ public class Seed : MonoBehaviour
         {
             customLevel.levelObj.SetActive(false);
         }
+    }
+
+    public static T DeepCopy<T>(T item)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        MemoryStream stream = new MemoryStream();
+        formatter.Serialize (stream, item);
+        stream.Seek(0, SeekOrigin.Begin);
+        T result = (T) formatter.Deserialize(stream);
+        stream.Close();
+        return result;
     }
 }

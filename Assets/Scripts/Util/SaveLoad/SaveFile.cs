@@ -71,7 +71,7 @@ public class SaveFile
 
     public List<Board> boards = new List<Board>();
 
-    [Serializable]
+    [System.Serializable]
     public class Board
     {
         public int level;
@@ -95,6 +95,10 @@ public class SaveFile
         public int smashMin;
 
         public int smashMax;
+
+        public List<Vector3> bushLocations = new List<Vector3>();
+
+        public List<bool> bushWatered = new List<bool>();
 
         public bool HasMaxScore()
         {

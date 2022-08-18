@@ -172,7 +172,7 @@ public class RigidPlayerController : MovingObject, IShopCustomer
         }
         else if (Component == bush)
         {
-            bush.WaterBush();
+            bush.WaterBush(true);
         }
     }
 

@@ -14,6 +14,10 @@ public class InventoryController : MonoBehaviour
         i = this;
     }
 
+    private void Start()
+    {
+    }
+
     public static bool CheckItem(CoreItems.ItemType item)
     {
         if (i.CheckItemUnlocked(item))
@@ -83,6 +87,8 @@ public class InventoryController : MonoBehaviour
             for (int i = 0; i < iventoryItems.Length; i++)
             {
                 iventoryItems[i].isUnlocked = savedItems[i].isUnlocked;
+                if (iventoryItems[i].isUnlocked)
+                    iventoryItems[i].itemSprite.enabled = true;
             }
     }
 }

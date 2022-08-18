@@ -159,6 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flowers: {fileID: 570165936378935716}
+  xpToAdd: 2
 --- !u!1 &2055102312182832482
 GameObject:
   m_ObjectHideFlags: 0

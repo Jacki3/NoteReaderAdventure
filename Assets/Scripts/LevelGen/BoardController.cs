@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 using Random = UnityEngine.Random;
 
 //Layouts random level pattern and enemies/notation/pots based on level number
+[Serializable]
 public class BoardController : MonoBehaviour
 {
     [System.Serializable]
@@ -24,6 +22,8 @@ public class BoardController : MonoBehaviour
             maximum = max;
         }
     }
+
+    public Seed seed;
 
     public bool firstTimeSetup = true;
 
@@ -159,6 +159,10 @@ public class BoardController : MonoBehaviour
     private RhythmFlash flashAnim;
 
     private bool danceFloorHidden = false;
+
+    public List<Vector3> boardBushesLocations = new List<Vector3>();
+
+    public List<bool> boardBushWatered = new List<bool>();
 
     void Awake()
     {
@@ -494,6 +498,8 @@ public class BoardController : MonoBehaviour
     public void ClearBoard()
     {
         //Clear the board and increase sizes
+        boardBushesLocations.Clear();
+        boardBushWatered.Clear();
         boardMaxScore = 0;
         ItemSpawner.ClearItems();
         notations.Clear();
