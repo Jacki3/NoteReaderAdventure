@@ -58,7 +58,6 @@ public class GameHandler : MonoBehaviour
         SaveFile save = null;
         if (File.Exists(DATA_PATH))
         {
-            print("save file found");
             string saveString = File.ReadAllText(DATA_PATH);
 
             byte[] decodedBytes = Convert.FromBase64String(saveString);

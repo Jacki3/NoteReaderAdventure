@@ -109,7 +109,6 @@ public static class PlayerSkills
         int skillPointsRequired = GetSkillType(skillType).skillPointsRequired;
         if (IsSkillUnlocked(skillType))
         {
-            Debug.Log("SKILL ALREADY UNLOCKED");
             Tooltip
                 .SetToolTip_Static("Skill Already Unlocked!",
                 toolTipSpawn.localPosition,

@@ -66,7 +66,6 @@ public class Seed : MonoBehaviour
 
     public void SetLevels()
     {
-        Debug.Log("First Run!");
         int totalLevels = CoreGameElements.i.totalLevels;
         GenerateAllLevels (totalLevels);
     }

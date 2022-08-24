@@ -31,7 +31,7 @@ public class StartMenu : MonoBehaviour
 
     public Transform lvlSelectContent;
 
-    public GameObject player;
+    public RigidPlayerController player;
 
     public PuzzleController puzzleController;
 
@@ -154,7 +154,7 @@ public class StartMenu : MonoBehaviour
         levelsVisible = false;
         gameObject.SetActive(false);
         pauseMenu.GetComponent<PauseMenu>().MusicFade();
-        player.GetComponent<SpriteRenderer>().enabled = true;
+        player.HidePlayer(false);
 
         gameCanvas.enabled = true;
         if (GameStateController.gamePaused)
@@ -259,7 +259,7 @@ public class StartMenu : MonoBehaviour
     public void ShowPuzzle()
     {
         gameObject.SetActive(false);
-        player.GetComponent<SpriteRenderer>().enabled = false;
+        player.HidePlayer(true);
         puzzleController.gameObject.SetActive(true);
         puzzleController.GeneratePuzzle();
 
@@ -269,7 +269,7 @@ public class StartMenu : MonoBehaviour
     public void ShowShop()
     {
         gameObject.SetActive(false);
-        player.GetComponent<SpriteRenderer>().enabled = false;
+        player.HidePlayer(true);
         itemShop.ShowShop(player.GetComponent<IShopCustomer>());
         GameStateController.state = GameStateController.States.Shopping;
     }

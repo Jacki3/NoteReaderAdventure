@@ -209,7 +209,6 @@ public static class UIController
     public static void LoadUIHearts()
     {
         additionalHearts = CoreGameElements.i.gameSave.additionalHearts;
-        Debug.Log (additionalHearts);
         for (int i = 0; i < additionalHearts; i++)
         {
             AddHeart(true);

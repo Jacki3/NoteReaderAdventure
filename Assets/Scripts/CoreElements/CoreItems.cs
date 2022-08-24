@@ -16,7 +16,10 @@ public class CoreItems
         kittyBackpack,
         goldEarrings,
         torch,
-        water
+        water,
+        radSunnies,
+        bluePack,
+        circleSunnies
     }
 
     public ItemType item;

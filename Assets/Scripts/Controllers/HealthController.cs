@@ -40,8 +40,6 @@ public static class HealthController
             UIController.UpdateHearts (healthRemoved, lifeLowerThanMax);
         }
         UIController.ResetHearts();
-
-        Debug.Log (currentHealth);
     }
 
     private static void UpdateMaxHealth(PlayerSkills.SkillType skillType)

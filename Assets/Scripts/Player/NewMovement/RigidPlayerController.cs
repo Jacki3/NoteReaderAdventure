@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using EZCameraShake;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class RigidPlayerController : MovingObject, IShopCustomer
 {
+    public SpriteRenderer shieldRenderer;
+
+    public SpriteRenderer shadow;
+
     public Sprite northSprite;
 
     public Sprite southSprite;
@@ -57,7 +62,7 @@ public class RigidPlayerController : MovingObject, IShopCustomer
         base.Start();
     }
 
-    // Update is called once per frame
+    // This does not need to be update? rather assign the controls to specific method in awake?
     private void Update()
     {
         inverseMoveTime = 1f / moveTime;
@@ -276,5 +281,21 @@ public class RigidPlayerController : MovingObject, IShopCustomer
         southSprite = back;
         eastSprite = side;
         spriteRenderer.sprite = northSprite;
+    }
+
+    public void HidePlayer(bool hide)
+    {
+        if (hide)
+        {
+            spriteRenderer.enabled = false;
+            shadow.enabled = false;
+            shieldRenderer.enabled = false;
+        }
+        else
+        {
+            spriteRenderer.enabled = true;
+            shadow.enabled = true;
+            shieldRenderer.enabled = true;
+        }
     }
 }

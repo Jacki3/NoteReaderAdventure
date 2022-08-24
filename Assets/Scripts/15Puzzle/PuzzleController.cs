@@ -120,10 +120,7 @@ public class PuzzleController : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        print(GameStateController.state);
-    }
+
 
     private void ClickToMoveTile(int x, int y)
     {

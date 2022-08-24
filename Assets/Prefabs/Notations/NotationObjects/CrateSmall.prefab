@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allowRuntimeFragmentation: 1
-  extraPoints: 15
+  extraPoints: 5
   subshatterSteps: 0
   fragmentLayer: Layer 1
   sortingLayerName: Layer 1

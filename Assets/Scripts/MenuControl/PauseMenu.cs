@@ -159,7 +159,11 @@ public class PauseMenu : MonoBehaviour
 
     public void ShowMenu()
     {
-        if (GameStateController.state != GameStateController.States.MainMenu)
+        if (
+            GameStateController.state != GameStateController.States.MainMenu &&
+            GameStateController.state != GameStateController.States.Shopping &&
+            GameStateController.state != GameStateController.States.Puzzle
+        )
         {
             GameStateController.PauseGame(false);
 
@@ -568,7 +572,7 @@ public class PauseMenu : MonoBehaviour
             Application.LoadLevel(0);
         }
         else
-            Debug.Log("No save exists!");
+            Debug.LogWarning("No save exists!");
     }
 
     public void SetPlayerControls(TextMeshProUGUI buttonText)

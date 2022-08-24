@@ -5,7 +5,7 @@ public class DelegateTester : MonoBehaviour
 {
     void NoteOn(MidiChannel channel, int note, float velocity)
     {
-        Debug.Log("NoteOn: " + channel + "," + note + "," + velocity);
+        // Debug.Log("NoteOn: " + channel + "," + note + "," + velocity);
     }
 
     void NoteOff(MidiChannel channel, int note)

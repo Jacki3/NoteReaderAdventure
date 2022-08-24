@@ -255,11 +255,6 @@ public class TextureController : MonoBehaviour
                 SaveItems();
                 return true;
             }
-            else
-            {
-                print("item already purchased");
-                return false;
-            }
         }
         return false;
     }
@@ -296,7 +291,7 @@ public class TextureController : MonoBehaviour
         {
             if (itemButton.customItemType == type) return itemButton;
         }
-        Debug.Log("No matching item button");
+        Debug.LogWarning("No matching item button");
         return null;
     }
 
