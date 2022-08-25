@@ -19,7 +19,10 @@ public class CoreItems
         water,
         radSunnies,
         bluePack,
-        circleSunnies
+        circleSunnies,
+        noCosmeticFront,
+        noCosmeticSide,
+        noCosmeticBack
     }
 
     public ItemType item;

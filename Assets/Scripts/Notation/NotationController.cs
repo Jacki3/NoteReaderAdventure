@@ -52,7 +52,10 @@ public class NotationController : MonoBehaviour
     {
         if (Application.loadedLevel == 0)
         {
-            if (GameStateController.state == GameStateController.States.Play)
+            if (
+                GameStateController.state == GameStateController.States.Play ||
+                GameStateController.state == GameStateController.States.Tutorial
+            )
             {
                 List<Notation> duplicateNotations = new List<Notation>();
 

@@ -93,8 +93,7 @@ public class LevelController : MonoBehaviour
         }
         else
         {
-            print("GAME COMPLETE!");
-            //GAME DONE! SHOW CREDITS! USE GAME STATE MANAGER!
+            EndScreens.ShowGameCompleteStatic();
         }
     }
 

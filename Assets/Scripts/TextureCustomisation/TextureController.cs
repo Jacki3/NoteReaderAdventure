@@ -281,7 +281,7 @@ public class TextureController : MonoBehaviour
         {
             if (item.itemType == type) return item;
         }
-        Debug.LogError("No item!");
+        Debug.LogWarning("No item!");
         return null;
     }
 

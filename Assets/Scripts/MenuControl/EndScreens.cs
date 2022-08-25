@@ -12,6 +12,10 @@ public class EndScreens : MonoBehaviour
 
     public GameObject lifeLostScreen;
 
+    public GameObject gameCompleteScreen;
+
+    public GameObject gameCompleteButton;
+
     public Canvas mainCanvas;
 
     public Animator backgroundAnimator;
@@ -32,6 +36,8 @@ public class EndScreens : MonoBehaviour
 
     public static void HideScreensStatic() => instance.HideScreens();
 
+    public static void ShowGameCompleteStatic() => instance.ShowGameComplete();
+
     public void ShowGameOver()
     {
         mainCanvas.enabled = false;
@@ -47,6 +53,15 @@ public class EndScreens : MonoBehaviour
         canvas.enabled = true;
         lifeLostScreen.SetActive(true);
         EventSystem.current.SetSelectedGameObject (firstButton);
+        GameStateController.state = GameStateController.States.GameComplete;
+    }
+
+    public void ShowGameComplete()
+    {
+        mainCanvas.enabled = false;
+        canvas.enabled = true;
+        gameCompleteScreen.SetActive(true);
+        EventSystem.current.SetSelectedGameObject (gameCompleteButton);
     }
 
     public void ResumeGame()

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PillarController : NotationItem
 {
+    public bool opensGate;
+
     public Gate gate;
 
     public SpriteRenderer glow;
@@ -18,14 +20,14 @@ public class PillarController : NotationItem
     {
         base.AllNotationsComplete();
         HighlightGlow();
-        Activate();
+        if (opensGate) Activate();
     }
 
     public void HighlightGlow()
     {
         //lerp this
         glow.enabled = true;
-        gateGlow.color = Color.white;
+        if (opensGate) gateGlow.color = Color.white;
     }
 
     public void Activate()

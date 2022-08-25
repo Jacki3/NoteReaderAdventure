@@ -11,6 +11,11 @@ public class TestEndGoal : MonoBehaviour
         boardController = LevelController.i.levelLoader.boardController;
     }
 
+    private void Update()
+    {
+        print(GameStateController.state);
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
@@ -29,7 +34,9 @@ public class TestEndGoal : MonoBehaviour
                         CoreGameElements.i.mainCanvas.transform);
                 }
             }
-            else
+            else if (
+                GameStateController.state != GameStateController.States.Tutorial
+            )
             {
                 Seed.LevelObjs[] customLevels =
                     LevelController.i.levelLoader.customLevel;
@@ -42,6 +49,23 @@ public class TestEndGoal : MonoBehaviour
                     int notationsLeft =
                         customLevels[customIndex].levelNotations.Count;
                     string msg = notationsLeft + " Notations Left To Complete!";
+                    Tooltip
+                        .SetToolTip_Static(msg,
+                        Vector3.zero,
+                        CoreGameElements.i.mainCanvas.transform);
+                }
+            }
+            else
+            {
+                if (TutorialManager.TutorialComplete())
+                {
+                    TutorialManager.StartGameStatic();
+                    CoreGameElements.i.useTutorial = false;
+                    LevelController.i.LevelComplete();
+                }
+                else
+                {
+                    string msg = "Please finish the tutorial!";
                     Tooltip
                         .SetToolTip_Static(msg,
                         Vector3.zero,

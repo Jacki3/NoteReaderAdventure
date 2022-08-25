@@ -18,7 +18,8 @@ public static class GameStateController
         Paused,
         MainMenu,
         PauseMenu,
-        Puzzle
+        Puzzle,
+        GameComplete
     }
 
     public static void PauseGame(bool pauseTime)

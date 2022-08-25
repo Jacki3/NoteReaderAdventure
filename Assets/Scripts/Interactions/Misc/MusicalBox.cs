@@ -72,7 +72,7 @@ public class MusicalBox : NotationItem
             )
             {
                 TutorialManager
-                    .CheckTutorialStatic(Tutorial.TutorialValidation.Smash);
+                    .CheckTutorialStatic(Tutorial.TutorialValidation.ReadMode);
             }
         }
 

@@ -45,6 +45,10 @@ public class PauseMenu : MonoBehaviour
 
     public Button returnButton;
 
+    public Button gameOverExitButton;
+
+    public Button endScreenButton;
+
     public GameObject customMenu;
 
     public GameObject MIDIMenu;
@@ -109,6 +113,19 @@ public class PauseMenu : MonoBehaviour
                 ReturnToMain(false, false);
             });
 
+        gameOverExitButton
+            .onClick
+            .AddListener(delegate ()
+            {
+                ReturnToMain(false, false);
+            });
+        endScreenButton
+            .onClick
+            .AddListener(delegate ()
+            {
+                ReturnToMain(false, false);
+            });
+
         List<Button> allButtons = new List<Button>();
         transform.GetComponentsInChildrenRecursively<Button> (allButtons);
 
@@ -165,6 +182,10 @@ public class PauseMenu : MonoBehaviour
             GameStateController.state != GameStateController.States.Puzzle
         )
         {
+            if (GameStateController.state == GameStateController.States.Tutorial
+            )
+                TutorialManager
+                    .CheckTutorialStatic(Tutorial.TutorialValidation.Menu);
             GameStateController.PauseGame(false);
 
             if (GameStateController.gamePaused)
@@ -194,7 +215,11 @@ public class PauseMenu : MonoBehaviour
                 mixer.SetFloat("BSequencer", currentMusicVol + 8);
                 rhythmBar.SetActive(true);
                 GetComponent<Canvas>().enabled = false;
-                GameStateController.state = GameStateController.States.Play;
+                if (CoreGameElements.i.useTutorial)
+                    GameStateController.state =
+                        GameStateController.States.Tutorial;
+                else
+                    GameStateController.state = GameStateController.States.Play;
                 Metronome.UnMuteMetro();
             }
         }

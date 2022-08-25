@@ -12,7 +12,7 @@ public class TutorialManager : MonoBehaviour
 
     public List<Tutorial> tutorials = new List<Tutorial>();
 
-    private int tutorialIndex = 0;
+    public int tutorialIndex = 0;
 
     private static TutorialManager instance;
 
@@ -37,6 +37,7 @@ public class TutorialManager : MonoBehaviour
     //this gets called if you and when you load the tutorial level
     public void StartTutorial()
     {
+        tutorialNPC.gameObject.SetActive(true);
         ShowNextTutorial();
     }
 
@@ -115,9 +116,10 @@ public class TutorialManager : MonoBehaviour
 
     private void StartGame()
     {
-        print("tutorial complete");
-        //should load and new level here - could load custom level one?
-        // GameStateController.state = GameStateController.States.Play;
-        // foreach (BoxCollider2D blocker in blockers) blocker.enabled = false;
+        Destroy(tutorialNPC.gameObject);
+        hintRenderer.enabled = false;
     }
+
+    public static bool TutorialComplete() =>
+        instance.tutorialIndex >= instance.tutorials.Count;
 }
