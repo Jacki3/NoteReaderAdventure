@@ -66,7 +66,7 @@ public static class DifficultyPicker
         {
             CoreGameElements.i.currentDifficulty =
                 CoreGameElements.Difficuties.absoluteBeginner;
-            AudioController.helmClock.bpm = 50;
+            AudioController.helmClock.bpm = 60;
         }
         else if (
             IsWithinRange(veryEasyRange.minimum, veryEasyRange.maximum, level)

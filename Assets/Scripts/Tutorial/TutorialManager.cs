@@ -8,6 +8,8 @@ public class TutorialManager : MonoBehaviour
 
     public SpriteRenderer hintRenderer;
 
+    public Sprite interactHint;
+
     public NPCSpeech tutorialNPC;
 
     public List<Tutorial> tutorials = new List<Tutorial>();
@@ -71,6 +73,7 @@ public class TutorialManager : MonoBehaviour
         tutorialNPC.speech = tutorials[tutorialIndex].successText;
         tutorialNPC.speechIndex = 0;
         tutorialNPC.StartSpeech();
+        hintRenderer.sprite = interactHint;
     }
 
     public static void ShowNextTutorialStatic()
@@ -116,7 +119,20 @@ public class TutorialManager : MonoBehaviour
 
     private void StartGame()
     {
-        Destroy(tutorialNPC.gameObject);
+        if (tutorialNPC != null) Destroy(tutorialNPC.gameObject);
+        hintRenderer.enabled = false;
+    }
+
+    public static void ResetTutorialStatic()
+    {
+        instance.ResetTutorial();
+    }
+
+    private void ResetTutorial()
+    {
+        if (tutorialNPC != null) tutorialNPC.gameObject.SetActive(false);
+        tutorialIndex = 0;
+        tutorialSuccess = false;
         hintRenderer.enabled = false;
     }
 

@@ -33,7 +33,7 @@ public class ShopCollider : MonoBehaviour
             hasCustomer
         )
         {
-            itemShop.ShowShop (customer);
+            itemShop.ShowShop(customer, true);
             GameStateController.state = GameStateController.States.Shopping;
             isShopping = true;
         }

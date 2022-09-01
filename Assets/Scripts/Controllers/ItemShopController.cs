@@ -7,6 +7,8 @@ public class ItemShopController : MonoBehaviour
 {
     public InventoryController inventoryController;
 
+    public GameObject continueButton;
+
     public List<CoreItems> shopItems = new List<CoreItems>();
 
     public ShopButton itemTemplateButton;
@@ -180,8 +182,12 @@ public class ItemShopController : MonoBehaviour
             CurrencyController.GetTotalCoins();
     }
 
-    public void ShowShop(IShopCustomer customer)
+    public void ShowShop(IShopCustomer customer, bool hideContinue)
     {
+        if (hideContinue)
+            continueButton.SetActive(false);
+        else
+            continueButton.SetActive(true);
         shopCustomer = customer;
         gameObject.SetActive(true);
         GameObject firstButton = shopButtons[0].gameObject;

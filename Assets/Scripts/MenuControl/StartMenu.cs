@@ -266,11 +266,11 @@ public class StartMenu : MonoBehaviour
         GameStateController.state = GameStateController.States.Puzzle;
     }
 
-    public void ShowShop()
+    public void ShowShop(bool hideContinue)
     {
         gameObject.SetActive(false);
         player.HidePlayer(true);
-        itemShop.ShowShop(player.GetComponent<IShopCustomer>());
+        itemShop.ShowShop(player.GetComponent<IShopCustomer>(), hideContinue);
         GameStateController.state = GameStateController.States.Shopping;
     }
 

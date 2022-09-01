@@ -11,11 +11,6 @@ public class TestEndGoal : MonoBehaviour
         boardController = LevelController.i.levelLoader.boardController;
     }
 
-    private void Update()
-    {
-        print(GameStateController.state);
-    }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")

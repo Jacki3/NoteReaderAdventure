@@ -12,30 +12,6 @@ public class TutorialNPC : NPCSpeech
             NextTutorial();
     }
 
-    // void Update()
-    // {
-    //     if (CoreGameElements.i.useTutorial)
-    //     {
-    //         if (
-    //             RigidPlayerController
-    //                 .inputActions
-    //                 .UI
-    //                 .Submit
-    //                 .WasPressedThisFrame() ||
-    //             Input.GetMouseButtonUp(0)
-    //         )
-    //         {
-    //             if (!GameStateController.gamePaused) StartSpeech();
-    //             if (
-    //                 firstPress &&
-    //                 GameStateController.state ==
-    //                 GameStateController.States.Tutorial
-    //             )
-    //                 TutorialManager
-    //                     .CheckTutorialStatic(Tutorial.TutorialValidation.Play);
-    //         }
-    //     }
-    // }
     private void NextTutorial()
     {
         if (CoreGameElements.i.useTutorial)
@@ -52,7 +28,7 @@ public class TutorialNPC : NPCSpeech
 
     public override void StartSpeech()
     {
-        if (speechIndex == speech.Length)
+        if (speechIndex == speech.Length || speech[0].Length <= 0)
         {
             RestartText();
         }

@@ -31,36 +31,6 @@ public class NPCSpeech : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    void Start()
-    {
-    }
-
-    void Update()
-    {
-        //ensure this is sets to true if you are loading tutorial otherwise it is false
-        // if (CoreGameElements.i.useTutorial)
-        // {
-        //     if (
-        //         RigidPlayerController
-        //             .inputActions
-        //             .UI
-        //             .Submit
-        //             .WasPressedThisFrame() ||
-        //         Input.GetMouseButtonUp(0)
-        //     )
-        //     {
-        //         if (!GameStateController.gamePaused) StartSpeech();
-        //         if (
-        //             firstPress &&
-        //             GameStateController.state ==
-        //             GameStateController.States.Tutorial
-        //         )
-        //             TutorialManager
-        //                 .CheckTutorialStatic(Tutorial.TutorialValidation.Play);
-        //     }
-        // }
-    }
-
     public virtual void StartSpeech()
     {
         if (speechIndex < speech.Length)

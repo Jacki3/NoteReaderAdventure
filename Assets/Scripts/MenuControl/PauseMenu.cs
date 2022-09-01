@@ -145,6 +145,14 @@ public class PauseMenu : MonoBehaviour
         RigidPlayerController.readingMode = false;
         EndScreens.HideScreensStatic();
         EventSystem.current.SetSelectedGameObject (mainMenuStart);
+        TutorialManager.ResetTutorialStatic();
+
+        int coins = CoreGameElements.i.gameSave.playerCoins;
+        CurrencyController.totalCoinsCollected = 0;
+        CurrencyController.AddRemoveCoins(coins, true);
+        UIController
+            .UpdateTextUI(UIController.UITextComponents.shopCoinText,
+            coins.ToString());
 
         pauseButtons.SetActive(false);
         background.SetActive(false);
@@ -170,7 +178,7 @@ public class PauseMenu : MonoBehaviour
         if (fromShop)
         {
             heartsUI.transform.SetParent(shopCanvas.transform, false);
-            mainMenu.ShowShop();
+            mainMenu.ShowShop(false);
         }
     }
 
@@ -221,6 +229,7 @@ public class PauseMenu : MonoBehaviour
                 else
                     GameStateController.state = GameStateController.States.Play;
                 Metronome.UnMuteMetro();
+                EventSystem.current.SetSelectedGameObject(null);
             }
         }
     }

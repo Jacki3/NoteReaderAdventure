@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 160880205835400302}
   - component: {fileID: 6760632216577281890}
   - component: {fileID: 1489807545381551401}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: Gate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1869315837
   m_SortingLayer: 2
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300158, guid: 29c9cded5e558164aaf8c9bf08aa1510, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -22,7 +22,23 @@ public class CoreItems
         circleSunnies,
         noCosmeticFront,
         noCosmeticSide,
-        noCosmeticBack
+        noCosmeticBack,
+        triangleGlasses,
+        knapSack,
+        schoolBag2,
+        farmerTop,
+        smartTop,
+        princessCape,
+        hulaSkirt,
+        bowtieTop,
+        circles,
+        aviators,
+        electricGuitar,
+        fancyMoustache,
+        bigBeard,
+        monocle,
+        acoustic,
+        violin
     }
 
     public ItemType item;
