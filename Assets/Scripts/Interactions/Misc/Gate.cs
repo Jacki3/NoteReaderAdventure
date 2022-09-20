@@ -21,9 +21,11 @@ public class Gate : MonoBehaviour
 
     public Transform mainCanvas;
 
+    public UIController.UIImageComponents keyImage;
+
     private SpriteRenderer gateRenderer;
 
-    private bool gateOpen = false;
+    public bool gateOpen = false;
 
     private void Awake()
     {
@@ -36,41 +38,40 @@ public class Gate : MonoBehaviour
         {
             if (other.tag == "Player")
             {
-                if (KeyHolder.ContainsKey(keyType))
-                {
-                    KeyHolder.RemoveKey (keyType);
-                    SoundController.PlaySound (sound);
-                    if (XPToAdd > 0) ExperienceController.AddXP(XPToAdd);
-                    if (scoreToAdd > 0)
-                        ScoreController.AddScore_Static(scoreToAdd);
-                    MissionHolder.i.CheckValidMission (missionObject);
-                    UIController
-                        .UpdateImageSprite(UIController
-                            .UIImageComponents
-                            .goldKey,
-                        null,
-                        false);
-                    Tooltip
-                        .SetToolTip_Static("Used Golden Key!",
-                        Vector3.zero,
-                        mainCanvas);
-                    Invoke("OpenGate", 1);
-                    gateOpen = true;
-                }
-                else
-                {
-                    SoundController.PlaySound(SoundController.Sound.DoorLocked);
-                    Tooltip
-                        .SetToolTip_Static("Requires Golden Key!",
-                        Vector3.zero,
-                        mainCanvas);
-                }
+                TryGate();
             }
+        }
+    }
+
+    public virtual void TryGate()
+    {
+        if (KeyHolder.ContainsKey(keyType))
+        {
+            KeyHolder.RemoveKey (keyType);
+            if (XPToAdd > 0) ExperienceController.AddXP(XPToAdd);
+            if (scoreToAdd > 0) ScoreController.AddScore_Static(scoreToAdd);
+            MissionHolder.i.CheckValidMission (missionObject);
+            UIController.UpdateImageSprite(keyImage, null, false);
+            Tooltip
+                .SetToolTip_Static("Used " + keyType + " Key!",
+                Vector3.zero,
+                mainCanvas);
+            Invoke("OpenGate", 1);
+        }
+        else
+        {
+            SoundController.PlaySound(SoundController.Sound.DoorLocked);
+            Tooltip
+                .SetToolTip_Static("Requires " + keyType + " Key!",
+                Vector3.zero,
+                mainCanvas);
         }
     }
 
     public void OpenGate()
     {
+        gateOpen = true;
+        SoundController.PlaySound (sound);
         gateRenderer.sprite = openGate;
         gateCollider.enabled = false;
     }

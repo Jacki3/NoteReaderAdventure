@@ -55,7 +55,7 @@ public abstract class MovingObject : MonoBehaviour
         }
     }
 
-    protected virtual void AttemptMove<T>(int xDir, int yDir)
+    public virtual void AttemptMove<T>(int xDir, int yDir)
         where T : Component
     {
         RaycastHit2D hit;
@@ -65,9 +65,10 @@ public abstract class MovingObject : MonoBehaviour
         if (hit.transform == null) return;
 
         T hitComponent = hit.transform.GetComponent<T>();
-        if (!canMove && hitComponent != null) OnCantMove(hitComponent);
+        if (!canMove && hitComponent != null)
+            OnCantMove(hitComponent, xDir, yDir);
     }
 
-    protected abstract void OnCantMove<T>(T Component)
+    protected abstract void OnCantMove<T>(T Component, int x, int y)
         where T : Component;
 }

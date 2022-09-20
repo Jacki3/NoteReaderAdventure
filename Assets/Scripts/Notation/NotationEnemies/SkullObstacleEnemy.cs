@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SkullObstacleEnemy : RhythmEnemy
 {
-    protected override void OnCantMove<T>(T Component)
+    protected override void OnCantMove<T>(T Component, int x, int y)
     {
         RigidPlayerController hitPlayer = Component as RigidPlayerController;
         if (Component == hitPlayer) hitPlayer.LoseHealth(playerDmg);

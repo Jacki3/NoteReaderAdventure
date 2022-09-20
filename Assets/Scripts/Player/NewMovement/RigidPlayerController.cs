@@ -102,7 +102,7 @@ public class RigidPlayerController : MovingObject, IShopCustomer
         }
     }
 
-    protected override void AttemptMove<T>(int xDir, int yDir)
+    public override void AttemptMove<T>(int xDir, int yDir)
     {
         if (GameStateController.state == GameStateController.States.Tutorial)
         {
@@ -161,11 +161,14 @@ public class RigidPlayerController : MovingObject, IShopCustomer
         base.AttemptMove<T>(xDir, yDir);
     }
 
-    protected override void OnCantMove<T>(T Component)
+    protected override void OnCantMove<T>(T Component, int x, int y)
     {
         DestructableObject destructableObject = Component as DestructableObject;
         RhythmEnemy rhythmEnemy = Component as RhythmEnemy;
         Bush bush = Component as Bush;
+        Gate gate = Component as Gate;
+        KeyChest chest = Component as KeyChest;
+        StoneCube cube = Component as StoneCube;
 
         if (Component == rhythmEnemy)
         {
@@ -178,6 +181,18 @@ public class RigidPlayerController : MovingObject, IShopCustomer
         else if (Component == bush)
         {
             bush.WaterBush(true);
+        }
+        else if (Component == gate)
+        {
+            gate.TryGate();
+        }
+        else if (Component == chest)
+        {
+            chest.TryOpenChest();
+        }
+        else if (Component == cube)
+        {
+            cube.AttemptMove<T> (x, y);
         }
     }
 

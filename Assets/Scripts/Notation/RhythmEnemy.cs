@@ -81,7 +81,7 @@ public class RhythmEnemy : MovingObject, INotation
             AttemptMove<RigidPlayerController>(xDir, yDir);
     }
 
-    protected override void OnCantMove<T>(T Component)
+    protected override void OnCantMove<T>(T Component, int x, int y)
     {
     }
 

@@ -393,10 +393,9 @@ public class Notation : MonoBehaviour
         NotePopup
             .Create(noteImages[0].transform.position, noteName, noteColour);
 
-        PlayerWeapon
-            .ShootProjectileStatic(this.notation.transform.position,
-            noteColour);
-
+        // PlayerWeapon
+        //     .ShootProjectileStatic(this.notation.transform.position,
+        //     noteColour);
         EZCameraShake.CameraShaker.Instance.ShakeOnce(.45f, 1f, .5f, 1f);
 
         notationAnimator.SetTrigger("Correct");
