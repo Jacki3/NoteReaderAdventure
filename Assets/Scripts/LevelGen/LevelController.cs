@@ -12,6 +12,8 @@ public class LevelController : MonoBehaviour
 
     public Vector3 customSpawnPoint;
 
+    public AreaTrigger areaTrigger;
+
     [HideInInspector]
     public Seed levelLoader;
 
@@ -110,6 +112,7 @@ public class LevelController : MonoBehaviour
 
     private void ResetPlayer()
     {
+        if (areaTrigger.newAreaShowing) areaTrigger.ShowArea(true);
         player.position = playerDefaultPos;
         mainCam.position = Vector3.zero;
         player.GetComponent<BoxCollider2D>().enabled = true;

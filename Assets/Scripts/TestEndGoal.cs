@@ -36,14 +36,27 @@ public class TestEndGoal : MonoBehaviour
                 Seed.LevelObjs[] customLevels =
                     LevelController.i.levelLoader.customLevel;
                 int customIndex = LevelController.i.levelLoader.customLevelNum;
-                if (customLevels[customIndex].AllNotationsComplete())
+                if (customLevels[customIndex].scrollUnlocked)
                 {
-                    LevelController.i.LevelComplete();
+                    if (customLevels[customIndex].AllNotationsComplete())
+                    {
+                        LevelController.i.LevelComplete();
+                    }
+                    else
+                    {
+                        int notationsLeft =
+                            customLevels[customIndex].levelNotations.Count;
+                        string msg =
+                            notationsLeft + " Notations Left To Complete!";
+                        Tooltip
+                            .SetToolTip_Static(msg,
+                            Vector3.zero,
+                            CoreGameElements.i.mainCanvas.transform);
+                    }
                 }
+                else
                 {
-                    int notationsLeft =
-                        customLevels[customIndex].levelNotations.Count;
-                    string msg = notationsLeft + " Notations Left To Complete!";
+                    string msg = "Find the music scroll!";
                     Tooltip
                         .SetToolTip_Static(msg,
                         Vector3.zero,

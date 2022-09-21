@@ -19,7 +19,9 @@ public class ItemSpawner : MonoBehaviour
         Spirit,
         GoldenKey,
         SilverKey,
-        IronKey
+        IronKey,
+        keyScroll,
+        sideScroll
     }
 
     public static List<Item> allItems = new List<Item>();

@@ -21,4 +21,10 @@ public class AltarGate : Gate
             areaTrigger.ShowArea(true);
         }
     }
+
+    public override void OpenGate()
+    {
+        gateOpen = true;
+        gateRenderer.sprite = openGate;
+    }
 }

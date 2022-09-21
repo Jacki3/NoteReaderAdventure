@@ -39,6 +39,8 @@ public class Seed : MonoBehaviour
 
         public GameObject levelObj;
 
+        public bool scrollUnlocked;
+
         public List<Notation> levelNotations = new List<Notation>();
 
         public bool AllNotationsComplete() => levelNotations.Count <= 0;
@@ -60,6 +62,17 @@ public class Seed : MonoBehaviour
                         levelNotations.Remove (notation);
                     }
                 }
+            }
+        }
+    }
+
+    public void CollectScrollForLevel()
+    {
+        if (currentLevel != 1)
+        {
+            if (usingCustomLvl)
+            {
+                customLevel[currentLevel - 1].scrollUnlocked = true;
             }
         }
     }

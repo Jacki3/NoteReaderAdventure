@@ -11,7 +11,7 @@ public class AreaTrigger : MonoBehaviour
 
     public Light2D mainLight;
 
-    private bool newAreaShowing;
+    public bool newAreaShowing;
 
     public void ShowArea(bool effectLights)
     {

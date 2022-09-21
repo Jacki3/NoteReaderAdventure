@@ -14,6 +14,7 @@ public class NPC : NPCSpeech
     {
         if (other.tag == "Player")
         {
+            print("Player is in");
             if (
                 RigidPlayerController
                     .inputActions
@@ -23,6 +24,7 @@ public class NPC : NPCSpeech
                 Input.GetMouseButtonUp(0)
             )
             {
+                print("player clicked");
                 if (!GameStateController.gamePaused) StartSpeech();
             }
         }

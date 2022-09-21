@@ -29,7 +29,7 @@ public class Altar : MonoBehaviour
                 isUnlocked = true;
                 litColor = targetColor;
                 gate.OpenGate();
-                SoundController.PlaySound(SoundController.Sound.DoorLocked);
+                SoundController.PlaySound(SoundController.Sound.ChestOpen);
                 Tooltip
                     .SetToolTip_Static("A Gate Has Opended Somewhere...",
                     Vector3.zero,

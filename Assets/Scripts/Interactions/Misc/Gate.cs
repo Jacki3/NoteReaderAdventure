@@ -23,7 +23,7 @@ public class Gate : MonoBehaviour
 
     public UIController.UIImageComponents keyImage;
 
-    private SpriteRenderer gateRenderer;
+    protected SpriteRenderer gateRenderer;
 
     public bool gateOpen = false;
 
@@ -68,7 +68,7 @@ public class Gate : MonoBehaviour
         }
     }
 
-    public void OpenGate()
+    public virtual void OpenGate()
     {
         gateOpen = true;
         SoundController.PlaySound (sound);
