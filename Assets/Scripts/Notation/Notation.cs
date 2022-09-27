@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using TMPro;
 using TMPro.Examples;
 using UnityEngine;
@@ -50,6 +51,10 @@ public class Notation : MonoBehaviour
     private bool isVisible;
 
     public List<int> notes = new List<int>();
+
+    public SpriteRenderer[] renderers;
+
+    public MeshRenderer timeSig;
 
     private List<TextMeshPro> noteImages = new List<TextMeshPro>();
 
@@ -477,4 +482,24 @@ public class Notation : MonoBehaviour
     }
 
     public bool NotationFinished() => notes.Count <= 0;
+
+    public void DelayPush()
+    {
+        Invoke("PushNotationToFront", .5f);
+    }
+
+    private void PushNotationToFront()
+    {
+        foreach (SpriteRenderer renderer in renderers)
+        {
+            renderer.sortingLayerName = "Layer 5";
+        }
+        if (timeSig != null) timeSig.sortingLayerName = "Layer 5";
+
+        foreach (TextMeshPro notationText in noteImages)
+        {
+            notationText.GetComponent<MeshRenderer>().sortingLayerName =
+                "Layer 5";
+        }
+    }
 }

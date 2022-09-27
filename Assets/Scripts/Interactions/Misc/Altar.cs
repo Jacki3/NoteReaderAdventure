@@ -16,7 +16,7 @@ public class Altar : MonoBehaviour
 
     private Color curColor;
 
-    private Color litColor;
+    private Color litColor = Color.black;
 
     private bool isUnlocked;
 

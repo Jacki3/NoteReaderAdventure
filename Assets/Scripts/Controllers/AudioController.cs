@@ -58,7 +58,7 @@ public class AudioController : MonoBehaviour
 
         time = Mathf.Lerp(time, 0, secPerBeat * Time.fixedDeltaTime);
 
-        if (time < .5f)
+        if (time < .75f)
             canPlay = true;
         else
             canPlay = false;

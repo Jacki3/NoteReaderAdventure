@@ -164,6 +164,8 @@ public class BoardController : MonoBehaviour
 
     public List<bool> boardBushWatered = new List<bool>();
 
+    private int totalNotations;
+
     void Awake()
     {
         flashAnim = GetComponent<RhythmFlash>();
@@ -306,45 +308,30 @@ public class BoardController : MonoBehaviour
             newObj.transform.SetParent (objects);
 
             INotation newNotation = newObj.GetComponent<INotation>();
-            if (newNotation != null)
+            Notation objNotation = newObj.GetComponentInChildren<Notation>();
+            if (objNotation != null)
             {
                 foreach (INotation notation in notations)
                 {
                     if (
-                        notation.GetTransform().position.x ==
-                        newObj.transform.position.x
-                    )
-                    {
-                        if (
-                            notation.GetTransform().position.y - 1 ==
-                            newObj.transform.position.y ||
-                            notation.GetTransform().position.y + 1 ==
-                            newObj.transform.position.y
-                        )
-                        {
-                            newNotation.MoveLeftRight(true);
-                        }
-                    }
-
-                    if (
+                        notation.GetTransform().position.y ==
+                        newObj.transform.position.y &&
+                        notation.GetTransform().position.x - 1 ==
+                        newObj.transform.position.x ||
+                        notation.GetTransform().position.x + 1 ==
+                        newObj.transform.position.x &&
                         notation.GetTransform().position.y ==
                         newObj.transform.position.y
                     )
                     {
-                        if (
-                            notation.GetTransform().position.x - 1 ==
-                            newObj.transform.position.x ||
-                            notation.GetTransform().position.x + 1 ==
-                            newObj.transform.position.x
-                        )
-                        {
-                            newNotation.MoveUpDown(true);
-                            notation.MoveUpDown(false);
-                        }
+                        objNotation.DelayPush();
                     }
                 }
-
+            }
+            if (newNotation != null)
+            {
                 notations.Add (newNotation);
+                totalNotations++;
                 boardMaxScore += newNotation.GetObjectScore();
             }
         }
@@ -557,6 +544,10 @@ public class BoardController : MonoBehaviour
             if (notation.GetTransform().position == pos.position)
             {
                 notations.Remove (notation);
+                int notationsLeft = totalNotations - notations.Count;
+                UIController
+                    .UpdateTextUI(UIController.UITextComponents.notationsText,
+                    notationsLeft + "/" + totalNotations);
             }
         }
     }

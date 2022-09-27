@@ -169,6 +169,7 @@ public class RigidPlayerController : MovingObject, IShopCustomer
         Gate gate = Component as Gate;
         KeyChest chest = Component as KeyChest;
         StoneCube cube = Component as StoneCube;
+        DoorLayerUnlocker door = Component as DoorLayerUnlocker;
 
         if (Component == rhythmEnemy)
         {
@@ -193,6 +194,10 @@ public class RigidPlayerController : MovingObject, IShopCustomer
         else if (Component == cube)
         {
             cube.AttemptMove<T> (x, y);
+        }
+        else if (Component == door)
+        {
+            door.LayerCheck (spriteRenderer);
         }
     }
 

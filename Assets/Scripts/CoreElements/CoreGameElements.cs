@@ -108,6 +108,8 @@ public class CoreGameElements : MonoBehaviour
 
     public Notes allNotes;
 
+    public bool usingRhythm;
+
     [Serializable]
     public class Notes
     {

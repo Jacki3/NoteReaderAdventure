@@ -229,6 +229,8 @@ public class PauseMenu : MonoBehaviour
                 else
                     GameStateController.state = GameStateController.States.Play;
                 Metronome.UnMuteMetro();
+                MIDIMenuVisible = false;
+                MIDIMenu.SetActive(false);
                 EventSystem.current.SetSelectedGameObject(null);
             }
         }

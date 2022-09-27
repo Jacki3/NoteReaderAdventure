@@ -24,5 +24,12 @@ public class Key : Item
             true);
         KeyHolder.AddKey (keyType);
         Destroy (gameObject);
+
+        Transform parent = CoreGameElements.i.mainCanvas.transform;
+
+        Tooltip
+            .SetToolTip_Static("picked up " + keyType + " key!",
+            Vector3.zero,
+            parent);
     }
 }

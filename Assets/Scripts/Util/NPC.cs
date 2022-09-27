@@ -4,29 +4,25 @@ using UnityEngine;
 
 public class NPC : NPCSpeech
 {
+    private bool playerInRange;
+
+    private void Start()
+    {
+        RigidPlayerController.inputActions.UI.Submit.performed += ctx =>
+            ShowNextSpeech();
+    }
+
+    private void ShowNextSpeech()
+    {
+        if (playerInRange) if (!GameStateController.gamePaused) StartSpeech();
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
-            if (interactText.activeSelf == false) interactText.SetActive(true);
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.tag == "Player")
         {
-            print("Player is in");
-            if (
-                RigidPlayerController
-                    .inputActions
-                    .UI
-                    .Submit
-                    .WasPressedThisFrame() ||
-                Input.GetMouseButtonUp(0)
-            )
-            {
-                print("player clicked");
-                if (!GameStateController.gamePaused) StartSpeech();
-            }
+            if (interactText.activeSelf == false) interactText.SetActive(true);
+            playerInRange = true;
         }
     }
 
@@ -36,6 +32,7 @@ public class NPC : NPCSpeech
         {
             StopTalking();
             RestartText(true);
+            playerInRange = false;
         }
     }
 

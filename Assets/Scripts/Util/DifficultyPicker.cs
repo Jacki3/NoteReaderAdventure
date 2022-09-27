@@ -66,7 +66,7 @@ public static class DifficultyPicker
         {
             CoreGameElements.i.currentDifficulty =
                 CoreGameElements.Difficuties.absoluteBeginner;
-            AudioController.helmClock.bpm = 60;
+            AudioController.helmClock.bpm = 90;
         }
         else if (
             IsWithinRange(veryEasyRange.minimum, veryEasyRange.maximum, level)
@@ -74,19 +74,19 @@ public static class DifficultyPicker
         {
             CoreGameElements.i.currentDifficulty =
                 CoreGameElements.Difficuties.veryEasy;
-            AudioController.helmClock.bpm = 60;
+            AudioController.helmClock.bpm = 90;
         }
         else if (IsWithinRange(easyRange.minimum, easyRange.maximum, level))
         {
             CoreGameElements.i.currentDifficulty =
                 CoreGameElements.Difficuties.easy;
-            AudioController.helmClock.bpm = 70;
+            AudioController.helmClock.bpm = 90;
         }
         else if (IsWithinRange(medRange.minimum, medRange.maximum, level))
         {
             CoreGameElements.i.currentDifficulty =
                 CoreGameElements.Difficuties.medium;
-            AudioController.helmClock.bpm = 80;
+            AudioController.helmClock.bpm = 90;
         }
         else if (
             IsWithinRange(intermeidateRange.minimum,
@@ -118,6 +118,7 @@ public static class DifficultyPicker
         {
             CoreGameElements.i.currentDifficulty =
                 CoreGameElements.Difficuties.ultraHard;
+            AudioController.helmClock.bpm = 95;
         }
         else if (
             IsWithinRange(superHardRange.minimum, superHardRange.maximum, level)
@@ -133,7 +134,7 @@ public static class DifficultyPicker
         {
             CoreGameElements.i.currentDifficulty =
                 CoreGameElements.Difficuties.hardest;
-            AudioController.helmClock.bpm = 120;
+            AudioController.helmClock.bpm = 105;
         }
     }
 

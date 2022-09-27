@@ -445,6 +445,12 @@ MonoBehaviour:
   explodableNotation: {fileID: -1546795743365737730, guid: f3ba6c5e2392ce446bc7a6dbc6ad1e46,
     type: 3}
   notes: 
+  renderers:
+  - {fileID: 3906280600502435781}
+  - {fileID: 754718088846170953}
+  - {fileID: 754718088009971510}
+  - {fileID: 754718087487569048}
+  timeSig: {fileID: 1826013115343695868}
   arenaMode: 0
   objectShow: 0
 --- !u!1 &754718088009971508

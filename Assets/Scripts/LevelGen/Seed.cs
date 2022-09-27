@@ -32,6 +32,8 @@ public class Seed : MonoBehaviour
 
     public LevelObjs[] customLevel;
 
+    public static int totalNotations;
+
     [Serializable]
     public class LevelObjs
     {
@@ -60,6 +62,13 @@ public class Seed : MonoBehaviour
                     )
                     {
                         levelNotations.Remove (notation);
+                        int notationsLeft =
+                            totalNotations - levelNotations.Count;
+                        UIController
+                            .UpdateTextUI(UIController
+                                .UITextComponents
+                                .notationsText,
+                            notationsLeft + "/" + totalNotations);
                     }
                 }
             }
@@ -89,7 +98,7 @@ public class Seed : MonoBehaviour
         {
             SaveFile.Board newBoard = new SaveFile.Board();
 
-            gameSeed = "LvlBuilder8_";
+            gameSeed = "LvlBuilder9_";
             defaultGameSeed = gameSeed;
             gameSeed += level;
             currentSeed = gameSeed.GetHashCode();
@@ -162,6 +171,7 @@ public class Seed : MonoBehaviour
                 {
                     CoreGameElements.i.useTutorial = false;
                     GameStateController.state = GameStateController.States.Play;
+                    totalNotations = customLevel[i].levelNotations.Count;
                 }
             }
         }
@@ -199,6 +209,8 @@ public class Seed : MonoBehaviour
 
             //if we load a non custom level it will always be a non tutorial level
             GameStateController.state = GameStateController.States.Play;
+
+            totalNotations = boardController.notations.Count;
         }
 
         FXController
@@ -218,6 +230,10 @@ public class Seed : MonoBehaviour
         ScoreDisplayUpdater
             .StartRoutineDown(coins,
             UIController.UITextComponents.shopCoinText);
+
+        UIController
+            .UpdateTextUI(UIController.UITextComponents.notationsText,
+            "0/" + totalNotations);
 
         Metronome.UnMuteMetro();
     }
