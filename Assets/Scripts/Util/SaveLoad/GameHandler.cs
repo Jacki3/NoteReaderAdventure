@@ -92,6 +92,9 @@ public class GameHandler : MonoBehaviour
                 .UpdateTextUI(UIController.UITextComponents.rhythmStreak,
                 rhythmStreak.ToString());
             LivesController.UpdateLivesUI();
+            UIController
+                .UpdateTextUI(UIController.UITextComponents.highestWaveStat,
+                save.highestArenaWave.ToString());
         }
         else
         {
