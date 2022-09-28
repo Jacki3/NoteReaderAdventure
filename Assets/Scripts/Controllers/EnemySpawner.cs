@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -16,7 +17,7 @@ public class EnemySpawner : MonoBehaviour
     {
         public string name;
 
-        public EnemyAI[] enemies;
+        public RhythmEnemy[] enemies;
 
         public int count;
 
@@ -24,8 +25,6 @@ public class EnemySpawner : MonoBehaviour
 
         public List<Transform> spawnPoints = new List<Transform>();
     }
-
-    public Transform playerPos;
 
     public Wave[] waves;
 
@@ -37,13 +36,24 @@ public class EnemySpawner : MonoBehaviour
 
     private int nextWave = 0;
 
-    public List<EnemyAI> enemies = new List<EnemyAI>();
+    public List<RhythmEnemy> enemies = new List<RhythmEnemy>();
+
+    public static int currentWave;
 
     private int totalEnemies;
+
+    private bool waitToGo;
+
+    private void OnEnable()
+    {
+        Invoke("StartSpawning", 5);
+        CoreGameElements.i.arenaMode = true;
+    }
 
     void StartSpawning()
     {
         waveCountDown = timeBetweenWaves;
+        waitToGo = true;
     }
 
     void Update()
@@ -65,8 +75,11 @@ public class EnemySpawner : MonoBehaviour
                 StartCoroutine(SpawnWave(waves[nextWave]));
             }
         }
-        else
+        else if (waitToGo)
         {
+            UIController
+                .UpdateTextUI(UIController.UITextComponents.arenaWinText,
+                ((int) waveCountDown + 1).ToString());
             waveCountDown -= Time.deltaTime;
         }
     }
@@ -78,14 +91,24 @@ public class EnemySpawner : MonoBehaviour
 
         if (nextWave + 1 > waves.Length - 1)
         {
-            GameStateController.PauseGame(true);
-            UIController
-                .UpdateTextUI(UIController.UITextComponents.arenaWinText,
-                "Level Complete!");
+            nextWave = 0; //add a way to increase difficulty
+
+            //if you want to complete the wave system
+            // GameStateController.PauseGame(true);
+            // UIController
+            //     .UpdateTextUI(UIController.UITextComponents.arenaWinText,
+            //     "Arena Complete!");
         }
         else
         {
             nextWave++;
+            currentWave = nextWave;
+            int highestWave = CoreGameElements.i.gameSave.highestArenaWave;
+            if (nextWave > highestWave)
+                CoreGameElements.i.gameSave.highestArenaWave = currentWave;
+            UIController
+                .UpdateTextUI(UIController.UITextComponents.highestWaveStat,
+                highestWave.ToString());
         }
     }
 
@@ -99,6 +122,12 @@ public class EnemySpawner : MonoBehaviour
         List<Transform> newSpawns = new List<Transform>();
         newSpawns.AddRange(_wave.spawnPoints);
 
+        UIController
+            .UpdateTextUI(UIController.UITextComponents.arenaWinText,
+            "Wave " + (nextWave + 1));
+        yield return new WaitForSeconds(2);
+        UIController
+            .UpdateTextUI(UIController.UITextComponents.arenaWinText, "");
         for (int i = 0; i < _wave.count; i++)
         {
             int randIndex = Random.Range(0, _wave.enemies.Length);
@@ -118,28 +147,32 @@ public class EnemySpawner : MonoBehaviour
         yield break;
     }
 
-    void SpawnEnemy(EnemyAI enemy, Transform spawn)
+    void SpawnEnemy(RhythmEnemy enemy, Transform spawn)
     {
         if (spawn == null) Debug.LogError("No Spawn!");
 
         var newEnemy = Instantiate(enemy);
         newEnemy.transform.position = spawn.position;
-        newEnemy.playerPos = playerPos;
         newEnemy.enemySpawner = this;
-        foreach (Notation
-            notation
-            in
-            newEnemy.GetComponentsInChildren<Notation>()
-        )
-        {
-            notation.arenaMode = true;
-        }
-        enemies.Add (enemy);
+        enemies.Add (newEnemy);
     }
 
-    public void RemoveEnemy(EnemyAI enemy)
+    public void RemoveEnemy(RhythmEnemy enemy)
     {
         enemies.Remove (enemy);
         totalEnemies--;
+    }
+
+    public void ResetSpawner()
+    {
+        foreach (RhythmEnemy enemy in enemies) Destroy(enemy.gameObject);
+        spawnState = SpawnState.counting;
+        nextWave = 0;
+    }
+
+    private void OnDisable()
+    {
+        ResetSpawner();
+        CoreGameElements.i.arenaMode = false;
     }
 }

@@ -67,7 +67,7 @@ public class GameHandler : MonoBehaviour
             CoreGameElements.i.gameSave = save;
 
             //Load the game elements in (probably better to use for loop, find objects or elements that match and set them somehow?)
-            seed.boardController.SetDanceFloor();
+            // seed.boardController.SetDanceFloor();
             pauseMenu.SetAllSliders();
             pauseMenu.SetColour(false);
             HealthController.SetHealth();

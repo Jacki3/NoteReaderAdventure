@@ -29,10 +29,12 @@ public class ReadingCircle : MonoBehaviour
         switch (skillType)
         {
             case PlayerSkills.SkillType.readerRadius_1:
-                cameraZoomSize = cameraZoomSizeUpgrade1;
+                CoreGameElements.i.gameSave.addedCamZoom =
+                    cameraZoomSizeUpgrade1;
                 break;
             case PlayerSkills.SkillType.readerRadius_2:
-                cameraZoomSize = cameraZoomSizeUpgrade2;
+                CoreGameElements.i.gameSave.addedCamZoom =
+                    cameraZoomSizeUpgrade2;
                 break;
         }
     }
@@ -63,7 +65,8 @@ public class ReadingCircle : MonoBehaviour
 
     private void ZoomCameraIn()
     {
-        FXController.ZoomCamera (cameraDefaultSize, cameraZoomSpeed);
+        float addedZoom = CoreGameElements.i.gameSave.addedCamZoom;
+        FXController.ZoomCamera(cameraDefaultSize + addedZoom, cameraZoomSpeed);
         SoundController.PlaySound(SoundController.Sound.CameraZoom);
     }
 }

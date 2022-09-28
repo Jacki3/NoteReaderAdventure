@@ -7,6 +7,8 @@ public class SkillEnumButton : MonoBehaviour, ISelectHandler
 
     public RectTransform toolTipSpawn;
 
+    public Color skillLineColour;
+
     public CoreUIElements.ImageUI
 
             iconImage,
@@ -44,6 +46,7 @@ public class SkillEnumButton : MonoBehaviour, ISelectHandler
 
     public void ShowSkillInfo()
     {
+        //IF NOT SKIP BUTTON
         var currentSkill = PlayerSkills.GetSkillType(skillType);
         Tooltip
             .SetToolTipSkill_Static(currentSkill.skillName +
@@ -62,11 +65,16 @@ public class SkillEnumButton : MonoBehaviour, ISelectHandler
         }
     }
 
+    public void Skip()
+    {
+        PlayerSkills.RemoveSkillPoint();
+        pauseMenu.HideSkillMenu();
+    }
+
     private void UpdateUI(bool isUnlocked)
     {
-        Color32 skillColour = isUnlocked ? Color.white : Color.grey;
+        Color32 skillColour = isUnlocked ? skillLineColour : Color.grey;
 
-        UIController.UpdateImageColour (iconImage, skillColour);
         UIController.UpdateImageColour (skillLine, skillColour);
         UIController.UpdateImageColour (backGround, skillColour);
     }

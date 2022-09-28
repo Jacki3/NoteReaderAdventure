@@ -70,7 +70,7 @@ public class NotationController : MonoBehaviour
                     }
                     else if (note != 61)
                     {
-                        //should be reading circle button NOT 25
+                        //should be reading circle button
                         CoreGameElements.i.currentNoteStreak = 0;
 
                         //update UI
@@ -159,14 +159,44 @@ public class NotationController : MonoBehaviour
                     currentNoteStreak.ToString());
             }
 
-            if (AudioController.canPlay)
+            if (AudioController.canPlay && CoreGameElements.i.usingRhythm)
             {
                 ScoreController
                     .AddRhythmScore_Static(CoreGameElements.i.scoreForRhythm);
                 ScoreController.AddStreak_Static();
+
+                CoreGameElements.i.currentRhythmStreak++;
+                UIController
+                    .UpdateTextUI(UIController
+                        .UITextComponents
+                        .currentRhythmStreak,
+                    CoreGameElements.i.currentRhythmStreak.ToString());
+
+                int savedRhythmStreak =
+                    CoreGameElements.i.gameSave.rhythmStreak;
+                int currentRhythmStreak =
+                    CoreGameElements.i.currentRhythmStreak;
+                if (currentRhythmStreak > savedRhythmStreak)
+                {
+                    CoreGameElements.i.gameSave.rhythmStreak =
+                        currentRhythmStreak;
+                    UIController
+                        .UpdateTextUI(UIController
+                            .UITextComponents
+                            .rhythmStreak,
+                        currentRhythmStreak.ToString());
+                }
             }
-            else
+            else if (CoreGameElements.i.usingRhythm)
+            {
                 ScoreController.ResetStreak_Static(true);
+                CoreGameElements.i.currentRhythmStreak = 0;
+                UIController
+                    .UpdateTextUI(UIController
+                        .UITextComponents
+                        .currentRhythmStreak,
+                    CoreGameElements.i.currentRhythmStreak.ToString());
+            }
         }
     }
 

@@ -32,7 +32,11 @@ public static class UIController
         currentStreak,
         currentRhythmStreak,
         livesLostMenu,
-        notationsText
+        notationsText,
+        gameOverCurrentWave,
+        gameOverHighestWave,
+        gameOverNewScore,
+        highestWaveStat
     }
 
     public enum UIImageComponents

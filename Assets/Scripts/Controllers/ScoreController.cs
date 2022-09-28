@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Runtime.CompilerServices;
+using UnityEngine;
 
 public class ScoreController : MonoBehaviour
 {
     public float stackedTime = 5;
-
-    public float stackTimeToAdd = .25f;
 
     public int score;
 
@@ -43,6 +43,33 @@ public class ScoreController : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
+        PlayerSkills.onSkillUnlocked += UpdateStreaks;
+    }
+
+    private void UpdateStreaks(PlayerSkills.SkillType skillType)
+    {
+        switch (skillType)
+        {
+            case PlayerSkills.SkillType.initialStreakTime_1:
+                CoreGameElements.i.gameSave.initialStreakTime = .5f;
+                break;
+            case PlayerSkills.SkillType.initialStreakTime_2:
+                CoreGameElements.i.gameSave.initialStreakTime = 1f;
+                break;
+            case PlayerSkills.SkillType.initialStreakTime_3:
+                CoreGameElements.i.gameSave.initialStreakTime = 1.5f;
+                break;
+            case PlayerSkills.SkillType.addedStreakTime_1:
+                CoreGameElements.i.gameSave.timeToAddToStreak = .25f;
+                break;
+            case PlayerSkills.SkillType.addedStreakTime_2:
+                CoreGameElements.i.gameSave.timeToAddToStreak = .45f;
+                break;
+            case PlayerSkills.SkillType.addedStreakTime_3:
+                CoreGameElements.i.gameSave.timeToAddToStreak = .75f;
+                break;
+        }
     }
 
     void Start()
@@ -97,11 +124,12 @@ public class ScoreController : MonoBehaviour
         if (!canStackScore)
         {
             spawnTime = Time.time;
-            lifeTime = stackedTime; //this could be an upgrade
+            lifeTime =
+                stackedTime + CoreGameElements.i.gameSave.initialStreakTime;
         }
         else
         {
-            lifeTime += .5f; //this could also be upgrade
+            lifeTime += .5f + CoreGameElements.i.gameSave.timeToAddToStreak;
 
             previousScore = totalScoreToAdd / 4; //look at this math logic
         }

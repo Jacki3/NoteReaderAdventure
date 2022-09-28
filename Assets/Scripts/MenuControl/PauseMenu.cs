@@ -158,7 +158,7 @@ public class PauseMenu : MonoBehaviour
         background.SetActive(false);
         gameCanvas.enabled = false;
         mainMenu.gameObject.SetActive(true);
-        rhythmBar.SetActive(true);
+        if (CoreGameElements.i.usingRhythm) rhythmBar.SetActive(true);
         isMainMenu = true;
 
         StartMenu.SetStartTextStatic(CoreGameElements.i.gameSave.firstRun);
@@ -221,7 +221,7 @@ public class PauseMenu : MonoBehaviour
                 mixer.SetFloat("LSequencer", currentMusicVol + 8);
                 mixer.GetFloat("BSequencer", out currentMusicVol);
                 mixer.SetFloat("BSequencer", currentMusicVol + 8);
-                rhythmBar.SetActive(true);
+                if (CoreGameElements.i.usingRhythm) rhythmBar.SetActive(true);
                 GetComponent<Canvas>().enabled = false;
                 if (CoreGameElements.i.useTutorial)
                     GameStateController.state =
@@ -591,7 +591,7 @@ public class PauseMenu : MonoBehaviour
     {
         mixer.GetFloat("MusicVol", out currentMusicVol);
         mixer.SetFloat("MusicVol", currentMusicVol + 8);
-        rhythmBar.SetActive(true);
+        if (CoreGameElements.i.usingRhythm) rhythmBar.SetActive(true);
         skillTree.SetActive(false);
         GetComponent<Canvas>().enabled = false;
         GameStateController.PauseGame(false);
@@ -626,6 +626,24 @@ public class PauseMenu : MonoBehaviour
             controlsRigid = false;
             rigidPlayerControllerScript.enabled = false;
             playerControllerScript.enabled = true;
+        }
+    }
+
+    public void RhythmSwitch(TextMeshProUGUI text)
+    {
+        bool rhythm = CoreGameElements.i.usingRhythm;
+
+        if (rhythm)
+        {
+            CoreGameElements.i.usingRhythm = false;
+            rhythmBar.SetActive(false);
+            text.text = "rhythm: off";
+        }
+        else
+        {
+            CoreGameElements.i.usingRhythm = true;
+            rhythmBar.SetActive(true);
+            text.text = "rhythm: on";
         }
     }
 

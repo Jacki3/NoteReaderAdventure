@@ -24,7 +24,13 @@ public static class PlayerSkills
         smashRadius_1,
         smashRadius_2,
         sprintDuration_1,
-        sprintDuration_2
+        sprintDuration_2,
+        addedStreakTime_1,
+        addedStreakTime_2,
+        addedStreakTime_3,
+        initialStreakTime_1,
+        initialStreakTime_2,
+        initialStreakTime_3
     }
 
     public static List<SkillType> unlockedSkills = new List<SkillType>();
@@ -101,6 +107,11 @@ public static class PlayerSkills
         {
             return true;
         }
+    }
+
+    public static void RemoveSkillPoint()
+    {
+        skillPoints--;
     }
 
     public static bool

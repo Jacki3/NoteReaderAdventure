@@ -20,6 +20,8 @@ public class RhythmEnemy : MovingObject, INotation
 
     public SoundController.Sound completeSound;
 
+    public EnemySpawner enemySpawner;
+
     private int beatDelay;
 
     private int notationsCompleted = 0;
@@ -122,6 +124,8 @@ public class RhythmEnemy : MovingObject, INotation
         ef.radius = 5;
         _explodable.explode (_spriteRenderer);
         ef.doExplosion(transform.position);
+
+        enemySpawner.RemoveEnemy(this);
     }
 
     protected virtual void TakeDamage()

@@ -55,7 +55,7 @@ public class EnemyAI : NotationEnemy
 
     public override void Damage(IDamagable damagable)
     {
-        enemySpawner.RemoveEnemy(this);
+        // enemySpawner.RemoveEnemy(this);
         base.Damage(damagable);
         Die();
     }
@@ -64,7 +64,8 @@ public class EnemyAI : NotationEnemy
     {
         if (deathSound != SoundController.Sound.None)
             SoundController.PlaySound(deathSound);
-        enemySpawner.RemoveEnemy(this);
+
+        // enemySpawner.RemoveEnemy(this);
         Die();
     }
 }

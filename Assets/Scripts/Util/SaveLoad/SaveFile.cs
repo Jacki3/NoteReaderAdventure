@@ -69,6 +69,14 @@ public class SaveFile
 
     public int noteStreak;
 
+    public float timeToAddToStreak;
+
+    public float initialStreakTime;
+
+    public float addedCamZoom;
+
+    public int highestArenaWave;
+
     public List<Board> boards = new List<Board>();
 
     [System.Serializable]

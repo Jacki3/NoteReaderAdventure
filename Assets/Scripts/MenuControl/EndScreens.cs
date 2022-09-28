@@ -54,6 +54,44 @@ public class EndScreens : MonoBehaviour
         lifeLostScreen.SetActive(true);
         EventSystem.current.SetSelectedGameObject (firstButton);
         GameStateController.state = GameStateController.States.GameComplete;
+        if (CoreGameElements.i.arenaMode)
+        {
+            int highestWave = CoreGameElements.i.gameSave.highestArenaWave;
+            UIController
+                .UpdateTextUI(UIController.UITextComponents.gameOverHighestWave,
+                "best: " + highestWave);
+            int currentWave = EnemySpawner.currentWave;
+            UIController
+                .UpdateTextUI(UIController.UITextComponents.gameOverCurrentWave,
+                "latest: " + currentWave);
+
+            if (currentWave > highestWave)
+            {
+                UIController
+                    .UpdateTextUI(UIController
+                        .UITextComponents
+                        .gameOverNewScore,
+                    "new high score!");
+            }
+            else
+            {
+                UIController
+                    .UpdateTextUI(UIController
+                        .UITextComponents
+                        .gameOverHighestWave,
+                    "");
+                UIController
+                    .UpdateTextUI(UIController
+                        .UITextComponents
+                        .gameOverCurrentWave,
+                    "");
+                UIController
+                    .UpdateTextUI(UIController
+                        .UITextComponents
+                        .gameOverNewScore,
+                    "");
+            }
+        }
     }
 
     public void ShowGameComplete()

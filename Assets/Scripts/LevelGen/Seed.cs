@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 using Random = UnityEngine.Random;
 
@@ -27,6 +28,8 @@ public class Seed : MonoBehaviour
     public bool usingCustomLvl;
 
     public int customLevelNum;
+
+    public Light2D mainLights;
 
     public int[] customLevels;
 
@@ -141,6 +144,8 @@ public class Seed : MonoBehaviour
         }
         currentLevel = levelToLoad;
 
+        mainLights.enabled = true;
+
         usingCustomLvl = false;
 
         string UILevelName = "Level " + levelToLoad;
@@ -166,6 +171,13 @@ public class Seed : MonoBehaviour
                     GameStateController.state =
                         GameStateController.States.Tutorial;
                     TutorialManager.LoadTutorial();
+                }
+                else if (i == 1)
+                {
+                    //arena mode
+                    CoreGameElements.i.useTutorial = false;
+                    GameStateController.state = GameStateController.States.Play;
+                    mainLights.enabled = false;
                 }
                 else
                 {

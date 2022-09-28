@@ -121,42 +121,22 @@ public class RigidPlayerController : MovingObject, IShopCustomer
                 camShake.fadeInTime,
                 camShake.fadeOutTime);
 
-            //animate movement here
-            if (AudioController.canPlay)
+            if (CoreGameElements.i.usingRhythm)
             {
-                SoundController.PlaySound(SoundController.Sound.ButtonClick);
-                CoreGameElements.i.currentRhythmStreak++;
-                UIController
-                    .UpdateTextUI(UIController
-                        .UITextComponents
-                        .currentRhythmStreak,
-                    CoreGameElements.i.currentRhythmStreak.ToString());
-
-                int savedRhythmStreak =
-                    CoreGameElements.i.gameSave.rhythmStreak;
-                int currentRhythmStreak =
-                    CoreGameElements.i.currentRhythmStreak;
-                if (currentRhythmStreak > savedRhythmStreak)
+                //this only accounts for rhytym movement - you must move the streak logic to score controller
+                if (AudioController.canPlay)
                 {
-                    CoreGameElements.i.gameSave.rhythmStreak =
-                        currentRhythmStreak;
-                    UIController
-                        .UpdateTextUI(UIController
-                            .UITextComponents
-                            .rhythmStreak,
-                        currentRhythmStreak.ToString());
+                    SoundController
+                        .PlaySound(SoundController.Sound.ButtonClick);
+                }
+                else
+                {
+                    SoundController
+                        .PlaySound(SoundController.Sound.IncorectNote);
                 }
             }
             else
-            {
-                SoundController.PlaySound(SoundController.Sound.IncorectNote);
-                CoreGameElements.i.currentRhythmStreak = 0;
-                UIController
-                    .UpdateTextUI(UIController
-                        .UITextComponents
-                        .currentRhythmStreak,
-                    CoreGameElements.i.currentRhythmStreak.ToString());
-            }
+                SoundController.PlaySound(SoundController.Sound.ButtonClick);
         }
         base.AttemptMove<T>(xDir, yDir);
     }
