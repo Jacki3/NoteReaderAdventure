@@ -138,6 +138,7 @@ public class MusicGenController : MonoBehaviour
 
     private void DisableAllMusic()
     {
+        musicSource.clip = null;
         musicSource.Stop();
 
         foreach (SequenceGenerator sequenceGenerator in sequenceGenerators)

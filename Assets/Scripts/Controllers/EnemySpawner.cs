@@ -50,6 +50,7 @@ public class EnemySpawner : MonoBehaviour
     {
         Invoke("StartSpawning", 5);
         CoreGameElements.i.arenaMode = true;
+        MusicGenController.DisableMusic();
     }
 
     void StartSpawning()
