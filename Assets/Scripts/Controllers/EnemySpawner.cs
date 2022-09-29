@@ -40,9 +40,11 @@ public class EnemySpawner : MonoBehaviour
 
     public static int currentWave;
 
-    private int totalEnemies;
+    public int totalEnemies;
 
     private bool waitToGo;
+
+    private int difficultyAddition = 0;
 
     private void OnEnable()
     {
@@ -86,14 +88,24 @@ public class EnemySpawner : MonoBehaviour
 
     void WaveCompleted()
     {
+        UIController
+            .UpdateTextUI(UIController.UITextComponents.arenaWinText,
+            "wave complete!");
+
         spawnState = SpawnState.counting;
         waveCountDown = timeBetweenWaves;
 
         if (nextWave + 1 > waves.Length - 1)
         {
-            nextWave = 0; //add a way to increase difficulty
+            currentWave++;
+            difficultyAddition += 2; //hard code
 
+            nextWave = 0;
+            DifficultyPicker.SetArenaDifficulty (nextWave);
+
+            //
             //if you want to complete the wave system
+            //
             // GameStateController.PauseGame(true);
             // UIController
             //     .UpdateTextUI(UIController.UITextComponents.arenaWinText,
@@ -101,10 +113,12 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
+            //progress notes here
             nextWave++;
-            currentWave = nextWave;
+            DifficultyPicker.SetArenaDifficulty (nextWave);
+            currentWave++;
             int highestWave = CoreGameElements.i.gameSave.highestArenaWave;
-            if (nextWave > highestWave)
+            if (currentWave > highestWave)
                 CoreGameElements.i.gameSave.highestArenaWave = currentWave;
             UIController
                 .UpdateTextUI(UIController.UITextComponents.highestWaveStat,
@@ -114,9 +128,14 @@ public class EnemySpawner : MonoBehaviour
 
     bool EnemiesLeft() => totalEnemies > 0;
 
+    IEnumerator WaitToSpawn(bool reset)
+    {
+        yield return new WaitForSeconds(1.5f);
+    }
+
     IEnumerator SpawnWave(Wave _wave)
     {
-        totalEnemies = _wave.count;
+        totalEnemies = _wave.count + difficultyAddition;
         spawnState = SpawnState.spawning;
 
         List<Transform> newSpawns = new List<Transform>();
@@ -124,11 +143,11 @@ public class EnemySpawner : MonoBehaviour
 
         UIController
             .UpdateTextUI(UIController.UITextComponents.arenaWinText,
-            "Wave " + (nextWave + 1));
+            "Wave " + (currentWave + 1));
         yield return new WaitForSeconds(2);
         UIController
             .UpdateTextUI(UIController.UITextComponents.arenaWinText, "");
-        for (int i = 0; i < _wave.count; i++)
+        for (int i = 0; i < _wave.count + difficultyAddition; i++)
         {
             int randIndex = Random.Range(0, _wave.enemies.Length);
             var randEnemy = _wave.enemies[randIndex];
@@ -165,9 +184,13 @@ public class EnemySpawner : MonoBehaviour
 
     public void ResetSpawner()
     {
-        foreach (RhythmEnemy enemy in enemies) Destroy(enemy.gameObject);
+        waitToGo = false;
         spawnState = SpawnState.counting;
         nextWave = 0;
+        currentWave = 0;
+        foreach (RhythmEnemy enemy in enemies) Destroy(enemy.gameObject);
+        UIController
+            .UpdateTextUI(UIController.UITextComponents.arenaWinText, "");
     }
 
     private void OnDisable()

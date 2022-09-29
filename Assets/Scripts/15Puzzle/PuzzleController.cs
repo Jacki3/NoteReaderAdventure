@@ -62,14 +62,11 @@ public class PuzzleController : MonoBehaviour
                 numberSprites = letterSprites;
             else if (seed.currentLevel >= 10 && seed.currentLevel < 35)
             {
-                if (Random.value > .5f) numberSprites = trebleSprites;
+                numberSprites = trebleSprites;
             }
             else if (seed.currentLevel >= 35)
             {
-                if (Random.value > .5f)
-                    numberSprites = trebleSpritesHigh;
-                else
-                    numberSprites = bassSpritesHigh;
+                numberSprites = trebleSpritesHigh;
             }
 
             puzzleCanvas.enabled = true;
@@ -119,8 +116,6 @@ public class PuzzleController : MonoBehaviour
             }
         }
     }
-
-
 
     private void ClickToMoveTile(int x, int y)
     {

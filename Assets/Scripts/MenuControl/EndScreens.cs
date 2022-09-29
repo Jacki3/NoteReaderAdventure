@@ -114,6 +114,7 @@ public class EndScreens : MonoBehaviour
 
     private void HideScreens()
     {
+        GameStateController.PauseGame(true);
         canvas.enabled = false;
         lifeLostScreen.SetActive(false);
     }

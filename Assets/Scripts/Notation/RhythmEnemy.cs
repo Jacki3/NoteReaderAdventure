@@ -89,8 +89,6 @@ public class RhythmEnemy : MovingObject, INotation
 
     public void NotationComplete()
     {
-        print("notation complete");
-
         LevelController.i.levelLoader.boardController.RemoveNotationFromList (
             transform
         );

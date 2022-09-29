@@ -164,7 +164,6 @@ public class Seed : MonoBehaviour
                 UILevelName = customLevel[i].levelName;
                 customLevel[i].levelObj.SetActive(true);
                 levelController.ResetPlayerPos();
-                MusicGenController.StartCustomLvlMusic_Static();
                 if (i == 0)
                 {
                     CoreGameElements.i.useTutorial = true;
@@ -184,6 +183,7 @@ public class Seed : MonoBehaviour
                     CoreGameElements.i.useTutorial = false;
                     GameStateController.state = GameStateController.States.Play;
                     totalNotations = customLevel[i].levelNotations.Count;
+                    MusicGenController.StartCustomLvlMusic_Static();
                 }
             }
         }

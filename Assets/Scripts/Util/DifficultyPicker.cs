@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
 
 public static class DifficultyPicker
 {
@@ -62,79 +63,100 @@ public static class DifficultyPicker
         hardestRange.minimum = superHardRange.maximum;
         hardestRange.maximum = CoreGameElements.i.totalLevels + 1;
 
-        if (IsWithinRange(beginnerRange.minimum, beginnerRange.maximum, level))
+        if (!CoreGameElements.i.arenaMode)
         {
-            CoreGameElements.i.currentDifficulty =
-                CoreGameElements.Difficuties.absoluteBeginner;
-            AudioController.helmClock.bpm = 90;
+            if (
+                IsWithinRange(beginnerRange.minimum,
+                beginnerRange.maximum,
+                level)
+            )
+            {
+                CoreGameElements.i.currentDifficulty =
+                    CoreGameElements.Difficuties.absoluteBeginner;
+                AudioController.helmClock.bpm = 90;
+            }
+            else if (
+                IsWithinRange(veryEasyRange.minimum,
+                veryEasyRange.maximum,
+                level)
+            )
+            {
+                CoreGameElements.i.currentDifficulty =
+                    CoreGameElements.Difficuties.veryEasy;
+                AudioController.helmClock.bpm = 90;
+            }
+            else if (IsWithinRange(easyRange.minimum, easyRange.maximum, level))
+            {
+                CoreGameElements.i.currentDifficulty =
+                    CoreGameElements.Difficuties.easy;
+                AudioController.helmClock.bpm = 90;
+            }
+            else if (IsWithinRange(medRange.minimum, medRange.maximum, level))
+            {
+                CoreGameElements.i.currentDifficulty =
+                    CoreGameElements.Difficuties.medium;
+                AudioController.helmClock.bpm = 90;
+            }
+            else if (
+                IsWithinRange(intermeidateRange.minimum,
+                intermeidateRange.maximum,
+                level)
+            )
+            {
+                CoreGameElements.i.currentDifficulty =
+                    CoreGameElements.Difficuties.intermediate;
+                AudioController.helmClock.bpm = 90;
+            }
+            else if (IsWithinRange(hardRange.minimum, hardRange.maximum, level))
+            {
+                CoreGameElements.i.currentDifficulty =
+                    CoreGameElements.Difficuties.hard;
+                AudioController.helmClock.bpm = 90;
+            }
+            else if (
+                IsWithinRange(veryHardrange.minimum,
+                veryHardrange.maximum,
+                level)
+            )
+            {
+                CoreGameElements.i.currentDifficulty =
+                    CoreGameElements.Difficuties.veryHard;
+                AudioController.helmClock.bpm = 95;
+            }
+            else if (
+                IsWithinRange(ultraHardRange.minimum,
+                ultraHardRange.maximum,
+                level)
+            )
+            {
+                CoreGameElements.i.currentDifficulty =
+                    CoreGameElements.Difficuties.ultraHard;
+                AudioController.helmClock.bpm = 95;
+            }
+            else if (
+                IsWithinRange(superHardRange.minimum,
+                superHardRange.maximum,
+                level)
+            )
+            {
+                CoreGameElements.i.currentDifficulty =
+                    CoreGameElements.Difficuties.superHard;
+                AudioController.helmClock.bpm = 100;
+            }
+            else if (
+                IsWithinRange(hardestRange.minimum, hardestRange.maximum, level)
+            )
+            {
+                CoreGameElements.i.currentDifficulty =
+                    CoreGameElements.Difficuties.hardest;
+                AudioController.helmClock.bpm = 105;
+            }
         }
-        else if (
-            IsWithinRange(veryEasyRange.minimum, veryEasyRange.maximum, level)
-        )
-        {
-            CoreGameElements.i.currentDifficulty =
-                CoreGameElements.Difficuties.veryEasy;
-            AudioController.helmClock.bpm = 90;
-        }
-        else if (IsWithinRange(easyRange.minimum, easyRange.maximum, level))
-        {
-            CoreGameElements.i.currentDifficulty =
-                CoreGameElements.Difficuties.easy;
-            AudioController.helmClock.bpm = 90;
-        }
-        else if (IsWithinRange(medRange.minimum, medRange.maximum, level))
-        {
-            CoreGameElements.i.currentDifficulty =
-                CoreGameElements.Difficuties.medium;
-            AudioController.helmClock.bpm = 90;
-        }
-        else if (
-            IsWithinRange(intermeidateRange.minimum,
-            intermeidateRange.maximum,
-            level)
-        )
-        {
-            CoreGameElements.i.currentDifficulty =
-                CoreGameElements.Difficuties.intermediate;
-            AudioController.helmClock.bpm = 90;
-        }
-        else if (IsWithinRange(hardRange.minimum, hardRange.maximum, level))
-        {
-            CoreGameElements.i.currentDifficulty =
-                CoreGameElements.Difficuties.hard;
-            AudioController.helmClock.bpm = 90;
-        }
-        else if (
-            IsWithinRange(veryHardrange.minimum, veryHardrange.maximum, level)
-        )
-        {
-            CoreGameElements.i.currentDifficulty =
-                CoreGameElements.Difficuties.veryHard;
-            AudioController.helmClock.bpm = 95;
-        }
-        else if (
-            IsWithinRange(ultraHardRange.minimum, ultraHardRange.maximum, level)
-        )
-        {
-            CoreGameElements.i.currentDifficulty =
-                CoreGameElements.Difficuties.ultraHard;
-            AudioController.helmClock.bpm = 95;
-        }
-        else if (
-            IsWithinRange(superHardRange.minimum, superHardRange.maximum, level)
-        )
-        {
-            CoreGameElements.i.currentDifficulty =
-                CoreGameElements.Difficuties.superHard;
-            AudioController.helmClock.bpm = 100;
-        }
-        else if (
-            IsWithinRange(hardestRange.minimum, hardestRange.maximum, level)
-        )
+        else
         {
             CoreGameElements.i.currentDifficulty =
                 CoreGameElements.Difficuties.hardest;
-            AudioController.helmClock.bpm = 105;
+            AudioController.helmClock.bpm = 100;
         }
     }
 
@@ -216,95 +238,178 @@ public static class DifficultyPicker
         seventeen.minimum = sixteen.maximum;
         seventeen.maximum = CoreGameElements.i.totalLevels + 1;
 
-        if (IsWithinRange(one.minimum, one.maximum, level))
+        if (!CoreGameElements.i.arenaMode)
+        {
+            if (IsWithinRange(one.minimum, one.maximum, level))
+            {
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.one;
+            }
+            else if (IsWithinRange(two.minimum, two.maximum, level))
+            {
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.two;
+            }
+            else if (IsWithinRange(three.minimum, three.maximum, level))
+            {
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.three;
+            }
+            else if (IsWithinRange(four.minimum, four.maximum, level))
+            {
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.four;
+            }
+            else if (IsWithinRange(five.minimum, five.maximum, level))
+            {
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.five;
+            }
+            else if (IsWithinRange(six.minimum, six.maximum, level))
+            {
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.six;
+            }
+            else if (IsWithinRange(seven.minimum, seven.maximum, level))
+            {
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.seven;
+            }
+            else if (IsWithinRange(eight.minimum, eight.maximum, level))
+            {
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.eight;
+            }
+            else if (IsWithinRange(nine.minimum, nine.maximum, level))
+            {
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.nine;
+            }
+            else if (IsWithinRange(ten.minimum, ten.maximum, level))
+            {
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.ten;
+            }
+            else if (IsWithinRange(eleven.minimum, eleven.maximum, level))
+            {
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.eleven;
+            }
+            else if (IsWithinRange(twelve.minimum, twelve.maximum, level))
+            {
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.twelve;
+            }
+            else if (IsWithinRange(thirteen.minimum, thirteen.maximum, level))
+            {
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.thirteen;
+            }
+            else if (IsWithinRange(fourteen.minimum, fourteen.maximum, level))
+            {
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.fourteen;
+            }
+            else if (IsWithinRange(fifteen.minimum, fifteen.maximum, level))
+            {
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.fifteen;
+            }
+            else if (IsWithinRange(sixteen.minimum, sixteen.maximum, level))
+            {
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.sixteen;
+            }
+            else if (IsWithinRange(seventeen.minimum, seventeen.maximum, level))
+            {
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.seventeen;
+            }
+        }
+        else
         {
             CoreGameElements.i.currentDifficultyNotes =
                 CoreGameElements.DifficutiesNotes.one;
-        }
-        else if (IsWithinRange(two.minimum, two.maximum, level))
-        {
-            CoreGameElements.i.currentDifficultyNotes =
-                CoreGameElements.DifficutiesNotes.two;
-        }
-        else if (IsWithinRange(three.minimum, three.maximum, level))
-        {
-            CoreGameElements.i.currentDifficultyNotes =
-                CoreGameElements.DifficutiesNotes.three;
-        }
-        else if (IsWithinRange(four.minimum, four.maximum, level))
-        {
-            CoreGameElements.i.currentDifficultyNotes =
-                CoreGameElements.DifficutiesNotes.four;
-        }
-        else if (IsWithinRange(five.minimum, five.maximum, level))
-        {
-            CoreGameElements.i.currentDifficultyNotes =
-                CoreGameElements.DifficutiesNotes.five;
-        }
-        else if (IsWithinRange(six.minimum, six.maximum, level))
-        {
-            CoreGameElements.i.currentDifficultyNotes =
-                CoreGameElements.DifficutiesNotes.six;
-        }
-        else if (IsWithinRange(seven.minimum, seven.maximum, level))
-        {
-            CoreGameElements.i.currentDifficultyNotes =
-                CoreGameElements.DifficutiesNotes.seven;
-        }
-        else if (IsWithinRange(eight.minimum, eight.maximum, level))
-        {
-            CoreGameElements.i.currentDifficultyNotes =
-                CoreGameElements.DifficutiesNotes.eight;
-        }
-        else if (IsWithinRange(nine.minimum, nine.maximum, level))
-        {
-            CoreGameElements.i.currentDifficultyNotes =
-                CoreGameElements.DifficutiesNotes.nine;
-        }
-        else if (IsWithinRange(ten.minimum, ten.maximum, level))
-        {
-            CoreGameElements.i.currentDifficultyNotes =
-                CoreGameElements.DifficutiesNotes.ten;
-        }
-        else if (IsWithinRange(eleven.minimum, eleven.maximum, level))
-        {
-            CoreGameElements.i.currentDifficultyNotes =
-                CoreGameElements.DifficutiesNotes.eleven;
-        }
-        else if (IsWithinRange(twelve.minimum, twelve.maximum, level))
-        {
-            CoreGameElements.i.currentDifficultyNotes =
-                CoreGameElements.DifficutiesNotes.twelve;
-        }
-        else if (IsWithinRange(thirteen.minimum, thirteen.maximum, level))
-        {
-            CoreGameElements.i.currentDifficultyNotes =
-                CoreGameElements.DifficutiesNotes.thirteen;
-        }
-        else if (IsWithinRange(fourteen.minimum, fourteen.maximum, level))
-        {
-            CoreGameElements.i.currentDifficultyNotes =
-                CoreGameElements.DifficutiesNotes.fourteen;
-        }
-        else if (IsWithinRange(fifteen.minimum, fifteen.maximum, level))
-        {
-            CoreGameElements.i.currentDifficultyNotes =
-                CoreGameElements.DifficutiesNotes.fifteen;
-        }
-        else if (IsWithinRange(sixteen.minimum, sixteen.maximum, level))
-        {
-            CoreGameElements.i.currentDifficultyNotes =
-                CoreGameElements.DifficutiesNotes.sixteen;
-        }
-        else if (IsWithinRange(seventeen.minimum, seventeen.maximum, level))
-        {
-            CoreGameElements.i.currentDifficultyNotes =
-                CoreGameElements.DifficutiesNotes.seventeen;
         }
     }
 
     private static bool IsWithinRange(int min, int max, int value)
     {
         return value < max && value > min;
+    }
+
+    public static void SetArenaDifficulty(int wave)
+    {
+        switch (wave)
+        {
+            case 0:
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.one;
+                break;
+            case 1:
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.two;
+                break;
+            case 2:
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.three;
+                break;
+            case 3:
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.four;
+                break;
+            case 4:
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.five;
+                break;
+            case 5:
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.six;
+                break;
+            case 6:
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.seven;
+                break;
+            case 7:
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.eight;
+                break;
+            case 8:
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.nine;
+                break;
+            case 9:
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.ten;
+                break;
+            case 10:
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.eleven;
+                break;
+            case 11:
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.twelve;
+                break;
+            case 12:
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.thirteen;
+                break;
+            case 13:
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.fourteen;
+                break;
+            case 14:
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.fifteen;
+                break;
+            case 15:
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.sixteen;
+                break;
+            case 16:
+                CoreGameElements.i.currentDifficultyNotes =
+                    CoreGameElements.DifficutiesNotes.seventeen;
+                break;
+        }
     }
 }
