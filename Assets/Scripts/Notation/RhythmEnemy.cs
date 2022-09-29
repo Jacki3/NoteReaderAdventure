@@ -123,7 +123,7 @@ public class RhythmEnemy : MovingObject, INotation
         _explodable.explode (_spriteRenderer);
         ef.doExplosion(transform.position);
 
-        enemySpawner.RemoveEnemy(this);
+        if (enemySpawner != null) enemySpawner.RemoveEnemy(this);
     }
 
     protected virtual void TakeDamage()

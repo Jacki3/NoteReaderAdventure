@@ -94,7 +94,7 @@ public class ItemShopController : MonoBehaviour
                     Tooltip
                         .SetToolTip_Static("health already full!",
                         currentShopButton.transform.localPosition,
-                        currentShopButton.transform.root);
+                        transform);
                 }
             }
             else if (itemType == CoreItems.ItemType.shield)
@@ -109,7 +109,7 @@ public class ItemShopController : MonoBehaviour
                     Tooltip
                         .SetToolTip_Static("Already got a shield!",
                         currentShopButton.transform.localPosition,
-                        currentShopButton.transform.root);
+                        transform);
                 }
                 else
                 {
@@ -129,7 +129,7 @@ public class ItemShopController : MonoBehaviour
                     Tooltip
                         .SetToolTip_Static("Already got a shield!",
                         currentShopButton.transform.localPosition,
-                        currentShopButton.transform.root);
+                        transform);
                 }
                 else
                 {
@@ -149,7 +149,7 @@ public class ItemShopController : MonoBehaviour
                 Tooltip
                     .SetToolTip_Static("Already got item!",
                     currentShopButton.transform.localPosition,
-                    currentShopButton.transform.root);
+                    transform);
             }
             else if (
                 item.isUsable &&
@@ -160,7 +160,7 @@ public class ItemShopController : MonoBehaviour
                 Tooltip
                     .SetToolTip_Static("Already got item!",
                     currentShopButton.transform.localPosition,
-                    currentShopButton.transform.root);
+                    transform);
             }
             else
             {
@@ -175,7 +175,7 @@ public class ItemShopController : MonoBehaviour
             Tooltip
                 .SetToolTip_Static("not enough coins!",
                 currentShopButton.transform.localPosition,
-                currentShopButton.transform.root);
+                transform);
         }
 
         CoreGameElements.i.gameSave.playerCoins =

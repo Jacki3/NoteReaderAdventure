@@ -115,7 +115,7 @@ public static class PlayerSkills
     }
 
     public static bool
-    CanUnlock(SkillType skillType, RectTransform toolTipSpawn)
+    CanUnlock(SkillType skillType, RectTransform toolTipSpawn, Transform parent)
     {
         int skillPointsRequired = GetSkillType(skillType).skillPointsRequired;
         if (IsSkillUnlocked(skillType))
@@ -123,7 +123,7 @@ public static class PlayerSkills
             Tooltip
                 .SetToolTip_Static("Skill Already Unlocked!",
                 toolTipSpawn.localPosition,
-                toolTipSpawn.root);
+                parent);
             SoundController.PlaySound(SoundController.Sound.IncorectNote);
             return false;
         }
@@ -149,7 +149,7 @@ public static class PlayerSkills
                         GetSkillType(skillType).skillName +
                         "\n",
                         toolTipSpawn.localPosition,
-                        toolTipSpawn.root);
+                        parent);
                     UnlockSkill (skillType);
                     return true;
                 }
@@ -158,7 +158,7 @@ public static class PlayerSkills
                     Tooltip
                         .SetToolTip_Static("Not Enough Skill Points!",
                         toolTipSpawn.localPosition,
-                        toolTipSpawn.root);
+                        parent);
                     SoundController
                         .PlaySound(SoundController.Sound.IncorectNote);
                     return false;
@@ -171,7 +171,7 @@ public static class PlayerSkills
                     .SetToolTip_Static("Requires Skill: " +
                     GetSkillType(skillRequired).skillName,
                     toolTipSpawn.localPosition,
-                    toolTipSpawn.root);
+                    parent);
                 SoundController.PlaySound(SoundController.Sound.IncorectNote);
                 return false;
             }

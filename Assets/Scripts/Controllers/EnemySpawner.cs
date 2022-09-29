@@ -9,7 +9,8 @@ public class EnemySpawner : MonoBehaviour
     {
         spawning,
         waiting,
-        counting
+        counting,
+        complete
     }
 
     [System.Serializable]
@@ -65,7 +66,7 @@ public class EnemySpawner : MonoBehaviour
         {
             if (!EnemiesLeft())
             {
-                WaveCompleted();
+                StartCoroutine(WaveComplete());
                 return;
             }
             else
@@ -73,7 +74,10 @@ public class EnemySpawner : MonoBehaviour
         }
         if (waveCountDown <= 0)
         {
-            if (spawnState != SpawnState.spawning)
+            if (
+                spawnState != SpawnState.spawning &&
+                spawnState != SpawnState.complete
+            )
             {
                 StartCoroutine(SpawnWave(waves[nextWave]));
             }
@@ -87,12 +91,18 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    void WaveCompleted()
+    IEnumerator WaveComplete()
     {
+        spawnState = SpawnState.complete;
         UIController
             .UpdateTextUI(UIController.UITextComponents.arenaWinText,
-            "wave complete!");
+            "wave " + (currentWave + 1) + " beaten!");
+        yield return new WaitForSeconds(2f);
+        WaveCompleted();
+    }
 
+    void WaveCompleted()
+    {
         spawnState = SpawnState.counting;
         waveCountDown = timeBetweenWaves;
 

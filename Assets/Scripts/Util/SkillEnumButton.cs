@@ -15,12 +15,10 @@ public class SkillEnumButton : MonoBehaviour, ISelectHandler
             skillLine,
             backGround;
 
-    private PauseMenu pauseMenu;
+    public PauseMenu pauseMenu;
 
     void Start()
     {
-        pauseMenu = transform.root.GetComponent<PauseMenu>();
-
         UpdateSkillUI();
     }
 
@@ -53,12 +51,17 @@ public class SkillEnumButton : MonoBehaviour, ISelectHandler
             "\n\n" +
             currentSkill.skillDescription,
             toolTipSpawn.localPosition,
-            transform.root);
+            pauseMenu.transform);
     }
 
     public void UnlockSkill(SkillEnumButton enumScript)
     {
-        if (PlayerSkills.CanUnlock(enumScript.skillType, toolTipSpawn))
+        if (
+            PlayerSkills
+                .CanUnlock(enumScript.skillType,
+                toolTipSpawn,
+                pauseMenu.transform)
+        )
         {
             UpdateUI(true);
             pauseMenu.HideSkillMenu();
