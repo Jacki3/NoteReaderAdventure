@@ -151,6 +151,8 @@ public class RigidPlayerController : MovingObject, IShopCustomer
         StoneCube cube = Component as StoneCube;
         DoorLayerUnlocker door = Component as DoorLayerUnlocker;
 
+        print (Component);
+
         if (Component == rhythmEnemy)
         {
             LoseHealth(rhythmEnemy.playerDmg);

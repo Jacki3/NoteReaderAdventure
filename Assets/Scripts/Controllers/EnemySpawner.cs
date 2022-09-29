@@ -86,12 +86,17 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    void WaveCompleted()
+    IEnumerator WaveComplete()
     {
         UIController
             .UpdateTextUI(UIController.UITextComponents.arenaWinText,
             "wave complete!");
+        yield return new WaitForSeconds(1.5f);
+        WaveCompleted();
+    }
 
+    void WaveCompleted()
+    {
         spawnState = SpawnState.counting;
         waveCountDown = timeBetweenWaves;
 
