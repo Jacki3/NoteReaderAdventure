@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -43,7 +44,7 @@ public class StartMenu : MonoBehaviour
 
     private bool levelsVisible;
 
-    private List<LevelButton> levelButtons = new List<LevelButton>();
+    public List<LevelButton> levelButtons = new List<LevelButton>();
 
     private static StartMenu i;
 
@@ -209,6 +210,42 @@ public class StartMenu : MonoBehaviour
             else
                 levelButtons[i].SetScoreText("???");
         }
+
+        UpdateCustomLevelButtons();
+        UpdateArenaButton();
+    }
+
+    private void UpdateCustomLevelButtons()
+    {
+        int[] levels = LevelController.i.levelLoader.customLevels;
+        var customLevels = CoreGameElements.i.gameSave.customLevels;
+
+        for (int i = 0; i < customLevels.Length; i++)
+        {
+            int buttonIndex = levels[i] - 1;
+            int levelScore = 0;
+            if (customLevels[i] != null)
+            {
+                levelScore = customLevels[i].highScore;
+                if (customLevels[i].scrollCollected)
+                    levelButtons[buttonIndex].SetCrown(); //could be something else but this ok for now?
+            }
+            if (levelScore > 0)
+                levelButtons[buttonIndex].SetScoreText(levelScore.ToString());
+            else
+                levelButtons[buttonIndex].SetScoreText("???");
+        }
+    }
+
+    public static void UpdateArenaHighScore()
+    {
+        i.UpdateArenaButton();
+    }
+
+    public void UpdateArenaButton()
+    {
+        int highScore = CoreGameElements.i.gameSave.arenaHighScore;
+        levelButtons[1].SetScoreText(highScore.ToString());
     }
 
     public void ShowOptions()

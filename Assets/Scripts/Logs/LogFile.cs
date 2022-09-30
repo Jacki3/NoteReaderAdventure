@@ -15,7 +15,7 @@ public static class LogFile
     {
         fileName =
             CoreGameElements.i.gameSave.userIndex + "_GAME DATA_" + ".csv";
-        wholeFilePath = Application.dataPath + "/" + fileName;
+        wholeFilePath = Application.persistentDataPath + "/" + fileName;
 
         StreamWriter tw = new StreamWriter(wholeFilePath, true);
 

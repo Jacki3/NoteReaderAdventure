@@ -46,6 +46,8 @@ public class Seed : MonoBehaviour
 
         public bool scrollUnlocked;
 
+        public int levelScore;
+
         public List<Notation> levelNotations = new List<Notation>();
 
         public bool AllNotationsComplete() => levelNotations.Count <= 0;
@@ -101,7 +103,7 @@ public class Seed : MonoBehaviour
         {
             SaveFile.Board newBoard = new SaveFile.Board();
 
-            gameSeed = "LvlBuilder9_";
+            gameSeed = "LvlBuilder10_";
             defaultGameSeed = gameSeed;
             gameSeed += level;
             currentSeed = gameSeed.GetHashCode();
@@ -152,6 +154,8 @@ public class Seed : MonoBehaviour
 
         DifficultyPicker.ChooseDifficultyOnLevel (currentLevel);
         DifficultyPicker.ChooseDifficultyOnLevelNotes (currentLevel);
+
+        ScoreController.ResetScoreStatic();
 
         HideCustomLevel();
 

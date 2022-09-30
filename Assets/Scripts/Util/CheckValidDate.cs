@@ -29,7 +29,13 @@ public class CheckValidDate : MonoBehaviour
 
         string downloadLocation =
             Application.persistentDataPath + "/" + fileName;
-        ftpClient.download("Study4/endDate.txt", @downloadLocation);
+        ftpClient
+            .download("Study4/" +
+            "GameData/" +
+            CoreGameElements.i.gameSave.userIndex +
+            "/" +
+            "endDate.txt",
+            @downloadLocation);
 
         StreamReader sr =
             new StreamReader(Application.persistentDataPath + "/" + fileName);

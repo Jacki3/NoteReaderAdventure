@@ -33,8 +33,8 @@ public class InternetChecker : MonoBehaviour
             }
             else
             {
-                warningScreen.SetActive(true);
-                mainGame.SetActive(false);
+                // warningScreen.SetActive(true);
+                // mainGame.SetActive(false);
                 hasInternet = false;
             }
 

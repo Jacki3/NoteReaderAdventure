@@ -191,14 +191,15 @@ MonoBehaviour:
   blockingLayer:
     serializedVersion: 2
     m_Bits: 8388608
-  scoreToAdd: 25
-  XPToAdd: 50
+  scoreToAdd: 10
+  XPToAdd: 5
   playerDmg: 1
   notationsToComplete: 1
   minDelay: 4
   maxDelay: 8
   missionObject: 9
   completeSound: 0
+  enemySpawner: {fileID: 0}
 --- !u!1001 &1012259606837556049
 PrefabInstance:
   m_ObjectHideFlags: 0

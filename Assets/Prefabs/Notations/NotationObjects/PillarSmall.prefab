@@ -126,10 +126,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   notationsToComplete: 1
-  XPToAdd: 0
-  scoreToAdd: 5
+  XPToAdd: 20
+  scoreToAdd: 20
   animator: {fileID: 0}
-  missionObject: 2
+  missionObject: 9
   sound: 18
   glow: {fileID: 2273762794208105488}
   gateGlow: {fileID: 0}

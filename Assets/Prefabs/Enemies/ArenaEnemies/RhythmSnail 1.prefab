@@ -191,7 +191,7 @@ MonoBehaviour:
   blockingLayer:
     serializedVersion: 2
     m_Bits: 8388608
-  scoreToAdd: 25
+  scoreToAdd: 10
   XPToAdd: 0
   playerDmg: 1
   notationsToComplete: 1

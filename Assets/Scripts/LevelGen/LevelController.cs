@@ -60,10 +60,40 @@ public class LevelController : MonoBehaviour
         int currentLevel = levelLoader.currentLevel;
 
         int score = ScoreController.GetScoreStatic();
-        int highScore =
-            CoreGameElements.i.gameSave.boards[currentLevel - 1].score;
-        if (score > highScore)
-            CoreGameElements.i.gameSave.boards[currentLevel - 1].score = score;
+        if (!levelLoader.usingCustomLvl)
+        {
+            int highScore =
+                CoreGameElements.i.gameSave.boards[currentLevel - 1].score;
+            if (score > highScore)
+                CoreGameElements.i.gameSave.boards[currentLevel - 1].score =
+                    score;
+        }
+        else
+        {
+            int customLevelIndex = levelLoader.customLevelNum;
+            int customLevelHighScore =
+                CoreGameElements
+                    .i
+                    .gameSave
+                    .customLevels[customLevelIndex]
+                    .highScore;
+
+            if (score > customLevelHighScore)
+            {
+                CoreGameElements
+                    .i
+                    .gameSave
+                    .customLevels[customLevelIndex]
+                    .highScore = score;
+            }
+
+            CoreGameElements
+                .i
+                .gameSave
+                .customLevels[customLevelIndex]
+                .scrollCollected =
+                levelLoader.customLevel[customLevelIndex].scrollUnlocked;
+        }
         ScoreController.ResetScoreStatic();
 
         if (currentLevel < CoreGameElements.i.totalLevels)

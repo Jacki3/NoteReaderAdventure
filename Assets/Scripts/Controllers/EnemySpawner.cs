@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
+
+using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -47,11 +49,19 @@ public class EnemySpawner : MonoBehaviour
 
     private int difficultyAddition = 0;
 
+    private TimeSpan startTime;
+
+    private TimeSpan endTime;
+
+    private int diffWave;
+
     private void OnEnable()
     {
         Invoke("StartSpawning", 5);
         CoreGameElements.i.arenaMode = true;
         MusicGenController.DisableMusic();
+
+        startTime = DateTime.Now.TimeOfDay;
     }
 
     void StartSpawning()
@@ -94,9 +104,24 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator WaveComplete()
     {
         spawnState = SpawnState.complete;
+        currentWave++;
+        int highestWave = CoreGameElements.i.gameSave.highestArenaWave;
+        if (currentWave > highestWave)
+            CoreGameElements.i.gameSave.highestArenaWave = currentWave;
+        UIController
+            .UpdateTextUI(UIController.UITextComponents.highestWaveStat,
+            currentWave.ToString());
+
+        int currentScore = ScoreController.GetScoreStatic();
+        int highScore = CoreGameElements.i.gameSave.arenaHighScore;
+        if (currentScore > highScore)
+        {
+            CoreGameElements.i.gameSave.arenaHighScore = currentScore;
+            StartMenu.UpdateArenaHighScore();
+        }
         UIController
             .UpdateTextUI(UIController.UITextComponents.arenaWinText,
-            "wave " + (currentWave + 1) + " beaten!");
+            "wave " + (currentWave) + " beaten!");
         yield return new WaitForSeconds(2f);
         WaveCompleted();
     }
@@ -108,11 +133,9 @@ public class EnemySpawner : MonoBehaviour
 
         if (nextWave + 1 > waves.Length - 1)
         {
-            currentWave++;
             difficultyAddition += 2; //hard code
 
             nextWave = 0;
-            DifficultyPicker.SetArenaDifficulty (nextWave);
 
             //
             //if you want to complete the wave system
@@ -124,16 +147,10 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            //progress notes here
             nextWave++;
-            DifficultyPicker.SetArenaDifficulty (nextWave);
-            currentWave++;
-            int highestWave = CoreGameElements.i.gameSave.highestArenaWave;
-            if (currentWave > highestWave)
-                CoreGameElements.i.gameSave.highestArenaWave = currentWave;
-            UIController
-                .UpdateTextUI(UIController.UITextComponents.highestWaveStat,
-                highestWave.ToString());
+            diffWave++;
+            if (diffWave == 16) diffWave = 1;
+            DifficultyPicker.SetArenaDifficulty (diffWave);
         }
     }
 
@@ -208,5 +225,10 @@ public class EnemySpawner : MonoBehaviour
     {
         ResetSpawner();
         CoreGameElements.i.arenaMode = false;
+        endTime = DateTime.Now.TimeOfDay;
+
+        TimeSpan diff = endTime - startTime;
+
+        CoreGameElements.i.gameSave.timeInArena += diff;
     }
 }

@@ -30,7 +30,7 @@ public class GameHandler : MonoBehaviour
 
     void Start()
     {
-        DATA_PATH = Application.dataPath + "/save.txt";
+        DATA_PATH = Application.persistentDataPath + "/save.txt";
         CoreGameElements.i.saveDeleted = false;
         Load();
     }
@@ -104,6 +104,9 @@ public class GameHandler : MonoBehaviour
             ExperienceController.SetInitialLevel();
             HealthController.SetHealth();
             TextureController.CreateItemButtonsFirst();
+            int count = LevelController.i.levelLoader.customLevels.Length;
+            CoreGameElements.i.gameSave.customLevels =
+                new SaveFile.customLevel[count];
 
             seed.SetLevels();
         }
@@ -148,6 +151,9 @@ public class GameHandler : MonoBehaviour
                     diff.ToString() +
                     "," +
                     stats +
+                    "," +
+                    "Time in arena: " +
+                    CoreGameElements.i.gameSave.timeInArena +
                     System.Environment.NewLine);
             }
         }

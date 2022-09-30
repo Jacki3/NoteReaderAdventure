@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class SaveFile
 {
@@ -77,6 +78,8 @@ public class SaveFile
 
     public int highestArenaWave;
 
+    public int arenaHighScore;
+
     public List<Board> boards = new List<Board>();
 
     [System.Serializable]
@@ -113,4 +116,16 @@ public class SaveFile
             return score >= maxScore ? true : false;
         }
     }
+
+    public customLevel[] customLevels;
+
+    [System.Serializable]
+    public class customLevel
+    {
+        public bool scrollCollected;
+
+        public int highScore;
+    }
+
+    public TimeSpan timeInArena;
 }

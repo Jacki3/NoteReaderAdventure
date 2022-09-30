@@ -184,54 +184,64 @@ public class PauseMenu : MonoBehaviour
 
     public void ShowMenu()
     {
-        if (
-            GameStateController.state != GameStateController.States.MainMenu &&
-            GameStateController.state != GameStateController.States.Shopping &&
-            GameStateController.state != GameStateController.States.Puzzle
-        )
+        if (!skillTree.activeSelf)
         {
-            if (GameStateController.state == GameStateController.States.Tutorial
+            if (
+                GameStateController.state !=
+                GameStateController.States.MainMenu &&
+                GameStateController.state !=
+                GameStateController.States.Shopping &&
+                GameStateController.state != GameStateController.States.Puzzle
             )
-                TutorialManager
-                    .CheckTutorialStatic(Tutorial.TutorialValidation.Menu);
-            GameStateController.PauseGame(false);
+            {
+                if (
+                    GameStateController.state ==
+                    GameStateController.States.Tutorial
+                )
+                    TutorialManager
+                        .CheckTutorialStatic(Tutorial.TutorialValidation.Menu);
+                GameStateController.PauseGame(false);
 
-            if (GameStateController.gamePaused)
-            {
-                GameStateController.state = GameStateController.States.Paused;
-                GetComponent<Canvas>().enabled = true;
-                background.SetActive(true);
-                optionButtons.SetActive(false);
-                pauseButtons.SetActive(true);
-                rhythmBar.SetActive(false);
-                EventSystem.current.SetSelectedGameObject (resumeButton);
-                mixer.GetFloat("MusicVol", out currentMusicVol);
-                mixer.SetFloat("MusicVol", currentMusicVol - 8);
-                mixer.GetFloat("LSequencer", out currentMusicVol);
-                mixer.SetFloat("LSequencer", currentMusicVol - 8);
-                mixer.GetFloat("BSequencer", out currentMusicVol);
-                mixer.SetFloat("BSequencer", currentMusicVol - 8);
-                Metronome.MuteMetro();
-            }
-            else
-            {
-                mixer.GetFloat("MusicVol", out currentMusicVol);
-                mixer.SetFloat("MusicVol", currentMusicVol + 8);
-                mixer.GetFloat("LSequencer", out currentMusicVol);
-                mixer.SetFloat("LSequencer", currentMusicVol + 8);
-                mixer.GetFloat("BSequencer", out currentMusicVol);
-                mixer.SetFloat("BSequencer", currentMusicVol + 8);
-                if (CoreGameElements.i.usingRhythm) rhythmBar.SetActive(true);
-                GetComponent<Canvas>().enabled = false;
-                if (CoreGameElements.i.useTutorial)
+                if (GameStateController.gamePaused)
+                {
                     GameStateController.state =
-                        GameStateController.States.Tutorial;
+                        GameStateController.States.Paused;
+                    GetComponent<Canvas>().enabled = true;
+                    background.SetActive(true);
+                    optionButtons.SetActive(false);
+                    pauseButtons.SetActive(true);
+                    rhythmBar.SetActive(false);
+                    EventSystem.current.SetSelectedGameObject (resumeButton);
+                    mixer.GetFloat("MusicVol", out currentMusicVol);
+                    mixer.SetFloat("MusicVol", currentMusicVol - 8);
+                    mixer.GetFloat("LSequencer", out currentMusicVol);
+                    mixer.SetFloat("LSequencer", currentMusicVol - 8);
+                    mixer.GetFloat("BSequencer", out currentMusicVol);
+                    mixer.SetFloat("BSequencer", currentMusicVol - 8);
+                    Metronome.MuteMetro();
+                }
                 else
-                    GameStateController.state = GameStateController.States.Play;
-                Metronome.UnMuteMetro();
-                MIDIMenuVisible = false;
-                MIDIMenu.SetActive(false);
-                EventSystem.current.SetSelectedGameObject(null);
+                {
+                    mixer.GetFloat("MusicVol", out currentMusicVol);
+                    mixer.SetFloat("MusicVol", currentMusicVol + 8);
+                    mixer.GetFloat("LSequencer", out currentMusicVol);
+                    mixer.SetFloat("LSequencer", currentMusicVol + 8);
+                    mixer.GetFloat("BSequencer", out currentMusicVol);
+                    mixer.SetFloat("BSequencer", currentMusicVol + 8);
+                    if (CoreGameElements.i.usingRhythm)
+                        rhythmBar.SetActive(true);
+                    GetComponent<Canvas>().enabled = false;
+                    if (CoreGameElements.i.useTutorial)
+                        GameStateController.state =
+                            GameStateController.States.Tutorial;
+                    else
+                        GameStateController.state =
+                            GameStateController.States.Play;
+                    Metronome.UnMuteMetro();
+                    MIDIMenuVisible = false;
+                    MIDIMenu.SetActive(false);
+                    EventSystem.current.SetSelectedGameObject(null);
+                }
             }
         }
     }
@@ -600,9 +610,9 @@ public class PauseMenu : MonoBehaviour
 
     public void DeleteSave()
     {
-        if (File.Exists(Application.dataPath + "/save.txt"))
+        if (File.Exists(Application.persistentDataPath + "/save.txt"))
         {
-            File.Delete(Application.dataPath + "/save.txt");
+            File.Delete(Application.persistentDataPath + "/save.txt");
             CoreGameElements.i.gameSave = null;
             CoreGameElements.i.saveDeleted = true;
             Application.LoadLevel(0);

@@ -106,13 +106,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8388608
   scoreToAdd: 10
-  XPToAdd: 20
+  XPToAdd: 10
   playerDmg: 1
   notationsToComplete: 1
   minDelay: 100000
   maxDelay: 100000
   missionObject: 9
   completeSound: 0
+  enemySpawner: {fileID: 0}
 --- !u!61 &2919840861236354768
 BoxCollider2D:
   m_ObjectHideFlags: 0

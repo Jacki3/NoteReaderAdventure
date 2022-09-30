@@ -1,9 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Contexts;
 using TMPro;
-using TMPro.Examples;
 using UnityEngine;
 
 public class Notation : MonoBehaviour
