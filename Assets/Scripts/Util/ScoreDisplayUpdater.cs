@@ -1,9 +1,12 @@
 ﻿using System.Collections;
+using System.Management.Instrumentation;
 using UnityEngine;
 
 public class ScoreDisplayUpdater : MonoBehaviour
 {
     private static ScoreDisplayUpdater instance;
+
+    private bool stopRoutine;
 
     private void Awake()
     {
@@ -18,6 +21,11 @@ public class ScoreDisplayUpdater : MonoBehaviour
 
         while (true)
         {
+            if (instance.stopRoutine)
+            {
+                yield break;
+            }
+
             if (displayScore < addedAmount)
             {
                 displayScore++;
@@ -25,7 +33,7 @@ public class ScoreDisplayUpdater : MonoBehaviour
             }
 
             //this should reflect how big the gap is
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.025f);
         }
     }
 
@@ -40,6 +48,10 @@ public class ScoreDisplayUpdater : MonoBehaviour
 
         while (true)
         {
+            if (instance.stopRoutine)
+            {
+                yield break;
+            }
             if (displayScore > addedAmount)
             {
                 displayScore--;
@@ -47,7 +59,7 @@ public class ScoreDisplayUpdater : MonoBehaviour
             }
 
             //this should reflect how big the gap is
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.025f);
         }
     }
 
@@ -56,6 +68,7 @@ public class ScoreDisplayUpdater : MonoBehaviour
         UIController.UITextComponents textComponent
     )
     {
+        instance.stopRoutine = false;
         instance
             .StartCoroutine(instance.ScoreUpdater(addedAmount, textComponent));
     }
@@ -68,5 +81,11 @@ public class ScoreDisplayUpdater : MonoBehaviour
         instance
             .StartCoroutine(instance
                 .ScoreUpdaterDown(addedAmount, textComponent));
+    }
+
+    public static void StopRoutine()
+    {
+        instance.stopRoutine = true;
+        UIController.UpdateTextUI(UIController.UITextComponents.scoreText, "0");
     }
 }

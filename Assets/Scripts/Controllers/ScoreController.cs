@@ -143,10 +143,9 @@ public class ScoreController : MonoBehaviour
 
     public void AddRhythmScore(int scoreToAdd)
     {
-        score += scoreToAdd;
-        ScoreDisplayUpdater
-            .StartRoutine(score, UIController.UITextComponents.scoreText);
-
+        // score += scoreToAdd;
+        // ScoreDisplayUpdater
+        //     .StartRoutine(score, UIController.UITextComponents.scoreText);
         ScoreGainRhythm.SetScoreGain_Static("+rhythm bonus!");
     }
 
@@ -248,8 +247,12 @@ public class ScoreController : MonoBehaviour
 
     public void ResetScore()
     {
+        ScoreDisplayUpdater.StopRoutine();
+        UIController.UpdateTextUI(UIController.UITextComponents.scoreText, "0");
+        previousScore = 0;
+        previousScoreToAdd = 0;
         score = 0;
-        ScoreDisplayUpdater
-            .StartRoutineDown(score, UIController.UITextComponents.scoreText);
+        // ScoreDisplayUpdater
+        //     .StartRoutineDown(score, UIController.UITextComponents.scoreText);
     }
 }

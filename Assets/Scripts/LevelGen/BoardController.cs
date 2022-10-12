@@ -485,6 +485,7 @@ public class BoardController : MonoBehaviour
     public void ClearBoard()
     {
         //Clear the board and increase sizes
+        totalNotations = 0;
         boardBushesLocations.Clear();
         boardBushWatered.Clear();
         boardMaxScore = 0;

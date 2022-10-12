@@ -152,6 +152,8 @@ public class Seed : MonoBehaviour
 
         string UILevelName = "Level " + levelToLoad;
 
+        totalNotations = 0;
+
         DifficultyPicker.ChooseDifficultyOnLevel (currentLevel);
         DifficultyPicker.ChooseDifficultyOnLevelNotes (currentLevel);
 
@@ -221,7 +223,7 @@ public class Seed : MonoBehaviour
 
             //load music on levels which are procedureally generated
             bool isEnemyLevel = levelToLoad % 5 == 0 ? true : false;
-            MusicGenController.RegenMusic (isEnemyLevel);
+            MusicGenController.RegenMusic (usingCustomLvl);
 
             //if we load a non custom level it will always be a non tutorial level
             GameStateController.state = GameStateController.States.Play;

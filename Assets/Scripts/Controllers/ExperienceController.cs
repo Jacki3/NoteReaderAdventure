@@ -59,10 +59,13 @@ public static class ExperienceController
             return true;
         }
 
-        ScoreDisplayUpdater
-            .StartRoutine(currentXP,
-            UIController.UITextComponents.currentXPText);
+        UIController
+            .UpdateTextUI(UIController.UITextComponents.currentXPText,
+            currentXP.ToString());
 
+        // ScoreDisplayUpdater
+        //     .StartRoutine(currentXP,
+        //     UIController.UITextComponents.currentXPText);
         return false;
     }
 

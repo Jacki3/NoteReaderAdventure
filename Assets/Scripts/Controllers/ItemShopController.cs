@@ -19,6 +19,8 @@ public class ItemShopController : MonoBehaviour
 
     public PauseMenu pauseMenu;
 
+    public StartMenu mainMenu;
+
     private IShopCustomer shopCustomer;
 
     private List<ShopButton> shopButtons = new List<ShopButton>();
@@ -247,6 +249,6 @@ public class ItemShopController : MonoBehaviour
     public void ExitToMenu()
     {
         HideShop();
-        pauseMenu.ReturnToMain(false, false);
+        mainMenu.ShowShop(true);
     }
 }

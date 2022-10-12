@@ -68,30 +68,22 @@ public class LevelController : MonoBehaviour
                 CoreGameElements.i.gameSave.boards[currentLevel - 1].score =
                     score;
         }
-        else
+        else if (!CoreGameElements.i.useTutorial)
         {
             int customLevelIndex = levelLoader.customLevelNum;
             int customLevelHighScore =
-                CoreGameElements
-                    .i
-                    .gameSave
-                    .customLevels[customLevelIndex]
-                    .highScore;
+                CoreGameElements.i.gameSave.levelHighScores[customLevelIndex];
 
             if (score > customLevelHighScore)
             {
-                CoreGameElements
-                    .i
-                    .gameSave
-                    .customLevels[customLevelIndex]
-                    .highScore = score;
+                CoreGameElements.i.gameSave.levelHighScores[customLevelIndex] =
+                    score;
             }
 
             CoreGameElements
                 .i
                 .gameSave
-                .customLevels[customLevelIndex]
-                .scrollCollected =
+                .levelScrollsCollected[customLevelIndex] =
                 levelLoader.customLevel[customLevelIndex].scrollUnlocked;
         }
         ScoreController.ResetScoreStatic();
@@ -101,6 +93,12 @@ public class LevelController : MonoBehaviour
             if (currentLevel + 1 > nextLevel)
             {
                 nextLevel++;
+                if (CoreGameElements.i.useTutorial)
+                {
+                    CoreGameElements.i.useTutorial = false;
+                    nextLevel++;
+                    currentLevel++;
+                }
                 CoreGameElements.i.latetstLevel = nextLevel;
                 CoreGameElements.i.gameSave.levelAt = nextLevel;
             }
@@ -118,8 +116,6 @@ public class LevelController : MonoBehaviour
                 currentLevel % 5 != 0
             )
                 pauseMenu.ReturnToMain(true, false);
-            else if (currentLevel % 5 == 0)
-                pauseMenu.ReturnToMain(false, true);
             else
                 levelLoader.LoadLevel(currentLevel + 1);
         }

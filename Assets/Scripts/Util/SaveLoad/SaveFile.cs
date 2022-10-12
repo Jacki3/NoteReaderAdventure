@@ -117,6 +117,10 @@ public class SaveFile
         }
     }
 
+    public bool[] levelScrollsCollected;
+
+    public int[] levelHighScores;
+
     public customLevel[] customLevels;
 
     [System.Serializable]

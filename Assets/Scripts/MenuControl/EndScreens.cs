@@ -24,6 +24,8 @@ public class EndScreens : MonoBehaviour
 
     private static EndScreens instance;
 
+    private bool lifeOver;
+
     private void Awake()
     {
         instance = this;
@@ -48,6 +50,7 @@ public class EndScreens : MonoBehaviour
 
     public void ShowLifeOver()
     {
+        lifeOver = true;
         mainCanvas.enabled = false;
         GameStateController.PauseGame(true);
         canvas.enabled = true;
@@ -114,7 +117,11 @@ public class EndScreens : MonoBehaviour
 
     private void HideScreens()
     {
-        GameStateController.PauseGame(true);
+        if (lifeOver)
+        {
+            lifeOver = false;
+            GameStateController.PauseGame(true);
+        }
         canvas.enabled = false;
         lifeLostScreen.SetActive(false);
     }

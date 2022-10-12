@@ -24,7 +24,7 @@ public class Bush : MonoBehaviour
                 {
                     SoundController.PlaySound(SoundController.Sound.FlowerUp);
                     ExperienceController.AddXP (xpToAdd);
-                    MissionHolder.i.CheckValidMission(Mission.Object.Flowers);
+                    MissionHolder.i.CheckValidMission(Mission.Object.Bushes);
                 }
             }
             else

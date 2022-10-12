@@ -59,14 +59,14 @@ public class ReadingCircle : MonoBehaviour
 
     private void ZoomCameraOut()
     {
-        FXController.ZoomCamera (cameraZoomSize, cameraZoomSpeed);
+        float addedZoom = CoreGameElements.i.gameSave.addedCamZoom;
+        FXController.ZoomCamera(cameraZoomSize + addedZoom, cameraZoomSpeed);
         SoundController.PlaySound(SoundController.Sound.CameraZoom);
     }
 
     private void ZoomCameraIn()
     {
-        float addedZoom = CoreGameElements.i.gameSave.addedCamZoom;
-        FXController.ZoomCamera(cameraDefaultSize + addedZoom, cameraZoomSpeed);
+        FXController.ZoomCamera (cameraDefaultSize, cameraZoomSpeed);
         SoundController.PlaySound(SoundController.Sound.CameraZoom);
     }
 }

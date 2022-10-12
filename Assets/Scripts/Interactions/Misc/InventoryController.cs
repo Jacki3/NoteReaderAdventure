@@ -57,7 +57,6 @@ public class InventoryController : MonoBehaviour
             }
             else
             {
-                print("item already purchased");
                 return false;
             }
         }

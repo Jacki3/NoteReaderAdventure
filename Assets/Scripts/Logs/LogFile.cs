@@ -5,7 +5,7 @@ using System.IO;
 using System.Net;
 using UnityEngine;
 
-public static class LogFile
+public class LogFile : MonoBehaviour
 {
     static string fileName;
 
@@ -13,9 +13,8 @@ public static class LogFile
 
     public static void WriteCSV(string data)
     {
-        fileName =
-            CoreGameElements.i.gameSave.userIndex + "_GAME DATA_" + ".csv";
-        wholeFilePath = Application.persistentDataPath + "/" + fileName;
+        fileName = CoreGameElements.i.gameSave.userIndex + "_GAMEDATA" + ".csv";
+        wholeFilePath = Application.dataPath + "/" + fileName;
 
         StreamWriter tw = new StreamWriter(wholeFilePath, true);
 
@@ -35,11 +34,12 @@ public static class LogFile
             new ftp(@"ftp://ftp.lewin-of-greenwich-naval-history-forum.co.uk",
                 "lewin-of-greenwich-naval-history-forum.co.uk",
                 "YdFDyYkUjKyjmseVmGkhipAB");
+
+        // ftpClient
+        //     .createDirectory("Study4/GameData/" +
+        //     CoreGameElements.i.gameSave.userIndex);
         ftpClient
-            .createDirectory("/Study4/GameData/" +
-            CoreGameElements.i.gameSave.userIndex);
-        ftpClient
-            .upload("/Study4/GameData/" +
+            .upload("Study4/GameData/" +
             CoreGameElements.i.gameSave.userIndex +
             "/" +
             fileName,

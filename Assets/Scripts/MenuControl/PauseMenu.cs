@@ -610,9 +610,9 @@ public class PauseMenu : MonoBehaviour
 
     public void DeleteSave()
     {
-        if (File.Exists(Application.persistentDataPath + "/save.txt"))
+        if (File.Exists(Application.dataPath + "/save.txt"))
         {
-            File.Delete(Application.persistentDataPath + "/save.txt");
+            File.Delete(Application.dataPath + "/save.txt");
             CoreGameElements.i.gameSave = null;
             CoreGameElements.i.saveDeleted = true;
             Application.LoadLevel(0);

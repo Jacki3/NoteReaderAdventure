@@ -96,8 +96,6 @@ public static class HealthController
             LivesController.RemoveLife();
             SoundController.PlaySound(SoundController.Sound.PlayerDeath);
         }
-
-        Debug.Log (currentHealth);
     }
 
     public static void AddHealth(int healthAdded)

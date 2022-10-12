@@ -13,23 +13,35 @@ public static class CurrencyController
         if (add)
         {
             totalCoinsCollected += coins;
-            ScoreDisplayUpdater
-                .StartRoutine(totalCoinsCollected,
-                UIController.UITextComponents.coinText);
-            ScoreDisplayUpdater
-                .StartRoutine(totalCoinsCollected,
-                UIController.UITextComponents.shopCoinText);
+            UIController
+                .UpdateTextUI(UIController.UITextComponents.coinText,
+                totalCoinsCollected.ToString());
+            UIController
+                .UpdateTextUI(UIController.UITextComponents.shopCoinText,
+                totalCoinsCollected.ToString());
+            // ScoreDisplayUpdater
+            //     .StartRoutine(totalCoinsCollected,
+            //     UIController.UITextComponents.coinText);
+            // ScoreDisplayUpdater
+            //     .StartRoutine(totalCoinsCollected,
+            //     UIController.UITextComponents.shopCoinText);
         }
         else
         {
             totalCoinsCollected -= coins;
             if (totalCoinsCollected <= 0) totalCoinsCollected = 0;
-            ScoreDisplayUpdater
-                .StartRoutineDown(totalCoinsCollected,
-                UIController.UITextComponents.coinText);
-            ScoreDisplayUpdater
-                .StartRoutineDown(totalCoinsCollected,
-                UIController.UITextComponents.shopCoinText);
+            UIController
+                .UpdateTextUI(UIController.UITextComponents.coinText,
+                totalCoinsCollected.ToString());
+            UIController
+                .UpdateTextUI(UIController.UITextComponents.shopCoinText,
+                totalCoinsCollected.ToString());
+            // ScoreDisplayUpdater
+            //     .StartRoutineDown(totalCoinsCollected,
+            //     UIController.UITextComponents.coinText);
+            // ScoreDisplayUpdater
+            //     .StartRoutineDown(totalCoinsCollected,
+            //     UIController.UITextComponents.shopCoinText);
         }
     }
 

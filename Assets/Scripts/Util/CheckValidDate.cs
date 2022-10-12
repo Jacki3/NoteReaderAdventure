@@ -28,7 +28,7 @@ public class CheckValidDate : MonoBehaviour
                 "YdFDyYkUjKyjmseVmGkhipAB");
 
         string downloadLocation =
-            Application.persistentDataPath + "/" + fileName;
+            Application.dataPath + "/" + fileName;
         ftpClient
             .download("Study4/" +
             "GameData/" +
@@ -38,7 +38,7 @@ public class CheckValidDate : MonoBehaviour
             @downloadLocation);
 
         StreamReader sr =
-            new StreamReader(Application.persistentDataPath + "/" + fileName);
+            new StreamReader(Application.dataPath + "/" + fileName);
         string contents = sr.ReadToEnd();
         sr.Close();
 
@@ -47,12 +47,12 @@ public class CheckValidDate : MonoBehaviour
 
         if (endDate >= today)
         {
-            File.Delete(Application.persistentDataPath + "/" + fileName);
+            File.Delete(Application.dataPath + "/" + fileName);
             return true;
         }
         else
         {
-            File.Delete(Application.persistentDataPath + "/" + fileName);
+            File.Delete(Application.dataPath + "/" + fileName);
             errorScreen.SetActive(true);
             mainGame.SetActive(false);
             return false;
@@ -63,7 +63,10 @@ public class CheckValidDate : MonoBehaviour
     {
         while (true)
         {
-            if (InternetChecker.hasInternet)
+            if (
+                InternetChecker.hasInternet &&
+                !CoreGameElements.i.gameSave.firstRun
+            )
             {
                 CheckValidity();
                 break;

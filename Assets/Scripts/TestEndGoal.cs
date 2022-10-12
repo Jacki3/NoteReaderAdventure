@@ -68,7 +68,6 @@ public class TestEndGoal : MonoBehaviour
                 if (TutorialManager.TutorialComplete())
                 {
                     TutorialManager.StartGameStatic();
-                    CoreGameElements.i.useTutorial = false;
                     LevelController.i.LevelComplete();
                 }
                 else

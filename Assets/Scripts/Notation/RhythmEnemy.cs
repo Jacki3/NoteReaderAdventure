@@ -109,8 +109,9 @@ public class RhythmEnemy : MovingObject, INotation
         if (scoreToAdd > 0) ScoreController.AddScore_Static(scoreToAdd);
         if (missionObject != Mission.Object.None)
             MissionHolder.i.CheckValidMission(missionObject);
-        if (completeSound != SoundController.Sound.None)
-            SoundController.PlaySound(completeSound);
+
+        // if (completeSound != SoundController.Sound.None)
+        SoundController.PlaySound(SoundController.Sound.ZombieDeath);
 
         var notationFloating =
             transform.GetComponentInChildren<ParticleSystem>();

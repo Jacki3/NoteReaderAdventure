@@ -36,7 +36,8 @@ public static class UIController
         gameOverCurrentWave,
         gameOverHighestWave,
         gameOverNewScore,
-        highestWaveStat
+        highestWaveStat,
+        none
     }
 
     public enum UIImageComponents

@@ -30,7 +30,7 @@ public class GameHandler : MonoBehaviour
 
     void Start()
     {
-        DATA_PATH = Application.persistentDataPath + "/save.txt";
+        DATA_PATH = Application.dataPath + "/save.txt";
         CoreGameElements.i.saveDeleted = false;
         Load();
     }
@@ -105,8 +105,8 @@ public class GameHandler : MonoBehaviour
             HealthController.SetHealth();
             TextureController.CreateItemButtonsFirst();
             int count = LevelController.i.levelLoader.customLevels.Length;
-            CoreGameElements.i.gameSave.customLevels =
-                new SaveFile.customLevel[count];
+            CoreGameElements.i.gameSave.levelHighScores = new int[count];
+            CoreGameElements.i.gameSave.levelScrollsCollected = new bool[count];
 
             seed.SetLevels();
         }

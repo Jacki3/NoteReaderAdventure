@@ -48,6 +48,8 @@ public class StartMenu : MonoBehaviour
 
     private static StartMenu i;
 
+    private bool shopHidden = true;
+
     private void Awake()
     {
         i = this;
@@ -218,18 +220,16 @@ public class StartMenu : MonoBehaviour
     private void UpdateCustomLevelButtons()
     {
         int[] levels = LevelController.i.levelLoader.customLevels;
-        var customLevels = CoreGameElements.i.gameSave.customLevels;
+        var customLevels = CoreGameElements.i.gameSave.levelHighScores;
+        var customLevelsScrolls =
+            CoreGameElements.i.gameSave.levelScrollsCollected;
 
         for (int i = 0; i < customLevels.Length; i++)
         {
             int buttonIndex = levels[i] - 1;
             int levelScore = 0;
-            if (customLevels[i] != null)
-            {
-                levelScore = customLevels[i].highScore;
-                if (customLevels[i].scrollCollected)
-                    levelButtons[buttonIndex].SetCrown(); //could be something else but this ok for now?
-            }
+            levelScore = customLevels[i];
+            if (customLevelsScrolls[i]) levelButtons[buttonIndex].SetCrown(); //could be something else but this ok for now?
             if (levelScore > 0)
                 levelButtons[buttonIndex].SetScoreText(levelScore.ToString());
             else
@@ -305,10 +305,22 @@ public class StartMenu : MonoBehaviour
 
     public void ShowShop(bool hideContinue)
     {
-        gameObject.SetActive(false);
-        player.HidePlayer(true);
-        itemShop.ShowShop(player.GetComponent<IShopCustomer>(), hideContinue);
-        GameStateController.state = GameStateController.States.Shopping;
+        if (shopHidden)
+        {
+            shopHidden = false;
+            gameObject.SetActive(false);
+            player.HidePlayer(true);
+            itemShop
+                .ShowShop(player.GetComponent<IShopCustomer>(), hideContinue);
+            GameStateController.state = GameStateController.States.Shopping;
+        }
+        else
+        {
+            shopHidden = true;
+            gameObject.SetActive(true);
+            player.HidePlayer(true);
+            GameStateController.state = GameStateController.States.MainMenu;
+        }
     }
 
     public void Quit()
