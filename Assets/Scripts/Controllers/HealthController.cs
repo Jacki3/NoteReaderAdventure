@@ -120,7 +120,6 @@ public static class HealthController
 
         //sound
         //animate
-        Debug.Log (currentHealth);
     }
 
     public static void UpgradeMaxHealth(int heatlhUpgraded)

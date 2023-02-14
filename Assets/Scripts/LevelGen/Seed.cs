@@ -31,11 +31,17 @@ public class Seed : MonoBehaviour
 
     public Light2D mainLights;
 
+    public RhythmSetup tutorialScene;
+
+    public RhythmFlash flash;
+
     public int[] customLevels;
 
     public LevelObjs[] customLevel;
 
     public static int totalNotations;
+
+    private RhythmSetup tutorialInstance;
 
     [Serializable]
     public class LevelObjs
@@ -168,10 +174,12 @@ public class Seed : MonoBehaviour
                 usingCustomLvl = true;
                 customLevelNum = i;
                 UILevelName = customLevel[i].levelName;
-                customLevel[i].levelObj.SetActive(true);
                 levelController.ResetPlayerPos();
                 if (i == 0)
                 {
+                    tutorialInstance =
+                        Instantiate(tutorialScene, transform.root);
+                    tutorialInstance.flashScript = flash;
                     CoreGameElements.i.useTutorial = true;
                     GameStateController.state =
                         GameStateController.States.Tutorial;
@@ -183,6 +191,7 @@ public class Seed : MonoBehaviour
                     CoreGameElements.i.useTutorial = false;
                     GameStateController.state = GameStateController.States.Play;
                     mainLights.enabled = false;
+                    customLevel[i].levelObj.SetActive(true);
                 }
                 else
                 {
@@ -190,6 +199,7 @@ public class Seed : MonoBehaviour
                     GameStateController.state = GameStateController.States.Play;
                     totalNotations = customLevel[i].levelNotations.Count;
                     MusicGenController.StartCustomLvlMusic_Static();
+                    customLevel[i].levelObj.SetActive(true);
                 }
             }
         }
@@ -258,6 +268,8 @@ public class Seed : MonoBehaviour
 
     public void HideCustomLevel()
     {
+        if (tutorialInstance != null) Destroy(tutorialInstance.gameObject);
+
         foreach (LevelObjs customLevel in customLevel)
         {
             customLevel.levelObj.SetActive(false);

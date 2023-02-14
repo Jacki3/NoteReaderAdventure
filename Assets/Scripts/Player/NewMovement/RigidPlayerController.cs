@@ -70,7 +70,8 @@ public class RigidPlayerController : MovingObject, IShopCustomer
         if (
             !readingMode &&
             GameStateController.state == GameStateController.States.Play ||
-            GameStateController.state == GameStateController.States.Tutorial
+            GameStateController.state == GameStateController.States.Tutorial &&
+            !readingMode
         )
         {
             if (inputActions.Player.Up.WasPressedThisFrame())
@@ -179,6 +180,8 @@ public class RigidPlayerController : MovingObject, IShopCustomer
         {
             door.LayerCheck (spriteRenderer);
         }
+
+        print (Component);
     }
 
     private void SpawnCircle()

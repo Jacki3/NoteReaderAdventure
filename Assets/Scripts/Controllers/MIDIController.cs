@@ -26,12 +26,12 @@ public class MIDIController : MonoBehaviour
 
             midiDevice.onWillNoteOn += (note, velocity) =>
             {
-                NoteOn(note.noteNumber, velocity);
+                NoteOn(note.noteNumber + 1, velocity);
             };
 
             midiDevice.onWillNoteOff += (note) =>
             {
-                NoteOff(note.noteNumber);
+                NoteOff(note.noteNumber + 1);
             };
         };
     }

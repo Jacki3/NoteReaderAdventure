@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,7 +9,7 @@ public class ItemShopController : MonoBehaviour
 
     public GameObject continueButton;
 
-    public List<CoreItems> shopItems = new List<CoreItems>();
+    public List<CoreItems> shopItems = new List<CoreItems>(); 
 
     public ShopButton itemTemplateButton;
 

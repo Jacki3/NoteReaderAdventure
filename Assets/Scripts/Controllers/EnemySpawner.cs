@@ -55,6 +55,10 @@ public class EnemySpawner : MonoBehaviour
 
     private int diffWave;
 
+    private Coroutine startWave;
+
+    private Coroutine endWave;
+
     private void OnEnable()
     {
         Invoke("StartSpawning", 5);
@@ -76,7 +80,7 @@ public class EnemySpawner : MonoBehaviour
         {
             if (!EnemiesLeft())
             {
-                StartCoroutine(WaveComplete());
+                endWave = StartCoroutine(WaveComplete());
                 return;
             }
             else
@@ -89,7 +93,7 @@ public class EnemySpawner : MonoBehaviour
                 spawnState != SpawnState.complete
             )
             {
-                StartCoroutine(SpawnWave(waves[nextWave]));
+                startWave = StartCoroutine(SpawnWave(waves[nextWave]));
             }
         }
         else if (waitToGo)
@@ -216,7 +220,15 @@ public class EnemySpawner : MonoBehaviour
         spawnState = SpawnState.counting;
         nextWave = 0;
         currentWave = 0;
-        foreach (RhythmEnemy enemy in enemies) Destroy(enemy.gameObject);
+        waveCountDown = 3;
+        if (startWave != null) StopCoroutine(startWave);
+        if (endWave != null) StopCoroutine(endWave);
+        foreach (RhythmEnemy enemy in enemies)
+        {
+            Destroy(enemy.gameObject);
+        }
+        enemies.Clear();
+        totalEnemies = 0;
         UIController
             .UpdateTextUI(UIController.UITextComponents.arenaWinText, "");
     }

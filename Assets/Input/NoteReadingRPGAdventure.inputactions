@@ -307,7 +307,7 @@
                 {
                     "name": "up",
                     "id": "f64e7680-c695-4732-b1f2-dff14240406f",
-                    "path": "<MidiDevice>/note051",
+                    "path": "<MidiDevice>/note052",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -318,7 +318,7 @@
                 {
                     "name": "down",
                     "id": "4d025959-b831-4b7b-9507-f1138fd8c474",
-                    "path": "<MidiDevice>/note052",
+                    "path": "<Keyboard>/f3",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -329,7 +329,7 @@
                 {
                     "name": "left",
                     "id": "442b518a-c13e-4636-ae0d-ba4bd2bc624e",
-                    "path": "<MidiDevice>/note050",
+                    "path": "<MidiDevice>/note051",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -340,7 +340,7 @@
                 {
                     "name": "right",
                     "id": "fc5bceb2-561d-4d8a-bbcc-0b435bbb14aa",
-                    "path": "<MidiDevice>/note053",
+                    "path": "<MidiDevice>/note054",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -516,7 +516,7 @@
                 {
                     "name": "",
                     "id": "c7d05391-5905-4439-968d-57f13a9f1f9e",
-                    "path": "<MidiDevice>/note037",
+                    "path": "<MidiDevice>/note036",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -527,7 +527,7 @@
                 {
                     "name": "",
                     "id": "3877b946-b85a-4584-991c-21a15627e2fe",
-                    "path": "<MidiDevice>/note061",
+                    "path": "<MidiDevice>/note060",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -549,7 +549,7 @@
                 {
                     "name": "",
                     "id": "102a2c1c-746a-463e-9e02-d260ed846725",
-                    "path": "<MidiDevice>/note073",
+                    "path": "<MidiDevice>/note072",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -560,7 +560,7 @@
                 {
                     "name": "",
                     "id": "44a86821-30e4-43a1-a7e3-aa35dd006893",
-                    "path": "<MidiDevice>/note051",
+                    "path": "<MidiDevice>/note050",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -582,7 +582,7 @@
                 {
                     "name": "",
                     "id": "65ee8f77-bf2f-4dff-8539-581b98723cd5",
-                    "path": "<MidiDevice>/note052",
+                    "path": "<MidiDevice>/note051",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -604,7 +604,7 @@
                 {
                     "name": "",
                     "id": "a2066620-33d5-45d9-9141-61292a4b3813",
-                    "path": "<MidiDevice>/note053",
+                    "path": "<MidiDevice>/note052",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -626,7 +626,7 @@
                 {
                     "name": "",
                     "id": "54f55801-aa4f-40a5-af64-08a6c066cb3e",
-                    "path": "<MidiDevice>/note050",
+                    "path": "<MidiDevice>/note049",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -933,7 +933,7 @@
                 {
                     "name": "up",
                     "id": "a80380a2-3ae4-4dde-8d7b-8c3b34eb9315",
-                    "path": "<MidiDevice>/note051",
+                    "path": "<MidiDevice>/note050",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -977,7 +977,7 @@
                 {
                     "name": "down",
                     "id": "0e3671d5-ec6e-48c1-84e0-f5f93b4042d0",
-                    "path": "<MidiDevice>/note052",
+                    "path": "<MidiDevice>/note051",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -1010,7 +1010,7 @@
                 {
                     "name": "left",
                     "id": "fba7aae2-97dd-46ab-9ac4-b5f4949d8d72",
-                    "path": "<MidiDevice>/note050",
+                    "path": "<MidiDevice>/note049",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -1043,7 +1043,7 @@
                 {
                     "name": "right",
                     "id": "cc3cc892-1076-454f-8cac-0b6dc27420c3",
-                    "path": "<MidiDevice>/note053",
+                    "path": "<MidiDevice>/note052",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -1076,7 +1076,7 @@
                 {
                     "name": "",
                     "id": "99f737fc-0a51-4b77-ace0-4fecea1b0520",
-                    "path": "<MidiDevice>/note054",
+                    "path": "<MidiDevice>/note053",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

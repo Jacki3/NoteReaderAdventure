@@ -336,6 +336,8 @@ public class Notation : MonoBehaviour
     {
         if (this != null)
         {
+            //rather than checking visibility, check below
+            //is this object in the radius of the circle? -- make this applicable to ALL notation objects so you do not repeat yourself
             if (isVisible || arenaMode || objectShow)
             {
                 int index = 0;

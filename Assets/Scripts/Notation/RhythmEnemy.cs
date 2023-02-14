@@ -153,6 +153,7 @@ public class RhythmEnemy : MovingObject, INotation
         }
     }
 
+    //rather than onbecome visible, check for triggers then apply this to all notation objects to avoid repetition
     void OnBecameVisible()
     {
         if (RigidPlayerController.readingMode)

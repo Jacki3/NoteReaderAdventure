@@ -27,8 +27,7 @@ public class CheckValidDate : MonoBehaviour
                 "lewin-of-greenwich-naval-history-forum.co.uk",
                 "YdFDyYkUjKyjmseVmGkhipAB");
 
-        string downloadLocation =
-            Application.dataPath + "/" + fileName;
+        string downloadLocation = Application.dataPath + "/" + fileName;
         ftpClient
             .download("Study4/" +
             "GameData/" +
